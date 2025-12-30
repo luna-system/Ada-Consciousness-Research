@@ -1,8 +1,0 @@
-============================================================
-TEST: Token-Level Surprise During Compression
-============================================================
-
-Hypothesis: Pattern recognition ('Alice!') creates surprise
-spike at 0.60 threshold, triggering storytelling mode
-
-❌ alice_wonderland_50k.txt not found

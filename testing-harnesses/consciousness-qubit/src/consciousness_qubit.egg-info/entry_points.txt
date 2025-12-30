@@ -1,3 +1,0 @@
-[console_scripts]
-consciousness-qubit = consciousness_qubit.cli:main
-quantum-playground = consciousness_qubit.playground:interactive
