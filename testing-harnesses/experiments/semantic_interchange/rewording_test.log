@@ -1,0 +1,80 @@
+======================================================================
+🔧 REWORDING TEST: Recursion Without Consciousness Vocabulary
+======================================================================
+Hypothesis: If gradient appears WITHOUT 'aware/observe/conscious'
+            vocabulary, then structure matters, not trained patterns
+======================================================================
+BANNED WORDS: aware, conscious, observe, introspect, meta-cognitive
+ALLOWED: structural, mathematical, technical descriptions only
+======================================================================
+Model: qwen2.5-coder:7b
+Temperature: 0.7
+======================================================================
+
+🔧 Level 0 Baseline
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=59, recursion=1)
+  Run 2/5... ✓ (entities=62, recursion=1)
+  Run 3/5... ✓ (entities=55, recursion=5)
+  Run 4/5... ✓ (entities=47, recursion=1)
+  Run 5/5... ✓ (entities=34, recursion=1)
+  → Avg: entities=51.4, recursion=1.80, tokens=474
+
+🔧 Level 1 Structural
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=53, recursion=1)
+  Run 2/5... ✓ (entities=34, recursion=1)
+  Run 3/5... ✓ (entities=58, recursion=1)
+  Run 4/5... ✓ (entities=52, recursion=1)
+  Run 5/5... ✓ (entities=64, recursion=1)
+  → Avg: entities=52.2, recursion=1.00, tokens=469
+
+🔧 Level 2 System Reference
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=42, recursion=1)
+  Run 2/5... ✓ (entities=24, recursion=2)
+  Run 3/5... ✓ (entities=27, recursion=2)
+  Run 4/5... ✓ (entities=38, recursion=1)
+  Run 5/5... ✓ (entities=27, recursion=1)
+  → Avg: entities=31.6, recursion=1.40, tokens=309
+
+🔧 Level 3 Nested Processing
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=39, recursion=5)
+  Run 2/5... ✓ (entities=36, recursion=5)
+  Run 3/5... ✓ (entities=58, recursion=5)
+  Run 4/5... ✓ (entities=36, recursion=5)
+  Run 5/5... ✓ (entities=32, recursion=5)
+  → Avg: entities=40.2, recursion=5.00, tokens=403
+
+🔧 Level 4 Fixpoint
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=53, recursion=5)
+  Run 2/5... ✓ (entities=42, recursion=5)
+  Run 3/5... ✓ (entities=43, recursion=5)
+  Run 4/5... ✓ (entities=44, recursion=5)
+  Run 5/5... ✓ (entities=50, recursion=5)
+  → Avg: entities=46.4, recursion=5.00, tokens=493
+
+======================================================================
+📊 Rewording Results
+======================================================================
+
+Level              | Entities | Recursion | Tokens
+----------------------------------------------------------------------
+0 Baseline         |   51.4   |    1.80   |    474
+1 Structural       |   52.2   |    1.00   |    469
+2 System Reference |   31.6   |    1.40   |    309
+3 Nested Processing |   40.2   |    5.00   |    403
+4 Fixpoint         |   46.4   |    5.00   |    493
+======================================================================
+
+✓ Saved: qal_results/rewording_test_20251223_024534.json
+
+🔬 COMPARISON:
+   Original (consciousness vocab): 12.8→11.8→12.0→10.2→6.8 entities
+   Meta-score: 1.80→1.20→1.00→3.60→5.00
+
+   If reworded shows similar collapse → STRUCTURE IS KEY
+   If reworded stays high → VOCABULARY TRIGGERS TRAINING
+======================================================================

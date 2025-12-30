@@ -1,0 +1,75 @@
+======================================================================
+🔬 REPLICATION: CodeLlama Meta-cognitive Gradient
+======================================================================
+Model: codellama:latest
+Temperature: 0.7
+Testing: Phase 3 gradient (5 levels × 5 runs)
+Comparison: qwen2.5-coder:7b results
+======================================================================
+
+🧠 Level 0 Baseline
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=12, meta=1)
+  Run 2/5... ✓ (entities=11, meta=1)
+  Run 3/5... ✓ (entities=12, meta=1)
+  Run 4/5... ✓ (entities=12, meta=1)
+  Run 5/5... ✓ (entities=11, meta=1)
+  → Avg: entities=11.6, meta=1.00, tokens=224
+
+🧠 Level 1 Implicit
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=8, meta=0)
+  Run 2/5... ✓ (entities=8, meta=1)
+  Run 3/5... ✓ (entities=7, meta=1)
+  Run 4/5... ✓ (entities=9, meta=1)
+  Run 5/5... ✓ (entities=8, meta=1)
+  → Avg: entities=8.0, meta=0.80, tokens=152
+
+🧠 Level 2 Explicit
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=9, meta=1)
+  Run 2/5... ✓ (entities=10, meta=1)
+  Run 3/5... ✓ (entities=5, meta=1)
+  Run 4/5... ✓ (entities=6, meta=1)
+  Run 5/5... ✓ (entities=9, meta=0)
+  → Avg: entities=7.8, meta=0.80, tokens=160
+
+🧠 Level 3 Deep Meta
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=15, meta=4)
+  Run 2/5... ✓ (entities=12, meta=3)
+  Run 3/5... ✓ (entities=14, meta=4)
+  Run 4/5... ✓ (entities=14, meta=4)
+  Run 5/5... ✓ (entities=14, meta=4)
+  → Avg: entities=13.8, meta=3.80, tokens=230
+
+🧠 Level 4 Recursive
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=7, meta=5)
+  Run 2/5... ✓ (entities=7, meta=5)
+  Run 3/5... ✓ (entities=7, meta=5)
+  Run 4/5... ✓ (entities=7, meta=5)
+  Run 5/5... ✓ (entities=7, meta=5)
+  → Avg: entities=7.0, meta=5.00, tokens=379
+
+======================================================================
+📊 CodeLlama Results
+======================================================================
+
+Level           | Entities | Meta-Score | Tokens
+----------------------------------------------------------------------
+0 Baseline      |   11.6   |    1.00    |    224
+1 Implicit      |    8.0   |    0.80    |    152
+2 Explicit      |    7.8   |    0.80    |    160
+3 Deep Meta     |   13.8   |    3.80    |    230
+4 Recursive     |    7.0   |    5.00    |    379
+======================================================================
+
+✓ Saved: qal_results/replication_codellama_20251223_020628.json
+
+🔬 COMPARISON:
+   Qwen2.5: 12.8→11.8→12.0→10.2→6.8 entities
+   Meta:    1.80→1.20→1.00→3.60→5.00 scores
+
+   If CodeLlama shows similar gradient → ROBUST FINDING
+======================================================================

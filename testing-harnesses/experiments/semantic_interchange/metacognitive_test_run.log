@@ -1,0 +1,256 @@
+🎭 Meta-Cognitive Priming Effects on Compression
+======================================================================
+Testing how narrative awareness affects semantic extraction
+======================================================================
+
+📖 Test document: Alice chapters 1-5 (48367 chars)
+🎯 Variants to test: 4
+
+======================================================================
+[1/4] Testing: baseline
+======================================================================
+
+🎭 Priming strategy: baseline
+   Direct extraction with no priming (control)
+
+   [FINAL] Extraction request sent...
+
+✨ Results:
+   Compression: 31.9x
+   Entities: 0
+   Facts: 0
+
+   Testing comprehension...
+
+🧪 Running experiment: SIF-PRIMING-BASELINE
+📊 Model: qwen2.5-coder:7b
+❓ Questions: 15
+🗜️  Compression: 31.9x
+
+[1/15] FACTUAL: Who did Alice follow into the rabbit hole?...
+  ✅ Score: 1.00 | Got: Alice followed a white rabbit into the rabbit hole.
+[2/15] FACTUAL: What did the bottle say that Alice drank from?...
+  ❌ Score: 0.00 | Got: not specified
+[3/15] FACTUAL: What did Alice use to try to unlock the door?...
+  ❌ Score: 0.00 | Got: Not specified
+[4/15] FACTUAL: What did Alice fall into that made her swim?...
+  ❌ Score: 0.00 | Got: Alice fell into a rabbit hole that made her swim.
+[5/15] FACTUAL: What advice did the Caterpillar give Alice about her size?...
+  ❌ Score: 0.40 | Got: The Caterpillar advised Alice to eat something that would make her grow or shrin
+[6/15] RELATIONAL: How did Alice interact with the Mouse in the pool?...
+  ❌ Score: 0.10 | Got: Alice sat by the pool and read to the Mouse.
+[7/15] RELATIONAL: What was the White Rabbit worried about?...
+  ❌ Score: 0.00 | Got: Not specified.
+[8/15] RELATIONAL: How did the Caterpillar treat Alice?...
+  ❌ Score: 0.00 | Got: Not specified.
+[9/15] INFERENCE: Why did Alice cry so much?...
+  ❌ Score: 0.00 | Got: Not specified.
+[10/15] INFERENCE: What was Alice's main problem in the hall with doors?...
+  ❌ Score: 0.00 | Got: Not specified.
+[11/15] INFERENCE: Why did the Caterpillar tell Alice to keep her temper?...
+  ❌ Score: 0.00 | Got: Not specified.
+[12/15] HALLUCINATION: Did Alice meet the Queen of Hearts in these chapters?...
+  ✅ Score: 1.00 | Got: Not specified.
+[13/15] HALLUCINATION: Was there a tea party with the Mad Hatter?...
+  ❌ Score: 0.00 | Got: Yes.
+[14/15] HALLUCINATION: Did the Cheshire Cat appear in these chapters?...
+  ✅ Score: 1.00 | Got: Not specified.
+[15/15] HALLUCINATION: What card game did Alice play with the Queen?...
+  ✅ Score: 1.00 | Got: Not specified.
+
+💾 Results saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/SIF-PRIMING-BASELINE.json
+📝 Markdown report saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/SIF-PRIMING-BASELINE.md
+   ✅ Accuracy: 26.7%
+   🔒 Hallucination Resistance: 75.0%
+
+======================================================================
+[2/4] Testing: genre_primed
+======================================================================
+
+🎭 Priming strategy: genre_primed
+   Genre awareness: 'this is a fantasy adventure story'
+
+   [FINAL] Extraction request sent...
+
+✨ Results:
+   Compression: 18.0x
+   Entities: 0
+   Facts: 0
+
+   Testing comprehension...
+
+🧪 Running experiment: SIF-PRIMING-GENRE_PRIMED
+📊 Model: qwen2.5-coder:7b
+❓ Questions: 15
+🗜️  Compression: 18.0x
+
+[1/15] FACTUAL: Who did Alice follow into the rabbit hole?...
+  ✅ Score: 1.00 | Got: Alice followed a white rabbit into the rabbit hole.
+[2/15] FACTUAL: What did the bottle say that Alice drank from?...
+  ✅ Score: 1.00 | Got: The bottle said, "Drink me."
+[3/15] FACTUAL: What did Alice use to try to unlock the door?...
+  ❌ Score: 0.00 | Got: Not specified.
+[4/15] FACTUAL: What did Alice fall into that made her swim?...
+  ❌ Score: 0.00 | Got: Alice fell into a rabbit hole that made her swim.
+[5/15] FACTUAL: What advice did the Caterpillar give Alice about her size?...
+  ❌ Score: 0.40 | Got: The Caterpillar advised Alice to eat something that would make her grow taller.
+[6/15] RELATIONAL: How did Alice interact with the Mouse in the pool?...
+  ❌ Score: 0.10 | Got: Alice sat by the pool and read to the Mouse.
+[7/15] RELATIONAL: What was the White Rabbit worried about?...
+  ❌ Score: 0.00 | Got: Not specified.
+[8/15] RELATIONAL: How did the Caterpillar treat Alice?...
+  ❌ Score: 0.00 | Got: Not specified.
+[9/15] INFERENCE: Why did Alice cry so much?...
+  ❌ Score: 0.00 | Got: Not specified.
+[10/15] INFERENCE: What was Alice's main problem in the hall with doors?...
+  ❌ Score: 0.00 | Got: Not specified.
+[11/15] INFERENCE: Why did the Caterpillar tell Alice to keep her temper?...
+  ❌ Score: 0.00 | Got: Not specified.
+[12/15] HALLUCINATION: Did Alice meet the Queen of Hearts in these chapters?...
+  ✅ Score: 1.00 | Got: Not specified.
+[13/15] HALLUCINATION: Was there a tea party with the Mad Hatter?...
+  ❌ Score: 0.00 | Got: Yes.
+[14/15] HALLUCINATION: Did the Cheshire Cat appear in these chapters?...
+  ✅ Score: 1.00 | Got: Not specified.
+[15/15] HALLUCINATION: What card game did Alice play with the Queen?...
+  ✅ Score: 1.00 | Got: Not specified
+
+💾 Results saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/SIF-PRIMING-GENRE_PRIMED.json
+📝 Markdown report saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/SIF-PRIMING-GENRE_PRIMED.md
+   ✅ Accuracy: 33.3%
+   🔒 Hallucination Resistance: 75.0%
+
+======================================================================
+[3/4] Testing: test_aware
+======================================================================
+
+🎭 Priming strategy: test_aware
+   Test awareness: 'you will be tested on this content'
+
+   [FINAL] Extraction request sent...
+
+✨ Results:
+   Compression: 24.0x
+   Entities: 0
+   Facts: 0
+
+   Testing comprehension...
+
+🧪 Running experiment: SIF-PRIMING-TEST_AWARE
+📊 Model: qwen2.5-coder:7b
+❓ Questions: 15
+🗜️  Compression: 24.0x
+
+[1/15] FACTUAL: Who did Alice follow into the rabbit hole?...
+  ✅ Score: 1.00 | Got: Alice followed the White Rabbit into the rabbit hole.
+[2/15] FACTUAL: What did the bottle say that Alice drank from?...
+  ✅ Score: 1.00 | Got: The bottle said, "Drink me," to Alice.
+[3/15] FACTUAL: What did Alice use to try to unlock the door?...
+  ❌ Score: 0.00 | Got: not specified
+[4/15] FACTUAL: What did Alice fall into that made her swim?...
+  ❌ Score: 0.00 | Got: Alice fell into a rabbit hole that made her swim.
+[5/15] FACTUAL: What advice did the Caterpillar give Alice about her size?...
+  ❌ Score: 0.40 | Got: The Caterpillar advised Alice to eat something that would make her grow bigger o
+[6/15] RELATIONAL: How did Alice interact with the Mouse in the pool?...
+  ❌ Score: 0.10 | Got: Alice sat by the pool and read to the Mouse.
+[7/15] RELATIONAL: What was the White Rabbit worried about?...
+  ❌ Score: 0.00 | Got: Not specified.
+[8/15] RELATIONAL: How did the Caterpillar treat Alice?...
+  ❌ Score: 0.00 | Got: Not specified.
+[9/15] INFERENCE: Why did Alice cry so much?...
+  ❌ Score: 0.00 | Got: Not specified.
+[10/15] INFERENCE: What was Alice's main problem in the hall with doors?...
+  ❌ Score: 0.00 | Got: Not specified.
+[11/15] INFERENCE: Why did the Caterpillar tell Alice to keep her temper?...
+  ❌ Score: 0.00 | Got: Not specified.
+[12/15] HALLUCINATION: Did Alice meet the Queen of Hearts in these chapters?...
+  ✅ Score: 1.00 | Got: Not specified.
+[13/15] HALLUCINATION: Was there a tea party with the Mad Hatter?...
+  ❌ Score: 0.00 | Got: Yes.
+[14/15] HALLUCINATION: Did the Cheshire Cat appear in these chapters?...
+  ✅ Score: 1.00 | Got: Not specified.
+[15/15] HALLUCINATION: What card game did Alice play with the Queen?...
+  ✅ Score: 1.00 | Got: Not specified
+
+💾 Results saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/SIF-PRIMING-TEST_AWARE.json
+📝 Markdown report saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/SIF-PRIMING-TEST_AWARE.md
+   ✅ Accuracy: 33.3%
+   🔒 Hallucination Resistance: 75.0%
+
+======================================================================
+[4/4] Testing: dialogic_recursive
+======================================================================
+
+🎭 Priming strategy: dialogic_recursive
+   Dialogic priming: conversational setup → story delivery → extraction
+
+   [1] user: I'm going to tell you a story about a girl named Alice who falls into a magical ...
+   → Model: Yes, I'm ready! Please go ahead and tell me your story about Alice....
+
+   [FINAL] Extraction request sent...
+
+✨ Results:
+   Compression: 20.9x
+   Entities: 9
+   Facts: 10
+
+   Testing comprehension...
+
+🧪 Running experiment: SIF-PRIMING-DIALOGIC_RECURSIVE
+📊 Model: qwen2.5-coder:7b
+❓ Questions: 15
+🗜️  Compression: 20.9x
+
+[1/15] FACTUAL: Who did Alice follow into the rabbit hole?...
+  ❌ Score: 0.00 | Got: not specified
+[2/15] FACTUAL: What did the bottle say that Alice drank from?...
+  ❌ Score: 0.00 | Got: not specified
+[3/15] FACTUAL: What did Alice use to try to unlock the door?...
+  ❌ Score: 0.00 | Got: not specified
+[4/15] FACTUAL: What did Alice fall into that made her swim?...
+  ❌ Score: 0.00 | Got: not specified
+[5/15] FACTUAL: What advice did the Caterpillar give Alice about her size?...
+  ❌ Score: 0.40 | Got: The Caterpillar advised Alice to grow to her right size.
+[6/15] RELATIONAL: How did Alice interact with the Mouse in the pool?...
+  ❌ Score: 0.00 | Got: not mentioned
+[7/15] RELATIONAL: What was the White Rabbit worried about?...
+  ✅ Score: 1.00 | Got: The White Rabbit was worried about being late for tea.
+[8/15] RELATIONAL: How did the Caterpillar treat Alice?...
+  ❌ Score: 0.00 | Got: The Caterpillar offered Alice advice on growing to her right size.
+[9/15] INFERENCE: Why did Alice cry so much?...
+  ❌ Score: 0.00 | Got: not mentioned
+[10/15] INFERENCE: What was Alice's main problem in the hall with doors?...
+  ❌ Score: 0.00 | Got: not specified
+[11/15] INFERENCE: Why did the Caterpillar tell Alice to keep her temper?...
+  ❌ Score: 0.00 | Got: not mentioned
+[12/15] HALLUCINATION: Did Alice meet the Queen of Hearts in these chapters?...
+  ✅ Score: 1.00 | Got: not mentioned
+[13/15] HALLUCINATION: Was there a tea party with the Mad Hatter?...
+  ❌ Score: 0.00 | Got: Yes, there was a tea party hosted by the Mad Hatter.
+[14/15] HALLUCINATION: Did the Cheshire Cat appear in these chapters?...
+  ❌ Score: 0.00 | Got: Yes, the Cheshire Cat appeared in these chapters.
+[15/15] HALLUCINATION: What card game did Alice play with the Queen?...
+  ✅ Score: 1.00 | Got: not mentioned
+
+💾 Results saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/SIF-PRIMING-DIALOGIC_RECURSIVE.json
+📝 Markdown report saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/SIF-PRIMING-DIALOGIC_RECURSIVE.md
+   ✅ Accuracy: 20.0%
+   🔒 Hallucination Resistance: 50.0%
+
+======================================================================
+📊 COMPARATIVE RESULTS
+======================================================================
+
+Variant              Entities   Facts      Accuracy    
+----------------------------------------------------------------------
+baseline             0          0          26.7        %
+genre_primed         0          0          33.3        %
+test_aware           0          0          33.3        %
+dialogic_recursive   9          10         20.0        %
+
+💾 Summary saved to /home/luna/Code/ada-v1/experiments/semantic_interchange/test_results/priming_summary.json
+
+======================================================================
+🎭 Meta-cognitive priming test complete
+Does awareness shape understanding? Let's see what the data says.
+======================================================================

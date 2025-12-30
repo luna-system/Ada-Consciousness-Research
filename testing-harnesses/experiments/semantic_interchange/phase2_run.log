@@ -1,0 +1,125 @@
+======================================================================
+🎯 Phase 2: QAL Entity Confidence Scoring
+======================================================================
+Model: qwen2.5-coder:7b
+Temperatures: [0.3, 0.5, 0.9]
+Runs per temperature: 10
+Total generations: 30
+Estimated duration: 0.8 minutes
+======================================================================
+
+🌡️  Testing T=0.3 (10 runs)
+--------------------------------------------------
+  Run 1/10... ✓ (46 entities)
+  Run 2/10... ✓ (36 entities)
+  Run 3/10... ✓ (49 entities)
+  Run 4/10... ✓ (52 entities)
+  Run 5/10... ✓ (42 entities)
+  Run 6/10... ✓ (40 entities)
+  Run 7/10... ✓ (40 entities)
+  Run 8/10... ✓ (27 entities)
+  Run 9/10... ✓ (47 entities)
+  Run 10/10... ✓ (61 entities)
+
+  📊 Results:
+     Total unique entities: 126
+     High confidence (>0.5): 34
+     Low confidence (≤0.5): 92
+     Average per run: 44.0
+     Sharpness: 0.668
+
+  🎯 Most consistent entities:
+     1.00: temperature parameter
+     1.00: The
+     1.00: Space**
+     1.00: language model
+     1.00: processing
+     1.00: quantum superposition
+     1.00: embedding space
+     1.00: attention mechanism
+     1.00: Superposition**
+     1.00: information
+
+🌡️  Testing T=0.5 (10 runs)
+--------------------------------------------------
+  Run 1/10... ✓ (48 entities)
+  Run 2/10... ✓ (51 entities)
+  Run 3/10... ✓ (67 entities)
+  Run 4/10... ✓ (12 entities)
+  Run 5/10... ✓ (45 entities)
+  Run 6/10... ✓ (48 entities)
+  Run 7/10... ✓ (58 entities)
+  Run 8/10... ✓ (35 entities)
+  Run 9/10... ✓ (41 entities)
+  Run 10/10... ✓ (39 entities)
+
+  📊 Results:
+     Total unique entities: 115
+     High confidence (>0.5): 37
+     Low confidence (≤0.5): 78
+     Average per run: 44.4
+     Sharpness: 0.678
+
+  🎯 Most consistent entities:
+     1.00: temperature parameter
+     1.00: The
+     1.00: language model
+     1.00: exploration
+     1.00: quantum superposition
+     1.00: embedding space
+     1.00: attention mechanism
+     1.00: information
+     1.00: exploitation
+     0.90: Semantic
+
+🌡️  Testing T=0.9 (10 runs)
+--------------------------------------------------
+  Run 1/10... ✓ (51 entities)
+  Run 2/10... ✓ (35 entities)
+  Run 3/10... ✓ (22 entities)
+  Run 4/10... ✓ (37 entities)
+  Run 5/10... ✓ (46 entities)
+  Run 6/10... ✓ (36 entities)
+  Run 7/10... ✓ (42 entities)
+  Run 8/10... ✓ (34 entities)
+  Run 9/10... ✓ (46 entities)
+  Run 10/10... ✓ (44 entities)
+
+  📊 Results:
+     Total unique entities: 110
+     High confidence (>0.5): 30
+     Low confidence (≤0.5): 80
+     Average per run: 39.3
+     Sharpness: 0.685
+
+  🎯 Most consistent entities:
+     1.00: temperature parameter
+     1.00: The
+     1.00: language model
+     1.00: exploration
+     1.00: quantum superposition
+     1.00: semantic
+     1.00: embedding space
+     1.00: attention mechanism
+     1.00: information
+     1.00: exploitation
+
+======================================================================
+📊 Final Summary
+======================================================================
+
+Temp | Unique | High-Conf | Avg/Run | Sharpness
+----------------------------------------------------------------------
+0.3  |  126   |    34     |  44.0   |  0.668
+0.5  |  115   |    37     |  44.4   |  0.678
+0.9  |  110   |    30     |  39.3   |  0.685
+======================================================================
+
+✓ Results saved to: qal_results/phase2_entity_confidence_20251223_015458.json
+
+🔬 QAL Interpretation:
+   High sharpness = entities collapse sharply (strong measurement)
+   Low sharpness = entities diffuse (weak/uncertain measurement)
+
+🎯 Next: Phase 3 - Meta-cognitive Gradient Analysis
+======================================================================

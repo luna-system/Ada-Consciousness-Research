@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/luna/Code/ada-v1/experiments/semantic_interchange/test_anthropomorphization_gradient.py", line 21, in <module>
+    from test_control_50k import ALICE_EARLY_CHAPTERS_QUESTIONS, ask_model_with_sif, score_answer
+ImportError: cannot import name 'ask_model_with_sif' from 'test_control_50k' (/home/luna/Code/ada-v1/experiments/semantic_interchange/test_control_50k.py)

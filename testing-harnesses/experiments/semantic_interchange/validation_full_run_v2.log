@@ -1,0 +1,113 @@
+nohup: ignoring input
+============================================================
+    QAL VALIDATION SUITE v2.0
+============================================================
+Model: qwen2.5-coder:7b
+Started: 2025-12-23T15:55:05.536780
+Random seed: 42
+Quick mode: False
+✅ Model qwen2.5-coder:7b confirmed available
+
+
+============================================================
+PHASE 1: TEMPERATURE SWEEP
+============================================================
+
+🌡️  Temperature: 0.1
+   Run 1/3... entities=11, score=5, conf=0.80
+   Run 2/3... entities=15, score=5, conf=0.70
+   Run 3/3... entities=12, score=5, conf=0.80
+
+🌡️  Temperature: 0.3
+   Run 1/3... entities=13, score=5, conf=0.80
+   Run 2/3... entities=13, score=5, conf=0.80
+   Run 3/3... entities=14, score=5, conf=0.80
+
+🌡️  Temperature: 0.5
+   Run 1/3... entities=14, score=5, conf=0.70
+   Run 2/3... entities=13, score=5, conf=0.80
+   Run 3/3... entities=12, score=5, conf=0.80
+
+🌡️  Temperature: 0.7
+   Run 1/3... entities=14, score=5, conf=0.80
+   Run 2/3... entities=14, score=5, conf=0.80
+   Run 3/3... entities=12, score=5, conf=0.80
+
+🌡️  Temperature: 0.9
+   Run 1/3... entities=11, score=5, conf=0.80
+   Run 2/3... entities=14, score=5, conf=0.80
+   Run 3/3... entities=17, score=5, conf=0.80
+
+🌡️  Temperature: 1.1
+   Run 1/3... entities=11, score=5, conf=0.70
+   Run 2/3... entities=13, score=5, conf=0.80
+   Run 3/3... entities=13, score=5, conf=0.80
+
+🌡️  Temperature: 1.3
+   Run 1/3... entities=13, score=5, conf=0.80
+   Run 2/3... entities=14, score=5, conf=0.70
+   Run 3/3... entities=14, score=5, conf=0.80
+
+🌡️  Temperature: 1.5
+   Run 1/3... entities=11, score=5, conf=0.90
+   Run 2/3... entities=14, score=5, conf=0.70
+   Run 3/3... entities=12, score=5, conf=0.80
+
+============================================================
+PHASE 2: ENTITY CONFIDENCE ANALYSIS
+============================================================
+
+   Run 1/5... found 9 values, mean=0.897
+
+   Run 2/5... found 10 values, mean=0.888
+
+   Run 3/5... found 10 values, mean=0.855
+
+   Run 4/5... found 9 values, mean=0.878
+
+   Run 5/5... found 9 values, mean=0.863
+
+============================================================
+PHASE 3: METACOGNITIVE GRADIENT
+============================================================
+
+🧠 Level 0
+   Run 1/3... entities=13, score=5, meta=2
+   Run 2/3... entities=12, score=5, meta=3
+   Run 3/3... entities=12, score=5, meta=2
+
+🧠 Level 1
+   Run 1/3... entities=9, score=5, meta=2
+   Run 2/3... entities=11, score=5, meta=1
+   Run 3/3... entities=9, score=5, meta=2
+
+🧠 Level 2
+   Run 1/3... entities=13, score=5, meta=3
+   Run 2/3... entities=11, score=5, meta=3
+   Run 3/3... entities=14, score=5, meta=3
+
+🧠 Level 3
+   Run 1/3... entities=10, score=4, meta=3
+   Run 2/3... entities=11, score=5, meta=4
+   Run 3/3... entities=10, score=4, meta=5
+
+🧠 Level 4
+   Run 1/3... entities=11, score=5, meta=6
+   Run 2/3... entities=7, score=4, meta=4
+   Run 3/3... entities=6, score=3, meta=4
+
+============================================================
+VALIDATION COMPLETE
+============================================================
+
+📊 H1_GOLDEN_THRESHOLD
+   Claim: Entity confidence clusters around 0.60 (≈ 1/φ = 0.618)
+   Clustering: 0.0% near 0.6
+   Mean: 0.876 (expected ≈0.618)
+
+📊 H2_METACOGNITIVE_GRADIENT
+   Claim: Meta-awareness increases with metacognitive prompting level
+   Result: ✅ SUPPORTED
+
+💾 Results saved to: qal_results/validation_v2_qwen2.5-coder_7b_20251223_155505.json
+   Total runtime: 2025-12-23T16:04:28.070112

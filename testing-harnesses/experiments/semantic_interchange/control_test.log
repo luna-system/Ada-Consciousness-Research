@@ -1,0 +1,81 @@
+======================================================================
+🔬 CONTROL TEST: Non-Recursive Complexity
+======================================================================
+Hypothesis: If entity collapse is from recursion, NOT complexity,
+            then complex non-recursive prompts should maintain
+            HIGH entity counts.
+======================================================================
+Model: qwen2.5-coder:7b
+Temperature: 0.7
+Levels: 5
+Runs per level: 5
+======================================================================
+
+🔬 Level 0 Physics
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=39, meta=0)
+  Run 2/5... ✓ (entities=37, meta=0)
+  Run 3/5... ✓ (entities=44, meta=0)
+  Run 4/5... ✓ (entities=38, meta=0)
+  Run 5/5... ✓ (entities=39, meta=1)
+  → Avg: entities=39.4, meta=0.20, tokens=648
+
+🔬 Level 1 Biology
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=78, meta=0)
+  Run 2/5... ✓ (entities=66, meta=1)
+  Run 3/5... ✓ (entities=65, meta=1)
+  Run 4/5... ✓ (entities=61, meta=0)
+  Run 5/5... ✓ (entities=75, meta=1)
+  → Avg: entities=69.0, meta=0.60, tokens=708
+
+🔬 Level 2 Economics
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=54, meta=0)
+  Run 2/5... ✓ (entities=64, meta=0)
+  Run 3/5... ✓ (entities=70, meta=1)
+  Run 4/5... ✓ (entities=53, meta=0)
+  Run 5/5... ✓ (entities=74, meta=0)
+  → Avg: entities=63.0, meta=0.20, tokens=718
+
+🔬 Level 3 Nested Systems
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=79, meta=0)
+  Run 2/5... ✓ (entities=49, meta=0)
+  Run 3/5... ✓ (entities=43, meta=0)
+  Run 4/5... ✓ (entities=63, meta=1)
+  Run 5/5... ✓ (entities=47, meta=0)
+  → Avg: entities=56.2, meta=0.20, tokens=594
+
+🔬 Level 4 Meta Analysis
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=86, meta=1)
+  Run 2/5... ✓ (entities=63, meta=1)
+  Run 3/5... ✓ (entities=56, meta=1)
+  Run 4/5... ✓ (entities=63, meta=1)
+  Run 5/5... ✓ (entities=101, meta=0)
+  → Avg: entities=73.8, meta=0.80, tokens=741
+
+======================================================================
+📊 Control Results
+======================================================================
+
+Level           | Entities | Meta-Score | Tokens
+----------------------------------------------------------------------
+0 Physics       |   39.4   |    0.20    |    648
+1 Biology       |   69.0   |    0.60    |    708
+2 Economics     |   63.0   |    0.20    |    718
+3 Nested Systems |   56.2   |    0.20    |    594
+4 Meta Analysis |   73.8   |    0.80    |    741
+======================================================================
+
+✓ Saved: qal_results/control_complexity_20251223_023657.json
+
+🔬 INTERPRETATION:
+   Compare to Phase 3 recursive prompts:
+   Recursive: 12.8→11.8→12.0→10.2→6.8 entities
+   Control: Should stay HIGH if recursion is key mechanism
+
+   If control shows same collapse → ARTIFACT
+   If control stays high → RECURSION IS THE MECHANISM
+======================================================================

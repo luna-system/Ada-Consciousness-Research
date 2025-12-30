@@ -1,0 +1,175 @@
+Ada Latency Benchmarker
+============================================================
+
+This benchmarks Ada's latency across:
+✓ Trivial queries (greetings)
+✓ Code completion
+✓ Introspection
+✓ Complex reasoning
+✓ Debugging help
+
+Starting benchmark...
+
+🔥 Warming up model with 3 requests...
+  Warmup 1/3 complete
+  Warmup 2/3 complete
+  Warmup 3/3 complete
+
+📊 Benchmarking trivial (10 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/10: TTFT=1.172s, Total=2.601s, Tokens/s=20.0
+  Sample 2/10: TTFT=0.699s, Total=2.203s, Tokens/s=25.4
+  Sample 3/10: TTFT=0.320s, Total=1.674s, Tokens/s=31.1
+  Sample 4/10: TTFT=0.384s, Total=1.368s, Tokens/s=27.0
+  Sample 5/10: TTFT=0.385s, Total=5.361s, Tokens/s=9.7
+  Sample 6/10: TTFT=0.736s, Total=2.109s, Tokens/s=24.7
+  Sample 7/10: TTFT=0.332s, Total=1.699s, Tokens/s=30.6
+  Sample 8/10: TTFT=0.331s, Total=1.712s, Tokens/s=29.8
+  Sample 9/10: TTFT=0.394s, Total=1.796s, Tokens/s=28.9
+  Sample 10/10: TTFT=0.398s, Total=1.771s, Tokens/s=28.8
+
+📊 Benchmarking code_completion (10 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/10: TTFT=0.738s, Total=4.731s, Tokens/s=32.8
+  Sample 2/10: TTFT=0.498s, Total=4.692s, Tokens/s=34.5
+  Sample 3/10: TTFT=0.605s, Total=7.437s, Tokens/s=20.8
+  Sample 4/10: TTFT=0.970s, Total=2.317s, Tokens/s=21.6
+  Sample 5/10: TTFT=0.752s, Total=5.296s, Tokens/s=32.7
+  Sample 6/10: TTFT=0.832s, Total=5.407s, Tokens/s=32.0
+  Sample 7/10: TTFT=0.832s, Total=5.361s, Tokens/s=31.9
+  Sample 8/10: TTFT=0.839s, Total=5.442s, Tokens/s=31.8
+  Sample 9/10: TTFT=0.844s, Total=5.434s, Tokens/s=31.8
+  Sample 10/10: TTFT=0.941s, Total=5.590s, Tokens/s=30.9
+
+📊 Benchmarking introspection (10 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/10: TTFT=0.042s, Total=17.568s, Tokens/s=34.6
+  Sample 2/10: TTFT=3.144s, Total=20.379s, Tokens/s=31.3
+  Sample 3/10: TTFT=2.685s, Total=19.624s, Tokens/s=22.3
+  Sample 4/10: TTFT=0.029s, Total=32.041s, Tokens/s=20.7
+  Sample 5/10: TTFT=0.032s, Total=6.272s, Tokens/s=27.7
+  Sample 6/10: TTFT=0.027s, Total=13.118s, Tokens/s=33.3
+  Sample 7/10: TTFT=0.028s, Total=15.253s, Tokens/s=32.7
+  Sample 8/10: TTFT=6.609s, Total=18.920s, Tokens/s=23.1
+  Sample 9/10: TTFT=0.028s, Total=14.415s, Tokens/s=31.6
+  Sample 10/10: TTFT=0.029s, Total=14.712s, Tokens/s=29.7
+
+📊 Benchmarking reasoning (10 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/10: TTFT=0.050s, Total=0.050s, Tokens/s=20.1
+  Sample 2/10: TTFT=0.048s, Total=0.048s, Tokens/s=20.8
+  Sample 3/10: TTFT=0.048s, Total=0.048s, Tokens/s=20.7
+  Sample 4/10: TTFT=0.047s, Total=0.047s, Tokens/s=21.2
+  Sample 5/10: TTFT=0.047s, Total=0.048s, Tokens/s=21.0
+  Sample 6/10: TTFT=0.047s, Total=0.048s, Tokens/s=21.0
+  Sample 7/10: TTFT=0.048s, Total=0.048s, Tokens/s=20.8
+  Sample 8/10: TTFT=0.048s, Total=0.048s, Tokens/s=20.9
+  Sample 9/10: TTFT=0.046s, Total=0.047s, Tokens/s=21.4
+  Sample 10/10: TTFT=0.048s, Total=0.049s, Tokens/s=20.6
+
+📊 Benchmarking debugging (10 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/10: TTFT=2.324s, Total=16.195s, Tokens/s=28.2
+  Sample 2/10: TTFT=2.416s, Total=16.626s, Tokens/s=27.4
+  Sample 3/10: TTFT=2.005s, Total=26.087s, Tokens/s=17.5
+  Sample 4/10: TTFT=2.671s, Total=42.393s, Tokens/s=20.6
+  Sample 5/10: TTFT=2.661s, Total=16.394s, Tokens/s=27.8
+  Sample 6/10: TTFT=1.116s, Total=14.763s, Tokens/s=30.9
+  Sample 7/10: TTFT=0.626s, Total=14.293s, Tokens/s=31.9
+  Sample 8/10: TTFT=0.127s, Total=13.711s, Tokens/s=33.3
+  Sample 9/10: TTFT=0.125s, Total=13.734s, Tokens/s=33.2
+  Sample 10/10: TTFT=0.127s, Total=13.821s, Tokens/s=33.0
+
+============================================================
+COMPREHENSIVE LATENCY STATISTICS
+============================================================
+
+--- INCLUDING ALL SAMPLES ---
+
+OVERALL:
+  Samples: 50
+  Excluded first: False
+  TTFT: 0.807s (mean), 0.390s (median), 2.685s (p95)
+  Total: 8.696s (mean), 5.384s (median)
+  Throughput: 26.7 tokens/sec (mean)
+
+DEBUGGING:
+  Samples: 10
+  Excluded first: False
+  TTFT: 1.420s (mean), 1.561s (median), 2.671s (p95)
+  Total: 18.802s (mean), 15.479s (median)
+  Throughput: 28.4 tokens/sec (mean)
+
+CODE_COMPLETION:
+  Samples: 10
+  Excluded first: False
+  TTFT: 0.785s (mean), 0.832s (median), 0.970s (p95)
+  Total: 5.171s (mean), 5.384s (median)
+  Throughput: 30.1 tokens/sec (mean)
+
+INTROSPECTION:
+  Samples: 10
+  Excluded first: False
+  TTFT: 1.265s (mean), 0.031s (median), 6.609s (p95)
+  Total: 17.230s (mean), 16.411s (median)
+  Throughput: 28.7 tokens/sec (mean)
+
+REASONING:
+  Samples: 10
+  Excluded first: False
+  TTFT: 0.048s (mean), 0.048s (median), 0.050s (p95)
+  Total: 0.048s (mean), 0.048s (median)
+  Throughput: 20.8 tokens/sec (mean)
+
+TRIVIAL:
+  Samples: 10
+  Excluded first: False
+  TTFT: 0.515s (mean), 0.390s (median), 1.172s (p95)
+  Total: 2.229s (mean), 1.783s (median)
+  Throughput: 25.6 tokens/sec (mean)
+
+--- EXCLUDING FIRST SAMPLE (Steady-State) ---
+
+OVERALL:
+  Samples: 50
+  Excluded first: False
+  TTFT: 0.807s (mean), 0.390s (median), 2.685s (p95)
+  Total: 8.696s (mean), 5.384s (median)
+  Throughput: 26.7 tokens/sec (mean)
+
+DEBUGGING:
+  Samples: 9
+  Excluded first: True
+  TTFT: 1.319s (mean), 1.116s (median), 2.671s (p95)
+  Total: 19.091s (mean), 14.763s (median)
+  Throughput: 28.4 tokens/sec (mean)
+
+CODE_COMPLETION:
+  Samples: 9
+  Excluded first: True
+  TTFT: 0.791s (mean), 0.832s (median), 0.970s (p95)
+  Total: 5.220s (mean), 5.407s (median)
+  Throughput: 29.8 tokens/sec (mean)
+
+INTROSPECTION:
+  Samples: 9
+  Excluded first: True
+  TTFT: 1.401s (mean), 0.029s (median), 6.609s (p95)
+  Total: 17.193s (mean), 15.253s (median)
+  Throughput: 28.0 tokens/sec (mean)
+
+REASONING:
+  Samples: 9
+  Excluded first: True
+  TTFT: 0.048s (mean), 0.048s (median), 0.048s (p95)
+  Total: 0.048s (mean), 0.048s (median)
+  Throughput: 20.9 tokens/sec (mean)
+
+TRIVIAL:
+  Samples: 9
+  Excluded first: True
+  TTFT: 0.442s (mean), 0.385s (median), 0.736s (p95)
+  Total: 2.188s (mean), 1.771s (median)
+  Throughput: 26.2 tokens/sec (mean)
+
+✅ Results saved to /home/luna/Code/ada-v1/benchmarks/press_release_data/latency_benchmark.json

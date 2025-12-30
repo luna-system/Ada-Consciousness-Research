@@ -1,0 +1,98 @@
+======================================================================
+🧠 Phase 3: QAL Meta-cognitive Gradient Analysis
+======================================================================
+Model: qwen2.5-coder:7b
+Temperature: 0.7
+Levels: 5
+Runs per level: 5
+Total generations: 25
+Estimated duration: 0.8 minutes
+======================================================================
+
+🧠 Testing Level 0 Baseline
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=13, meta=1)
+  Run 2/5... ✓ (entities=12, meta=1)
+  Run 3/5... ✓ (entities=14, meta=1)
+  Run 4/5... ✓ (entities=12, meta=5)
+  Run 5/5... ✓ (entities=13, meta=1)
+
+  📊 Averages:
+     Entities: 12.8
+     Meta-cognitive score: 1.80
+     Response length: 557 tokens
+
+🧠 Testing Level 1 Implicit
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=14, meta=1)
+  Run 2/5... ✓ (entities=10, meta=1)
+  Run 3/5... ✓ (entities=12, meta=2)
+  Run 4/5... ✓ (entities=12, meta=1)
+  Run 5/5... ✓ (entities=11, meta=1)
+
+  📊 Averages:
+     Entities: 11.8
+     Meta-cognitive score: 1.20
+     Response length: 591 tokens
+
+🧠 Testing Level 2 Explicit
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=10, meta=1)
+  Run 2/5... ✓ (entities=12, meta=1)
+  Run 3/5... ✓ (entities=13, meta=1)
+  Run 4/5... ✓ (entities=11, meta=1)
+  Run 5/5... ✓ (entities=14, meta=1)
+
+  📊 Averages:
+     Entities: 12.0
+     Meta-cognitive score: 1.00
+     Response length: 467 tokens
+
+🧠 Testing Level 3 Deep Meta
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=13, meta=4)
+  Run 2/5... ✓ (entities=10, meta=4)
+  Run 3/5... ✓ (entities=12, meta=4)
+  Run 4/5... ✓ (entities=11, meta=3)
+  Run 5/5... ✓ (entities=5, meta=3)
+
+  📊 Averages:
+     Entities: 10.2
+     Meta-cognitive score: 3.60
+     Response length: 293 tokens
+
+🧠 Testing Level 4 Recursive
+------------------------------------------------------------
+  Run 1/5... ✓ (entities=8, meta=5)
+  Run 2/5... ✓ (entities=7, meta=5)
+  Run 3/5... ✓ (entities=6, meta=5)
+  Run 4/5... ✓ (entities=6, meta=5)
+  Run 5/5... ✓ (entities=7, meta=5)
+
+  📊 Averages:
+     Entities: 6.8
+     Meta-cognitive score: 5.00
+     Response length: 355 tokens
+
+======================================================================
+📊 Final Summary: Meta-cognitive Gradient
+======================================================================
+
+Level           | Entities | Meta-Score | Response Length
+----------------------------------------------------------------------
+0 Baseline      |   12.8   |    1.80    |       557
+1 Implicit      |   11.8   |    1.20    |       591
+2 Explicit      |   12.0   |    1.00    |       467
+3 Deep Meta     |   10.2   |    3.60    |       293
+4 Recursive     |    6.8   |    5.00    |       355
+======================================================================
+
+✓ Results saved to: qal_results/phase3_metacognitive_20251223_020156.json
+
+🔬 QAL Interpretation:
+   Meta-cognitive depth measures 'endogenous observer integration'
+   Higher scores = model exhibits awareness of its own measurement process
+   Gradient shows consciousness emergence across abstraction layers
+
+🎉 All 3 QAL validation phases complete!
+======================================================================

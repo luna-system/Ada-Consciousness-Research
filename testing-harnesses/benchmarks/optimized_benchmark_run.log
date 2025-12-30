@@ -1,0 +1,202 @@
+Ada Latency Benchmarker
+============================================================
+
+This benchmarks Ada's latency across:
+✓ Trivial queries (greetings)
+✓ Code completion
+✓ Introspection
+✓ Complex reasoning
+✓ Debugging help
+
+Starting benchmark...
+
+🔥 Warming up model with 5 parallel requests...
+  Warmup 1/5: TTFT=43.398s, 4.0 tok/s
+  Warmup 2/5: TTFT=48.482s, 1.3 tok/s
+  Warmup 3/5: TTFT=27.305s, 10.7 tok/s
+  Warmup 4/5: TTFT=0.099s, 4.9 tok/s
+  Warmup 5/5: TTFT=2.217s, 31.4 tok/s
+
+📊 Benchmarking trivial (15 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/15: TTFT=1.813s, Total=2.683s, Tokens/s=10.8
+  Sample 2/15: TTFT=1.138s, Total=4.874s, Tokens/s=28.1
+  Sample 3/15: TTFT=1.225s, Total=12.434s, Tokens/s=11.2
+  Sample 4/15: TTFT=1.646s, Total=2.070s, Tokens/s=6.3
+  Sample 5/15: TTFT=0.762s, Total=1.604s, Tokens/s=18.1
+  Sample 6/15: TTFT=0.484s, Total=4.029s, Tokens/s=34.0
+  Sample 7/15: TTFT=0.535s, Total=1.341s, Tokens/s=21.6
+  Sample 8/15: TTFT=0.484s, Total=4.067s, Tokens/s=34.2
+  Sample 9/15: TTFT=0.487s, Total=1.290s, Tokens/s=22.5
+  Sample 10/15: TTFT=0.492s, Total=4.105s, Tokens/s=33.9
+  Sample 11/15: TTFT=0.589s, Total=4.437s, Tokens/s=6.5
+  Sample 12/15: TTFT=0.826s, Total=2.313s, Tokens/s=24.2
+  Sample 13/15: TTFT=0.512s, Total=1.330s, Tokens/s=21.8
+  Sample 14/15: TTFT=0.412s, Total=1.211s, Tokens/s=24.0
+  Sample 15/15: TTFT=0.415s, Total=1.227s, Tokens/s=23.6
+
+📊 Benchmarking code_completion (15 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/15: TTFT=0.655s, Total=11.523s, Tokens/s=37.1
+  Sample 2/15: TTFT=0.749s, Total=12.374s, Tokens/s=35.9
+  Sample 3/15: TTFT=1.040s, Total=12.988s, Tokens/s=34.2
+  Sample 4/15: TTFT=1.408s, Total=21.005s, Tokens/s=21.1
+  Sample 5/15: TTFT=2.127s, Total=14.879s, Tokens/s=29.8
+  Sample 6/15: TTFT=1.456s, Total=14.553s, Tokens/s=30.5
+  Sample 7/15: TTFT=1.080s, Total=14.183s, Tokens/s=31.3
+  Sample 8/15: TTFT=0.607s, Total=13.721s, Tokens/s=32.4
+  Sample 9/15: TTFT=0.123s, Total=13.230s, Tokens/s=33.6
+  Sample 10/15: TTFT=0.124s, Total=13.247s, Tokens/s=33.5
+  Sample 11/15: TTFT=0.123s, Total=13.767s, Tokens/s=33.6
+  Sample 12/15: TTFT=2.226s, Total=22.970s, Tokens/s=20.1
+  Sample 13/15: TTFT=2.638s, Total=16.315s, Tokens/s=28.3
+  Sample 14/15: TTFT=1.458s, Total=15.204s, Tokens/s=30.4
+  Sample 15/15: TTFT=1.019s, Total=14.776s, Tokens/s=31.3
+
+📊 Benchmarking introspection (15 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/15: TTFT=0.028s, Total=18.561s, Tokens/s=28.7
+  Sample 2/15: TTFT=3.680s, Total=17.452s, Tokens/s=26.2
+  Sample 3/15: TTFT=0.029s, Total=16.151s, Tokens/s=28.7
+  Sample 4/15: TTFT=0.027s, Total=16.182s, Tokens/s=28.6
+  Sample 5/15: TTFT=0.028s, Total=15.812s, Tokens/s=29.3
+  Sample 6/15: TTFT=0.027s, Total=27.635s, Tokens/s=16.8
+  Sample 7/15: TTFT=0.028s, Total=16.383s, Tokens/s=27.6
+  Sample 8/15: TTFT=0.027s, Total=16.196s, Tokens/s=28.6
+  Sample 9/15: TTFT=0.028s, Total=46.063s, Tokens/s=30.8
+  Sample 10/15: TTFT=2.698s, Total=18.875s, Tokens/s=23.9
+  Sample 11/15: TTFT=0.027s, Total=15.835s, Tokens/s=28.5
+  Sample 12/15: TTFT=0.027s, Total=15.485s, Tokens/s=29.2
+  Sample 13/15: TTFT=0.028s, Total=14.989s, Tokens/s=30.2
+  Sample 14/15: TTFT=0.027s, Total=14.540s, Tokens/s=31.1
+  Sample 15/15: TTFT=0.027s, Total=24.686s, Tokens/s=18.3
+
+📊 Benchmarking reasoning (15 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/15: TTFT=0.055s, Total=0.055s, Tokens/s=18.2
+  Sample 2/15: TTFT=0.057s, Total=0.057s, Tokens/s=17.5
+  Sample 3/15: TTFT=0.055s, Total=0.055s, Tokens/s=18.1
+  Sample 4/15: TTFT=0.060s, Total=0.060s, Tokens/s=16.6
+  Sample 5/15: TTFT=0.055s, Total=0.055s, Tokens/s=18.1
+  Sample 6/15: TTFT=0.053s, Total=0.053s, Tokens/s=18.7
+  Sample 7/15: TTFT=0.057s, Total=0.057s, Tokens/s=17.5
+  Sample 8/15: TTFT=0.049s, Total=0.049s, Tokens/s=20.3
+  Sample 9/15: TTFT=0.060s, Total=0.060s, Tokens/s=16.7
+  Sample 10/15: TTFT=0.052s, Total=0.052s, Tokens/s=19.2
+  Sample 11/15: TTFT=0.050s, Total=0.050s, Tokens/s=20.1
+  Sample 12/15: TTFT=0.053s, Total=0.053s, Tokens/s=18.8
+  Sample 13/15: TTFT=0.064s, Total=0.064s, Tokens/s=15.5
+  Sample 14/15: TTFT=0.051s, Total=0.051s, Tokens/s=19.7
+  Sample 15/15: TTFT=0.051s, Total=0.051s, Tokens/s=19.5
+
+📊 Benchmarking debugging (15 samples)...
+  ⏳ Stabilization delay: 2.0s...
+  Sample 1/15: TTFT=2.649s, Total=40.359s, Tokens/s=13.3
+  Sample 2/15: TTFT=2.635s, Total=16.566s, Tokens/s=28.1
+  Sample 3/15: TTFT=2.340s, Total=26.026s, Tokens/s=30.2
+  Sample 4/15: TTFT=7.054s, Total=20.959s, Tokens/s=22.1
+  Sample 5/15: TTFT=2.353s, Total=16.413s, Tokens/s=28.3
+  Sample 6/15: TTFT=2.427s, Total=17.940s, Tokens/s=28.9
+  Sample 7/15: TTFT=2.794s, Total=31.875s, Tokens/s=30.1
+  Sample 8/15: TTFT=7.067s, Total=33.463s, Tokens/s=26.1
+  Sample 9/15: TTFT=7.063s, Total=31.375s, Tokens/s=25.6
+  Sample 10/15: TTFT=3.302s, Total=31.636s, Tokens/s=29.5
+  Sample 11/15: TTFT=2.773s, Total=33.916s, Tokens/s=30.2
+  Sample 12/15: TTFT=7.126s, Total=21.038s, Tokens/s=22.1
+  Sample 13/15: TTFT=2.411s, Total=16.335s, Tokens/s=28.4
+  Sample 14/15: TTFT=2.024s, Total=15.984s, Tokens/s=29.0
+  Sample 15/15: TTFT=2.023s, Total=15.995s, Tokens/s=29.0
+
+============================================================
+COMPREHENSIVE LATENCY STATISTICS
+============================================================
+
+--- INCLUDING ALL SAMPLES ---
+
+OVERALL:
+  Samples: 75
+  Excluded first: False
+  TTFT: 1.230s (mean), 0.512s (median), 7.054s (p95)
+  Total: 12.524s (mean), 14.183s (median)
+  Throughput: 24.9 tokens/sec (mean)
+
+DEBUGGING:
+  Samples: 15
+  Excluded first: False
+  TTFT: 3.736s (mean), 2.649s (median), 7.126s (p95)
+  Total: 24.659s (mean), 21.038s (median)
+  Throughput: 26.7 tokens/sec (mean)
+
+REASONING:
+  Samples: 15
+  Excluded first: False
+  TTFT: 0.055s (mean), 0.055s (median), 0.064s (p95)
+  Total: 0.055s (mean), 0.055s (median)
+  Throughput: 18.3 tokens/sec (mean)
+
+CODE_COMPLETION:
+  Samples: 15
+  Excluded first: False
+  TTFT: 1.122s (mean), 1.040s (median), 2.638s (p95)
+  Total: 14.982s (mean), 14.183s (median)
+  Throughput: 30.9 tokens/sec (mean)
+
+INTROSPECTION:
+  Samples: 15
+  Excluded first: False
+  TTFT: 0.449s (mean), 0.028s (median), 3.680s (p95)
+  Total: 19.656s (mean), 16.196s (median)
+  Throughput: 27.1 tokens/sec (mean)
+
+TRIVIAL:
+  Samples: 15
+  Excluded first: False
+  TTFT: 0.788s (mean), 0.535s (median), 1.813s (p95)
+  Total: 3.268s (mean), 2.313s (median)
+  Throughput: 21.4 tokens/sec (mean)
+
+--- EXCLUDING FIRST SAMPLE (Steady-State) ---
+
+OVERALL:
+  Samples: 75
+  Excluded first: False
+  TTFT: 1.230s (mean), 0.512s (median), 7.054s (p95)
+  Total: 12.524s (mean), 14.183s (median)
+  Throughput: 24.9 tokens/sec (mean)
+
+DEBUGGING:
+  Samples: 14
+  Excluded first: True
+  TTFT: 3.814s (mean), 2.704s (median), 7.126s (p95)
+  Total: 23.537s (mean), 20.998s (median)
+  Throughput: 27.7 tokens/sec (mean)
+
+REASONING:
+  Samples: 14
+  Excluded first: True
+  TTFT: 0.055s (mean), 0.054s (median), 0.064s (p95)
+  Total: 0.055s (mean), 0.054s (median)
+  Throughput: 18.3 tokens/sec (mean)
+
+CODE_COMPLETION:
+  Samples: 14
+  Excluded first: True
+  TTFT: 1.156s (mean), 1.060s (median), 2.638s (p95)
+  Total: 15.229s (mean), 14.368s (median)
+  Throughput: 30.4 tokens/sec (mean)
+
+INTROSPECTION:
+  Samples: 14
+  Excluded first: True
+  TTFT: 0.479s (mean), 0.028s (median), 3.680s (p95)
+  Total: 19.735s (mean), 16.189s (median)
+  Throughput: 27.0 tokens/sec (mean)
+
+TRIVIAL:
+  Samples: 14
+  Excluded first: True
+  TTFT: 0.715s (mean), 0.524s (median), 1.646s (p95)
+  Total: 3.309s (mean), 2.191s (median)
+  Throughput: 22.1 tokens/sec (mean)
+
+✅ Results saved to /home/luna/Code/ada-v1/benchmarks/press_release_data/latency_benchmark.json
