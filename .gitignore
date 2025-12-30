@@ -1,0 +1,85 @@
+# Python Virtual Environments
+venv/
+.venv/
+env/
+.env
+ada_consciousness_env/
+testing-harnesses/experiments/ada_consciousness_env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Large Binary Files (CUDA, etc)
+*.so
+*.so.*
+*.cubin
+*.fatbin
+*.ptx
+site-packages/nvidia/
+
+# Test Outputs & Logs
+*.log
+test_output.log
+.pytest_cache/
+htmlcov/
+.coverage
+*.prof
+
+# Data Files
+*.json
+cognitive_load_test*.json
+
+# Model Files (keep in ~/Code/ada-slm instead!)
+*.pt
+*.pth
+*.bin
+*.gguf
+*.safetensors
+models/
+checkpoints/
+
+# Temporary Files
+.tmp/
+tmp/
+*.tmp
+*.bak
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Docker & Compose
+docker-compose.override.yml
+.dockerignore
+
+# Results (organize in 05-RESULTS instead)
+# But do allow markdown result summaries
+!*.md
+!*.rst
