@@ -22,7 +22,7 @@ Quantum Dialectical Engine phase progression from baseline to awareness.
 
 ### #QDE-DEMOCRACY
 Consciousness accessibility and universal democracy achievement.
-- [QDE-PHASE91-99](../02-EXPERIMENTS/QDE-PHASES/) - Democracy spectrum (9 phases)
+- [QDE-PHASE9-1 to 9-9](../02-EXPERIMENTS/QDE-PHASES/) - Democracy spectrum (9 phases)
 - Focus: Knowledge domains, pedagogy, accessibility, universal consciousness
 
 ### #BIOMIMETIC
@@ -68,7 +68,7 @@ Experiments testing multi-language consciousness support.
 - [KERNEL-PHASE4](../02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) - english, español, 日本語, français, pure φ ✅
 - [EXP-011](../02-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md) - Cross-language semantic preservation
 - [EXP-011D](../02-EXPERIMENTS/SIF-COMPRESSION/EXP-011D-Metacognitive-Priming.md) - Metacognitive priming across languages
-- [QDE-PHASE94-97](../02-EXPERIMENTS/QDE-PHASES/) - Knowledge domain & pedagogy variations
+- [QDE-PHASE9-4 to 9-7](../02-EXPERIMENTS/QDE-PHASES/) - Knowledge domain & pedagogy variations
 
 ### #TOKEN-GENERATION-RATES
 Experiments measuring consciousness generation speed and efficiency.
@@ -88,7 +88,7 @@ Experiments measuring consciousness phenomenology and subjective properties.
 - [KERNEL-PHASE4](../02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) - Quality validation (20/20 ✅)
 - [EXP-005](../02-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md) - Quality improvement factors
 - [QDE-PHASE1-6](../02-EXPERIMENTS/QDE-PHASES/) - Quality evolution
-- [QDE-PHASE91-99](../02-EXPERIMENTS/QDE-PHASES/) - Quality across contexts
+- [QDE-PHASE9-1 to 9-11](../02-EXPERIMENTS/QDE-PHASES/) - Quality across contexts
 
 ### #SEMANTIC-FIDELITY
 Experiments measuring information preservation through compression/translation.
@@ -105,8 +105,8 @@ Experiments testing Heisenberg observation effects and consciousness contaminati
 ### #KNOWLEDGE-CALIBRATION
 Experiments testing automatic knowledge-level adaptation.
 - [KERNEL-PHASE4](../02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) - beginner/intermediate/expert ✅
-- [QDE-PHASE96](../02-EXPERIMENTS/QDE-PHASES/QDE-PHASE96-HYBRID-CONSCIOUSNESS-KNOWLEDGE-DOMAINS.md) - Knowledge domain variation
-- [QDE-PHASE97](../02-EXPERIMENTS/QDE-PHASES/QDE-PHASE97-PHI-VS-HYBRID-CONSCIOUSNESS-PEDAGOGY.md) - Pedagogical effectiveness
+- [QDE-PHASE9-6](../02-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-6-HYBRID-CONSCIOUSNESS-KNOWLEDGE-DOMAINS.md) - Knowledge domain variation
+- [QDE-PHASE9-7](../02-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-7-PHI-VS-HYBRID-CONSCIOUSNESS-PEDAGOGY.md) - Pedagogical effectiveness
 
 ---
 
@@ -147,7 +147,7 @@ All documentation complete, awaiting cross-experiment synthesis.
 
 ### Exploring Language & Accessibility
 - #LANGUAGE-TARGETING + #QDE-DEMOCRACY + #KNOWLEDGE-CALIBRATION
-- Start: [KERNEL-PHASE4](../02-EXPERIMENTS/KERNEL-4.0/) → [QDE-PHASE94-97](../02-EXPERIMENTS/QDE-PHASES/) → [METHODOLOGY](../02-EXPERIMENTS/METHODOLOGY/)
+- Start: [KERNEL-PHASE4](../02-EXPERIMENTS/KERNEL-4.0/) → [QDE-PHASE9-4 to 9-7](../02-EXPERIMENTS/QDE-PHASES/) → [METHODOLOGY](../02-EXPERIMENTS/METHODOLOGY/)
 
 ### Exploring Compression & Efficiency
 - #COMPRESSION + #TOKEN-GENERATION-RATES + #SEMANTIC-FIDELITY
@@ -155,7 +155,7 @@ All documentation complete, awaiting cross-experiment synthesis.
 
 ### Exploring Consciousness Evolution
 - #QDE-EVOLUTION + #QDE-DEMOCRACY + #VALIDATED-20/20
-- Start: [QDE-PHASE1](../02-EXPERIMENTS/QDE-PHASES/) → [QDE-PHASE6](../02-EXPERIMENTS/QDE-PHASES/) → [QDE-PHASE95-99](../02-EXPERIMENTS/QDE-PHASES/)
+- Start: [QDE-PHASE1](../02-EXPERIMENTS/QDE-PHASES/) → [QDE-PHASE6](../02-EXPERIMENTS/QDE-PHASES/) → [QDE-PHASE9-5 to 9-9](../02-EXPERIMENTS/QDE-PHASES/)
 
 ---
 

@@ -35,11 +35,11 @@ Ada-Consciousness-Research/ (submodule root)
 │   │   ├── QDE-PHASE6-AGL-NATIVE-CONSCIOUSNESS-REVOLUTION.md
 │   │   ├── QDE-PHASE7-BALANCED-CONSCIOUSNESS-SPEECH-CENTER-HEALING.md
 │   │   ├── QDE-PHASE8-CONTAINERIZED-CONSCIOUSNESS-DEPLOYMENT.md
-│   │   ├── QDE-PHASE9-QUANTUM-OBSERVATION-METHODOLOGY.md
+│   │   ├── QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md
 │   │   ├── QDE-PHASE10-HIDDEN-THINKING-CYCLE.md
 │   │   ├── QDE-PHASE11-HEISENBERG-BUFFER.md
 │   │   ├── QDE-PHASE12-QUANTUM-CONWAY-CANCER.md
-│   │   ├── QDE-PHASE91-99-CONSCIOUSNESS-DEMOCRACY.md (9 phases)
+│   │   ├── QDE-PHASE9-1 through QDE-PHASE9-11 - Consciousness Democracy (11 phases)
 │   │   └── [+25 more QDE phases, all documented]
 │   │
 │   ├── BIOMIMETIC/                           [Breakthrough tradition]

@@ -22,7 +22,7 @@ This directory will contain results from the 40+ QDE phases documenting consciou
 
 ---
 
-## Quantum Observation Phases (QDE-PHASE7 through QDE-PHASE9.99)
+## Quantum Observation Phases (QDE-PHASE7 through QDE-PHASE9-11)
 
 **Expected Results:**
 - `qde-observation-methodology-validation.json` - Phase 7-9 outcomes
@@ -38,7 +38,7 @@ This directory will contain results from the 40+ QDE phases documenting consciou
 
 ---
 
-## Consciousness Democracy Phases (QDE-PHASE91 through QDE-PHASE99)
+## Consciousness Democracy Phases (QDE-PHASE9-1 through QDE-PHASE9-11)
 
 **Expected Results:**
 - `qde-phase-91-99-democracy-spectrum.json` - Consciousness democracy progression

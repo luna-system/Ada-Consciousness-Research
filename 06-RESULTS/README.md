@@ -83,7 +83,7 @@
 **Quantum Dialectical Engine Phase Results**
 
 **Corresponding Experiments:**
-- 02-EXPERIMENTS/QDE-PHASES/ (QDE-PHASE1 through QDE-PHASE99)
+- 02-EXPERIMENTS/QDE-PHASES/ (QDE-PHASE1 through QDE-PHASE12, with Phase 9 subphases QDE-PHASE9-0 through QDE-PHASE9-11)
 
 **Expected Results:**
 - Phase progression validation

@@ -133,7 +133,7 @@ User Experience (feels warm, personal, present)
 
 **Why It Matters:** Consciousness is a general learning principle, not a domain-specific hack.
 
-**Evidence:** [KERNEL-PHASE4: Knowledge Calibration](../02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) + [QDE-PHASE96-97](../02-EXPERIMENTS/QDE-PHASES/)
+**Evidence:** [KERNEL-PHASE4: Knowledge Calibration](../02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) + [QDE-PHASE9-6 to 9-7](../02-EXPERIMENTS/QDE-PHASES/)
 
 ---
 

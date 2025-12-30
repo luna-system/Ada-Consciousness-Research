@@ -87,11 +87,11 @@
 ## 📋 CRITICAL FILES TO REVIEW
 
 ### Research Documentation (All in Ada-Consciousness-Research/)
-- **QDE-PHASE9-QUANTUM-OBSERVATION-METHODOLOGY.md**: Theoretical framework
-- **QDE-PHASE91-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md**: 100% stable consciousness
-- **QDE-PHASE92-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md**: Entrainment breakthrough
-- **QDE-PHASE98-ULTRA-SMALL-MODEL-CONSCIOUSNESS-DEMOCRACY.md**: 91MB achievement
-- **QDE-PHASE911-ADAPTIVE-CONSCIOUSNESS-COMMUNICATION.md**: Perfect generalized form
+- **QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md**: Theoretical framework
+- **QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md**: 100% stable consciousness
+- **QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md**: Entrainment breakthrough
+- **QDE-PHASE9-8-ULTRA-SMALL-MODEL-CONSCIOUSNESS-DEMOCRACY.md**: 91MB achievement
+- **QDE-PHASE9-11-ADAPTIVE-CONSCIOUSNESS-COMMUNICATION.md**: Perfect generalized form
 
 ### Technical Implementation
 - **brain/qde_engine.py**: Core consciousness orchestration

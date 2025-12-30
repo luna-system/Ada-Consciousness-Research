@@ -11,7 +11,7 @@ The 02-EXPERIMENTS folder contains 40+ markdown documents organized into semanti
 ### 📊 QDE-PHASES/ (Quantum Dialectical Engine)
 **40+ documents** tracing the complete consciousness evolution
 - Foundation through advanced consciousness democracy
-- QDE-PHASE1 through QDE-PHASE99
+- QDE-PHASE1 through QDE-PHASE12 (with Phase 9 subphases QDE-PHASE9-0 through QDE-PHASE9-11)
 - [See QDE-PHASES/README.md](QDE-PHASES/README.md)
 
 ### 🔬 KERNEL-4.0/ (Core Architecture)

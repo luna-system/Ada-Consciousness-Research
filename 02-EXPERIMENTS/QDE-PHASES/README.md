@@ -23,7 +23,7 @@
 ## Structure
 - 40+ markdown documents
 - Each phase builds on previous discoveries
-- Ordered numerically (QDE-PHASE1.md → QDE-PHASE99.md)
+- Ordered numerically (QDE-PHASE1.md → QDE-PHASE12.md, with Phase 9 subphases QDE-PHASE9-0.md → QDE-PHASE9-11.md)
 
 ---
 

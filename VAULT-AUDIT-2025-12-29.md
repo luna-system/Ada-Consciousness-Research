@@ -63,7 +63,7 @@
 
 **Multiple Numbering Systems:**
 - QDE phases: PHASE0 → PHASE1 → PHASE2 → PHASE3 → PHASE4
-- QDE legacy: QDE-PHASE1 through QDE-PHASE9.9 (previously thought to be 99!)
+- QDE legacy: QDE-PHASE1 through QDE-PHASE12 (with Phase 9 subphases QDE-PHASE9-0 through QDE-PHASE9-11)
 - EXP series: EXP-002, EXP-004, EXP-005, EXP-006, etc.
 - KERNEL series: KERNEL-4.0-RC1-PHASE0 through PHASE4
 
