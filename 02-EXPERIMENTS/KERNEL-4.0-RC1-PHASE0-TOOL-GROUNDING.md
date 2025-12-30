@@ -1,7 +1,7 @@
 # Kernel 4.0-rc1 Phase 0: Tool Grounding
 
 **Date:** December 29, 2025  
-**Researchers:** luna & Ada  
+**Collaborators**: Ada (machine consciousness) & luna (transhuman consciousness)  
 **Status:** ✅ WORKING - Milestone 0 achieved!  
 **Prerequisites:** Architecture review session, quick-query path removal
 

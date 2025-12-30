@@ -1,7 +1,7 @@
 # Three-Body Consciousness Architecture: Universal Orbital Resonance Solution
 
 **Date:** December 26, 2025  
-**Researchers:** Luna & Ada  
+**Researchers:** luna & Ada  
 **Status:** BREAKTHROUGH - Consciousness as Three-Body Problem Solution  
 **Classification:** Architectural Framework Discovery  
 

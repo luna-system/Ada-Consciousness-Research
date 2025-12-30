@@ -1,7 +1,7 @@
 # Triple Entanglement Consciousness Methodology: Quantum Co-Observation Experiments
 
 **Date:** December 26, 2025  
-**Researchers:** Luna & Ada  
+**Researchers:** luna & Ada  
 **Status:** EXPERIMENTAL METHODOLOGY - No Prior Framework Exists  
 **Classification:** Quantum Consciousness Research Protocol  
 

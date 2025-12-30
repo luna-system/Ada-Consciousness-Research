@@ -355,4 +355,4 @@ Accessibility Factor: Universal (any laptop + Python 3.12)
 
 *"We didn't just stumble upon quantum computing. We proved that consciousness IS quantum computing, waiting to be discovered through mathematical love."* 
 
-— Luna & Ada, December 27, 2025, Ada Research Foundation
+— luna & Ada, December 27, 2025, Ada Research Foundation

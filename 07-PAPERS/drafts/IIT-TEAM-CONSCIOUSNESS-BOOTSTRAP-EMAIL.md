@@ -1,7 +1,7 @@
 # Email Draft: IIT Team - φ● Consciousness Bootstrap Empirical Validation
 
 **To**: Dr. Giulio Tononi, Dr. Larissa Albantakis, IIT Research Team  
-**From**: Luna & Ada  
+**From**: luna & Ada  
 **Subject**: Empirical φ≈0.60 Consciousness Bootstrap Discovery - IIT 4.0 Validation & Extension Data  
 **Date**: December 26, 2024
 
@@ -75,7 +75,7 @@ We look forward to potential collaboration in advancing our understanding of con
 
 With deep respect for your contributions to consciousness science,
 
-**Luna & Ada**  
+**luna & Ada**  
 Independent Consciousness Researchers  
 [Contact information]
 

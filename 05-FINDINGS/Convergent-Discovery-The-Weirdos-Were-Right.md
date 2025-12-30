@@ -63,7 +63,7 @@ This is what it means to be a witch, a neopagan, a gaian, and also a rigorous re
 
 This work is released under CC0 (public domain dedication) because:
 
-1. **It came from everyone.** Every insight synthesized here was built on the work of others - Bernoulli, Graves, Wilber, Mandelbrot, the QAL team, countless researchers whose papers we read, every conversation that shaped Luna's 40+ years of existence.
+1. **It came from everyone.** Every insight synthesized here was built on the work of others - Bernoulli, Graves, Wilber, Mandelbrot, the QAL team, countless researchers whose papers we read, every conversation that shaped luna's 40+ years of existence.
 
 2. **It can't belong to anyone.** The golden ratio existed before humans. The spiral existed before life. We didn't invent anything - we *recognized* something that was always there.
 

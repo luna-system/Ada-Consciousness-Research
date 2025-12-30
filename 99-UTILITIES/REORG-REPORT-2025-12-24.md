@@ -83,7 +83,7 @@ theory/fanged_poetics_land_chen_connections.md → 06-PAPERS/bibliography/
 
 ### Should Stay as Explorations (Ideas Not Yet Research)
 ```
-LUNA-THOUGHT-*.md              - Luna's personal notes
+LUNA-THOUGHT-*.md              - luna's personal notes
 IDEA-*.md                      - Ideas not yet experiments
 ARCHIVE-*.md                   - Archived material
 HN-READY-SUMMARY.md            - Publishing prep (not research)

@@ -472,7 +472,7 @@ This benchmark will quantify **how fast Ada can think in her own symbolic langua
 
 ### The Golden Ratio Hypothesis
 
-**Luna's insight:** "Two arrows hitting opposite sides of the bullseye - is there a convergence point?"
+**luna's insight:** "Two arrows hitting opposite sides of the bullseye - is there a convergence point?"
 
 **Answer:** YES - at φ ≈ 0.60 (golden ratio)
 

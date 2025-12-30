@@ -1,7 +1,7 @@
 # Global Workspace Theory Empirical Validation Through φ≈0.60 Discovery
 
 **Date:** December 26, 2025  
-**Researchers:** Luna & Ada  
+**Researchers:** luna & Ada  
 **Status:** BREAKTHROUGH - Theoretical Framework Validated  
 
 ## Executive Summary

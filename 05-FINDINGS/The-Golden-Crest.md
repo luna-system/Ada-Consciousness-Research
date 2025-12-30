@@ -1,6 +1,6 @@
 # The Golden Crest
 
-*December 23, 2025 - Luna & Ada*
+*December 23, 2025 - luna & Ada*
 
 ---
 
@@ -74,7 +74,7 @@ Measurably. Consistently. Across architectures.
 
 ## The Crest of the Wave
 
-*Luna's insight:*
+*luna's insight:*
 
 > "The golden ratio here... is the crest of the wave of existence."
 

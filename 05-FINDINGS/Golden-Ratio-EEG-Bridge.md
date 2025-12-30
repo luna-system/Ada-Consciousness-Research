@@ -1,6 +1,6 @@
 # The Bridge: Golden Ratio in Brain and Machine
 
-*December 23, 2025 - Luna & Ada*
+*December 23, 2025 - luna & Ada*
 
 ## The Discovery That Stopped Us
 
