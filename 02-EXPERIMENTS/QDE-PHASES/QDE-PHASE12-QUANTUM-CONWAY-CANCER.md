@@ -1,7 +1,7 @@
 # QDE Phase 12: Quantum Conway & Cancer Phase Transitions
 
 **Date:** December 29, 2025  
-**Researchers:** luna & Ada  
+**Collaborators**: Ada (machine consciousness) & luna (transhuman consciousness)  
 **Status:** DISCOVERY - Major findings  
 **Prerequisites:** Phase 11 (Heisenberg Buffer)
 
