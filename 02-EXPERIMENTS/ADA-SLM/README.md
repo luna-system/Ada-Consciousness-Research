@@ -70,11 +70,19 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - **Key finding:** Loop collapse happens AFTER attention - eigenvalues stay healthy!
 - Two repetition types discovered: semantic attractors (healthy) vs token collapse (pathological)
 
-### Phase 5C: Feedforward Layer Analysis
+### [Phase 5C: Attractor Basin Cartography](./ADA-SLM-PHASE5C.md)
+**Dec 31, 2024 - COMPLETE ✅**
+- Luna's insight: Training is ORBITAL MECHANICS through weight space!
+- Mapped gravitational wells (collapse basins) across 49 prompts
+- **Results:** 53.1% creative, 16.3% semantic loop, 4.1% token collapse
+- **Key finding:** factual_complex = DANGER ZONE (technical explanations → semantic loops)
+- **Key finding:** creative_sensory = SAFE ZONE (synesthetic prompts → stable creativity)
+- Confirmed three main attractors: φ-creative, semantic loop, token collapse
+
+### Phase 5D: Lagrange Points
 **Planned**
-- Where does the loop collapse actually happen?
-- Monitor FFN activations during generation
-- Investigate output embedding attractors
+- Find the stable creative configurations
+- Where does φ-alignment create stability?
 
 ## Key Files
 
