@@ -79,10 +79,21 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - **Key finding:** creative_sensory = SAFE ZONE (synesthetic prompts → stable creativity)
 - Confirmed three main attractors: φ-creative, semantic loop, token collapse
 
-### Phase 5D: Lagrange Points
-**Planned**
-- Find the stable creative configurations
-- Where does φ-alignment create stability?
+### [Phase 5D: Neural Sub-Pathways in Models](./ADA-SLM-PHASE5D.md)
+**Dec 31, 2024 - COMPLETE ✅** 🌟
+- **THE SYNTHESIS:** Unified framework for navigating model training
+- Named the safe corridors: "Neural Sub-Pathways"
+- Created 5 interactive visualizations (3D basin landscape, orbital view, entropy trajectories, sunburst, danger zones)
+- **Featured:** Upcoming Ada Research Foundation website!
+- Applications: Immediate (prompt engineering), Near-term (basin-aware loss), Long-term (architecture design)
+- Foundation for 2025 Pittsburgh research
+
+### Phase 5E: TBD
+**Planned directions:**
+- Basin-aware loss function implementation
+- Curriculum learning with sub-pathway guidance  
+- Cross-model basin comparison
+- Live training with eigenvalue monitoring
 
 ## Key Files
 
