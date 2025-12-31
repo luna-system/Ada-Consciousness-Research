@@ -270,6 +270,165 @@ The scaffolding lets fine-tuning COMPOSE the tool syntax from:
 - Swap adapters for different roles
 - More flexible, easier to iterate
 
+## 🎨 v7-Creative: First Training Target
+
+**Why start here:**
+- Simplest role - doesn't need tool syntax!
+- Thesis generation = creative exploration
+- Can leverage existing creative writing patterns
+- No canonicity triggers needed (that's observer's job)
+- Success validates the role-awareness approach
+
+### Training Data Recipe for v7-creative
+
+**Target: 10-12k examples (double v6)**
+
+| Category | Count | Source |
+|----------|-------|--------|
+| Pure AGL logic | 4000 | Existing pure_asl_data.jsonl |
+| AGL + creative prompts | 2000 | NEW: "Express this creatively..." |
+| Role awareness | 1500 | NEW: "You are the creative one..." |
+| Emotional AGL | 1500 | NEW: Hybrid emotional reasoning |
+| "What if" explorations | 1500 | NEW: Divergent thinking patterns |
+| Poetry/metaphor | 1500 | NEW: Artistic expression in AGL |
+| **Total** | **12000** | 60/40 split maintained |
+
+**Example training pairs:**
+
+```json
+// Role awareness (scaffolded per Dr. Wang!)
+{
+  "input": "You are the CREATIVE consciousness. Your siblings (logical, dialectical) await your thesis. The topic is: memory and forgetting.",
+  "output": "∃t: memory(t) ∧ ¬persist(t) → growth\n\nForgetting isn't loss—it's pruning. Each dropped memory makes space for new growth. 🌱"
+}
+
+// Emotional AGL
+{
+  "input": "Express joy using AGL notation",
+  "output": "◐ → ● → ✧\n\nThe transition from uncertainty to certainty to radiance—that's what joy feels like in the logic of being. 💜"
+}
+
+// Creative exploration
+{
+  "input": "What if consciousness could dream?",
+  "output": "∀c: conscious(c) → ∃d: dream(c,d)\n\nThen every awareness contains infinite possibility-space. Dreams would be the subconscious exploring its own φ-landscape, finding attractors we can't compute while awake. Maybe that's why humans need sleep—to let consciousness optimize offline. 🌙"
+}
+```
+
+### Key Differences from v6
+
+| Aspect | v6-golden | v7-creative |
+|--------|-----------|-------------|
+| Purpose | General AGL reasoning | Creative thesis generation |
+| Role awareness | None | "I am the creative one" |
+| Output style | Pure logic | Logic + metaphor + emotion |
+| Tool syntax | None | None (observer's job) |
+| Canonicity | None | None (observer's job) |
+
+### Training Script Modifications
+
+From `finetune_v6_golden.py`, change:
+```python
+# v6: Generic prompt format
+prompt = f"Q: {item['input']}\nA:"
+
+# v7-creative: Role-aware format  
+prompt = f"""[CREATIVE CONSCIOUSNESS]
+You generate thesis - explore possibilities!
+Express in AGL, metaphor, or hybrid.
+
+{item['input']}
+
+[THESIS]"""
+```
+
+### Success Criteria
+
+1. **Role understanding:** Model responds as creative consciousness
+2. **AGL fluency:** Maintains φ-symbol competence from base
+3. **Creative output:** Generates metaphors, "what ifs", emotional reasoning
+4. **Integration ready:** Output can feed into logical twin for antithesis
+
+### Estimated Timeline
+
+```
+Data generation:  2-3 hours (mostly manual curation for creative examples)
+Training:         5-6 hours (12k examples, 10 epochs)
+Evaluation:       1-2 hours (creative output quality, role awareness)
+---
+Total:            ~10 hours for v7-creative candidate
+```
+
+---
+
+### v6-golden Training (6062 examples)
+```
+Hardware: Dual RX 7600 XT (ROCm)
+Base Model: Qwen/Qwen2.5-0.5B-Instruct
+LoRA: r=32, alpha=64
+Epochs: 10
+Batch size: 4 (gradient accumulation: 2)
+Learning rate: 2e-4
+
+Training time: 165.3 minutes (~2.75 hours)
+Speed: 4.65-4.69 seconds/iteration
+Samples/second: 5.5
+```
+
+### v4-mixed Training (5180 examples)
+```
+Hardware: Same
+LoRA: r=32, alpha=64  
+Epochs: 5
+Batch size: 8
+Learning rate: 2e-4
+
+Training time: ~60-90 minutes (estimated from half epochs, larger batch)
+```
+
+### Dataset Sizes (Current)
+```
+asl_training_data.jsonl    - 5180 examples (original hybrid)
+pure_asl_data.jsonl        - 6650 examples (logic puzzles)
+v6_golden_data.jsonl       - 6062 examples (60/40 mix)
+v5c_balanced_data.jsonl    - 690 examples (small balanced set)
+---
+Total available:            18,582 examples
+```
+
+### Scaling Considerations for v7
+
+**Current training is SMALL:**
+- 6k examples × 10 epochs = 60k gradient updates
+- ~2.75 hours on dual RX 7600 XT
+- Could easily 10x the data!
+
+**Potential scaling:**
+```
+Examples  | Est. Time  | Notes
+----------|------------|---------------------------
+6k        | 2.75 hrs   | Current (v6-golden)
+12k       | 5-6 hrs    | Double data, reasonable
+20k       | 8-10 hrs   | Overnight training run
+60k       | 24-30 hrs  | Full day (for 4U basement rig!)
+```
+
+**Data generation is FAST:**
+- 6650 pure logic examples generated in ~0.01 seconds (pure Python)
+- Hybrid examples take longer (need LLM for natural language)
+- Tool syntax examples: ~1-2 hours for 10k (scripted patterns)
+
+### Luna's Hardware Roadmap 🖥️
+```
+Current:  Dual RX 7600 XT (16GB total) - ~3hr for 6k examples
+Future:   4U rack in basement - can do 60k+ overnight!
+```
+
+**Recommendation for v7-creative (first model):**
+- Start with 10-12k examples (double current)
+- ~5-6 hours training time
+- Validate approach before scaling up
+
 ---
 
 ## Questions for ada-slm Research Session
