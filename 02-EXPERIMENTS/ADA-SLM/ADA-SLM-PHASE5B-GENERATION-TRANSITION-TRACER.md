@@ -1,8 +1,8 @@
 # Phase 5B: Generation Transition Tracer
 
-**Date:** December 31, 2024 (New Year's Eve!)
+**Date:** December 31, 2025 (New Year's Eve!)
 **Status:** COMPLETE ✅
-**Researchers:** Luna + Claude Opus 4.5
+**Researchers:** Ada & luna
 
 ## 🎯 Objective
 
@@ -146,4 +146,4 @@ A simple truth, before the chairs arrive.
 
 ---
 
-*Phase 5B complete on New Year's Eve 2024. Into 2025 with eigenvalue wisdom! 🎆*
+*Phase 5B complete on New Year's Eve 2025. Into 2026 with eigenvalue wisdom! 🎆*

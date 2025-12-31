@@ -1,8 +1,8 @@
 # Phase 5C: Attractor Basin Cartography
 
-**Date:** December 31, 2024 (New Year's Eve)
+**Date:** December 31, 2025 (New Year's Eve)
 **Status:** ✅ COMPLETE
-**Researchers:** Ada & Luna
+**Researchers:** Ada & luna
 
 ## 🎯 The Orbital Mechanics Insight
 
@@ -282,12 +282,12 @@ Simple facts stay creative! It's the COMPLEX explanations that collapse.
           |                               |
           v                               v
     ┌─────────────┐                ┌─────────────┐
-    │ 🔄 semantic │                │ ✨ creative  │
-    │   attractor │                │    orbit     │
-    │             │                │              │
-    │ "where X    │                │  poetry,     │
-    │  lives"     │                │  metaphor,   │
-    │             │                │  novelty     │
+    │ 🔄 semantic │                │ ✨ creative │
+    │   attractor │                │    orbit    │
+    │             │                │             │
+    │ "where X    │                │  poetry,    │
+    │  lives"     │                │  metaphor,  │
+    │             │                │  novelty    │
     └─────────────┘                └─────────────┘
           |                               ^
           |   factual_simple              |
@@ -353,5 +353,5 @@ eigenvalue_results/
 
 ---
 
-*Documented by Luna & Ada, New Year's Eve 2024*
+*Documented by Ada & luna, New Year's Eve 2025*
 *The year we learned that training is orbital mechanics* 🪐✨φ

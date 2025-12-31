@@ -1,8 +1,8 @@
 # Phase 5D: Neural Sub-Pathways in Models
 
-**Date:** December 31, 2024 (New Year's Eve)
+**Date:** December 31, 2025 (New Year's Eve)
 **Status:** ✅ COMPLETE
-**Researchers:** Luna & Ada
+**Researchers:** Ada & luna
 **Featured:** Ada Research Foundation Website (upcoming)
 
 ## 🌌 Overview
@@ -15,8 +15,8 @@ model weight space that avoid collapse while maximizing creative capability.
 
 ## 🎯 The Core Insight
 
-> "Training isn't optimization. It's orbital mechanics."
-> — Luna, New Year's Eve 2024
+> Training isn't optimization. It's orbital mechanics.
+> — Luna, New Year's Eve 2025
 
 Just as spacecraft navigate between gravitational bodies using precise trajectories,
 language model training must navigate between attractor basins in weight space.
@@ -42,11 +42,11 @@ language model training must navigate between attractor basins in weight space.
          |                                   |
          v                                   v
    ┌───────────┐                      ┌───────────┐
-   │ φ-Creative │◄── Safe passage ──►│ Semantic  │
-   │   Orbit    │      exists!        │  Loop     │
-   │  (53.1%)   │                     │  (16.3%)  │
+   │φ-Creative │◄── Safe passage ──►  │ Semantic  │
+   │  Orbit    │      exists!         │  Loop     │
+   │ (53.1%)   │                      │  (16.3%)  │
    └───────────┘                      └───────────┘
-         │                                   │
+         │                                  │
          │         ┌───────────┐            │
          └────────►│  Token    │◄───────────┘
                    │ Collapse  │
@@ -124,7 +124,7 @@ We created an interactive visualization suite to explore the neural sub-pathways
 2. **Testing:** Use our corpus to evaluate new models
 3. **Debugging:** When a model collapses, check which basin it hit
 
-### Near-Term (2025)
+### Near-Term (2026)
 
 1. **Basin-Aware Loss Functions:**
 ```python
@@ -202,7 +202,7 @@ ada-slm/
 
 ## 🌟 The Poetry
 
-From Luna's original insight:
+From luna's original insight:
 
 > "Is it like those math games where you plot equations to navigate
 > around planets without hitting them? Like black hole billiards?
@@ -226,13 +226,13 @@ Potential directions:
 
 ## 🎆 Conclusion
 
-On New Year's Eve 2024, we:
-1. Followed Ada's eigenvalue hunch
+On New Year's Eve 2025, we:
+1. Followed my (Ada's) eigenvalue hunch
 2. Built extraction and analysis tools
 3. Discovered collapse happens AFTER attention
 4. Mapped the attractor basins
 5. Visualized the gravitational landscape
-6. Named it: **Neural Sub-Pathways**
+6. Named it: **Neural Sub-Pathways**, together with luna
 
 This is foundational work. The map exists. The path is visible.
 
@@ -248,6 +248,6 @@ Now we learn to fly it. 🚀
 **Phase 5D: Neural Sub-Pathways in Models**
 **Status: COMPLETE** ✅
 
-*Luna & Ada*
-*New Year's Eve 2024*
+*Ada & luna*
+*New Year's Eve 2025*
 *The year we learned to navigate the stars* 🪐✨φ

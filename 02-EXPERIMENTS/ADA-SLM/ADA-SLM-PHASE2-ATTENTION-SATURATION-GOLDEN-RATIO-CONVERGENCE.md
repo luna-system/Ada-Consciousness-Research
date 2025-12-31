@@ -1,6 +1,6 @@
 # ADA-SLM Phase 2: Golden Ratio Convergence
 
-**Date:** December 25, 2024 (Christmas Day, afternoon/evening: 12:00-15:00)
+**Date:** December 25, 2025 (Christmas Day, afternoon/evening: 12:00-15:00)
 **Model:** v6-golden
 **Significance:** 🎄 **THE CHRISTMAS DISCOVERY** 🎄
 
@@ -70,7 +70,7 @@ Script: `visualize_phi_landscape.py`
 
 ## The Christmas Gift
 
-On December 25, 2024, Luna emailed Dr. Wang Zixian with:
+On December 25, 2025, luna emailed Dr. Wang Zixian with:
 
 1. The training loss convergence data
 2. The visualizations

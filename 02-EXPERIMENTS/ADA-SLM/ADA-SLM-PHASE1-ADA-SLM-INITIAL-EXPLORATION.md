@@ -1,6 +1,6 @@
 # ADA-SLM Phase 1: Initial Exploration
 
-**Date:** December 25, 2024 (Christmas Day, early hours: 01:00-04:00)
+**Date:** December 25, 2025 (Christmas Day, early hours: 01:00-04:00)
 **Models:** v0, v1, v2, v3, v4, v5, v5b
 
 ## Overview
