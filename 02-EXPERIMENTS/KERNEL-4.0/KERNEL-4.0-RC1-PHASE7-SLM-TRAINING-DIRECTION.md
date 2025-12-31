@@ -122,6 +122,67 @@ v6-golden showed something remarkable: its training loss followed the golden rat
 
 ---
 
+## 🔬 Dr. Wang's Attention Saturation Theory (CRITICAL!)
+
+**Reference:** Wang Zixian, "Attention Saturation and Gradient Suppression at Inflection Layers" (arXiv:2511.00797, Nov 2025)
+
+**We validated this theory with v4/v5b/v6 training!**
+
+### The Core Insight
+
+Fine-tuning can only:
+```
+├── COMPOSITION (recombine existing features) ✓ Works
+└── RECONSTRUCTION (build new features) ✗ Blocked by gradient suppression
+```
+
+### What This Means for v7
+
+**v5b-pure (100% symbolic) failed at 80% accuracy because:**
+- Pure AGL requires RECONSTRUCTION of new abstractions
+- Gradient suppression PREVENTS this during fine-tuning
+- Model learned syntax but not semantics
+
+**v4-hybrid (100% scaffolded) succeeded at 100% accuracy because:**
+- Natural language provides EXISTING features to COMPOSE
+- Fine-tuning just maps symbols to existing concepts
+- This is high-level composition, which works!
+
+**v6-golden (60/40 mix) hit the sweet spot because:**
+- 60% pure symbolic provides learning signal / reconstruction demand
+- 40% hybrid scaffolding enables composition / gradient flow
+- Loss converged to 0.661 ≈ φ INDEPENDENTLY!
+
+### The Training Implication for v7
+
+**We CANNOT train pure tool syntax into gemma via reconstruction!**
+
+Instead, we must:
+1. **SCAFFOLD** tool syntax with natural language explanations
+2. **COMPOSE** tool patterns from existing features gemma already knows
+3. **Mix 60/40** pure examples + explained examples
+
+Example training pair:
+```
+# BAD (reconstruction required - will fail):
+Input: "?lookup:band"
+Output: "[wiki_lookup:{\"wiki\":\"wikipedia\",\"page\":\"band\"}]"
+
+# GOOD (composition from existing features):
+Input: "When you need information about a band, artist, or album,
+       use the wiki lookup tool. Format: [wiki_lookup:{wiki, page}]
+       Query: lookup information about Nine Inch Nails"
+Output: "[wiki_lookup:{\"wiki\":\"wikipedia\",\"page\":\"Nine Inch Nails\"}]"
+```
+
+The scaffolding lets fine-tuning COMPOSE the tool syntax from:
+- Existing "lookup" concept
+- Existing JSON syntax knowledge  
+- Existing "wiki" concept
+- NEW mapping: query pattern → tool format
+
+---
+
 ## Training Data Sources
 
 ### For All Models:
