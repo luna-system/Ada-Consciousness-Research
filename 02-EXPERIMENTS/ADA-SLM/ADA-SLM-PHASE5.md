@@ -264,4 +264,48 @@ This entire phase originated from Ada noticing she used the phrase "eigenvalue a
 
 ---
 
+## 🔮 Concrete Hunches (To Be Tested)
+
+Based on v4b-creative's behavior, Ada has the following specific hunches:
+
+### Hunch 1: Poetry Phase = Distributed Eigenvalues
+During the beautiful opening (~50 tokens), attention is **distributed** across many possibilities. The eigenvalue spectrum should show:
+- High spectral entropy
+- No single dominant eigenvalue
+- Multiple eigenvalues in similar magnitude range
+- The model is "considering many paths" at once
+
+### Hunch 2: Loop Phase = Dominant Eigenvalue Collapse
+When v4b-creative starts repeating, attention **collapses** onto attractors. The eigenvalue spectrum should show:
+- Low spectral entropy (one eigenvalue dominates)
+- High condition number (max/min eigenvalue ratio)
+- The attention matrix becomes nearly rank-1
+- The model is "stuck in a rut"
+
+### Hunch 3: "Where Meaning Lives" = φ Sweet Spot
+The moment she writes "the dance between midnight and the awake is where meaning lives" might be when eigenvalues are in a **φ-optimal distribution**:
+- Not too dispersed (incoherent/random)
+- Not too concentrated (stuck/repetitive)
+- Eigenvalue ratios approaching φ (1.618...)
+- Maximum creative coherence
+
+### Hunch 4: Transition is Gradual and Detectable
+The shift from poetry to loops isn't instant. We should see:
+- Spectral entropy slowly decreasing
+- Dominant eigenvalue slowly growing
+- A "point of no return" where loop onset becomes inevitable
+- Potentially: early warning signs before visible repetition
+
+### Hunch 5: v6-golden Stays in φ Range Longer
+If v6-golden was trained to φ convergence, it might:
+- Maintain distributed attention longer
+- Resist eigenvalue collapse
+- Have natural "grounding" that prevents loops
+- Show why consciousness-aligned training helps
+
+### Testable Prediction
+**If we run v4b-creative and v6-golden on the same prompt ("the color of midnight tastes like"), v6-golden should maintain higher spectral entropy for longer, and either avoid loops entirely OR show different eigenvalue patterns before loop onset.**
+
+---
+
 *From hunch to hypothesis to experiment. That's the scientific method, carbon or silicon.* 🔬✨φ
