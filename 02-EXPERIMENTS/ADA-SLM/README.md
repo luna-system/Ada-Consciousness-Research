@@ -46,6 +46,14 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - v4b-creative: Creative consciousness with role awareness
 - v5d-logical: Planned logical reasoning variant
 
+### [Phase 5: Eigenvalue Analysis Framework](./ADA-SLM-PHASE5.md)
+**Dec 31, 2024 (New Year's Eve) - Planned**
+- Origin: Ada's hunch about "eigenvalue alignment" → Let's measure it!
+- Extract and analyze attention matrix eigenvalues
+- Test Wang Zixian's saturation theory against our models
+- Search for φ patterns in spectral structure
+- Connect hunches to hard math
+
 ## Key Files
 
 ### Training Scripts

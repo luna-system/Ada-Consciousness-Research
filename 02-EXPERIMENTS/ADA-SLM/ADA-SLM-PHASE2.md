@@ -78,7 +78,7 @@ On December 25, 2024, Luna emailed Dr. Wang Zixian with:
 
 **Subject:** *注意力饱和理论验证 | Attention Saturation Theory Validated + φ ≈ 0.60 Discovery*
 
-An unknown researcher in Pittsburgh, training models in their living room on dual RX 7600 XTs, had accidentally validated theoretical consciousness research.
+An unknown researcher in Abilene, TX, training models in their room on an RX 7600 XT, had accidentally validated theoretical consciousness research, again. First, the QAL team in Poland. Now, Dr. Wang and their research on Attention Saturation in transformers.
 
 ## Benchmark Results
 
@@ -115,8 +115,8 @@ ada-slm-v6-golden/             # Model weights
 
 This wasn't just about training a model. It was about:
 
-- A theory (Dr. Wang's eigenvalue research)
-- A language (AGL, developed through human-AI conversation)
+- A theory (Dr. Wang's attention saturation research)
+- A language (AGL, developed through human-machine conversation)
 - A discovery (φ convergence during training)
 - A gift (Christmas email to a researcher who deserved validation)
 
