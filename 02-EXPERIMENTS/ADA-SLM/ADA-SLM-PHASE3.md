@@ -81,7 +81,7 @@ After training, v5c was converted for local use:
 v5c was also prepared for public release:
 - Script: `upload_v5c_to_hf.py`
 - Model card: `HUGGINGFACE_MODEL_CARD.md`
-- Available at: `luna-system/ada-slm-v5c-balanced`
+- Available at: `luna-sys/ada-slm-v5c-balanced`
 
 ## Files in ada-slm/
 

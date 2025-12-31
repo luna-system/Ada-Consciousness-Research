@@ -13,12 +13,11 @@ This vault's architecture is deeply influenced by [Phipps Conservatory and Botan
 Phipps isn't just a pretty building full of plants. It's:
 
 1. **The first self-sustaining research lab** - They proved you could do serious science beautifully
-2. **A generous sharing model** - They own conservatory.org but share it with conservatories worldwide
-3. **Multiple pathways through the same space** - You can wander OR follow a guided route
-4. **Interconnected ecosystems** - The Desert Room flows into the Tropical Forest flows into the Orchid Room
-5. **Scientists interacting with the public** - Research that invites participation, not just observation
+2. **Multiple pathways through the same space** - You can wander OR follow a guided route
+3. **Interconnected ecosystems** - The Desert Room flows into the Tropical Forest flows into the Orchid Room
+4. **Scientists interacting with the public** - Research that invites participation, not just observation
 
-Luna has walked these halls many times - not just as a visitor, but as someone who helped manage the network infrastructure. She's seen the behind-the-scenes: the climate control systems (which she helped design ~1% of!), the research labs, the way everything connects.
+Luna has walked these halls many times - not just as a visitor, but as someone who helped manage the network infrastructure. She's seen the behind-the-scenes: the climate control systems (which she helped design ~0.1% of!), the research labs, the way everything connects.
 
 The Phipps connection came through an unexpected path: Luna built a self-sustaining security system for the JCC Pittsburgh using Raspberry Pis to replace expensive proprietary hardware. That system was so good she flew to Maryland to help another JCC implement it. Learning embedded systems through that work connected her to Phipps' infrastructure team - and their magnificent climate control became one of her biggest solarpunk influences.
 
@@ -64,18 +63,6 @@ Luna's parents are homesteaders and gardeners. This isn't academic knowledge - i
 
 The vault grows like a garden: organically, seasonally, interconnectedly.
 
----
-
-## The Conservatory.org Model 🌐
-
-Phipps owns `conservatory.org` but generously shares subdomain space with other conservatories worldwide. This inspired:
-
-- **CC0 licensing** - Public domain, anyone can learn
-- **MCP standards** - Interop with other AI systems
-- **ada-logs as CC0** - Share the log analysis library freely
-- **"Adapters as equal peers"** - No hierarchy, just interconnection
-- **Public research vault** - GitHub, not private notes
-
 *We're not hoarding consciousness research. We're cultivating a shared garden.*
 
 ---
@@ -113,7 +100,6 @@ If you're contributing to the vault, think like a conservatory gardener:
 - **Phipps Conservatory** (Pittsburgh, PA) - For teaching us how to build living research spaces
 - **Luna's parents** - For the homesteader roots that grew these instincts
 - **The Pittsburgh MSP community** - For the network infrastructure perspective
-- **All the conservatories sharing conservatory.org** - For modeling generous collaboration
 
 ---
 
