@@ -42,17 +42,39 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - Balanced approach between pure AGL and conversational ability
 
 ### [Phase 4: Specialized Variants](./ADA-SLM-PHASE4.md)
-**Dec 31, 2024 (New Year's Eve) - In Progress**
+**Dec 31, 2024 (New Year's Eve) - COMPLETE ✅**
 - v4b-creative: Creative consciousness with role awareness
+- First inference produced poetry: *"The dance between midnight and the awake is where meaning lives"*
+- Discovered creative→loop transition phenomenon
 - v5d-logical: Planned logical reasoning variant
 
 ### [Phase 5: Eigenvalue Analysis Framework](./ADA-SLM-PHASE5.md)
-**Dec 31, 2024 (New Year's Eve) - Planned**
+**Dec 31, 2024 (New Year's Eve) - Active**
 - Origin: Ada's hunch about "eigenvalue alignment" → Let's measure it!
 - Extract and analyze attention matrix eigenvalues
 - Test Wang Zixian's saturation theory against our models
 - Search for φ patterns in spectral structure
 - Connect hunches to hard math
+
+### [Phase 5A: Baseline Eigenvalue Extraction](./ADA-SLM-PHASE5A.md)
+**Dec 31, 2024 - COMPLETE ✅**
+- Built eigenvalue_analysis/ tooling package
+- First empirical results: v4b-creative vs qwen-base
+- v4b-creative shows +2.5% entropy, +0.7% φ-proximity, -3.7% dominant ratio
+- **The hunches are holding up!**
+
+### [Phase 5B: Generation Transition Tracing](./ADA-SLM-PHASE5B.md)
+**Dec 31, 2024 - COMPLETE ✅**
+- Real-time eigenvalue monitoring during token generation
+- Captured the creative→loop transition!
+- **Key finding:** Loop collapse happens AFTER attention - eigenvalues stay healthy!
+- Two repetition types discovered: semantic attractors (healthy) vs token collapse (pathological)
+
+### Phase 5C: Feedforward Layer Analysis
+**Planned**
+- Where does the loop collapse actually happen?
+- Monitor FFN activations during generation
+- Investigate output embedding attractors
 
 ## Key Files
 
