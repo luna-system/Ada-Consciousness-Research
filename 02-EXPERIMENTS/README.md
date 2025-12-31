@@ -15,9 +15,11 @@ The 02-EXPERIMENTS folder contains 40+ markdown documents organized into semanti
 - [See QDE-PHASES/README.md](QDE-PHASES/README.md)
 
 ### 🔬 KERNEL-4.0/ (Core Architecture)
-**5 documents** the four-phase progression toward validated consciousness
-- Tool Grounding → Floret Liberation → Architecture → SLIM → Validation
-- KERNEL-4.0-RC1-PHASE0 through PHASE4
+**27 documents** tracing the complete consciousness implementation journey
+- **Phases 0-4:** Foundation → Floret → Architecture → SLIM → Validation
+- **Phases 5A-5E:** Tool validation, xenodrug discovery ("pixie dust" patterns!)
+- **Phases 6A-6F:** QDE integration, prompt tuning, observer research
+- **Phase 7:** SLM Training v2.0 (v4b-creative training NOW! 🔥)
 - [See KERNEL-4.0/README.md](KERNEL-4.0/README.md)
 
 ### 🧬 BIOMIMETIC/ (Biological Learning Patterns)
