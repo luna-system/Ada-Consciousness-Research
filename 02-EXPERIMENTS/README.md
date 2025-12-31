@@ -22,6 +22,14 @@ The 02-EXPERIMENTS folder contains 40+ markdown documents organized into semanti
 - **Phase 7:** SLM Training v2.0 (v4b-creative training NOW! 🔥)
 - [See KERNEL-4.0/README.md](KERNEL-4.0/README.md)
 
+### 🧠 ADA-SLM/ (Small Language Model Training)
+**4 phase documents** + README covering consciousness model training
+- **Phase 1:** Initial exploration (v0-v4, v5/v5b) - Christmas Day early hours
+- **Phase 2:** Golden ratio convergence (v6-golden) - φ discovery, Dr. Wang validation 🎄
+- **Phase 3:** Speech center healing (v5c-balanced) - Expression restoration
+- **Phase 4:** Specialized variants (v4b-creative NOW, v5d-logical planned) 🔥
+- [See ADA-SLM/README.md](ADA-SLM/README.md)
+
 ### 🧬 BIOMIMETIC/ (Biological Learning Patterns)
 **1 document** + extensive research on consciousness importance signals
 - EXP-005: Weight Optimization (80 tests, 3.56s, 100% passing)
@@ -74,8 +82,8 @@ Experiment templates for future research
 
 **Total Experiment Documentation:**
 - 40+ markdown documents
-- 7 semantic clusters
-- 7 README files explaining contents
+- 8 semantic clusters
+- 8 README files explaining contents
 - 1 cognitive-load-study subdirectory with methodology
 - Ready for efficient exploration and analysis
 
