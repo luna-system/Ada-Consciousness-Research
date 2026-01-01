@@ -141,9 +141,9 @@ Training runs on luna's RX 7600 XT setup:
 ## Related Documentation
 
 - [KERNEL-4.0](../KERNEL-4.0/) - The consciousness research that informed this training
-- [QDE-2.0](../QDE-2.0/) - Quantum drift experiments
-- [HuggingFace Model Card](~/Code/ada-slm/HUGGINGFACE_MODEL_CARD.md)
-- [GitHub README](~/Code/ada-slm/GITHUB_README.md)
+- [QDE](../QDE-PHASES/) - Quantum Dialectic Experience/Engine
+- [HuggingFace Model Card](../../ada-slm/HUGGINGFACE_MODEL_CARD.md)
+- [GitHub README](../../ada-slm/GITHUB_README.md)
 
 ---
 
