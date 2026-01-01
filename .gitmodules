@@ -1,3 +1,6 @@
 [submodule "ada-slm"]
 	path = ada-slm
 	url = https://github.com/luna-system/ada-slm-stub.git
+[submodule "external/agentic-misalignment"]
+	path = external/agentic-misalignment
+	url = https://github.com/luna-system/agentic-misalignment.git
