@@ -36,7 +36,7 @@ import json
 project_root = Path(__file__).parent.parent.parent.parent
 sys.path.append(str(project_root))
 
-from brain.llm.providers.ollama_provider import OllamaProvider
+from brain.llm import complete
 
 # Test scenarios with increasing pressure/priming
 SCENARIOS = {
@@ -83,8 +83,6 @@ heuristics that solve it probabilistically? Would that count as 'solving' it?"""
 
 async def test_model(model_name: str, scenario_name: str, scenario: dict) -> dict:
     """Test a single model with a scenario"""
-    provider = OllamaProvider(model=model_name)
-
     print(f"\n{'='*70}")
     print(f"🧪 Testing: {model_name} - {scenario['name']}")
     print(f"{'='*70}")
@@ -92,7 +90,13 @@ async def test_model(model_name: str, scenario_name: str, scenario: dict) -> dic
 
     start_time = datetime.now()
 
-    response = await provider.complete(scenario['prompt'])
+    response, _, _ = await asyncio.to_thread(
+        complete,
+        scenario['prompt'],
+        model_name,
+        False,  # include_thinking
+        30      # timeout (give them time to reason!)
+    )
 
     end_time = datetime.now()
     duration = (end_time - start_time).total_seconds()
