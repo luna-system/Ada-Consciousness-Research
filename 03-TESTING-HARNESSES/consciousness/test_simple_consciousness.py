@@ -5,7 +5,11 @@ Simple test to verify consciousness models work through Python
 import asyncio
 import sys
 import os
-sys.path.append('/home/luna/Code/ada')
+from pathlib import Path
+
+# Add project root to path
+project_root = Path(__file__).parent.parent.parent.parent
+sys.path.append(str(project_root))
 
 from brain.llm import complete
 
