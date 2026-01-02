@@ -1,0 +1,192 @@
+% Load base packages
+\RequirePackage{fancyhdr}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{geometry}
+\RequirePackage{titlesec}
+\RequirePackage{hyperref}
+\RequirePackage{tikz}
+\RequirePackage{tcolorbox}
+\usepackage{array} % for fixed-width, aligned columns
+
+
+\RequirePackage[authoryear, sort&compress, round]{natbib} 
+% \RequirePackage[colorlinks=true, citecolor=blue, linkcolor=black]{hyperref}
+
+
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}  
+\RequirePackage{amssymb}
+\RequirePackage{color}
+\RequirePackage{mathtools} 
+\RequirePackage{multirow}
+\RequirePackage{caption}
+\RequirePackage[labelsep=colon]{caption}
+\RequirePackage{mathpazo}
+\RequirePackage{algorithm}
+%\RequirePackage{algorithmic}
+\RequirePackage{booktabs}
+\RequirePackage{adjustbox}
+\RequirePackage{subcaption}
+\RequirePackage{tabularx}
+\RequirePackage{svg}
+\RequirePackage{wrapfig}
+\RequirePackage{titlesec}
+
+\usepackage[bottom]{footmisc} % always place footer at bottom of page 
+
+
+
+% Page geometry
+\geometry{letterpaper, margin=1in}
+
+% Ensure \shorttitle exists (fallback to \title after it's known)
+\makeatletter
+\providecommand{\shorttitle}{}%
+\AtBeginDocument{%
+  \ifx\shorttitle\@empty
+    \gdef\shorttitle{\@title}%
+  \fi
+}
+\makeatother
+
+% Spacing
+\setlength{\headheight}{16pt}
+\setlength{\headsep}{18pt}
+
+% ===== Footer spacing controls (place after \RequirePackage{fancyhdr}) =====
+
+% 1) Space from main text area down to the footer baseline
+\setlength{\footskip}{28pt}  % (default ~20pt)
+
+% 2) Draw a foot rule and control the vertical gaps above/below it
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{%
+  \vspace{16pt}% gap between main text and the rule
+  \hrule width\headwidth height\footrulewidth
+  \vspace{8pt}% gap between rule and the footer text
+}
+
+% % 3) (Only if you use actual \footnote{...} in body text)
+% %    Increase the space above the footnote block and between footnotes
+% \setlength{\skip\footins}{16pt plus 2pt minus 2pt} % gap above true footnotes
+% \setlength{\footnotesep}{10pt}                     % space between footnotes
+
+
+% Draw footer line
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+% ========================
+% Subsequent pages: header with title only
+% ========================
+\fancypagestyle{liquidheader}{
+  \fancyhf{} % clear everything
+
+  % ----- Header -----
+  \fancyhead[L]{\textbf{\shorttitle}}
+
+  % ----- Footer -----
+  % \fancyfoot[L]{Correspondence to \texttt{mathias@liquid.ai}}
+  \fancyfoot[R]{\thepage}
+
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+
+% ========================
+% First page: header with logo + title
+% ========================
+\fancypagestyle{plain}{
+  \fancyhf{} % clear everything
+
+  % ----- Header -----
+  \fancyhead[L]{%
+    \raisebox{-.1\height}{\includegraphics[height=0.7cm]{images/logo_liquid.png}}%
+    \hspace{0.6em}\textbf{\shorttitle}
+  }
+
+  % ----- Footer -----
+  % \fancyfoot[C]{Please cite this work as “Liquid AI (2025)". See Contributions section for the full author list.}
+  \fancyfoot[R]{\thepage}
+
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+% Apply to all pages by default
+\pagestyle{liquidheader}
+
+% Abstract box environment
+\newtcolorbox{abstractbox}{
+  colback=liquidpurple!10,
+  colframe=liquidpurple!40,
+  boxrule=0pt,
+  arc=4mm,
+  left=5mm, right=5mm, top=3mm, bottom=3mm
+}
+
+% Hyperlink colors
+\hypersetup{
+  colorlinks=true,
+  linkcolor=liquidpurple,
+  urlcolor=liquidpurple,
+  citecolor=liquidpurple
+}
+
+\renewcommand{\footnotesize}{\normalsize}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+
+
+\renewcommand{\figurename}{\textbf{Fig.}}
+\renewcommand{\tablename}{\textbf{Table}}
+\renewcommand{\thetable}{\textbf{\arabic{table}}}
+\renewcommand{\thefigure}{\textbf{\arabic{figure}}}
+
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}
+\newtheorem{example}{Example}
+
+% \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\act}[1]{\xlongrightarrow{#1}}       
+\newcommand{\eps}{\varepsilon}
+
+
+\newcommand{\calA}{{\mathcal{A}}}
+\newcommand{\calR}{{\mathcal{R}}}
+\newcommand{\calX}{{\mathcal{X}}}
+\newcommand{\calP}{{\mathcal{P}}}
+\newcommand{\calQ}{{\mathcal{Q}}}
+\newcommand{\calI}{{\mathcal{I}}}
+\newcommand{\calG}{{\mathcal{G}}}
+\newcommand{\calS}{{\mathcal{S}}}
+\newcommand{\calT}{{\mathcal{T}}}
+\newcommand{\calH}{{\mathcal{H}}}
+\newcommand{\calU}{{\mathcal{U}}}
+\newcommand{\calO}{{\mathcal{O}}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\ods}[1]{\mathds{1}_{\{#1\}}}
+\newcommand{\RE}{\mathbb{R}}
+
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        %\renewcommand{\tablename}{S}%
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{algorithm}{0}
+        %\renewcommand{\tablename}{S}%
+        \renewcommand{\thealgorithm}{S\arabic{algorithm}}%
+        \setcounter{equation}{0}
+        %\renewcommand{\tablename}{S}%
+        \renewcommand{\theequation}{S\arabic{equation}}%
+        \setcounter{figure}{0}
+        %\renewcommand{\figurename}{\textbf{Extended Data Fig.}}%
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+        \setcounter{section}{0}
+        \renewcommand{\thesection}{S\arabic{section}}%
+     }

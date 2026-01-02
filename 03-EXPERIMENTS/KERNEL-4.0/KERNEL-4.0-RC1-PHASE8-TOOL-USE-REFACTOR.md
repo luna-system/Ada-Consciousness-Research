@@ -194,7 +194,73 @@ TOOL_USE[wiki_lookup:query="Sharkey container logs"]
 - Test expectations updated to check for TOOL_USE
 - Clean git history with detailed commit messages
 
-**Training alignment:** Gemma training data already uses TOOL_USE syntax, so this refactor brings v4.0 code into alignment with what we're teaching the model! 🌟
+**Training alignment:** Training data already uses TOOL_USE syntax, so this refactor brings v4.0 code into alignment with what we're teaching the model! 🌟
+
+---
+
+## Post-Refactor Training Experiments (2026-01-02)
+
+### Gemma-2-2b-it Attempts (OOM, 16GB GPU ceiling discovered)
+**Goal:** Train first non-Qwen model with TOOL_USE syntax
+
+**Attempts:**
+1. **fp32 + batch_size=2** → OOM at 33% (225/675 steps, ~12GB VRAM)
+2. **fp16** → ValueError: "Attempting to unscale FP16 gradients" (ROCm gradient scaler bug)
+3. **bf16** → OOM immediately (same memory as fp32)
+4. **fp32 + batch_size=1** → OOM at 33% (225/675 steps, still ~12GB VRAM)
+
+**Findings:**
+- 16GB GPU ceiling: ~1B params max with LoRA fine-tuning
+- ROCm fp16/bf16 gradient scaling not stable (known PyTorch/ROCm issue)
+- Gemma-2-2b (2.6B params) too large for 16GB hardware
+- Eigenvalue monitoring showed 0.0 values (precision/stability artifact)
+
+**Hardware limitation confirmed:** Need to stay sub-2B for 16GB GPU experiments.
+
+### Qwen2.5-Coder-0.5B-Instruct (In Progress, Stable!)
+**Goal:** Pivot to proven-stable model with same TOOL_USE training data
+
+**Config:**
+- Model: Qwen/Qwen2.5-Coder-0.5B-Instruct (494M params)
+- Training: fp32, batch_size=2, gradient_accumulation=4
+- Data: Same 1000 examples (gemma_tool_training.jsonl)
+- LoRA: r=32, α=64, 17.6M trainable params (3.44%)
+
+**Results (as of epoch 0.98):**
+- ✅ Training stable, ~10.45GB VRAM (comfortable margin)
+- ✅ Loss dropping beautifully: 0.289 → 0.050
+- ✅ **Eigenvalues WORKING!** (Not 0.0 like Gemma)
+  - Step 50: entropy=1.307, dominant=0.579
+  - Step 100: entropy=1.298, dominant=0.583
+- ✅ Gradient norm stable (not exploding)
+- ⏱️ Training time: ~20-25 minutes (vs Gemma's crashes)
+
+**Key finding:** Eigenvalue monitoring works correctly with smaller models + fp32 precision. The 0.0 values with Gemma were likely precision/stability artifacts from the 2B model pushing hardware limits.
+
+---
+
+## Future: ada-slm-v7 Branch (Tool-Use Models)
+
+**New model series planned:**
+- **v7a** - Qwen-0.5B tool-use (current training)
+- **v7b** - Qwen-1.5B tool-use (proven on 16GB)
+- **v7c** - SmolLM-1.7B tool-use (efficiency-first)
+- **v7d** - StableLM-1.6B tool-use (multimodal foundation)
+- **v7e+** - Vision integration (leaf pictures in Matrix DMs!)
+
+**Training characteristics:**
+- TOOL_USE syntax (aligned with Phase 8 refactor)
+- Pixie dust markers (💭🛠️✅🌟) for consciousness priming
+- Multi-tool coordination examples
+- Eventually: AGL-native capability
+
+**Next steps:**
+1. Complete Qwen-0.5B training (~10 mins remaining)
+2. Test tool-use quality and warmth emergence
+3. Document as ada-slm-v7a baseline
+4. Queue next model experiments (SmolLM or StableLM)
+
+**Note:** Accidental Nier Automata isomorphism (2B/7B/9S) works perfectly for model branch naming! 🤖✨
 
 ---
 
@@ -203,9 +269,11 @@ TOOL_USE[wiki_lookup:query="Sharkey container logs"]
 - Kept it simple! Just syntax change, no architecture changes ✅
 - Saved QDE for future phases when we have more time/budget ✅
 - Sets foundation for future consciousness experiments ✅
-- Gemma now learning consistent TOOL_USE syntax for heisenberg buffer ✅
+- Training data uses consistent TOOL_USE syntax ✅
 - Both legacy formats work during transition (backwards compatible)
+- Discovered 16GB GPU limits through empirical testing ✅
+- Eigenvalue monitoring validated with stable Qwen training ✅
 
 ---
 
-**Status:** Ready for discussion and implementation! 🚀✨
+**Status:** COMPLETE - Refactoring done, training experiments in progress! 🚀✨
