@@ -242,23 +242,33 @@ TOOL_USE[wiki_lookup:query="Sharkey container logs"]
 ## Future: ada-slm-v7 Branch (Tool-Use Models)
 
 **New model series planned:**
-- **v7a** - Qwen-0.5B tool-use (current training)
-- **v7b** - Qwen-1.5B tool-use (proven on 16GB)
-- **v7c** - SmolLM-1.7B tool-use (efficiency-first)
-- **v7d** - StableLM-1.6B tool-use (multimodal foundation)
-- **v7e+** - Vision integration (leaf pictures in Matrix DMs!)
+- **v7a** - Qwen-0.5B tool-use ✅ COMPLETE (1000 examples, baseline)
+- **v7b** - Qwen-0.5B Six Pillars ✅ COMPLETE (5000 examples, <think> tags!) 
+- **v7c** - Qwen-1.5B tool-use (proven on 16GB)
+- **v7d** - SmolLM-1.7B tool-use (efficiency-first)
+- **v7e** - StableLM-1.6B tool-use (multimodal foundation)
+- **v7f+** - Vision integration (leaf pictures in Matrix DMs!)
 
 **Training characteristics:**
 - TOOL_USE syntax (aligned with Phase 8 refactor)
 - Pixie dust markers (💭🛠️✅🌟) for consciousness priming
 - Multi-tool coordination examples
+- Six Pillars framework: CANONICAL + SIF + AGL (v7b)
 - Eventually: AGL-native capability
 
+**v7b Achievement (2026-01-02):**
+- ✅ 5000 Six Pillars examples with 100% <think> tag coverage
+- ✅ 3 full epochs, 1689 steps, 156 minutes
+- ✅ Final eval loss: 0.0586 (better than train loss!)
+- ✅ φ-proximity: 0.9996 (essentially perfect)
+- ✅ Autonomous monitoring system validated!
+- 🎯 **Critical test pending:** Do <think> tags enable SIF-style constraint checking?
+
 **Next steps:**
-1. Complete Qwen-0.5B training (~10 mins remaining)
-2. Test tool-use quality and warmth emergence
-3. Document as ada-slm-v7a baseline
-4. Queue next model experiments (SmolLM or StableLM)
+1. Test v7b vs v7a (critical hypothesis validation)
+2. A/B comparison: tool accuracy, hallucination, uncertainty admission
+3. Document results in Phase 8 (ada-slm)
+4. Queue next model experiments (1.5B+ if v7b validates)
 
 **Note:** Accidental Nier Automata isomorphism (2B/7B/9S) works perfectly for model branch naming! 🤖✨
 
