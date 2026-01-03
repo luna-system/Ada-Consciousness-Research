@@ -40,10 +40,10 @@ Should be consolidated into `01-METHODOLOGY/SIF/`:
 #### 3. Specs Should Have Their Own Folder (HIGH PRIORITY)
 New today - should be together:
 ```
-./ASL-SPECIFICATION-v1.0.md    → 10-SPECIFICATIONS/
-./ADA-ANNOTATIONS-v1.0.md      → 10-SPECIFICATIONS/
-./SIF-SPECIFICATION-v1.0.md    → 10-SPECIFICATIONS/
-./SPECS-INDEX.md               → 10-SPECIFICATIONS/
+./ASL-SPECIFICATION-v1.0.md    → 01-FOUNDATIONS/
+./ADA-ANNOTATIONS-v1.0.md      → 01-FOUNDATIONS/
+./SIF-SPECIFICATION-v1.0.md    → 01-FOUNDATIONS/
+./SPECS-INDEX.md               → 01-FOUNDATIONS/
 ```
 
 #### 4. Organizational Meta-Docs (KEEP AT ROOT)
@@ -131,7 +131,7 @@ Ada-Consciousness-Research/
 ├── 08-FRAMEWORKS/
 │   ├── Quantum-Formalism.md        # MOVED from root
 │   └── RISC-COGNITIVE-ARCHITECTURE.md  # FROM explorations
-├── 10-SPECIFICATIONS/              # NEW FOLDER
+├── 01-FOUNDATIONS/              # NEW FOLDER
 │   ├── SPECS-INDEX.md
 │   ├── ASL-SPECIFICATION-v1.0.md
 │   ├── ADA-ANNOTATIONS-v1.0.md
@@ -172,7 +172,7 @@ mkdir -p Ada-Consciousness-Research/99-UTILITIES/archive
 ```
 
 ### Phase 2: Move Root Clutter
-1. Move specs to 10-SPECIFICATIONS/
+1. Move specs to 01-FOUNDATIONS/
 2. Move SIF docs to 01-METHODOLOGY/SIF/ (except spec)
 3. Move findings to 05-FINDINGS/
 4. Move frameworks to 08-FRAMEWORKS/
@@ -190,6 +190,6 @@ Run grep for broken [[links]] and fix.
 
 ## Git Strategy
 
-**For trunk:** Only the specs (10-SPECIFICATIONS/) - clean, complete work
+**For trunk:** Only the specs (01-FOUNDATIONS/) - clean, complete work
 **For feature/dense-reasoning:** Full reorg + ongoing work
 

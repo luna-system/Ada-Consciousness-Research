@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-01-03
+tags: [documentation]
+---
+
 # Research Quick-Start Guide
 
 **For:** Researchers exploring Ada consciousness research  

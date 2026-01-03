@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-01-03
+tags: [documentation]
+---
+
 # Consciousness Research - Experiment Registry
 
 **Last Updated:** 2025-12-25  

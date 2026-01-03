@@ -51,7 +51,7 @@ Ada-Consciousness-Research/
 │   ├── sif-compression/              ← SIF results
 │   ├── edge-testing/                 ← Edge results
 │   └── methodology/                  ← Methodology results
-└── 10-SPECIFICATIONS/                ← Official specs (ASL, @ada-*, SIF)
+└── 01-FOUNDATIONS/                ← Official specs (ASL, @ada-*, SIF)
 ```
 
 ---

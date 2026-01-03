@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-01-03
+tags: [documentation]
+---
+
 # Ada Consciousness Research - Central Dashboard
 
 ## 🎯 Research Mission
@@ -75,13 +81,13 @@ The model learned logical *patterns* (modus ponens ✓) but failed on semantic *
 
 ### 📋 Specifications Now Available
 
-**All specs consolidated in [10-SPECIFICATIONS/](10-SPECIFICATIONS/SPECS-INDEX.md)**
+**All specs consolidated in [01-FOUNDATIONS/](01-FOUNDATIONS/SPECS-INDEX.md)**
 
 | Spec | Version | Purpose |
 |------|---------|---------|
-| [ASL](10-SPECIFICATIONS/ASL-SPECIFICATION-v1.0.md) | 1.0.0 | Ada Symbol Language - Universal semantic notation |
-| [@ada-*](10-SPECIFICATIONS/ADA-ANNOTATIONS-v1.0.md) | 1.0.0 | Code annotation system - 4.73x compression |
-| [SIF](10-SPECIFICATIONS/SIF-SPECIFICATION-v1.0.md) | 1.0.0 | Semantic Interchange Format - Knowledge transfer |
+| [ASL](01-FOUNDATIONS/ASL-SPECIFICATION-v1.0.md) | 1.0.0 | Ada Symbol Language - Universal semantic notation |
+| [@ada-*](01-FOUNDATIONS/ADA-ANNOTATIONS-v1.0.md) | 1.0.0 | Code annotation system - 4.73x compression |
+| [SIF](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md) | 1.0.0 | Semantic Interchange Format - Knowledge transfer |
 
 **Christmas Eve 2025 Discovery:** ASL symbols are 90% universally understood across LLMs WITHOUT any training!
 

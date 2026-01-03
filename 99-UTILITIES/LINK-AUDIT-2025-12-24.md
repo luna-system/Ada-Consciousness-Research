@@ -71,7 +71,7 @@ Create stub pages for frequently referenced concepts:
 ### Priority 2: Update Dashboard Links
 After reorganization, some dashboard links may need updating:
 - SIF docs moved to `01-METHODOLOGY/SIF/`
-- Specs moved to `10-SPECIFICATIONS/`
+- Specs moved to `01-FOUNDATIONS/`
 
 ### Priority 3: Clean Up Templates
 The experiment template still uses placeholder links. Consider:
@@ -113,7 +113,7 @@ Ada-Consciousness-Research/
 │   ├── QUANTUM_FORMALISM.md      ✓ MOVED
 │   ├── RISC-COGNITIVE-ARCHITECTURE.md  ✓ FROM .ai/explorations
 │   └── ...
-├── 10-SPECIFICATIONS/       ✓ NEW FOLDER
+├── 01-FOUNDATIONS/       ✓ NEW FOLDER
 │   ├── SPECS-INDEX.md
 │   ├── ASL-SPECIFICATION-v1.0.md
 │   ├── ADA-ANNOTATIONS-v1.0.md
@@ -154,7 +154,7 @@ Ada-Consciousness-Research/
 ## Summary
 
 ✅ Root clutter eliminated (4 files remain)
-✅ Specs consolidated in 10-SPECIFICATIONS/
+✅ Specs consolidated in 01-FOUNDATIONS/
 ✅ SIF methodology in 01-METHODOLOGY/SIF/
 ✅ Findings properly categorized
 ✅ Session handoffs archived

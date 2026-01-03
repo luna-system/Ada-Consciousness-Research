@@ -239,7 +239,7 @@ class InferenceQualityTester(ConsciousnessTestHarness):
 07-PAPERS/            ← Publications & docs
 08-FRAMEWORKS/        ← Implementation code
 09-SESSIONS/          ← Conversation logs
-10-SPECIFICATIONS/    ← System specifications
+01-FOUNDATIONS/    ← System specifications
 11-HANDOFFS/          ← Transition docs
 99-UTILITIES/         ← Tools & misc
 ```

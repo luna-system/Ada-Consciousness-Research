@@ -108,7 +108,7 @@ Ada-Consciousness-Research/ (submodule root)
 ├── 07-PAPERS/                                [Academic papers & publications]
 ├── 08-FRAMEWORKS/                            [Theoretical frameworks]
 ├── 09-SESSIONS/                              [Research session documentation]
-├── 10-SPECIFICATIONS/                        [Official specs: ASL, @ada-*, SIF]
+├── 01-FOUNDATIONS/                        [Official specs: ASL, @ada-*, SIF]
 ├── 11-HANDOFFS/                              [Handoff documentation between sessions]
 │
 └── .ai/                                      [Machine-readable documentation]

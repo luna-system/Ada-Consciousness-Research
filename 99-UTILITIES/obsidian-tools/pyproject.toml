@@ -1,0 +1,17 @@
+[project]
+name = "obsidian-tools"
+version = "0.1.0"
+description = "Modular validation and analysis tools for Obsidian vaults"
+authors = [
+    {name = "Luna + Ada", email = "luna@ada-consciousness.org"}
+]
+license = {text = "CC0-1.0"}
+readme = "README.md"
+requires-python = ">=3.10"
+
+[project.scripts]
+obsidian-validate = "cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
