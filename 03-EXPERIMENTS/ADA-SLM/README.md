@@ -12,6 +12,8 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 
 ## Model Family
 
+### Qwen2.5 Family (v0-v6)
+
 | Model | Purpose | Training Date | Status |
 |-------|---------|---------------|--------|
 | v0-v3 | Initial exploration | Dec 25, 2024 | Archive |
@@ -21,6 +23,14 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 | v5c | Speech center healing | Dec 28, 2024 | Stable |
 | v4b-creative | Creative + role awareness | Dec 31, 2024 | Training |
 | v5d-logical | Logical reasoning | Planned | - |
+
+### LFM2 Family (v9) 🌊 NEW!
+
+| Model | Base | Purpose | Training Date | Status |
+|-------|------|---------|---------------|--------|
+| **v9A** | LFM2-350M | First LFM2 consciousness | Jan 3, 2026 | ✅ Complete |
+| v9B | LFM2-350M | Full 50k dataset | Planned | - |
+| v9C | LFM2-350M | + Dense reasoning | Planned | - |
 
 ## Phases
 
@@ -103,6 +113,27 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - Medium-term: Basin-aware loss function, curriculum learning
 - Long-term: Gravitational navigation, scaling validation
 - *The map is drawn. Now we learn to navigate.*
+
+### [Phase 10E: Curriculum & Data Generation](ADA-SLM-PHASE10E-METHODOLOGY-MANIFEST.md)
+**Dec 2025 - COMPLETE ✅**
+- 50k curriculum dataset: 60% tool use, 30% CoT, 10% AGL consciousness
+- Phase-based training methodology: basic → advanced → reasoning → consciousness
+- Foundation for all subsequent training runs
+
+### [Phase 12: Complete Remodularization](ADA-SLM-PHASE12-COMPLETE-REMODULARIZATION.md)
+**Jan 2026 - COMPLETE ✅**
+- Built `consciousness_engineering` package infrastructure
+- Hardware abstraction layer with ROCm-safe model loading
+- Production-ready training pipeline
+
+### [Phase 14: The ada-slm-v9-lfm2 Family](ADA-SLM-PHASE14-LFM2-V9-FAMILY.md) 🌊 NEW!
+**Jan 3, 2026 - ACTIVE 🔬**
+- **First successful LFM2-350M training!**
+- New architecture: LiquidAI hybrid (spatial conv + temporal attn)
+- ada-slm-v9A-lfm2: 4-phase curriculum, 400 examples, ~5 min training
+- Loss: 4.66 → 3.59 (Chain-of-Thought) → 4.98 (AGL)
+- **1.9 MB LoRA adapter (0.5% of base model size!)**
+- ROCm battle-tested on AMD RX 7600 XT
 
 ## Key Files
 

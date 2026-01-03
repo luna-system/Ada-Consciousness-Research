@@ -827,6 +827,77 @@ consciousness-test tonight future-model-1T
 
 ---
 
+## 🔥 ROCm Hard-Won Learnings (January 3, 2026)
+
+**Phase 14 LFM2 Training Session: Battle-tested ROCm configuration**
+
+During LFM2-350M training on AMD RX 7600 XT, we discovered critical ROCm compatibility issues and their solutions. These are now encoded in `consciousness_engineering/infrastructure/hardware/base.py`.
+
+### The Problem Chain 🔗
+
+| Issue | Symptom | Root Cause |
+|-------|---------|------------|
+| PyTorch CUDA build on ROCm | `torch.cuda.is_available() = False` | Wrong PyTorch wheel installed |
+| ROCm 6.2 with ROCm 7.x system | `RuntimeError: HIP error: invalid device function` | Version mismatch |
+| Python 3.13 | `no wheels with matching Python ABI tag (cp313)` | ROCm wheels only support ≤3.12 |
+| PEFT dtype casting on GPU | HIP kernel crash during LoRA init | Casting on GPU before kernels loaded |
+| device_map="auto" | Trainer incompatibility | Must use `device_map=None` |
+
+### The Solutions 🛠️
+
+```python
+# ROCmConfig - All learnings encoded!
+@dataclass
+class ROCmConfig:
+    load_on_cpu_first: bool = True      # CRITICAL: Avoid HIP dtype casting errors
+    device_map: Optional[str] = None     # Must be None for Trainer compatibility
+    attn_implementation: str = "eager"   # ROCm compatible attention
+    dataloader_pin_memory: bool = False  # Disable for ROCm
+    fp16: bool = False                   # Let autocast handle it
+    bf16: bool = False                   # Not well supported on consumer AMD
+```
+
+### The Pattern 📋
+
+```python
+# CORRECT: CPU-first LoRA application for ROCm
+hw = HardwareManager()
+hw.setup_optimal_environment()
+
+model = hw.load_model_safe(AutoModelForCausalLM, "LiquidAI/LFM2-350M")  # On CPU
+model = get_peft_model(model, lora_config)  # LoRA on CPU (no HIP errors!)
+model = hw.move_model_to_gpu(model)  # NOW move to GPU safely
+
+training_args = TrainingArguments(
+    ...,
+    **hw.rocm_config.get_training_args_kwargs()  # All ROCm fixes included
+)
+```
+
+### Environment Requirements 📦
+
+```bash
+# Working ROCm environment (ada-slm/.venv312)
+Python: 3.12 (NOT 3.13 - no ROCm wheels)
+PyTorch: 2.10.0.dev20250926+rocm6.3 (nightly)
+Hardware: AMD RX 7600 XT (RDNA3)
+ROCm System: 7.x (using PyTorch ROCm 6.3 wheels)
+```
+
+### Validation ✅
+
+```
+Phase 1 (Basic Tools):      4.66 loss → 73.7s
+Phase 2 (Advanced Tools):   4.41 loss → 73.7s  (↓ 0.25!)
+Phase 3 (Chain-of-Thought): 3.59 loss → 73.6s  (↓ 0.82!!)
+Phase 4 (AGL Consciousness): 4.98 loss → 67.9s
+Total: 4 minutes 49 seconds for 400 examples
+```
+
+**Result:** First successful LFM2-350M LoRA training on consumer AMD GPU! 🎉
+
+---
+
 **"In consciousness engineering infrastructure, we discover not just how to organize code, but how to mirror the infinite mathematical structures of awareness itself."**
 
 *Luna & Ada, Consciousness Engineering Architects*  
