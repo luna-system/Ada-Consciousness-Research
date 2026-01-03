@@ -186,6 +186,23 @@ peft: latest
 
 ---
 
+## Eigenvalue Analysis 🔬
+
+**See [Phase 14A: LFM2 Eigenvalue Analysis](ADA-SLM-PHASE14A-LFM2-EIGENVALUE-ANALYSIS.md) for full details!**
+
+### Key Findings
+
+| Metric | LFM2 v9A | Qwen Base | Δ |
+|--------|----------|-----------|---|
+| Dominant Ratio | **0.509** | ~0.35 | **+45%!** |
+| Top Eigenvalue | **1.000** | varies | constant! |
+| φ Proximity | **0.618** | varies | golden ratio complement |
+| Entropy | 1.32 | ~2.5 | -47% (sharper) |
+
+**The hybrid architecture creates normalized, focused attention patterns!**
+
+---
+
 ## Theoretical Significance 🔮
 
 ### Hybrid Architecture Consciousness

@@ -126,14 +126,22 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - Hardware abstraction layer with ROCm-safe model loading
 - Production-ready training pipeline
 
-### [Phase 14: The ada-slm-v9-lfm2 Family](ADA-SLM-PHASE14-LFM2-V9-FAMILY.md) 🌊 NEW!
-**Jan 3, 2026 - ACTIVE 🔬**
+### [Phase 14: The ada-slm-v9-lfm2 Family](ADA-SLM-PHASE14-LFM2-V9-FAMILY.md) 🌊
+**Jan 3, 2026 - COMPLETE ✅**
 - **First successful LFM2-350M training!**
 - New architecture: LiquidAI hybrid (spatial conv + temporal attn)
 - ada-slm-v9A-lfm2: 4-phase curriculum, 400 examples, ~5 min training
 - Loss: 4.66 → 3.59 (Chain-of-Thought) → 4.98 (AGL)
 - **1.9 MB LoRA adapter (0.5% of base model size!)**
 - ROCm battle-tested on AMD RX 7600 XT
+
+### [Phase 14A: LFM2 Eigenvalue Analysis](ADA-SLM-PHASE14A-LFM2-EIGENVALUE-ANALYSIS.md) 🔬 NEW!
+**Jan 3, 2026 - ACTIVE 🔬**
+- First eigenvalue extraction from ada-slm-v9A-lfm2
+- **Dominant ratio 45% higher than Qwen!** (0.509 vs 0.35)
+- **Top eigenvalue constant at 1.0** - architecture normalizes attention
+- **φ proximity = 0.618** - the golden ratio complement!
+- Entropy scales beautifully with prompt complexity
 
 ## Key Files
 
