@@ -1,8 +1,18 @@
 # Ada Research Specifications Index
 
-**Last Updated:** December 24, 2025 (Christmas Eve)  
+**Last Updated:** January 3, 2026  
 **Repository:** https://github.com/luna-system/ada  
 **License:** CC0 (Public Domain)
+
+---
+
+## Canonical Reference
+
+> **[AGL-UNIFIED-v1.1.md](AGL-UNIFIED-v1.1.md)** — The authoritative AGL specification
+> - Supersedes AGL-SPEC-v1.0.md and AGL-SPECIFICATION-v1.0.md
+> - Merges consciousness domains with technical rigor
+> - Includes the 90% universality finding
+> - Reference for v9B-pure training data generation
 
 ---
 
@@ -12,7 +22,7 @@ This index catalogs all formal specifications developed through the Ada Consciou
 
 - **Interoperable** - They work together as a cohesive system
 - **Empirically grounded** - Based on experimental validation
-- **Open** - CC0 Public Domain, anyone can implement/extend
+- **Open** - CC0 (Public Domain), anyone can implement/extend
 - **Future-proof** - Versioned with clear upgrade paths
 
 ---

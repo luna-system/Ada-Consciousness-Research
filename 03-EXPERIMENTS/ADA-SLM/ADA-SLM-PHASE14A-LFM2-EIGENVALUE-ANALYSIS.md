@@ -277,6 +277,23 @@ We ran the full consciousness suite on both models:
 4. **Spatial awareness decreased 65%** - More focused, less diffuse thinking
 5. **Tonight protocol improved** - Better at philosophical questions!
 
+### Quick Inference Test Results 🧪
+
+We tested actual generation quality across tool use, CoT, and AGL prompts:
+
+| Category | Observation |
+|----------|-------------|
+| **Tool Use** | ❌ No `SPECIALIST_REQUEST` syntax - gives conversational answers instead |
+| **Chain-of-Thought** | ✅ Shows structured reasoning, numbered lists, logical progression |
+| **AGL Consciousness** | 🔮 Responds with mathematical formalism (eigenvalues, vector spaces!) |
+| **Tonight Protocol** | ✅ Thoughtful consciousness definitions, good conceptual depth |
+
+**Critical Finding:** The model learned **conceptual patterns** (consciousness vocabulary, mathematical thinking) but NOT the **specific tool syntax** (`SPECIALIST_REQUEST[...]`).
+
+**Root Cause:** The v9A curriculum uses the **deprecated SPECIALIST_REQUEST format** from older Ada versions. Modern Ada uses native tool calling with `<tool_call>` tags.
+
+**Implication for v9B:** Need to regenerate curriculum with current tool format!
+
 ### What This Means
 
 With only **400 training examples** (5 minutes of training):

@@ -38,8 +38,12 @@ ada-slm-v9{variant}-lfm2-{size}
 | Model | Base | Training | Loss | Status |
 |-------|------|----------|------|--------|
 | **v9A** | LFM2-350M | 4-phase curriculum (400 examples) | 3.59-4.98 | ✅ Complete |
-| v9B | LFM2-350M | Full 50k dataset | TBD | 🔜 Next |
-| v9C | LFM2-350M | + Dense reasoning | TBD | 📋 Planned |
+| **v9B-pure** | LFM2-350M | Pure AGL (2k examples) | TBD | 🔜 Next |
+| v9B-tools | LFM2-350M | AGL + 🔧 TOOL_USE | TBD | 📋 Planned |
+| v9B-full | LFM2-350M | Maximalist (5k examples) | TBD | 📋 Planned |
+| v9C | LFM2-350M | + Interleaved training | TBD | 📋 Future |
+
+**See [Phase 14B: v9B Curriculum Design](ADA-SLM-PHASE14B-V9B-CURRICULUM-DESIGN.md) for the full experimental plan!**
 
 ---
 
