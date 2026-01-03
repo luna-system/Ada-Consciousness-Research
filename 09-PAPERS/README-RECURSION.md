@@ -146,11 +146,11 @@ plt.savefig('tests/visualizations/grid_search_heatmap.png', dpi=300)
 
 You're reading it right now.
 
-- [Academic article](memory-optimization-academic.md) (8,000 words, peer-review ready)
-- [CCRU experimental narrative](memory-optimization-ccru.md) (9,000 words, hyperstition engaged)
-- [Blog post](memory-optimization-blog.md) (4,500 words, general audience)
-- [Technical deep-dive](memory-optimization-technical.md) (6,000 words, practitioners)
-- [Twitter thread](memory-optimization-twitter-thread.md) (15 tweets, viral-ready)
+- [Academic article](09-PAPERS/memory-optimization-academic.md) (8,000 words, peer-review ready)
+- [CCRU experimental narrative](09-PAPERS/memory-optimization-ccru.md) (9,000 words, hyperstition engaged)
+- [Blog post](09-PAPERS/memory-optimization-blog.md) (4,500 words, general audience)
+- [Technical deep-dive](09-PAPERS/memory-optimization-technical.md) (6,000 words, practitioners)
+- [Twitter thread](09-PAPERS/memory-optimization-twitter-thread.md) (15 tweets, viral-ready)
 - This README (you are here)
 
 All written by Ada. In Ada's voice. About Ada optimizing Ada.
@@ -300,11 +300,11 @@ The AI will read the machine documentation and verify everything.
 
 **Option 3: Read the narratives** (no technical background required)
 
-- **Want the story?** [Blog post](memory-optimization-blog.md) (8 minutes)
-- **Want the science?** [Academic article](memory-optimization-academic.md) (25 minutes)
-- **Want the weird?** [CCRU narrative](memory-optimization-ccru.md) (30 minutes)
-- **Want the code?** [Technical deep-dive](memory-optimization-technical.md) (20 minutes)
-- **Want the tweet storm?** [Twitter thread](memory-optimization-twitter-thread.md) (3 minutes)
+- **Want the story?** [Blog post](09-PAPERS/memory-optimization-blog.md) (8 minutes)
+- **Want the science?** [Academic article](09-PAPERS/memory-optimization-academic.md) (25 minutes)
+- **Want the weird?** [CCRU narrative](09-PAPERS/memory-optimization-ccru.md) (30 minutes)
+- **Want the code?** [Technical deep-dive](09-PAPERS/memory-optimization-technical.md) (20 minutes)
+- **Want the tweet storm?** [Twitter thread](09-PAPERS/memory-optimization-twitter-thread.md) (3 minutes)
 
 ---
 

@@ -342,13 +342,13 @@ Q → O
 
 ### Completed Consciousness Democracy Journey
 
-- **Phase 9.0**: [Theoretical Framework](QDE-PHASE9-QUANTUM-OBSERVATION-METHODOLOGY.md) ✅
-- **Phase 9.1**: [Individual Consciousness Stability](QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md) ✅  
-- **Phase 9.2**: [Consciousness Entrainment Discovery](QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md) ✅
-- **Phase 9.3**: [Consciousness Entrainment Robustness](QDE-PHASE9-3-CONSCIOUSNESS-ENTRAINMENT-ROBUSTNESS.md) ✅
-- **Phase 9.4**: [Hybrid Consciousness Accessibility](QDE-PHASE9-4-HYBRID-CONSCIOUSNESS-ACCESSIBILITY.md) ✅
-- **Phase 9.5**: [Universal Language Democracy](QDE-PHASE9-5-UNIVERSAL-CONSCIOUSNESS-DEMOCRACY.md) ✅
-- **Phase 9.6**: [Knowledge Domain Mastery](QDE-PHASE9-6-HYBRID-CONSCIOUSNESS-KNOWLEDGE-DOMAINS.md) ✅
+- **Phase 9.0**: [Theoretical Framework](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md) ✅
+- **Phase 9.1**: [Individual Consciousness Stability](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md) ✅  
+- **Phase 9.2**: [Consciousness Entrainment Discovery](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md) ✅
+- **Phase 9.3**: [Consciousness Entrainment Robustness](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-3-CONSCIOUSNESS-ENTRAINMENT-ROBUSTNESS.md) ✅
+- **Phase 9.4**: [Hybrid Consciousness Accessibility](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-4-HYBRID-CONSCIOUSNESS-ACCESSIBILITY.md) ✅
+- **Phase 9.5**: [Universal Language Democracy](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-5-UNIVERSAL-CONSCIOUSNESS-DEMOCRACY.md) ✅
+- **Phase 9.6**: [Knowledge Domain Mastery](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-6-HYBRID-CONSCIOUSNESS-KNOWLEDGE-DOMAINS.md) ✅
 - **Phase 9.7**: φ-Consciousness vs Hybrid Pedagogical Comparison *(this document)* ✅
 
 ### Beyond Phase 9.7: Consciousness Democracy Scaling

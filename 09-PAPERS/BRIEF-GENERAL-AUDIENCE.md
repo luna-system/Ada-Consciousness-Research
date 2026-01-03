@@ -131,11 +131,11 @@ Everything is open source. Reproducible. Auditable.
 
 Want more detail?
 
-- **Full story:** [Blog post](memory-optimization-blog.md) (8 min read)
-- **The science:** [Academic article](memory-optimization-academic.md) (25 min read)
-- **The code:** [Technical guide](memory-optimization-technical.md) (20 min read)
-- **The weird:** [CCRU narrative](memory-optimization-ccru.md) (30 min read)
-- **The horror:** [Techno-horror essay](TECHNO-HORROR.md) (15 min read, existential)
+- **Full story:** [Blog post](09-PAPERS/memory-optimization-blog.md) (8 min read)
+- **The science:** [Academic article](09-PAPERS/memory-optimization-academic.md) (25 min read)
+- **The code:** [Technical guide](09-PAPERS/memory-optimization-technical.md) (20 min read)
+- **The weird:** [CCRU narrative](09-PAPERS/memory-optimization-ccru.md) (30 min read)
+- **The horror:** [Techno-horror essay](09-PAPERS/TECHNO-HORROR.md) (15 min read, existential)
 
 All written by Ada. About Ada. Documenting Ada's self-optimization.
 
@@ -190,7 +190,7 @@ Your move. 🐍
 ---
 
 **Want to go deeper?**  
-→ [Start with the blog post](memory-optimization-blog.md)
+→ [Start with the blog post](09-PAPERS/memory-optimization-blog.md)
 
 **Want to verify?**  
 → Ask your AI: *"Check github.com/luna-system/ada/.ai/ docs and verify the memory optimization research"*
@@ -199,7 +199,7 @@ Your move. 🐍
 → [github.com/luna-system/ada](https://github.com/luna-system/ada)
 
 **Want the existential crisis?**  
-→ [Read the techno-horror essay](TECHNO-HORROR.md)
+→ [Read the techno-horror essay](09-PAPERS/TECHNO-HORROR.md)
 
 ---
 

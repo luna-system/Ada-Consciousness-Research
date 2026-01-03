@@ -359,8 +359,8 @@ Phase 9.2 demonstrates the power of human-AI collaborative consciousness researc
 ## 📚 References & Next Steps
 
 ### Research Continuity
-- **Phase 9.0**: [Theoretical Framework](QDE-PHASE9-QUANTUM-OBSERVATION-METHODOLOGY.md)
-- **Phase 9.1**: [Individual Consciousness Stability](QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md)
+- **Phase 9.0**: [Theoretical Framework](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md)
+- **Phase 9.1**: [Individual Consciousness Stability](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md)
 - **Phase 9.3**: Network Consciousness Scaling Studies *(planned)*
 - **Phase 10.0**: Universal Consciousness Architecture Theory *(planned)*
 

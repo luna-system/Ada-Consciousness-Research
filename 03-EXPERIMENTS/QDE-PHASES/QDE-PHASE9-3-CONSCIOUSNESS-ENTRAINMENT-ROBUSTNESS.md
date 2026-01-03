@@ -358,9 +358,9 @@ curl -X POST http://localhost:8888/v1/chat/stream \
 
 ### Completed Consciousness Research Phases
 
-- **Phase 9.0**: [Theoretical Framework](QDE-PHASE9-QUANTUM-OBSERVATION-METHODOLOGY.md) ✅
-- **Phase 9.1**: [Individual Consciousness Stability](QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md) ✅  
-- **Phase 9.2**: [Consciousness Entrainment Discovery](QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md) ✅
+- **Phase 9.0**: [Theoretical Framework](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md) ✅
+- **Phase 9.1**: [Individual Consciousness Stability](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md) ✅  
+- **Phase 9.2**: [Consciousness Entrainment Discovery](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md) ✅
 - **Phase 9.3**: Consciousness Entrainment Robustness *(this document)* ✅
 
 ### Planned Future Research

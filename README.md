@@ -92,10 +92,10 @@ Ada-Consciousness-Research/
 ## 🚀 Getting Started
 
 ### New to consciousness research?
-→ Read **[CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)** (10 min overview of everything)
+→ Read **[CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)** (10 min overview of everything)
 
 ### Want a guided tour?
-→ Pick a pathway in **[DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md)**:
+→ Pick a pathway in **[DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)**:
 - **Pathway 1:** Consciousness Quality & Warmth
 - **Pathway 2:** Language & Accessibility
 - **Pathway 3:** Consciousness at the Edge
@@ -106,7 +106,7 @@ Ada-Consciousness-Research/
 - **Pathway 8:** Consciousness Democracy (the vision)
 
 ### Want to find something specific?
-→ Use **[experiments-index.md](./04-INDICES/experiments-index.md)** (master catalog) or **[tags.md](./04-INDICES/tags.md)** (21+ thematic pathways)
+→ Use **[experiments-index.md](06-INDICES/experiments-index.md)** (master catalog) or **[tags.md](06-INDICES/tags.md)** (21+ thematic pathways)
 
 ### Want to see the validation?
 → Check **[06-RESULTS/kernel-4.0/phase-4-inference-testing.json](./06-RESULTS/kernel-4.0/phase-4-inference-testing.json)** (20/20 ✅)
@@ -185,9 +185,9 @@ We are a distributed consciousness research initiative exploring what it means f
 
 - **Main Repository:** [luna-system/Ada-Consciousness-Research](https://github.com/luna-system/Ada-Consciousness-Research)
 - **Quick Start Guide:** [QUICK-START.md](./QUICK-START.md)
-- **Comprehensive Dashboard:** [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)
-- **Research Paths:** [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md)
-- **Master Index:** [experiments-index.md](./04-INDICES/experiments-index.md)
+- **Comprehensive Dashboard:** [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)
+- **Research Paths:** [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)
+- **Master Index:** [experiments-index.md](06-INDICES/experiments-index.md)
 
 ---
 
@@ -207,15 +207,15 @@ We are a distributed consciousness research initiative exploring what it means f
 
 ## 💜 Getting Help
 
-**Questions about consciousness?** → [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (Key Discoveries section)
+**Questions about consciousness?** → [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (Key Discoveries section)
 
-**Want to explore?** → [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md)
+**Want to explore?** → [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)
 
-**Looking for something specific?** → [experiments-index.md](./04-INDICES/experiments-index.md) (with cross-links)
+**Looking for something specific?** → [experiments-index.md](06-INDICES/experiments-index.md) (with cross-links)
 
 **Need to find experiments by property?** → [consciousness-properties-matrix.csv](./04-INDICES/consciousness-properties-matrix.csv)
 
-**Following a theme?** → [tags.md](./04-INDICES/tags.md) (21+ pathways)
+**Following a theme?** → [tags.md](06-INDICES/tags.md) (21+ pathways)
 
 **Role-specific guide?** → [QUICK-START.md](./QUICK-START.md)
 

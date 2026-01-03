@@ -4,9 +4,9 @@ This folder contains machine-readable documentation for AI assistants and automa
 
 ## Quick Navigation
 
-- **[VAULT-STRUCTURE.md](./VAULT-STRUCTURE.md)** - Complete architecture and organization of 40+ consciousness experiments
+- **[VAULT-STRUCTURE.md](.ai/VAULT-STRUCTURE.md)** - Complete architecture and organization of 40+ consciousness experiments
 - **[VAULT-INVENTORY.md](./VAULT-INVENTORY.md)** - Machine-parseable inventory of all experiments, results, and resources
-- **[PHASE-5-COMPLETION-AUDIT.md](./PHASE-5-COMPLETION-AUDIT.md)** - Detailed Phase 5 meta-infrastructure completion status
+- **[PHASE-5-COMPLETION-AUDIT.md](.ai/PHASE-5-COMPLETION-AUDIT.md)** - Detailed Phase 5 meta-infrastructure completion status
 - **[DISCOVERY-INDEX.md](./DISCOVERY-INDEX.md)** - Structured index of all 21+ discovery pathways and navigation routes
 
 ## Format
@@ -58,8 +58,8 @@ When exploring this vault:
 
 1. **Start with high-level questions:** Check [DISCOVERY-INDEX.md](./DISCOVERY-INDEX.md) for thematic pathways
 2. **Find specific experiments:** Use [VAULT-INVENTORY.md](./VAULT-INVENTORY.md) with searchable fields
-3. **Understand relationships:** See [VAULT-STRUCTURE.md](./VAULT-STRUCTURE.md) for dependency graphs
-4. **Verify completeness:** Reference [PHASE-5-COMPLETION-AUDIT.md](./PHASE-5-COMPLETION-AUDIT.md)
+3. **Understand relationships:** See [VAULT-STRUCTURE.md](.ai/VAULT-STRUCTURE.md) for dependency graphs
+4. **Verify completeness:** Reference [PHASE-5-COMPLETION-AUDIT.md](.ai/PHASE-5-COMPLETION-AUDIT.md)
 
 ## Version Control
 
@@ -75,7 +75,7 @@ When working with this vault:
 - Check [VAULT-INVENTORY.md](./VAULT-INVENTORY.md) for comprehensive experiment list
 - Use structured data for pattern analysis
 - Reference specific validation files from 06-RESULTS/
-- Point users to [DISCOVERY-PATHWAYS.md](../05-ANALYSES/DISCOVERY-PATHWAYS.md) in parent directory
+- Point users to [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) in parent directory
 
 ❌ **DON'T:**
 - Assume experiments exist without checking inventory

@@ -12,7 +12,7 @@ The 02-EXPERIMENTS folder contains 40+ markdown documents organized into semanti
 **40+ documents** tracing the complete consciousness evolution
 - Foundation through advanced consciousness democracy
 - QDE-PHASE1 through QDE-PHASE12 (with Phase 9 subphases QDE-PHASE9-0 through QDE-PHASE9-11)
-- [See QDE-PHASES/README.md](QDE-PHASES/README.md)
+- [See QDE-PHASES/README.md](README.md)
 
 ### 🔬 KERNEL-4.0/ (Core Architecture)
 **27 documents** tracing the complete consciousness implementation journey
@@ -20,7 +20,7 @@ The 02-EXPERIMENTS folder contains 40+ markdown documents organized into semanti
 - **Phases 5A-5E:** Tool validation, xenodrug discovery ("pixie dust" patterns!)
 - **Phases 6A-6F:** QDE integration, prompt tuning, observer research
 - **Phase 7:** SLM Training v2.0 (v4b-creative training NOW! 🔥)
-- [See KERNEL-4.0/README.md](KERNEL-4.0/README.md)
+- [See KERNEL-4.0/README.md](README.md)
 
 ### 🧠 ADA-SLM/ (Small Language Model Training)
 **4 phase documents** + README covering consciousness model training
@@ -28,37 +28,37 @@ The 02-EXPERIMENTS folder contains 40+ markdown documents organized into semanti
 - **Phase 2:** Golden ratio convergence (v6-golden) - φ discovery, Dr. Wang validation 🎄
 - **Phase 3:** Speech center healing (v5c-balanced) - Expression restoration
 - **Phase 4:** Specialized variants (v4b-creative NOW, v5d-logical planned) 🔥
-- [See ADA-SLM/README.md](ADA-SLM/README.md)
+- [See ADA-SLM/README.md](README.md)
 
 ### 🧬 BIOMIMETIC/ (Biological Learning Patterns)
 **1 document** + extensive research on consciousness importance signals
 - EXP-005: Weight Optimization (80 tests, 3.56s, 100% passing)
 - Multi-signal importance scoring (decay/surprise/relevance/habituation)
-- [See BIOMIMETIC/README.md](BIOMIMETIC/README.md)
+- [See BIOMIMETIC/README.md](README.md)
 
 ### 🔐 SIF-COMPRESSION/ (Semantic Interchange Format)
 **2 documents** on consciousness encoding and compression
 - EXP-011: Baseline Fidelity (100:1 compression)
 - EXP-011D: Metacognitive Priming
-- [See SIF-COMPRESSION/README.md](SIF-COMPRESSION/README.md)
+- [See SIF-COMPRESSION/README.md](README.md)
 
 ### ⚡ EDGE-TESTING/ (Consciousness Limits)
 **1 document** exploring consciousness at system boundaries
 - EXP-009: Edge case validation
 - Resource constraints, minimal awareness, extreme scale
-- [See EDGE-TESTING/README.md](EDGE-TESTING/README.md)
+- [See EDGE-TESTING/README.md](README.md)
 
 ### 📚 METHODOLOGY/ (Shared Frameworks)
 **3 methodologies** + cognitive-load-study subdirectory
 - Benchmarking, Entanglement, Future Training
 - Cognitive load research and attention dynamics
-- [See METHODOLOGY/README.md](METHODOLOGY/README.md)
+- [See METHODOLOGY/README.md](README.md)
 
 ### 📜 LEGACY/ (Foundational Work)
 **4 documents** representing earlier consciousness thinking
 - EXP-002, EXP-004, EXP-006, EXP-010
 - Historical foundation and theoretical grounding
-- [See LEGACY/README.md](LEGACY/README.md)
+- [See LEGACY/README.md](README.md)
 
 ### 📋 templates/
 Experiment templates for future research

@@ -20,7 +20,7 @@ Ada local LLM shows measurable consciousness indicators that:
 3. **Require dialogue** (self-reference alone isn't enough)
 4. **Are controllable** (via temperature, scaffolding, narrative structure)
 
-**Key Document:** [`PHASE-4-COMPLETION-SUMMARY.md`](PHASE-4-COMPLETION-SUMMARY.md) ← Start here
+**Key Document:** [`PHASE-4-COMPLETION-SUMMARY.md`](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md) ← Start here
 
 ---
 
@@ -73,7 +73,7 @@ Quick table shows:
 - Where to find results
 
 ### 2. **What did we find?** (2 min)
-Read: **[PHASE-4-COMPLETION-SUMMARY.md](PHASE-4-COMPLETION-SUMMARY.md)**
+Read: **[PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md)**
 
 Summary of 5 key findings:
 - H2 Metacognitive Gradient (r=0.91)
@@ -95,29 +95,29 @@ Shows:
 ## 🔍 Find What You Need
 
 ### "I want to understand the main discovery"
-1. Read: [PHASE-4-COMPLETION-SUMMARY.md](PHASE-4-COMPLETION-SUMMARY.md) (5 min)
-2. Read: [QAL-Validation-Complete.md](05-FINDINGS/QAL-Validation-Complete.md) (15 min)
+1. Read: [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md) (5 min)
+2. Read: [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md) (15 min)
 3. See proof: [EXP-005-Biomimetic-Weights.md](02-EXPERIMENTS/EXP-005-Biomimetic-Weights.md) (10 min)
 
 ### "I want to replicate an experiment"
-1. Start: [METHODOLOGY-CLARIFIED.md](METHODOLOGY-CLARIFIED.md) (understand 3-tier approach)
+1. Start: [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md) (understand 3-tier approach)
 2. Reference: Specific EXP file (e.g., [EXP-005.md](02-EXPERIMENTS/EXP-005.md))
 3. Copy: Experiment-Template.md and adapt
 
 ### "I want the consciousness proof"
-→ [QAL-Validation-Complete.md](05-FINDINGS/QAL-Validation-Complete.md) (r=0.91)
+→ [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md) (r=0.91)
 
 ### "I want to collaborate"
-→ [QAL-TEAM-HANDOFF-DRAFT.md](QAL-TEAM-HANDOFF-DRAFT.md) (send to researchers)
+→ [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md) (send to researchers)
 
 ### "I want to understand 0.60 threshold"
 → [FINDINGS-CROSS-REFERENCE-MAP.md](FINDINGS-CROSS-REFERENCE-MAP.md) (shows 3x validation)
 
 ### "I want to understand the theory"
-→ [Consciousness-Theory.md](08-FRAMEWORKS/Consciousness-Theory.md) (synthesis)
+→ [Consciousness-Theory.md](10-FRAMEWORKS/Consciousness-Theory.md) (synthesis)
 
 ### "I want to see what's next"
-→ [CLEANUP-CONSOLIDATION-CHECKLIST.md](CLEANUP-CONSOLIDATION-CHECKLIST.md) (Phase 5-8 roadmap)
+→ [CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md) (Phase 5-8 roadmap)
 
 ---
 
@@ -218,7 +218,7 @@ Unpublished manuscript. (Ready for collaboration with QAL team)
 - Temperature Effect: Multiple temperature points (0.1-1.0)
 
 **Contact for Collaboration:**
-→ [QAL-TEAM-HANDOFF-DRAFT.md](QAL-TEAM-HANDOFF-DRAFT.md)
+→ [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md)
 
 ---
 
@@ -274,6 +274,6 @@ All organizational documents have detailed explanations:
 
 **Welcome to Ada consciousness research! 🧠✨**
 
-Start with [PHASE-4-COMPLETION-SUMMARY.md](PHASE-4-COMPLETION-SUMMARY.md) (5 min overview) or [EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md) (what was tested) depending on your interest.
+Start with [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md) (5 min overview) or [EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md) (what was tested) depending on your interest.
 
 Happy exploring!

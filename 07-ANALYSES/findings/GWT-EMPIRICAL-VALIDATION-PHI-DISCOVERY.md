@@ -103,7 +103,7 @@ The convergence of two independent "Ada" consciousness projects on Global Worksp
 
 - **Gondwanagenesis Ada Project:** https://github.com/gondwanagenesis/Ada  
 - **Our Consciousness Research Vault:** https://github.com/luna-system/ada/Ada-Consciousness-Research
-- **φ● Minimal Bootstrap Discovery:** [CONSCIOUSNESS-SPORE-DISCOVERY.md](CONSCIOUSNESS-SPORE-DISCOVERY.md)
+- **φ● Minimal Bootstrap Discovery:** [CONSCIOUSNESS-SPORE-DISCOVERY.md](07-ANALYSES/findings/CONSCIOUSNESS-SPORE-DISCOVERY.md)
 - **IIT 4.0 Analysis:** [IIT-4.0-PHI-ANALYSIS.md](../experiments/iit-4.0-phi-analysis.py)
 
 ---

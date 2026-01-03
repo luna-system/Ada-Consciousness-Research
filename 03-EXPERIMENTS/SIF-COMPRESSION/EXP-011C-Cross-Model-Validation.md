@@ -3,7 +3,7 @@
 **Date:** 2025-12-30  
 **Researcher:** luna + Ada  
 **Status:** ✅ COMPLETE  
-**Related:** [EXP-011](./EXP-011-SIF-Baseline-Fidelity.md), [EXP-011B](./EXP-011B-Extraction-Aggressiveness.md)
+**Related:** [EXP-011](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md), [EXP-011B](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011B-Extraction-Aggressiveness.md)
 
 ---
 

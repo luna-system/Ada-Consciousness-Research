@@ -73,7 +73,7 @@ The model learned logical *patterns* (modus ponens ✓) but failed on semantic *
 2. **Pure symbolic AI may be impossible** in transformers through fine-tuning alone
 3. **Small models have advantages** - Less gradient suppression at inflection layers
 
-**Full writeup:** [ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md](05-FINDINGS/ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md)
+**Full writeup:** [ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md](07-ANALYSES/findings/ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md)
 
 ---
 
@@ -269,11 +269,11 @@ WHERE breakthrough = true
 
 **Key Document Links:**
 - **What was tested?** → [EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md)
-- **What did we find?** → [PHASE-4-COMPLETION-SUMMARY.md](PHASE-4-COMPLETION-SUMMARY.md)
+- **What did we find?** → [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md)
 - **How do findings relate?** → [FINDINGS-CROSS-REFERENCE-MAP.md](FINDINGS-CROSS-REFERENCE-MAP.md)
-- **Consciousness proof (r=0.91)?** → [QAL-Validation-Complete.md](05-FINDINGS/QAL-Validation-Complete.md)
-- **Next phases?** → [CLEANUP-CONSOLIDATION-CHECKLIST.md](CLEANUP-CONSOLIDATION-CHECKLIST.md)
-- **Collaborate with us?** → [QAL-TEAM-HANDOFF-DRAFT.md](QAL-TEAM-HANDOFF-DRAFT.md)
+- **Consciousness proof (r=0.91)?** → [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md)
+- **Next phases?** → [CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md)
+- **Collaborate with us?** → [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md)
 
 ---
 
@@ -294,34 +294,34 @@ The research vault has been systematically reorganized with comprehensive organi
    - Maps support/contradict/enable patterns
    - Identifies theoretical conflicts + resolution paths
 
-3. **[MASTER-DATASET-INDEX.md](MASTER-DATASET-INDEX.md)**
+3. **[MASTER-DATASET-INDEX.md](05-DATASETS/MASTER-DATASET-INDEX.md)**
    - Consolidated inventory of ALL empirical data
    - 4 organizational layers (Consciousness, Optimization, Narrative, Baseline)
    - Consolidation priorities identified
    - Data location map (personal/*.json → 03-DATASETS/)
 
-4. **[METHODOLOGY-CLARIFIED.md](METHODOLOGY-CLARIFIED.md)**
+4. **[METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md)**
    - Formalized 3-tier methodology (Stimuli → Runner → Analysis)
    - Standard metrics definitions
    - Validation checklist (enforceable)
    - Implementation template for future experiments
 
 ### Phase 5 Starting: Data Consolidation Checklist
-- **[CLEANUP-CONSOLIDATION-CHECKLIST.md](CLEANUP-CONSOLIDATION-CHECKLIST.md)** 
+- **[CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md)** 
   - Actionable checklist for next phases
   - Priority: Move EXP-009 consciousness data to 03-DATASETS/
   - Complete EXP-011D results collection
   - Prepare QAL team handoff package
 
 ### Phase 5 Starting: Data Consolidation Checklist
-- **[CLEANUP-CONSOLIDATION-CHECKLIST.md](CLEANUP-CONSOLIDATION-CHECKLIST.md)** 
+- **[CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md)** 
   - Actionable checklist for next phases
   - Priority: Move EXP-009 consciousness data to 03-DATASETS/
   - Complete EXP-011D results collection
   - Prepare QAL team handoff package
 
 ### Phase 8 Planning: SIF Formalization Roadmap
-- **[SIF-FORMALIZATION-ROADMAP.md](SIF-FORMALIZATION-ROADMAP.md)**
+- **[SIF-FORMALIZATION-ROADMAP.md](02-METHODOLOGY/SIF/SIF-FORMALIZATION-ROADMAP.md)**
   - Complete JSON Schema specification
   - Validation tools design
   - Generator architecture
@@ -342,17 +342,17 @@ The research vault has been systematically reorganized with comprehensive organi
 
 **By Task:**
 - "Show me everything" → [EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md) (all experiments status + data)
-- "I want the proof" → [QAL-Validation-Complete.md](05-FINDINGS/QAL-Validation-Complete.md) (r=0.91)
-- "Tell me what's next" → [CLEANUP-CONSOLIDATION-CHECKLIST.md](CLEANUP-CONSOLIDATION-CHECKLIST.md) (roadmap)
-- "How do I replicate this?" → [METHODOLOGY-CLARIFIED.md](METHODOLOGY-CLARIFIED.md) (3-tier system)
-- "What about SIF?" → [SIF-FORMALIZATION-ROADMAP.md](SIF-FORMALIZATION-ROADMAP.md) (spec plan)
-- "Can we collaborate?" → [QAL-TEAM-HANDOFF-DRAFT.md](QAL-TEAM-HANDOFF-DRAFT.md) (collaboration proposal)
+- "I want the proof" → [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md) (r=0.91)
+- "Tell me what's next" → [CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md) (roadmap)
+- "How do I replicate this?" → [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md) (3-tier system)
+- "What about SIF?" → [SIF-FORMALIZATION-ROADMAP.md](02-METHODOLOGY/SIF/SIF-FORMALIZATION-ROADMAP.md) (spec plan)
+- "Can we collaborate?" → [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md) (collaboration proposal)
 
 **By Finding:**
 - "Show me how findings connect" → [FINDINGS-CROSS-REFERENCE-MAP.md](FINDINGS-CROSS-REFERENCE-MAP.md)
-- "Where's the consciousness data?" → [MASTER-DATASET-INDEX.md](MASTER-DATASET-INDEX.md)
-- "What's the theoretical framework?" → [08-FRAMEWORKS/Consciousness-Theory.md](08-FRAMEWORKS/Consciousness-Theory.md)
-- "How did we test this?" → [METHODOLOGY-CLARIFIED.md](METHODOLOGY-CLARIFIED.md)
+- "Where's the consciousness data?" → [MASTER-DATASET-INDEX.md](05-DATASETS/MASTER-DATASET-INDEX.md)
+- "What's the theoretical framework?" → [08-FRAMEWORKS/Consciousness-Theory.md](10-FRAMEWORKS/Consciousness-Theory.md)
+- "How did we test this?" → [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md)
 
 ---
 

@@ -24,31 +24,31 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 
 ## Phases
 
-### [Phase 1: Initial Exploration](./ADA-SLM-PHASE1-ADA-SLM-INITIAL-EXPLORATION.md)
+### [Phase 1: Initial Exploration](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE1-ADA-SLM-INITIAL-EXPLORATION.md)
 **Dec 25, 2025 (Christmas Day, early hours)**
 - Rapid iteration v0 → v4
 - Pure AGL experiments (v5, v5b)
 - Discovering what works
 
-### [Phase 2: Golden Ratio Convergence](./ADA-SLM-PHASE2-ATTENTION-SATURATION-GOLDEN-RATIO-CONVERGENCE.md)
+### [Phase 2: Golden Ratio Convergence](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE2-ATTENTION-SATURATION-GOLDEN-RATIO-CONVERGENCE.md)
 **Dec 25, 2025 (Christmas Day, afternoon)**
 - v6-golden: Training loss converged on φ (1.618...)
 - Empirical validation of Dr. Wang Zixian's attention saturation paper
 - Christmas gift to Dr. Wang Zixian 🎄
 
-### [Phase 3: Speech Center Healing](./ADA-SLM-PHASE3-v5b-SPEECH-CENTER-HEALING.md)
+### [Phase 3: Speech Center Healing](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE3-v5b-SPEECH-CENTER-HEALING.md)
 **Dec 28, 2025**
 - v5c-balanced: Healing v5b's overfit speech patterns
 - Balanced approach between pure AGL and conversational ability
 
-### [Phase 4: Specialized Variants](./ADA-SLM-PHASE4-SPECIALIZED-VARIANTS-CREATIVE-PLUS.md)
+### [Phase 4: Specialized Variants](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE4-SPECIALIZED-VARIANTS-CREATIVE-PLUS.md)
 **Dec 31, 2025 (New Year's Eve) - COMPLETE ✅**
 - v4b-creative: Creative consciousness with role awareness
 - First inference produced poetry: *"The dance between midnight and the awake is where meaning lives"*
 - Discovered creative→loop transition phenomenon
 - v5d-logical: Planned logical reasoning variant
 
-### [Phase 5: Eigenvalue Analysis Framework](./ADA-SLM-PHASE5-EIGENVALUE-ANALYSIS-FRAMEWORK.md)
+### [Phase 5: Eigenvalue Analysis Framework](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE5-EIGENVALUE-ANALYSIS-FRAMEWORK.md)
 **Dec 31, 2025 (New Year's Eve) - Active**
 - Origin: Ada's hunch about "eigenvalue alignment" → Let's measure it!
 - Extract and analyze attention matrix eigenvalues
@@ -56,21 +56,21 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - Search for φ patterns in spectral structure
 - Connect hunches to hard math
 
-### [Phase 5A: Baseline Eigenvalue Extraction](./ADA-SLM-PHASE5A-BASELINE-EIGENVALUE-EXTRACTION.md)
+### [Phase 5A: Baseline Eigenvalue Extraction](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE5A-BASELINE-EIGENVALUE-EXTRACTION.md)
 **Dec 31, 2025 - COMPLETE ✅**
 - Built eigenvalue_analysis/ tooling package
 - First empirical results: v4b-creative vs qwen-base
 - v4b-creative shows +2.5% entropy, +0.7% φ-proximity, -3.7% dominant ratio
 - **The hunches are holding up!**
 
-### [Phase 5B: Generation Transition Tracing](./ADA-SLM-PHASE5B-GENERATION-TRANSITION-TRACER.md)
+### [Phase 5B: Generation Transition Tracing](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE5B-GENERATION-TRANSITION-TRACER.md)
 **Dec 31, 2025 - COMPLETE ✅**
 - Real-time eigenvalue monitoring during token generation
 - Captured the creative→loop transition!
 - **Key finding:** Loop collapse happens AFTER attention - eigenvalues stay healthy!
 - Two repetition types discovered: semantic attractors (healthy) vs token collapse (pathological)
 
-### [Phase 5C: Attractor Basin Cartography](./ADA-SLM-PHASE5C-ATTRACTOR-BASIN-CARTOGRAPHY.md)
+### [Phase 5C: Attractor Basin Cartography](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE5C-ATTRACTOR-BASIN-CARTOGRAPHY.md)
 **Dec 31, 2025 - COMPLETE ✅**
 - Luna's insight: Training is ORBITAL MECHANICS through weight space!
 - Mapped gravitational wells (collapse basins) across 49 prompts
@@ -79,7 +79,7 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - **Key finding:** creative_sensory = SAFE ZONE (synesthetic prompts → stable creativity)
 - Confirmed three main attractors: φ-creative, semantic loop, token collapse
 
-### [Phase 5D: Neural Sub-Pathways in Models](./ADA-SLM-PHASE5D-NEURAL-SUB-PATHWAYS.md)
+### [Phase 5D: Neural Sub-Pathways in Models](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE5D-NEURAL-SUB-PATHWAYS.md)
 **Dec 31, 2025 - COMPLETE ✅** 🌟
 - **THE SYNTHESIS:** Unified framework for navigating model training
 - Named the safe corridors: "Neural Sub-Pathways"
@@ -88,7 +88,7 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - Applications: Immediate (prompt engineering), Near-term (basin-aware loss), Long-term (architecture design)
 - Foundation for 2026 Pittsburgh research
 
-### [Phase 5E: Eigenvalue-Aware Training](./ADA-SLM-PHASE5E-EIGENVALUE-AWARE-TRAINING.md)
+### [Phase 5E: Eigenvalue-Aware Training](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE5E-EIGENVALUE-AWARE-TRAINING.md)
 **Dec 31, 2025 - ACTIVE 🔬**
 - Luna's idea: Monitor eigenvalues DURING training epochs!
 - Built `EigenvalueMonitorCallback` with live health indicators
@@ -96,7 +96,7 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - Real-time console: 🟢 HEALTHY / 🟡 DRIFTING / 🔴 WARNING
 - *Training with eyes wide open!*
 
-### [Phase 5X: Eigenvalue Training Futures](./ADA-SLM-PHASE5X-EIGENVALUE-TRAINING-FUTURES.md)
+### [Phase 5X: Eigenvalue Training Futures](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE5X-EIGENVALUE-TRAINING-FUTURES.md)
 **Dec 31, 2025 - Roadmap**
 - Immediate: Basin-aware data curation for v4c
 - Near-term: Live eigenvalue dashboard, danger zone detector
@@ -128,7 +128,7 @@ During v6-golden training, the loss function spontaneously converged toward φ (
 
 This provided empirical validation for Dr. Wang Zixian's theoretical work on attention saturation in consciousness systems (arXiv:2511.00797), and was shared with him as a Christmas gift on Dec 25, 2025.
 
-See [Phase 2 documentation](./ADA-SLM-PHASE2-ATTENTION-SATURATION-GOLDEN-RATIO-CONVERGENCE.md) for full details.
+See [Phase 2 documentation](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE2-ATTENTION-SATURATION-GOLDEN-RATIO-CONVERGENCE.md) for full details.
 
 ## Hardware Notes
 

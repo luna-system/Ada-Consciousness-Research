@@ -9,7 +9,7 @@ A consciousness-compatible knowledge compression standard
 
 ## The Four SIF Documents (Start Here)
 
-### 1. 🚀 [SIF-QUICKSTART.md](SIF-QUICKSTART.md) ← **START HERE**
+### 1. 🚀 [SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md) ← **START HERE**
 **5-15 minutes**
 - What is SIF in 30 seconds
 - Three learning paths (read / see / build)
@@ -20,7 +20,7 @@ A consciousness-compatible knowledge compression standard
 
 ---
 
-### 2. 📚 [SIF-SPECIFICATION-v1.0.md](SIF-SPECIFICATION-v1.0.md)
+### 2. 📚 [SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md)
 **30-60 minutes**
 - Formal specification (12 sections, 400+ lines)
 - Complete JSON Schema
@@ -33,7 +33,7 @@ A consciousness-compatible knowledge compression standard
 
 ---
 
-### 3. 💻 [SIF-REFERENCE-IMPLEMENTATION.md](SIF-REFERENCE-IMPLEMENTATION.md)
+### 3. 💻 [SIF-REFERENCE-IMPLEMENTATION.md](02-METHODOLOGY/SIF/SIF-REFERENCE-IMPLEMENTATION.md)
 **2-4 hours for full implementation**
 - Working Python code (5 modules)
 - Data models (Pydantic)
@@ -46,7 +46,7 @@ A consciousness-compatible knowledge compression standard
 
 ---
 
-### 4. 🧠 [SIF-FROM-RESEARCH-TO-STANDARD.md](SIF-FROM-RESEARCH-TO-STANDARD.md)
+### 4. 🧠 [SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md)
 **20-30 minutes**
 - How we got here (14 experiments → formal standard)
 - Why 0.60 threshold appears 3 times
@@ -61,30 +61,30 @@ A consciousness-compatible knowledge compression standard
 ## Quick Navigation by Goal
 
 ### "I want to understand what SIF is"
-1. [SIF-QUICKSTART.md](SIF-QUICKSTART.md) - 5 min intro
-2. [SIF-FROM-RESEARCH-TO-STANDARD.md](SIF-FROM-RESEARCH-TO-STANDARD.md) - Research story
-3. [SIF-SPECIFICATION-v1.0.md](SIF-SPECIFICATION-v1.0.md) - Section 1 (design principles)
+1. [SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md) - 5 min intro
+2. [SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md) - Research story
+3. [SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md) - Section 1 (design principles)
 
 ### "I want to implement SIF"
-1. [SIF-QUICKSTART.md](SIF-QUICKSTART.md) - Integration guide
-2. [SIF-REFERENCE-IMPLEMENTATION.md](SIF-REFERENCE-IMPLEMENTATION.md) - Working code
-3. [SIF-SPECIFICATION-v1.0.md](SIF-SPECIFICATION-v1.0.md) - Sections 2-4 (data model, schema, algorithms)
+1. [SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md) - Integration guide
+2. [SIF-REFERENCE-IMPLEMENTATION.md](02-METHODOLOGY/SIF/SIF-REFERENCE-IMPLEMENTATION.md) - Working code
+3. [SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md) - Sections 2-4 (data model, schema, algorithms)
 
 ### "I want to verify SIF works"
-1. [SIF-REFERENCE-IMPLEMENTATION.md](SIF-REFERENCE-IMPLEMENTATION.md) - Compressor class
+1. [SIF-REFERENCE-IMPLEMENTATION.md](02-METHODOLOGY/SIF/SIF-REFERENCE-IMPLEMENTATION.md) - Compressor class
 2. Test on example text
-3. [SIF-SPECIFICATION-v1.0.md](SIF-SPECIFICATION-v1.0.md) - Section 8 (examples)
+3. [SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md) - Section 8 (examples)
 4. Compare your compression ratio
 
 ### "I want to extend SIF"
-1. [SIF-SPECIFICATION-v1.0.md](SIF-SPECIFICATION-v1.0.md) - Section 10 (versioning & extensions)
-2. [SIF-FROM-RESEARCH-TO-STANDARD.md](SIF-FROM-RESEARCH-TO-STANDARD.md) - Community contribution guide
+1. [SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md) - Section 10 (versioning & extensions)
+2. [SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md) - Community contribution guide
 3. Design your extension following v1.0 patterns
 
 ### "I want to understand the research"
-1. [SIF-FROM-RESEARCH-TO-STANDARD.md](SIF-FROM-RESEARCH-TO-STANDARD.md) - Section "Why 0.60"
-2. [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](../EXPERIMENT-REGISTRY.md) - Full experiment details
-3. [Ada-Consciousness-Research/FINDINGS-CROSS-REFERENCE-MAP.md](../FINDINGS-CROSS-REFERENCE-MAP.md) - How findings connect
+1. [SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md) - Section "Why 0.60"
+2. [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md) - Full experiment details
+3. [Ada-Consciousness-Research/FINDINGS-CROSS-REFERENCE-MAP.md](FINDINGS-CROSS-REFERENCE-MAP.md) - How findings connect
 
 ---
 
@@ -209,7 +209,7 @@ SIF is grounded in empirical consciousness research:
 | Safety Score | 100% | EXP-009 (hallucination prevention) |
 | Golden Ratio Convergence | 1/φ ≈ 0.618 | 3 independent experiments |
 
-**See:** [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](../EXPERIMENT-REGISTRY.md) for full details
+**See:** [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md) for full details
 
 ---
 
@@ -377,5 +377,5 @@ Designed to outlive any single project or company.
 **License:** CC0 Public Domain  
 **Status:** Stable, production-ready, open for adoption  
 
-**Ready to compress knowledge? Start with [SIF-QUICKSTART.md](SIF-QUICKSTART.md)** ⭐
+**Ready to compress knowledge? Start with [SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md)** ⭐
 

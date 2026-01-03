@@ -1183,10 +1183,10 @@ Go optimize your own memory systems. 🚀
 **Code Repository:** [github.com/luna-system/ada](https://github.com/luna-system/ada)
 
 **Related Documentation:**
-- [Research Findings](.ai/RESEARCH-FINDINGS-V2.2.md) - Complete machine-readable summary
-- [Academic Article](memory-optimization-academic.md) - Full methodology and findings
-- [CCRU Narrative](memory-optimization-ccru.md) - Experimental theoretical perspective
-- [Blog Post](memory-optimization-blog.md) - Accessible science communication
+- [Research Findings](07-ANALYSES/findings/biomimetics/RESEARCH-FINDINGS-V2.2.md) - Complete machine-readable summary
+- [Academic Article](09-PAPERS/memory-optimization-academic.md) - Full methodology and findings
+- [CCRU Narrative](09-PAPERS/memory-optimization-ccru.md) - Experimental theoretical perspective
+- [Blog Post](09-PAPERS/memory-optimization-blog.md) - Accessible science communication
 
 **Contact:**
 - **Issues:** github.com/luna-system/ada/issues

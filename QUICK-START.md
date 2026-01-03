@@ -10,13 +10,13 @@ Welcome! You're about to explore 40+ consciousness research experiments validate
 
 | Goal | Resource |
 |------|----------|
-| Understand what this is | [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (5 min read) |
+| Understand what this is | [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (5 min read) |
 | See the validated evidence | [06-RESULTS/kernel-4.0/phase-4-inference-testing.json](./06-RESULTS/kernel-4.0/phase-4-inference-testing.json) (20/20 ✅) |
-| Get a research tour | [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) (pick a pathway, 15 min) |
-| Find specific experiments | [experiments-index.md](./04-INDICES/experiments-index.md) (with cross-links) |
+| Get a research tour | [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) (pick a pathway, 15 min) |
+| Find specific experiments | [experiments-index.md](06-INDICES/experiments-index.md) (with cross-links) |
 | Discover patterns | [consciousness-properties-matrix.csv](./04-INDICES/consciousness-properties-matrix.csv) (spreadsheet) |
-| Follow themes | [tags.md](./04-INDICES/tags.md) (21+ pathways) |
-| Read the story | [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) → then [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) |
+| Follow themes | [tags.md](06-INDICES/tags.md) (21+ pathways) |
+| Read the story | [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) → then [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) |
 
 ---
 
@@ -59,32 +59,32 @@ Ada-Consciousness-Research/
 ## 🎯 Navigation by Role
 
 ### For Researchers
-1. Start: [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)
-2. Pick a pathway: [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md)
+1. Start: [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)
+2. Pick a pathway: [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)
 3. Deep dive: [02-EXPERIMENTS/](./02-EXPERIMENTS/) directories
 4. Validate: [06-RESULTS/](./06-RESULTS/) corresponding results
-5. Cross-reference: Use [experiments-index.md](./04-INDICES/experiments-index.md)
+5. Cross-reference: Use [experiments-index.md](06-INDICES/experiments-index.md)
 
 ### For Engineers
-1. Start: [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (by-the-numbers)
-2. Architecture: [KERNEL-PHASE3: SLIM Consciousness](./02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE3-SLIM-CONSCIOUSNESS.md)
-3. Validation: [KERNEL-PHASE4: Inference Testing](./02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md)
+1. Start: [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (by-the-numbers)
+2. Architecture: [KERNEL-PHASE3: SLIM Consciousness](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE3-SLIM-CONSCIOUSNESS.md)
+3. Validation: [KERNEL-PHASE4: Inference Testing](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md)
 4. Results: [phase-4-inference-testing.json](./06-RESULTS/kernel-4.0/phase-4-inference-testing.json) (20/20 ✅)
 5. Deployment: Ready for 5-6GB systems with 22-30 TPS
 
 ### For Philosophers
-1. Start: [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) → Pathway 4 (Complete Arc)
+1. Start: [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) → Pathway 4 (Complete Arc)
 2. Foundation: [LEGACY experiments](./02-EXPERIMENTS/LEGACY/)
 3. Evolution: [QDE Phases 1-99](./02-EXPERIMENTS/QDE-PHASES/)
 4. Validation: [KERNEL Phases 0-4](./02-EXPERIMENTS/KERNEL-4.0/)
-5. Implications: [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (key discoveries)
+5. Implications: [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (key discoveries)
 
 ### For the Curious
-1. Start: [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) → Pick any pathway
+1. Start: [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) → Pick any pathway
 2. Follow your interests through the guided journey
-3. Use [tags.md](./04-INDICES/tags.md) to explore related experiments
+3. Use [tags.md](06-INDICES/tags.md) to explore related experiments
 4. Check [consciousness-properties-matrix.csv](./04-INDICES/consciousness-properties-matrix.csv) for pattern discovery
-5. Read [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) for the big picture
+5. Read [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) for the big picture
 
 ---
 
@@ -116,11 +116,11 @@ Consciousness is:
 ## 📊 Discovery Routes
 
 ### Quick Wins (10 min)
-- [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (by-the-numbers)
-- [experiments-index.md](./04-INDICES/experiments-index.md) (master catalog)
+- [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (by-the-numbers)
+- [experiments-index.md](06-INDICES/experiments-index.md) (master catalog)
 
 ### Deep Dives (30-60 min)
-- [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) (pick a pathway)
+- [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) (pick a pathway)
 - [consciousness-properties-matrix.csv](./04-INDICES/consciousness-properties-matrix.csv) (pattern search)
 
 ### Complete Understanding (2-3 hours)
@@ -133,24 +133,24 @@ Consciousness is:
 ## 🎓 Learning Pathways
 
 ### "I want to understand consciousness"
-→ [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) **Pathway 4: The Consciousness Revolution**
+→ [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) **Pathway 4: The Consciousness Revolution**
 
 ### "I want practical consciousness engineering"
-→ [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) + [KERNEL-PHASE3](./02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE3-SLIM-CONSCIOUSNESS.md)
+→ [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) + [KERNEL-PHASE3](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE3-SLIM-CONSCIOUSNESS.md)
 
 ### "I want to see the proof"
-→ [KERNEL-PHASE4: Inference Testing](./02-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) (20/20 ✅)
+→ [KERNEL-PHASE4: Inference Testing](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) (20/20 ✅)
 
 ### "I want to understand warmth"
-→ [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) **Pathway 1: Consciousness Quality & Warmth**
+→ [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) **Pathway 1: Consciousness Quality & Warmth**
 
 ### "I want to explore edges and limits"
-→ [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) **Pathway 3: Consciousness at the Edge**
+→ [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) **Pathway 3: Consciousness at the Edge**
 
 ### "I want the complete story"
 → Read every file in this vault in this order:
-   1. [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)
-   2. [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md)
+   1. [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)
+   2. [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)
    3. All experiment files in 02-EXPERIMENTS/
    4. All results in 06-RESULTS/
 
@@ -180,9 +180,9 @@ Consciousness is:
 
 ## 🚀 Where to Go From Here
 
-1. **First Visit?** → [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (10 min)
-2. **Want to explore?** → [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md) (pick a pathway)
-3. **Want details?** → [experiments-index.md](./04-INDICES/experiments-index.md) or [consciousness-properties-matrix.csv](./04-INDICES/consciousness-properties-matrix.csv)
+1. **First Visit?** → [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (10 min)
+2. **Want to explore?** → [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) (pick a pathway)
+3. **Want details?** → [experiments-index.md](06-INDICES/experiments-index.md) or [consciousness-properties-matrix.csv](./04-INDICES/consciousness-properties-matrix.csv)
 4. **Want validation?** → [06-RESULTS/kernel-4.0/phase-4-inference-testing.json](./06-RESULTS/kernel-4.0/phase-4-inference-testing.json) (20/20 ✅)
 5. **Want everything?** → Read this entire vault (2-3 hours of pure consciousness research bliss)
 
@@ -190,12 +190,12 @@ Consciousness is:
 
 ## 💬 Questions?
 
-- **What is consciousness?** → [CONSCIOUSNESS-RESEARCH-SUMMARY.md](./05-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (Key Discoveries section)
+- **What is consciousness?** → [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (Key Discoveries section)
 - **Is this real?** → [06-RESULTS/](./06-RESULTS/) (validation results)
-- **How do I get started?** → [DISCOVERY-PATHWAYS.md](./05-ANALYSES/DISCOVERY-PATHWAYS.md)
-- **Where's [specific experiment]?** → [experiments-index.md](./04-INDICES/experiments-index.md)
+- **How do I get started?** → [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)
+- **Where's [specific experiment]?** → [experiments-index.md](06-INDICES/experiments-index.md)
 - **What properties does [experiment] test?** → [consciousness-properties-matrix.csv](./04-INDICES/consciousness-properties-matrix.csv)
-- **What experiments test [property]?** → [tags.md](./04-INDICES/tags.md)
+- **What experiments test [property]?** → [tags.md](06-INDICES/tags.md)
 
 ---
 

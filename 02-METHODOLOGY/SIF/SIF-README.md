@@ -62,7 +62,7 @@ save_sif(sif, "document.sif.json")
 narrative = decompress_sif(sif, style="narrative")
 ```
 
-**For details:** See [SIF-QUICKSTART.md](SIF-QUICKSTART.md)
+**For details:** See [SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md)
 
 ---
 
@@ -70,11 +70,11 @@ narrative = decompress_sif(sif, style="narrative")
 
 | Document | Time | Purpose |
 |----------|------|---------|
-| **[SIF-INDEX.md](SIF-INDEX.md)** | 5 min | Navigation guide for all SIF materials |
-| **[SIF-QUICKSTART.md](SIF-QUICKSTART.md)** | 15 min | Get started in 15 minutes |
-| **[SIF-SPECIFICATION-v1.0.md](SIF-SPECIFICATION-v1.0.md)** | 60 min | Complete formal specification |
-| **[SIF-REFERENCE-IMPLEMENTATION.md](SIF-REFERENCE-IMPLEMENTATION.md)** | 2-4 hrs | Working Python code |
-| **[SIF-FROM-RESEARCH-TO-STANDARD.md](SIF-FROM-RESEARCH-TO-STANDARD.md)** | 30 min | Why this matters, research foundation |
+| **[SIF-INDEX.md](02-METHODOLOGY/SIF/SIF-INDEX.md)** | 5 min | Navigation guide for all SIF materials |
+| **[SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md)** | 15 min | Get started in 15 minutes |
+| **[SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md)** | 60 min | Complete formal specification |
+| **[SIF-REFERENCE-IMPLEMENTATION.md](02-METHODOLOGY/SIF/SIF-REFERENCE-IMPLEMENTATION.md)** | 2-4 hrs | Working Python code |
+| **[SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md)** | 30 min | Why this matters, research foundation |
 
 ---
 
@@ -148,18 +148,18 @@ Large document → Compress 100x
 ## Getting Started
 
 ### For Learners (15 min)
-1. Read [SIF-QUICKSTART.md](SIF-QUICKSTART.md)
+1. Read [SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md)
 2. Understand the 0.60 threshold
 3. See an example (Alice: 104x)
 
 ### For Builders (2-4 weeks)
-1. Read [SIF-REFERENCE-IMPLEMENTATION.md](SIF-REFERENCE-IMPLEMENTATION.md)
+1. Read [SIF-REFERENCE-IMPLEMENTATION.md](02-METHODOLOGY/SIF/SIF-REFERENCE-IMPLEMENTATION.md)
 2. Implement importance calculation
 3. Build compressor/decompressor
 4. Integrate with your system
 
 ### For Researchers (1 week)
-1. Read [SIF-FROM-RESEARCH-TO-STANDARD.md](SIF-FROM-RESEARCH-TO-STANDARD.md)
+1. Read [SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md)
 2. Understand research foundation (H2, 0.60, 104x)
 3. See [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md)
 4. Replicate experiments or test on new domain
@@ -276,7 +276,7 @@ This standard is designed to outlive any single project or company.
 A: Yes. v1.0 is stable, frozen, and production-tested.
 
 **Q: Can I use SIF without understanding the research?**  
-A: Yes. See [SIF-QUICKSTART.md](SIF-QUICKSTART.md)—15 min gets you started.
+A: Yes. See [SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md)—15 min gets you started.
 
 **Q: What's the catch?**  
 A: SIF is lossy (drops ~40% of content). Trade surface detail for meaning. Not suitable for lossless archival, perfect for semantic understanding.
@@ -307,11 +307,11 @@ Compression cost: ~100ms per 1000 words on standard CPU
 
 ## Quick Links
 
-- 📖 [Full Index](SIF-INDEX.md) - Navigation for all materials
-- 🚀 [Quick Start](SIF-QUICKSTART.md) - Get going in 15 min
-- 📚 [Specification](SIF-SPECIFICATION-v1.0.md) - Formal details
-- 💻 [Reference Implementation](SIF-REFERENCE-IMPLEMENTATION.md) - Working code
-- 🧠 [From Research to Standard](SIF-FROM-RESEARCH-TO-STANDARD.md) - Why this matters
+- 📖 [Full Index](02-METHODOLOGY/SIF/SIF-INDEX.md) - Navigation for all materials
+- 🚀 [Quick Start](02-METHODOLOGY/SIF/SIF-QUICKSTART.md) - Get going in 15 min
+- 📚 [Specification](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md) - Formal details
+- 💻 [Reference Implementation](02-METHODOLOGY/SIF/SIF-REFERENCE-IMPLEMENTATION.md) - Working code
+- 🧠 [From Research to Standard](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md) - Why this matters
 
 ---
 
@@ -333,7 +333,7 @@ If you use SIF in research or production:
 
 ## Next Steps
 
-1. **Read** [SIF-QUICKSTART.md](SIF-QUICKSTART.md) (15 min)
+1. **Read** [SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md) (15 min)
 2. **Understand** the 0.60 threshold and importance formula
 3. **Implement** on your domain (2-4 weeks)
 4. **Share** results (optional but appreciated!)
