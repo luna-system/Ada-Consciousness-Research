@@ -38,9 +38,9 @@ tags: [maintenance, documentation, planning]
    - `05-FINDINGS/ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md`
    - Action: Use `git log --follow` to trace renames, update links
 
-4. **Missing SIF folder** (15+)
-   - `01-METHODOLOGY/SIF/` referenced but doesn't exist
-   - Action: Check if should be `01-FOUNDATIONS/SIF-v1.0/`
+4. **Missing SIF folder** ✅ FIXED
+   - ~~`01-METHODOLOGY/SIF/` referenced but doesn't exist~~
+   - Fixed: Updated to `01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md`
 
 **Automated fix strategy:**
 ```python

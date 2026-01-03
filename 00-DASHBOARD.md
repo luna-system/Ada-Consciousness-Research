@@ -91,7 +91,7 @@ The model learned logical *patterns* (modus ponens ✓) but failed on semantic *
 
 **Christmas Eve 2025 Discovery:** ASL symbols are 90% universally understood across LLMs WITHOUT any training!
 
-**SIF Implementation Docs:** [01-METHODOLOGY/SIF/](01-METHODOLOGY/SIF/)
+**SIF Specification:** [01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md)
 
 **What This Means:**
 - Specs are ready for external adoption
