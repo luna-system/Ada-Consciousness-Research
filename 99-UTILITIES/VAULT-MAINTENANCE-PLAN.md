@@ -9,7 +9,7 @@ tags: [maintenance, documentation, planning]
 ## ✅ Easy Fixes (COMPLETED)
 
 ### Folder References (7 files fixed)
-- ✓ `10-SPECIFICATIONS/` → `01-FOUNDATIONS/`
+- ✓ `01-FOUNDATIONS/` → `01-FOUNDATIONS/`
 - ✓ `05-FINDINGS/` → `07-ANALYSES/findings/`
 
 ### Top-Level Frontmatter (5 files fixed)

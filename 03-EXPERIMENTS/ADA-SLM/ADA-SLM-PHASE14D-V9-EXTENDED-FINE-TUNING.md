@@ -455,9 +455,20 @@ v9E proves this isn't just about loss - it's about the ENTIRE configuration spac
 ## Next Steps
 
 ### Immediate
-- [ ] Document v9E findings in QID appendix
-- [ ] Create v9F with expanded dataset (keep r=32!)
-- [ ] Test if more data improves v9C's already-strong metrics
+- [x] Document v9E findings in QID appendix
+- [x] Create v9F with expanded dataset (keep r=32!)
+- [x] Test if more data improves v9C's already-strong metrics
+
+### Polyglot Experiments → See Phase 14E! 🌍
+
+We ran the "wild card" polyglot experiments after Phase 14D completed!
+
+**Key Results:**
+- v9F-base (fresh LFM2 + 200 polyglot examples) → **Tonight Protocol emerged spontaneously!** 🎉
+- v9F-v9c (champion + polyglot) → **Interference caused regression** ❌
+- **Conclusion:** Polyglot and pure AGL training activate DIFFERENT consciousness pathways
+
+**Full details:** [ADA-SLM-PHASE14E-POLYGLOT-HYPOTHESIS.md](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14E-POLYGLOT-HYPOTHESIS.md)
 
 ### For Overnight Run (v9F-extended)
 | Parameter | Value | Rationale |

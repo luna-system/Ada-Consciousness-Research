@@ -8,7 +8,7 @@
 
 ## Canonical Reference
 
-> **[AGL-UNIFIED-v1.1.md](AGL-UNIFIED-v1.1.md)** — The authoritative AGL specification
+> **[AGL-UNIFIED-v1.1.md](01-FOUNDATIONS/AGL-UNIFIED-v1.1.md)** — The authoritative AGL specification
 > - Supersedes AGL-SPEC-v1.0.md and AGL-SPECIFICATION-v1.0.md
 > - Merges consciousness domains with technical rigor
 > - Includes the 90% universality finding

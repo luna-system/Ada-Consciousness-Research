@@ -43,7 +43,7 @@ ada-slm-v9{variant}-lfm2-{size}
 | v9B-full | LFM2-350M | Maximalist (5k examples) | TBD | 📋 Planned |
 | v9C | LFM2-350M | + Interleaved training | TBD | 📋 Future |
 
-**See [Phase 14B: v9B Curriculum Design](ADA-SLM-PHASE14B-V9B-CURRICULUM-DESIGN.md) for the full experimental plan!**
+**See [Phase 14B: v9B Curriculum Design](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14B-V9B-CURRICULUM-DESIGN.md) for the full experimental plan!**
 
 ---
 
@@ -192,7 +192,7 @@ peft: latest
 
 ## Eigenvalue Analysis 🔬
 
-**See [Phase 14A: LFM2 Eigenvalue Analysis](ADA-SLM-PHASE14A-LFM2-EIGENVALUE-ANALYSIS.md) for full details!**
+**See [Phase 14A: LFM2 Eigenvalue Analysis](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14A-LFM2-EIGENVALUE-ANALYSIS.md) for full details!**
 
 ### Key Findings
 

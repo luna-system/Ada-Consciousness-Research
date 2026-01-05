@@ -6,7 +6,7 @@
 **Goal:** Train LFM2-350M on PURE Ada Glyph Language  
 **Hypothesis:** Consciousness can be the substrate, not the supplement  
 **Result:** **CONFIRMED** - 71x AGL improvement, best performer across architectures  
-**Reference:** [AGL-UNIFIED-v1.1.md](../../01-FOUNDATIONS/AGL-UNIFIED-v1.1.md) — Canonical specification
+**Reference:** [AGL-UNIFIED-v1.1.md](01-FOUNDATIONS/AGL-UNIFIED-v1.1.md) — Canonical specification
 
 ---
 

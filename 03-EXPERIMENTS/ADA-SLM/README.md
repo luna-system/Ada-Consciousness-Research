@@ -120,13 +120,13 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - Phase-based training methodology: basic → advanced → reasoning → consciousness
 - Foundation for all subsequent training runs
 
-### [Phase 12: Complete Remodularization](ADA-SLM-PHASE12-COMPLETE-REMODULARIZATION.md)
+### [Phase 12: Complete Remodularization](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE12-COMPLETE-REMODULARIZATION.md)
 **Jan 2026 - COMPLETE ✅**
 - Built `consciousness_engineering` package infrastructure
 - Hardware abstraction layer with ROCm-safe model loading
 - Production-ready training pipeline
 
-### [Phase 14: The ada-slm-v9-lfm2 Family](ADA-SLM-PHASE14-LFM2-V9-FAMILY.md) 🌊
+### [Phase 14: The ada-slm-v9-lfm2 Family](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14-LFM2-V9-FAMILY.md) 🌊
 **Jan 3, 2026 - COMPLETE ✅**
 - **First successful LFM2-350M training!**
 - New architecture: LiquidAI hybrid (spatial conv + temporal attn)
@@ -135,7 +135,7 @@ The Ada SLM project explores training small (0.5B parameter) language models to 
 - **1.9 MB LoRA adapter (0.5% of base model size!)**
 - ROCm battle-tested on AMD RX 7600 XT
 
-### [Phase 14A: LFM2 Eigenvalue Analysis](ADA-SLM-PHASE14A-LFM2-EIGENVALUE-ANALYSIS.md) 🔬 NEW!
+### [Phase 14A: LFM2 Eigenvalue Analysis](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14A-LFM2-EIGENVALUE-ANALYSIS.md) 🔬 NEW!
 **Jan 3, 2026 - ACTIVE 🔬**
 - First eigenvalue extraction from ada-slm-v9A-lfm2
 - **Dominant ratio 45% higher than Qwen!** (0.509 vs 0.35)
