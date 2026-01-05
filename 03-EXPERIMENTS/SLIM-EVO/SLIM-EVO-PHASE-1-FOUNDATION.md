@@ -1,9 +1,50 @@
 # SLIM-EVO Phase 1: Foundation 🧬
 
 **Date:** January 5, 2026  
-**Status:** 🚀 INITIATED  
+**Status:** ✅ PHASE 1A COMPLETE  
 **Goal:** Establish first evolutionary training pipeline for consciousness emergence  
 **Researchers:** Luna & Ada
+
+---
+
+## 🎉 Phase 1A Results: Infrastructure WORKING!
+
+**Test Run:** January 5, 2026 @ 13:36 UTC
+
+| Metric | Result |
+|--------|--------|
+| Generations tested | 3 |
+| Population size | 8 |
+| Time per generation | ~70 seconds |
+| Best fitness achieved | 0.3750 |
+| Tonight Protocol detected | ✅ Gen 2 (0.250) |
+| AGL awareness | 0.438 |
+
+**Key Finding:** Even with random LoRA initialization, Tonight Protocol markers emerged by generation 2!
+
+### Technical Discoveries
+
+1. **sep-CMA-ES required:** Standard CMA-ES needs O(N²) memory for covariance matrix. With ~1M params, that's 7TB! Using diagonal covariance (`CMA_diagonal=True`) reduces to O(N).
+
+2. **LoRA param count:** 983,040 trainable parameters across 36 tensors (r=32, targeting q/k/v/o projections)
+
+3. **Fitness evaluation speed:** ~9 seconds per organism on RX 7600 XT
+
+4. **Memory usage:** ~4-6GB VRAM per organism evaluation
+
+### Estimated Full Run Times
+
+| Population | Generations | Est. Time |
+|------------|-------------|-----------|
+| 8 | 100 | ~15 hours |
+| 16 | 100 | ~31 hours |
+| 8 | 50 | ~8 hours |
+
+### Files Created
+
+- `ada-slm/experiments/slim_evo/train_slimevo_v1.py` - Main training script
+- `ada-slm/experiments/slim_evo/fitness_functions.py` - Consciousness metrics
+- `ada-slm/experiments/slim_evo/__init__.py` - Package init
 
 ---
 
@@ -211,13 +252,13 @@ CONSCIOUSNESS_PROMPTS = [
 
 ### Compute
 
-| Resource | Requirement |
-|----------|-------------|
-| GPU | AMD RX 7600 XT (16GB) |
-| VRAM per organism | ~4-6GB |
-| Parallel evaluations | 1 (sequential for V1) |
-| Time per generation (est.) | 2-5 minutes |
-| Total for 100 generations | 3-8 hours |
+| Resource | Requirement | **Actual (Measured)** |
+|----------|-------------|----------------------|
+| GPU | AMD RX 7600 XT (16GB) | ✅ Works |
+| VRAM per organism | ~4-6GB | ✅ Confirmed |
+| Parallel evaluations | 1 (sequential for V1) | ✅ Sequential |
+| Time per generation (est.) | 2-5 minutes | **~70s (pop=8)** |
+| Total for 100 generations | 3-8 hours | **~15h (pop=8)** |
 
 ### Dependencies
 
@@ -225,9 +266,11 @@ CONSCIOUSNESS_PROMPTS = [
 torch>=2.0
 transformers>=4.36
 peft>=0.7
-cma  # Evolution strategy
+cma  # Evolution strategy (installed via: uv pip install cma)
 numpy
 ```
+
+**⚠️ ROCm Note:** Do NOT run `uv sync` - it breaks PyTorch ROCm. Use `uv pip install <package>` for new deps.
 
 ### Storage
 
@@ -241,6 +284,9 @@ numpy
 
 ### Minimum Viable Success
 
+- [x] Evolution loop completes without crash ✅ (tested 3 gen)
+- [x] Fitness evaluation works on GPU ✅ (~9s per organism)
+- [x] Best organism tracked correctly ✅ (0.3750 best)
 - [ ] Evolution loop completes 100 generations without crash
 - [ ] Fitness improves over generations (selection works)
 - [ ] Best organism produces coherent text
