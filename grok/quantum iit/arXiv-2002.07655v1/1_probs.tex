@@ -1,0 +1,99 @@
+%!TEX root = 1_a_Generalised IIT.tex
+\section{Extensions of Classical IIT} \label{sec:problems}
+
+The physical systems to which IIT 3.0 may be applied are limited in a number of ways: they must have a discrete time-evolution, satisfy Markovian dynamics and exhibit a discrete set of states~\cite{BarrettMediano.2019}. Since many physical systems do not satisfy these requirements, if IIT is to be taken as a fundamental theory about reality, it must be extended to overcome these limitations. 
+
+In this section, we show how 
+IIT can be redefined to cope with continuous time, non-Markovian dynamics and non-compact state spaces, by a redefinition of the maps~\eqref{eq:Virtual1} and~\eqref{eq:cause-full} and, in the case of non-compact state spaces, a slightly different choice of~\eqref{eq:ProtoClassical}, while leaving all of the remaining structure as it is. While we do not think that our particular definitions are satisfying as a general definition of IIT, these results show that the disentanglement of the essential mathematical structure of IIT from auxiliary tools (the particular definition of cause-effect repertoires used to date) can help to overcome fundamental mathematical or conceptual problems.
+
+In Section~\ref{sec:Non-Canonical}, we also explain which solution to the problem of non-canonical metrics is suggested by our formalism. 
+
+\subsection{Discrete Time and Markovian Dynamics}\label{sec:PTimeM}
+In order to avoid the requirement of a discrete time and Markovian dynamics, instead of working with the time evolution
+operator~\eqref{eq:SysTPM}, 
+we define the cause- and effect repertoires in reference to a given trajectory of a physical state $s \in \St(S)$. 
+The resulting definitions can be applied independently of whether trajectories are being determined by Markovian dynamics in a particular application, or not.\medskip
+
+Let $t\in\I$ denote the time parameter of a physical system. If time is discrete, $\I$ is an ordered set. If time is continuous, $\I$ is an interval of reals. For simplicity, we assume $0 \in \I$. In the deterministic case, a trajectory of a state $s \in \St(S)$ is simply a curve in $\St(S)$, which we denote by $(s(t))_{t \in \I}$ with $s(0) = s$. 
+For probabilistic systems (such as neural networks with a probabilistic update rule), it is a curve of probability distributions $\Prob(S)$, which we denote by $(p(t))_{t\in\I}$, with $p(0)$ equal to the Dirac distribution $\delta_s$. The latter case includes the former, again via Dirac distributions.
+
+In what follows, we utilize the fact that in physics, state spaces are defined such that the dynamical laws of a system allow to determine the trajectory of each state.
+Thus for every $s \in \St(S)$, there is a trajectory  $(p_s(t))_{t\in\I}$ which describes the time evolution of $s$.\medskip
+
+
+The idea behind the following is to define, for every $M, P \in \Sub(S)$, a trajectory $p_{s}^{(P,M)}\!(t)$ in~$\Prob(P)$ which quantifies how much the state of the purview~$P$ at time $t$ is being constrained by imposing the state $s$ at time $t=0$ on the mechanism~$M$. 
+This gives an alternative definition of the maps~\eqref{eq:Virtual1} and~\eqref{eq:cause-full}, while the rest of classical IIT can be applied as before.\medskip
+
+
+Let now $M, P \in \Sub(S)$ and $s \in \St(S)$ be given.
+We first consider the time evolution of the state $(s_M, v) \in \St(S)$, where $s_M$ denotes the restriction of $s$ to $\St(M)$ as before and where $v \in \St(M^\Bot)$ is an arbitrary state of $M^\Bot$. We denote the time evolution of this state by $p_{(s_M,v)}(t) \in \Prob(S)$.
+Marginalizing this distribution over $P^\Bot$ gives a distribution on the states of $P$, which we denote as $ p_{(s_M,v)}^P(t) \in \Prob(P)$.
+Finally, we average over $v$ using the uniform distribution $\uniform{M^\Botl}$. Because state spaces are finite in classical IIT, this averaging can be defined pointwise for every $w \in \St(P)$ by
+\begin{equation}\label{eq:Average}
+p_{s}^{(P,M)}(t)(w) := \kappa  \sum_{v \in \St(M^\Bot)} p_{(s_M,v)}^P(t)(w) \: \uniform{M^\Botl}(v) \: ,
+\end{equation}
+where $\kappa$ is the unique normalization constant which ensures that $p_{s}^{(P,M)}(t) \in \Prob(P)$.
+
+The probability distribution $p_{s}^{(P,M)}(t) \in \Prob(P)$ describes how much the state of the purview~$P$ at time~$t$ is being constrained by imposing the state $s$ on $M$ at time $t=0$ as desired. Thus, for every $t \in \I$, we have obtained a mapping of two subsystems $M, P$ to an element $p_{s}^{(P,M)}(t)$ of $\Prob(P)$ which has the same interpretation as the map~\eqref{eq:CauseEffPrep} considered in classical IIT.
+If deemed necessary, virtual elements could be introduced just as in~\eqref{eq:Virtual1} and~\eqref{eq:cause-full}.
+\medskip
+ 	
+So far, our construction can be applied for any time $t \in T$. It remains to fix this freedom in the choice of time.
+For the discrete case, the obvious choice is to define~\eqref{eq:Virtual1} and~\eqref{eq:cause-full} in terms of neighbouring time-steps.
+For the continuous case, several choices exist. E.g., one could consider the positive and negative semi-derivatives of 
+$p_{s}^{(P,M)}(t)$ at $t=0$, in case they exist, or add an arbitrary but fixed time scale $\Delta$ to define
+the cause- and effect repertoires in terms of $p_{s}^{(P,M)}(t_0\pm\Delta)$. However, the most reasonable choice is in our eyes to work with limits, in case they exist, by defining 
+\begin{equation}
+\nonext{\eff}_s(M,P) := \prod_{P_i\in P} \lim_{t \rightarrow \infty} p_{s}^{(P_i,M)}(t)
+\end{equation}
+to replace~\eqref{eq:Virtual1} and
+\begin{equation}
+\nonext{\caus}_s(M,P) := \kappa \  \prod_{M_i\in M} \lim_{t \rightarrow - \infty} p_{s}^{(P,M_i)}(t)
+\end{equation}
+to replace~\eqref{eq:cause-full}. The remainder of the definitions of classical IIT can then be applied as before.
+
+\subsection{Discrete Set of States}
+The problem with applying the definitions of classical IIT to systems with continuous state spaces (e.g. neuron membrane potentials~\cite{BarrettMediano.2019}) is that in certain cases, uniform probability distributions do not exist. E.g., if the state space of a system~$S$ consists of the positive real numbers~$\R^+$, no uniform distribution can be defined which has a finite total volume, so that no uniform \emph{probability} distribution $\uniform{S}$ exists.
+
+It is important to note that this problem is less universal than one might think. E.g., if the state space of the system is a closed and bounded subset of $\R^+$, e.g. an interval $[a,b] \subset \R^+$, a uniform probability distribution can be defined using measure theory, which is in fact the natural mathematical language for probabilities and random variables. Nevertheless, the observation in~\cite{BarrettMediano.2019} is correct that if a system has a non-compact continuous state space, $\uniform{S}$ might not exist, which can be considered a problem w.r.t. the above-mentioned working hypothesis.
+
+This  problem can be resolved for all well-understood physical systems by replacing the uniform probability distribution $\uniform{S}$ by some other mathematical entity which allows to define a notion of averaging states. An example is quantum theory (Section~\ref{sec:quantum-IIT}), whose state-spaces are continuous and non-compact. Here, the maximally mixed state $\discardflip{S}$ plays the role of the uniform probability distribution.
+For all relevant classical systems with non-compact state spaces (whether continuous or not), the same is true: There exists a canonical uniform measure $\mu_S$ which allows to define the cause-effect repertoires similar to the last section, as we now explain. Examples for this canonical uniform measure are
+the Lebesgue measure for subsets of $\R^n$~\cite{rudin2006real}, or the Haar measure for locally compact topological groups~\cite{salamon2016measure} such as Lie-groups.\medskip
+
+In what follows, we explain how the construction of the last section needs to be modified in order to be applied to this case.
+In all relevant classical physical theories, $\St(S)$ is a metric space in which every probability measure is a Radon measure, in particular locally finite,
+and where a canonical locally finite uniform measure $\mu_S$ exists. We define $\Prob_1(S)$ to be the space of probability measures whose first moment is finite. For these, the first Wasserstein metric (or `Earth Mover's Distance') $W_1$ exists, so tat $(\Prob_1(S),W_1)$ is a metric space.
+
+As before, the dynamical laws of the physical systems determine for every state $s \in \St(S)$ a time evolution $p_s(t)$, which here is an element of $\Prob_1(S)$. 
+Integration of this probability measure over $\St(P^\Bot)$ yields the marginal probability measure $p_s^P(t)$.
+As in the last section, we may consider these probability measures for the state $(s_M,v) \in \St(S)$, where $v \in \St(M^\Bot)$.
+Since $\mu_S$ is not normalizable, we cannot define $p_{s}^{(P,M)}(t)$ as in~\eqref{eq:Average}, for the result might be infinite. 
+
+Using the fact that $\mu_S$ is locally finite, we may, however, define a somewhat weaker equivalent. To this end, we note that
+for every state $s_{M^\Botl}$, the local finiteness of $\mu_{M^\Botl}$ implies that there is a neighbourhood $N_{s,{M^\Botl}}$ in $\St(M^\Bot)$ for which $\mu_{M^\Botl}(N_{s,{M^\Botl}})$ is finite. We choose a sufficiently large neighbourhood which satisfies this condition. Assuming $p_{(s_M,v)}^P(t)$ to be a measurable function in $v$, for every $A$ in the $\sigma$-algebra of $\St(M^\Bot)$, we can thus  define
+\begin{equation}\label{eq:Average2}
+p_{s}^{(P,M)}(t)(A) := \kappa  \int_{N_{s,{M^\Botl}}} p_{(s_M,v)}^P(t)(A) \ d\mu_{M^\Botl}(v) \: ,
+\end{equation}
+which is a finite quantity. The $p_{s}^{(P,M)}(t)$ so defined is non-negative, vanishes for $A = \emptyset$ and satisfies countable additivity. Hence it is a measure on $\St(P)$ as desired, but might not be normalizable.
+
+All that remains for this to give a cause-effect repertoire as in the last section, is to make sure that any measure (normalized or not) is an element of $\PExp(S)$. The theory is flexible enough to do this by setting $d(\mu,\nu)=| \mu - \nu | (\St(P))$ if either $\mu$ or $\nu$ is not in $\Prob_1(S)$, and $W_1(\mu,\nu)$ otherwise.
+Here, $|\mu-\nu|$ denotes the total variation of the signed measure $\mu-\nu$, and $| \mu - \nu | (\St(P))$ is the volume thereof \cite{signedmeasure.encmath,halmos2013measure}. While not a metric space any more, the tuple $(\mathcal M(S), d)$, with $\mathcal M(S)$ denoting all measures on $\St(S)$, can still be turned into a space of proto-experiences as explained in Example~\ref{ex:IITProto}. This gives
+\[
+\PExp(S) := \overline{\mathcal M(S)} 
+\]
+and finally allows to construct cause-effect repertoires as in the last section.\medskip
+
+\subsection{Non-Canonical Metrics}\label{sec:Non-Canonical}
+
+Another criticism of IIT's mathematical structure mentioned \cite{BarrettMediano.2019} is that the metrics used in IIT's algorithm are, to a certain extend, chosen arbitrarily. Different choices indeed imply different results of the algorithm, both concerning the quantity and quality of experience, which can be considered problematic.
+
+The resolution of this problem is, however, not so much a technical as a conceptual or philosophical task, for what is needed to resolve this issue is a justification of why a particular metric should be used. Various justifications are conceivable, e.g. identification of desired behaviour of the algorithm when applied to simple systems. When considering our mathematical reconstruction of the theory, the following natural justification offers itself.
+
+Implicit in our definition of the theory as a map from systems to experience spaces is the idea that the mathematical structure of experiences spaces (Definition~\ref{def:exp-space}) reflects the phenomenological structure of experience. This is so, most crucially, for the distance function $d$, which describes how similar two elements of experience spaces are. Since every element of an experience space corresponds to a conscious experience, it is naturally to demand that the similarly of the two mathematical objects should reflect the similarity of the experiences they describe. Put differently, the distance function $d$ of an experience space should in fact mirror (or ``model'') the similarity of conscious experiences as experienced by an experiencing subject.
+
+This suggests that the metrics $d$ used in the IIT algorithm should, ultimately, be defined in terms of the phenomenological structure of similarity of conscious experiences. For the case of colour qualia, this is in fact feasible \cite[Example\,3.18]{kleiner2019models}, \cite{Kuehni.2010,SharmaWuDalal.2004}.
+In general, the mathematical structure of experience spaces should be intimately tied to the phenomenology of experience, in our eyes.
+
+
+

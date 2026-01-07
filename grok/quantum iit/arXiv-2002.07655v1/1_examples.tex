@@ -1,0 +1,200 @@
+%!TEX root = 1_a_Generalised IIT.tex
+\section{Classical IIT}\label{sec:Classical}
+
+In this section we show how IIT 3.0~\cite{mayner2018pyphi,marshall2016integrated,tononi.2015.scholarpedia,oizumi2014phenomenology} fits in into the framework 
+developed here. A detailed explanation of how our earlier algorithm fits with the usual presentation of IIT is given in Appendix~\ref{sec:comparison}. In~\cite{IITProcess} we give an alternative categorical presentation of the theory. 
+
+\subsection{Systems}\label{sec:ClassicalSysDef} We first describe the system class underlying classical IIT. Physical systems $S$ are considered to be built up of several components  $S_1, \dots, S_n$, called \emph{elements}.
+Each element $S_i$ comes with a finite set of states $\St(S_i)$, equipped with a metric. A state of $S$ is given by specifying a state of each element, so that
+\begin{equation}\label{eq:CSt}
+\DetSt(S) = \DetSt(S_1) \times ... \times \DetSt(S_n) \:.
+\end{equation}
+We define a metric~$d$ on $\DetSt(S)$ by summing over the metrics of the element state spaces $\DetSt(S_i)$ and denote the collection of probability distributions over $\DetSt(S)$ by $\ProbSt(S)$. Note that we may view $\DetSt(S)$ as a subset of $\ProbSt(S)$ by identifying any $s \in \DetSt(S)$ with its Dirac distribution $\delta_s \in \ProbSt(S)$, which is why we abbreviate $\delta_s$ by $s$ occasionally in what follows.
+
+Additionally, each system comes with a probabilistic (discrete) \emph{time evolution operator} or \emph{transition probability matrix}, sending each $s \in \DetSt(S)$ to a probabilistic state $T(s) \in \ProbSt(S)$. Equivalently it may be described as a convex-linear map 
+\begin{equation}\label{eq:SysTPM}
+T \colon \ProbSt(S) \to \ProbSt(S)  \:.
+\end{equation}
+% This evolution is often depicted in examples as a directed graph whose nodes are elements of the system and where directed edges depict functional dependence. 
+Furthermore, the evolution $T$ is required to satisfy a property called \emph{conditional independence}, which we define shortly. 
+
+The class $\Sys$ consists of all possible tuples $S= (\{S_i\}^n_{i=1}, T)$ of this kind, with the trivial system $I$ having only a single element with a single state and trivial time evolution.
+
+\subsection{Conditioning and Marginalizing}
+In what follows, we will need to consider two operations on the map $T$. Let $M$ be any subset of the elements of a system and $M^\Bot$ its complement. We again denote by $\DetSt(M)$ the Cartesian product of the states of all elements in $M$, and by
+$\ProbSt(M)$ the probability distributions on~$\DetSt(M)$.
+For any $p \in \ProbSt(M)$, we define the {\em conditioning}~\cite{mayner2018pyphi} of $T$ on $p$ as the map
+\begin{align}\begin{split}\label{eq:Cond}
+T\Cond{p} \colon \ProbSt(M^{\Bot}) \rightarrow \ProbSt(S) \\
+p' \mapsto  T(p \cdot p') 
+\end{split}\end{align}
+where $p \cdot p'$ denotes the multiplication of these probability distributions to give a probability distribution over $S$. 
+% we have written $(m, m')$ for the concatenation of the tuples $m, m'$ to give a member of $\DetSt(S)$. 
+Next, the {\em marginal} of $T$ over $M$ is defined as the map 
+\begin{align}\label{eq:marg-simple}
+\Mar{M}T \colon \ProbSt(S) &\rightarrow  \ProbSt(M^\Bot)
+\end{align}
+such that for each $p \in \ProbSt(S)$ and $m_2 \in \St(M^\bot)$ we have
+\begin{align}
+\Mar{M}T(p)(m_2) &= \sum_{m_1 \in \St(M)} T(p)(m_1,m_2) \:.
+% p &\mapsto \sum_{m_1 \in \St(M)} T(p)(m_1,m_2) 
+\end{align}
+In particular we write $T_i := \Mar{S_i^\bot} T$ for each $i=1,\dots,n$. Conditional independence of $T$ may now be defined as the requirement that 
+\[
+T(p) = \prod^n_{i=1} T_i(p) \qquad \textrm{ for all } p \in \Prob(S) \:,
+\]
+where the right-hand side is again a probability distribution over $\St(S)$.
+
+
+
+\subsection{Subsystems, Decompositions and Cuts}\label{sec:ClassicalSysData}
+Let a system $S$ in a state $s \in \St(S)$ be given. The subsystems are characterized by subsets of the elements that constitute~$S$.
+For any subset $M = \{S_1 , ... , S_m\}$ of the elements of $S$, the corresponding subsystem is also
+ denoted $M$ and $\St(M)$ is again given by the product of the $\St(S_i)$, with time evolution 
+\begin{equation}\label{eq:SubsysTPM}
+T_{M} :=\Mar{M^\Botl} T \Cond{s_{M^\Botl} } \:,
+\end{equation}
+where $s_{M^\Botl}$ is the restriction of the state $s$ to $\St(M)$ and $\Cond{s_{M^\Botl} }$ denotes the conditioning on the Dirac distribution $\delta_{s_{M^\Botl}}$.
+
+The decomposition set $\mathbb D_S$ of a system $S$ consists of all partitions of the set $N$ of elements of $S$ into two disjoint sets $M$ and $M^\Bot$. We denote such a partition by $z = (M, M^\bot)$. The trivial decomposition $1$ is the pair $(N,\emptyset)$. 
+
+For any decomposition $(M, M^\bot)$ the corresponding cut system $\cut{S}{(M,M^\bot)}$ is the same as $S$ but with a new time evolution $T^{(M,M^\bot)}$. Using conditional independence, it may be defined for each $i = 1, \dots, n$ as
+\begin{equation}\label{eq:ClCut}
+T^{(M,M^\bot)}_i
+:=
+\begin{cases}
+T_i & i \in M^\bot \\
+T_i\Cond{\uniform{M^\Botl}}\Mar{M^\Botl} & i \in M
+\end{cases} 
+\end{equation}
+where $\uniform{M} \in \Prob(M)$ denotes the uniform distribution on $\St(M)$. 
+This is interpreted in the graph depiction as removing all those edges from the graph whose source is in $M^\Bot$ and whose target is in $M$. The corresponding input of the target element is replaced by noise, i.e. the uniform probability distribution over the source element. 
+
+\subsection{Proto-Experiences}
+For each system $S$, the first Wasserstein metric (or `Earth Mover's Distance') makes $\Prob(S)$ a metric space $(\Prob(S),d)$.
+The space of proto-experiences of classical IIT is
+\begin{equation}\label{eq:ProtoClassical}
+\PExp(S) := \overline{\ProbSt(S)} \:,
+\end{equation}
+where $\overline{\ProbSt(S)}$ is defined in Example~\ref{ex:IITProto}.
+Thus elements of $\PExp(S)$ are of the form $(p, r)$ for some $p \in \Prob(S)$ and $r \in \R^+$, with distance function, intensity and scalar multiplication as defined in the example.
+
+
+
+\subsection{Repertoires}\label{sec:CRep}
+It remains to define the cause-effect repertoires. Fixing a state $s$ of $S$, the first step will be to define maps $\nonext{\caus}_s$ and $\nonext{\eff}_s$ which send any choice of $(M,P) \in \Sub(S) \times \Sub(S)$ to an element of $\ProbSt(P)$. These should describe the way in which the current state of $M$ constrains that of $P$ in the next or previous time-steps. We begin with the effect repertoire. For a single element purview $P_i$ we define 
+\begin{equation}\label{eq:CauseEffPrep}
+\nonext{\eff}_s(M,P_i) := \Mar{P_i^\Botl} T \Cond{ \uniform{M^\Botl}}(s_M) \:,
+\end{equation}
+where $s_M$ denotes (the Dirac distribution of) the restriction of the state $s$ to $M$.
+While it is natural to use the same definition for arbitrary purviews, IIT 3.0 in fact uses another definition based on consideration of `virtual elements'~\cite{mayner2018pyphi,marshall2016integrated,tononi.2015.scholarpedia}, which also makes calculations more efficient~\cite[Supplement S1]{mayner2018pyphi}. For general purviews $P$, this definition is
+\begin{equation}\label{eq:Virtual1}
+\nonext{\eff}_s(M,P) = \prod_{P_i\in P} \nonext{\eff}_s(M,P_i) \:,
+ % \Mar{P_i^\Bot} T \Cond{\uniform{M^\Bot}}({s_M}) \:,
+\end{equation}
+taking the product over all elements $P_i$ in the purview $P$. Next, for the cause repertoire, for a single element mechanism $M_i$
+and each $\tilde s \in \St(P)$, we define
+\begin{equation} \label{eq:cause-v-simple}
+\nonext{\caus}_s(M_i,P)[\tilde s]
+=
+\lambda \: \Mar{M_i^\bot} T \Cond{ \uniform{P^\Bot}}(\delta_{\tilde s})[s_{M_i}] \:,
+\end{equation}
+where $\lambda$ is the unique normalisation scalar making $\nonext{\caus}_s(M_i,P)$ a valid element of $\ProbSt(P)$. 
+Here, for clarity, we have indicated evaluation of probability distributions at particular states by square brackets.
+If the time evolution operator has an inverse $T^{-1}$, this cause repertoire could be defined similarly to~\eqref{eq:CauseEffPrep} by
+$
+\nonext{\caus}_s(M_i,P)
+=  \Mar{P^\Bot} T^{-1} \Cond{ \uniform{M_i^\Bot}} (s_{M_i}) \:,
+$
+but classical IIT does not utilize this definition.
+
+For general mechanisms $M$, we then define
+\begin{equation} \label{eq:cause-full} 
+\nonext{\caus}_s(M,P) = \kappa \prod_{M_i \in M} \nonext{\caus}_s(M_i,P)
+\end{equation}
+where the product is over all elements $M_i$ in $M$ and where $\kappa \in \R^+$ is again a normalisation constant. We may at last now define 
+\begin{align}\begin{split}\label{eq:ClassicalCauseEffRep}
+\caus_s(M,P) &:=  \nonext{\caus}_s(M,P) \cdot \nonext{\caus}_s(\emptyset,P^\Bot) 
+ \\
+\eff_s(M,P) &:=   \nonext{\eff}_s(M,P) \cdot \nonext{\eff}_s(\emptyset,P^\Bot) \:,
+\end{split}
+\end{align}
+with intensity $1$ when viewed as elements of $\PExp(S)$.
+Here, the dot indicates again the multiplication of probability distributions and $\emptyset$ denotes the empty mechanism.
+
+The distributions $\nonext{\caus}_s(\emptyset,P^\Bot)$ and $\nonext{\eff}_s(\emptyset,P^\Bot)$ are called the \emph{unconstrained cause and effect repertoires} over~$P^\Bot$.
+
+\begin{Remark}\label{rem:Vanishes}
+It is in fact possible for the right-hand side of \eqref{eq:cause-v-simple} to be equal to $0$ for all $\tilde s$ for some $M_i \in M$. In this case we set $\caus_s(M,P) = (\uniform{S},0)$ in $\PExp(S)$.
+\end{Remark}
+
+Finally we must specify the decompositions of these elements over $\mathbb D_{M,P}$. For any partitions $z_M = (M_1,M_2)$ of $M$ and $z_P = (P_1,P_2) $ of $P$, we define 
+\begin{align}\begin{split}\label{eq:CDecompDef}
+&\overline{\caus_s}({M,P})(z_M, z_P) :=  \nonext{\caus}_s(M_1,P_1) \cdot \nonext{\caus}_s(M_2,P_2) \cdot \nonext{\caus}_s(\emptyset,P^\Bot)  \\
+&\overline{\eff_s}({M,P})(z_M, z_P) :=  \nonext{\eff}_s(M_1,P_1) \cdot \nonext{\eff}_s(M_2^,P_2) \cdot \nonext{\eff}_s(\emptyset,P^\Bot) \:,
+\end{split}\end{align}
+where we have abused notation by equating each subset $M_1$ and $M_2$ of nodes with their induced subsystems of $S$ via the state $s$. 
+% Each element $\overline{\eff_s}({M,P})(z_M, z_P)$ is defined in terms of $\eff$ in the same way.
+\medskip
+
+This concludes all data necessary to define classical IIT. If the generalized definition of Section~\ref{sec:IITs} is applied to this data, it yields precisely classical IIT 3.0 defined by Tononi et al. In Appendix~\ref{sec:comparison}, we explain in detail how our definition of IIT, equipped with this data, maps to the usual presentation of the theory.
+
+\section{Quantum IIT} \label{sec:quantum-IIT}
+In this section, we consider quantum IIT defined in~\cite{zanardi2018quantum}. This is also a special case of the definition in terms of process theories we give in~\cite{IITProcess}.
+
+\subsection{Systems}\label{sec:QSys}
+Similar to classical IIT, in quantum IIT systems are conceived as consisting of elements $\hilbH_1, ... \, , \hilbH_n$. Here, each element $\hilbH_i$ is described by a finite dimensional Hilbert space and the state space of the system $S$ is defined in terms of the element Hilbert spaces as
+\[
+\St(S) = \mathcal S(\H_S) \qquad \textrm{ with } \quad \H_S = \bigotimes_{i=1}^{n} \H_{i} \:,
+\]
+where $\mathcal S(\H_S) \subset L(\H_S)$ describes the positive semidefinite Hermitian operators of unit trace on $\H_S$, aka density matrices.
+The time evolution of the system is again given by a time evolution operator, which here is assumed to be a trace preserving (and in \cite{zanardi2018quantum} typically unital) completely positive map
+\[
+\mathcal T: L(\H_S) \rightarrow L(\H_S) \:.
+\]
+
+\subsection{Subsystems, Decompositions and Cuts}\label{sec:QSysData}
+Subsystems are again defined to consist of subsets $M$ of the elements of the system, with corresponding Hilbert space $\hilbH_M := \bigotimes_{i \in M} \hilbH_i$. The time-evolution $\mathcal T_M: L(\H_M) \rightarrow L(\H_M) $ is defined as
+\[
+ \mathcal T_M (\rho) = \tr_{M^\Botl} \big( \mathcal T ( \tr_{M^\Botl}(s) \otimes \rho ) \big) \:,
+\]
+where $s \in \mathcal S(\H_S)$ and $\tr_{M^\Botl}$ denotes the trace over the Hilbert space $\H_{M^\Botl}$.
+
+Decompositions are also defined via partitions $z = (D,D^\Bot) \in \mathbb D_S$ of the set of elements~$N$ into two disjoint subsets $D$ and $D^\Bot$ whose union is $N$. For any such decomposition, the cut system $\cut{S}{(D,D^\Bot)}$ is defined to have the same set of states but time evolution
+\[
+\mathcal T^{(D,D^\Bot)} (s) = \mathcal T \big( \tr_{D^\Botl}(s) \otimes \, \discardflip{D^\Botl} \big) \:,
+\]
+where $\discardflip{D^\Botl}$  is the maximally  mixed state on $\hilbH_{D^\Bot}$, i.e.~$\discardflip{D^\Botl} = \frac{1}{\dim(\hilbH_{D^\Botl})} \, 1_{\H_{D^\Botl}}$.
+
+\subsection{Proto-Experiences}\label{sec:QProtoExp}
+For any $\rho, \sigma \in \mathcal S(\H_S)$, the trace distance defined as
+\[
+	d(\rho, \sigma) = \tfrac{1}{2} \, \tr_S \big( \sqrt{(\rho-\sigma)^2} \big) 
+\]
+turns $(S(\H_S), d)$ into a metric space. The space of proto-experiences is defined based on this metric space as described in Example~\ref{ex:IITProto},
+\[
+\PExp(S) := \overline{S(\H_S)} \:.
+\]
+
+\subsection{Repertoires}\label{sec:QRep}
+We finally come to the definition of the cause- and effect repertoire. Unlike classical IIT, the definition in~\cite{zanardi2018quantum} does not consider virtual elements. 
+Let a system $S$ in state $s \in \St(S)$ be given. As in Section~\ref{sec:CRep}, we utilize maps $\nonext{\caus}_s$ and $\nonext{\eff}_s$
+which here map subsystems $M$ and $P$ to $\St(P)$. They are defined as
+\begin{align*}
+\nonext{\eff}_s(M,P) &= \tr_{P^\Botl} \mathcal T \big(  \tr_{M^\Botl} (s) \otimes \discardflip{M^\Botl} \big)\\
+\nonext{\caus}_s(M,P) &= \tr_{P^\Botl} \mathcal T^\dagger \big(  \tr_{M^\Botl} (s) \otimes \discardflip{M^\Botl} \big)  \:,
+\end{align*}
+where $\mathcal T^\dagger$ is the Hermitian adjoint of $\mathcal T$. We then define
+\begin{align*}
+\caus_s(M,P) &:=  \nonext{\caus}_s(M,P) \otimes \nonext{\caus}_s(\emptyset,P^\Bot) \\
+\eff(M,P)&:=   \nonext{\eff}_s(M,P) \otimes \nonext{\eff}_s(\emptyset,P^\Bot) \:,
+\end{align*}
+each with intensity $1$, where $\emptyset$ again denotes the empty mechanism.
+Similarly, decompositions of these elements over $\mathbb D_{M,P}$ are defined as
+\begin{align*}
+&\overline{\caus_s}({M,P})(z_M, z_P) :=  \nonext{\caus}_s(M_1,P_1) \otimes \nonext{\caus}_s(M_2,P_2) \otimes \nonext{\caus}_s(\emptyset,P^\Bot) 
+\\
+&\overline{\eff_s}({M,P})(z_M, z_P) :=  \nonext{\eff}_s(M_1,P_1) \otimes \nonext{\eff}_s(M_2,P_2) \otimes \nonext{\eff}_s(\emptyset,P^\Bot)  \:,\end{align*}
+again with intensity $1$, where $z_M = (M_1,M_2) \in \mathbb D_M$ and $z_P = (P_1,P_2) \in \mathbb D_P$.
+
+

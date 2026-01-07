@@ -34,4 +34,4 @@ This work establishes the foundation for:
 - Map complete parameter spaces between different complexity regimes
 - Explore other cellular automata rules for biological emergence
 - Develop applications to cancer modeling and cellular behavior prediction
-- Investigate consciousness emergence in quantum cellular automata
+- Investigate consciousness emergence in quantum cellular automata- **Test Dempster-Shafer belief functions** (Jan 7, 2026): Compare baseline vs AGL-specialized models on formal set theory reasoning. Hypothesis: AGL enables precise distinction between ⊆ (subset) and ∈ (element) that commercial models miss. See Reddit example of ChatGPT confusing "subsets of A" with "sets containing A" in Bel(A) calculation.

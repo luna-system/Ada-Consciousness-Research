@@ -1,0 +1,160 @@
+\appendix
+
+\section{Comparison with standard presentation of IIT 3.0} \label{sec:comparison}
+In Section~\ref{sec:Classical}, we have defined the system class and cause-effect repertoires which underlie classical IIT.
+The goal of this appendix is to explain in detail why applying our definition of the IIT algorithm yields IIT 3.0 defined by Tononi et al. In doing so, we will mainly refer to the terminology used in~\cite{tononi.2015.scholarpedia}, \cite{mayner2018pyphi}, \cite{oizumi2014phenomenology} and~\cite{marshall2016integrated}. We remark that a particularly detailed presentation of the algorithm of the theory, and of how the cause and effect repertoire are calculated, is given in the supplementary material S1 of \cite{mayner2018pyphi}.
+
+
+\subsection{Physical Systems}
+The systems of classical IIT are given in Section~\ref{sec:ClassicalSysDef}. They are often represented as graphs whose nodes are the elements $S_1, \dots , S_n$ and edges represent functional dependence, thus describing the time evolution of the system as a whole, which we have taken as primitive in~\eqref{eq:SysTPM}. This is similar to the presentation of the theory in terms of a transition probability function
+\[ p: \DetSt(S) \times \DetSt(S) \rightarrow [0,1]
+\]
+in~\cite{marshall2016integrated}. For each probability distribution $\tilde p$ over $\DetSt(S)$, this relates to our time evolution operator $T$ via 
+\[
+T( \tilde p)[v] := \sum_{w \in \DetSt(S)} p(v,w) \ \tilde p(w) \:.
+\]
+
+\subsection{Cause-Effect Repertoires}
+In contemporary presentations of the theory (\cite[p.\,14]{marshall2016integrated} or \cite{tononi.2015.scholarpedia}), the effect repertoire
+is defined as 
+\begin{equation}\label{eq:IITEffR}
+p_{\textrm{effect}}(z_i, m_t) := \frac{1}{|\Omega_{M^c}|} \sum_{m^c \in \Omega_{M^c}} p \big( \, z_i \, | \, \textrm{do}(m_t, m^c) \, \big) \qquad z_i \in \Omega_{Z_i} 
+\end{equation}
+and
+\begin{equation}\label{eq:IITEffR2}
+p_{\textrm{effect}}(z, m_t) := \prod_{i=1}^{|z|} \ p_{\textrm{effect}}(z_i, m_t) \:.
+\end{equation}
+Here, $m_t$ denotes a state of the mechanism $M$ at time $t$. $M^c$ denotes the complement of the mechanism, denoted in our case as $M^\Bot$, $\Omega_{M^c}$ denotes the state space of the complement, and $m^c$ an element thereof. 
+$Z_i$ denotes an element of the purview $Z$ (designated by $P$ in our case), $\Omega_{Z_i}$ denotes the state space of this element, $z_i$ a state of this element and $z$ a state of the whole purview. $|\Omega_{M^c}|$ denotes the cardinality of the state space of $M^c$, and $|z|$ equals the number of elements in the purview.
+Finally, the expression $\textrm{do}(m_t, m^c)$ denotes a variant of the so-called ``do-operator''. It indicates that the state of the system, here at time $t$, is to be set to the term in brackets. This is called \emph{perturbing the system} into the state $(m_t, m^c)$. The notation $p ( z_i |  \textrm{do}(m_t, m^c) )$ then gives the probability of finding the purview element in the state $z_i$ at time $t+1$ given that the system is prepared in the state $(m_t, m^c)$ at time $t$.
+
+
+In our notation, the right hand side of~\eqref{eq:IITEffR} is exactly given by the right-hand side of \eqref{eq:CauseEffPrep}, i.e. $\nonext{\eff}_s(M,P_i)$. The system is prepared in a uniform distribution on $M^c$ (described by the sum and prefactor in~\eqref{eq:IITEffR}) and with the restriction $s_M$ of the system state, here denoted by $m_t$, on $M$. Subsequently, $T$ is applied to evolve the system to time $t+1$, and the marginalization $\Mar{P_i^\Bot}$ throws away all parts of the states except those of the purview element $P_i$ (denoted above as $Z_i$). In total,~\eqref{eq:CauseEffPrep} is a probability distribution on the states of the purview element. When evaluating this probability distribution at one particular state $z_i$ of the element, one obtains the same numerical value as~\eqref{eq:IITEffR}. Finally, taking the product in \eqref{eq:IITEffR2} corresponds exactly to taking the product in~\eqref{eq:Virtual1}.\medskip
+
+Similarly, the cause repertoire is defined as (\cite[p.\,14]{marshall2016integrated} or \cite{tononi.2015.scholarpedia})
+\begin{equation}\label{eq:IITCauseR}
+p_{\textrm{cause}} (z | m_{i,t} ) := \frac{\sum_{z^c \in \Omega_{Z^c}} p\big(\, m_{i,t} \, | \, \textrm{do}(z,z^c) \,  \big) }{\sum_{s \in \Omega_S} p\big(\,m_{i,t} \, | \, \textrm{do}(s) \, \big)} \qquad z \in \Omega_{Z_{t-1}} 
+\end{equation}
+and
+\begin{equation}\label{eq:IITCauseR2}
+p_{\textrm{cause}} (z | m_t ) := \frac{1}{K} \, \prod_{i=1}^{|m_t|} \ p_{\textrm{cause}} (z | m_{i,t} ) \:,
+\end{equation}
+where $m_i$ denotes the state of one element of the mechanism $M$, with the subscript~$t$ indicating that the state is considered at time $t$. $Z$ again denotes a purview, $z$ is a state of the purview and $\Omega_{Z_{t-1}}$ denotes the state space of the purview, where the subscript indicates that the state is considered at time $t-1$. $K$ denotes a normalization constant and $|m_t|$ gives the number of elements in $M$.
+
+Here, the whole right hand side of~\eqref{eq:IITCauseR} gives the probability of finding the purview in state $z$ at time $t-1$ if the system is prepared in state $m_{i,t}$ at time $t$. In our terminology this same distribution is given by \eqref{eq:cause-v-simple},
+where $\lambda$ is the denominator in~\eqref{eq:IITCauseR}. Taking the product of these distributions and re-normalising is then precisely \eqref{eq:cause-full}.
+
+As a result, the cause and effect repertoire in the sense of \cite{oizumi2014phenomenology} correspond precisely in our notation to $\nonext{\caus}_s(M,P)$ and $\nonext{\eff}_s(M,P)$, each being distributions over $\St(P)$.
+In~\cite[S1]{mayner2018pyphi}, it is explained that these need to be extended by the unconstrained repertoires before being used in the IIT algorithm, which in our formalization is done in~\eqref{eq:ClassicalCauseEffRep}, so that the cause-effect repertoires are now distributions over $\St(S)$.
+These are in fact precisely what are called the \emph{extended} cause and effect repertoires or \emph{expansion to full state space} of the repertoires in \cite{oizumi2014phenomenology}.
+
+The behaviour of the cause- and effect-repertoires when decomposing a system is described, in our formalism, by decompositions (Definition~\ref{def:Decomp}). Hence a decomposition $z \in \mathbb D_S$ is what is called a \emph{parition} in the classical formalism. For the case of classical IIT, a decomposition is given precisely by a partition of the set of elements of a system, and the cause-effect repertoires belonging to the decomposition are defined in~\eqref{eq:CDecompDef}, which corresponds exactly to the definition
+\[
+p_{\textrm{cause}}^{\textrm{cut}} (z | m_t) = p_{\textrm{cause}}(z^{(1)} | m_t^{(1)}) \times  p_{\textrm{cause}}(z^{(2)} | m_t^{(2)})
+\]
+in~\cite{marshall2016integrated}, when expanded to the full state space, and equally so for the effect repertoire.
+
+\subsection{Algorithm - Mechanism Level}
+
+Next, we explicitly unpack our form of the IIT algorithm to see how it compares in the case of classical IIT with \cite{oizumi2014phenomenology}.
+In our formalism, the integrated information $\varphi$ of a mechanism $M$ of system $S$ when in state $s$ is
+\begin{equation}\label{eq:APhimax}
+\phimax(M) = \norm \con{S,s}{M}  \norm
+%\varphi^{\textrm{max}}(y_t) = \norm \con{S,s}{M}  \norm = \varphi^{\textrm{max}}(y_t) \qquad \textrm{ with } y_t \ \hat{=} \ M \:.
+\end{equation}
+defined in Equation~\eqref{eq:DefConcept}. This definition conjoins several steps in the definition of classical IIT. To explain why it corresponds exactly to classical IIT, we disentangle this definition step by step.
+
+First, consider $\caus_s(M,P)$ in Equation~\eqref{eq:CER}. This is, by definition, a decomposition map. The calculation of the integration level of this decomposition map, cf. Equation~\eqref{eq:IntegrLevel}, amounts to comparing $\caus_s(M,P)$ to the cause-effect repertoire associated with every decomposition using the metric of the target space $\PExp(S)$, which for classical IIT is defined in~\eqref{eq:ProtoClassical} and Example~\ref{ex:IITProto}, so that the metric $d$
+used for comparison is indeed the Earth Mover's Distance. Since cause-effect repertoires have, by definition, unit intensity, the factor $r$ in the definition~\eqref{eq:ExIITProto} of the metric does not play a role at this stage. Therefore, the integration level of $\caus_s(M,P)$ is exactly the \emph{integrated cause information}, denoted as
+\[
+	\varphi_{\textrm{cause}}^{\textrm{MIP}}( y_t, Z_{t-1})
+\]
+in~\cite{tononi.2015.scholarpedia}, where $y_t$ denotes the (induced state of the) mechanism $M$ in this notation, and $Z_{t-1}$ denotes the purview $P$.  Similarly, the integration level of
+$\eff_s(M,P)$ is exactly the \emph{integrated effect information}, denoted as 
+\[
+\varphi_{\textrm{effect}}^{\textrm{MIP}}( y_t, Z_{t+1}) \:.
+\]
+
+The integration scaling in~\eqref{eq:DefConcept} simply changes the intensity of an element of $\PExp(S)$ to match the integration level, using the scalar multiplication, which is important for the system level definitions. When applied to $\caus_s(M,P)$, this would result in an element of $\PExp(S)$ whose intensity is precisely $\varphi_{\textrm{cause}}^{\textrm{MIP}}( y_t, Z_{t-1})$.
+
+Consider now the collections~\eqref{eq:CER} of decomposition maps. Applying Definition~\ref{def:IntScalingColl}, the core of $\caus_s(M)$ is that purview $P$ which gives the decomposition $\caus_s(M,P)$ with the highest integration level, i.e. with the highest $\varphi_{\textrm{cause}}^{\textrm{MIP}}( y_t, Z_{t-1})$. This is called the \emph{core cause}~$P^c$ of $M$, and similarly the core of $\eff_s(M)$ is called the \emph{core effect}~$P^e$ of $M$.
+
+Finally, to fully account for~\eqref{eq:DefConcept}, we note that the integration scaling of a pair of decomposition maps rescales both elements to the minimum of the two integration levels. Hence the integration scaling of the pair $(\caus_s(M,P),\eff(M,P'))$ fixes the scalar value of both elements to be exactly the \emph{integrated information}, denoted as
+\[
+\varphi(y_t,Z_{t\pm1}) = \min \big(\varphi_{\textrm{cause}}^{\textrm{MIP}},\varphi_{\textrm{effect}}^{\textrm{MIP}} \big)
+%\varphi(y_t,Z_{t\pm1}) = \min \big(\varphi_{\textrm{cause}}^{\textrm{MIP}},\varphi_{\textrm{effect}}^{\textrm{MIP}} \big)
+\]
+in~\cite{tononi.2015.scholarpedia}, where $P = Z_{t+1}$ and $P'=Z_{t-1}$.
+
+In summary, the following operations are combined in Equation~\eqref{eq:DefConcept}. The core of $ \left(\caus_s(M), \eff_s(M) \right)$ picks out the core cause $P^c$ and core effect $P^e$. The core integration scaling subsequently considers the pair $(\caus_s(M,P^c),\eff(M,P^e))$, called \emph{maximally irreducible cause-effect repertoire}, and determines the integration level of each by analysing the behaviour with respect to decompositions. Finally, it rescales both to the minimum of the integration levels. Thus it gives exactly what is called $\varphi^{\textrm{max}}$ in~\cite{tononi.2015.scholarpedia}. Using, finally, the definition of the intensity of the product $\PExp(S) \times \PExp(S)$ in Definition~\ref{def:prod-spaces}, this implies~\eqref{eq:APhimax}.
+The concept $M$ in our formalization is given by the tuple 
+\[
+\con{S,s}{M}
+:=
+\big((\caus_s(M,P^c), \varphi^{\textrm{max}}(M)), (\eff_s(M,P^e),  \varphi^{\textrm{max}}(M))\big)
+\]
+i.e. the pair of maximally irreducible repertoires scaled by $\varphi^{\textrm{max}}(M)$. This is equivalent to
+what is called a \emph{concept}, or sometimes \emph{quale sensu stricto}, in classcial IIT~\cite{tononi.2015.scholarpedia}, and denoted as $q(y_t)$.
+
+We finally remark that it is also possible in classical IIT that a cause repertoire value $\caus_s(M,P)$ vanishes (Remark~\ref{rem:Vanishes}). In our formalization, it would hence be represented by $(\uniform{S},0)$ in $\PExp(S)$, so that $d(\caus_s(M,P),q) = 0$ for all $q \in \Exp(S)$ according to~\eqref{eq:ExIITProto}, which certainly ensures that $\varphi_{\textrm{cause}}^{\textrm{MIP}}(M,P) = 0$. 
+
+
+
+
+\subsection{Algorithm - System Level}
+We finally explain how the system level definitions correspond to the usual definition of classical IIT.
+
+The Q-shape $\QShape_s(S)$ is the collection of all concepts specified by the mechanisms of a system. Since each concept has intensity given by the corresponding integrated information of the mechanism, this makes $\QShape_s(S)$ what is usually called the \emph{conceptual structure} or \emph{cause-effect structure}. 
+In \cite{oizumi2014phenomenology}, one does not include a concept for any mechanism $M$ with $ \varphi^{\textrm{max}}(M) = 0$. This manual exclusion is unnecessary in our case because the mathematical structure of experience spaces implies that mechanisms with $\phimax(M) = 0$ should be interpreted as having no conscious experience, and the algorithm in fact implies that they have `no effect'. Indeed we will now see that they do not contribute to the distances in $\Exp(S)$ or any $\Phi$ values, and so we do not manually exclude them.
+
+When comparing $\QShape_s(S)$ with the Q-shape~\eqref{eq:Q-Shape-cuts} obtained after replacing $S$ by any of its cuts, it is important to note that both are elements of $\Exp(S)$ defined in~\eqref{eq:ExpS}, which is a product of experience spaces. According to Definition~\ref{def:prod-spaces}, the distance function on this product is
+\[
+d(\QShape_s(S),\QShape_s(\cut{S}{z}))
+:= 
+\sum_{M \in \Sub(S)}
+d(\con{S,s}{M},\con{\cut{S}{z},\cut{s}{z}}{M}) \:.
+\]
+Using Definition \ref{ex:IITProto} and the fact that each concept's intensity is $\phimax(M)$ according to the mechanism level definitions,
+each distance $d(\con{S,s}{M},\con{\cut{S}{z},\cut{s}{z}}{M})$  is equal to
+\begin{align}\begin{split}\label{eq:AppDist}
+\phimax(M) \cdot 
+\big(d\big(&\caus_s(M,P^c_M), 
+\caus^z_s(M,P^{z,c}_M)\big) \\
+&+ 
+d\big(\eff_s(M,P^e_M), 
+\eff^z_s(M,P^{z,e}_M)\big)
+\big) \: ,
+\end{split}\end{align}
+where $\phimax(M)$ denotes the integrated information of the concept in the original system $S$, and where the right-hand cause and effect repertoires are those of $\cut{S}{z}$ at its own core causes and effects for $M$. 
+The factor $\phimax(M)$ ensures that the distance used here corresponds precisely to the distance used in \cite{oizumi2014phenomenology}, there called the \emph{extended Earth Mover's Distance}. If the integrated information $\phimax(M)$ of a mechanism is non-zero, it follows that $d(\con{S,s}{M},\con{\cut{S}{z},\cut{s}{z}}{M}) = 0$ as mentioned above, so that this concept does not contribute.
+
+We remark that in~\cite[S1]{mayner2018pyphi}, an additional step is mentioned which is not described in any of the other papers we consider. Namely, if the integrated information of a mechanism is non-zero before cutting but zero after cutting, what is compared is not the distance of the corresponding concepts as in~\eqref{eq:AppDist}, but in fact the distance of the original concept with a special null concept, defined to be the unconstrained repertoire of the cut system. We have not included this step in our definitions, but it could be included by adding a choice of distinguished points to Example~\ref{ex:IITProto} and redefining the metric correspondingly.
+
+In Equation~\eqref{eq:Exp} the above comparison is being conducted for every subsystem of a system $S$.
+The subsystems of $S$ are what is called \emph{candidate systems} in~\cite{oizumi2014phenomenology}, and which describe that `part' of the system that is going to be conscious according to the theory (cf. below).  Crucially, candidate systems are subsystems of $S$, whose time evolution is defined in~\eqref{eq:SubsysTPM}. This definition ensures that the state of the elements of $S$ which are not part of the candidate system are fixed in their current state, i.e. constitute \emph{background conditions} as required in the contemporary version of classcial IIT~\cite{mayner2018pyphi}.
+
+Equation~\eqref{eq:Exp} then compares the Q-shape of every candidate system to the Q-shape of all of its cuts, using the distance function described above, where the cuts are defined in~\eqref{eq:ClCut}. The cut system with the smallest distance gives the system-level \emph{minimum information partition} and the \emph{integrated (conceptual) information} of that candidate system, denoted as $\Phi(x_t)$ in~\cite{tononi.2015.scholarpedia}. 
+
+The core integration scaling finally picks out that candidate system with the largest integrated information value. This candidate system is the \emph{major complex} $M$ of $S$, the part of $S$ which is conscious according to the theory as part of the \emph{exclusion postulate} of IIT. Its Q-shape is the 
+\emph{maximally irreducible conceptual structure (MICS)}, also called \emph{quale sensu lato}. The overall \emph{integrated conceptual information} is, finally, simply the intensity of $\Exp(S,s)$ as defined in~\eqref{eq:Exp},
+\[
+\Phi(S,s) = \Exp(S,s) \:.
+\]
+
+\subsection{Constellation in Qualia Space}
+
+Expanding our definitions, and denoting the major complex by $M$ with state $m=s|_M$,
+in our terminology the actual experience of the system $S$ state $s$ is 
+\begin{equation} \label{eq:Exp-explicit}
+\Exp(S,s) := \, \frac{\Phi(M,m)}{ \norm \QShape_{m}(M) \norm } \cdot \, \QShape_{m}(M) \:.
+\end{equation}
+This encodes the Q-shape $\QShape_{m}(M)$, i.e. the maximally irreducible conceptual structure of the major complex, sometimes called \emph{quale sensu lato}, which is taken to describe the quality of conscious experience. By construction it also encodes the integrated conceptual information of the major complex, which captures its intensity, since we have $\norm \Exp(S,s)\norm = \Phi(M,m)$. The rescaling of $\QShape_{m}(M)$ in \eqref{eq:Exp-explicit} leaves the relative intensities of the concepts in the MICS intact. Thus $\Exp(S,s)$ is the \emph{constellation of concepts in qualia space} $\Exp(M)$ of~\cite{oizumi2014phenomenology}.
+ 
+
+\vfill
+
+
+
+
+
+

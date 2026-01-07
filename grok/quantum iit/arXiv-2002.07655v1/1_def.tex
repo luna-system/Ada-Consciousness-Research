@@ -1,0 +1,261 @@
+%!TEX root = 1_a_Generalised IIT.tex
+\section{Systems} \label{sec:sys}
+
+The first step in defining an Integrated Information Theory (IIT) is to specify a class $\Sys$ of physical \emph{systems} to be studied. Each element $S \in \Sys$ is interpreted as a model of one particular physical system. In order to apply the IIT algorithm, it is only necessary that each element $S$ come with the following features.
+
+\begin{definition} \label{def:sys-class}
+A \emph{system class} $\Sys$ is a class each of whose elements $S$, called \emph{systems}, come with the following data:
+\begin{enumerate}[label=\arabic*.]
+\item a set $\St(S)$ of \emph{states};
+\item for every $s \in \St(S)$, a set $\Sub_s(S) \subset \Sys$ of subsystems and for each $M \in \Sub_s(S)$ an
+induced state $s|_M \in \St(M)$;
+\item \label{it:Decomp} a set $\mathbb D_S$ of {\em decompositions}, with a given \emph{trivial decomposition} $1 \in \mathbb D_S$;
+\item for each $z \in \mathbb D_S$ a corresponding \emph{cut system} $\cut{S}{z} \in \Sys$ and for each state $s \in \St(S)$ a corresponding \emph{cut state} $\cut{s}{z} \in \St(\cut{S}{z})$.
+\end{enumerate}
+\end{definition}
+Moreover, we require that $\Sys$ contains a distinguished \emph{empty system}, denoted~$I$, and that $I \in \Sub(S)$ for all $S$. For the IIT algorithm to work, we need to assume furthermore that the number of subsystems remains the same under cuts or changes of states,
+i.e. $\Sub_s(S) \simeq \Sub_{s'}(S)$ for all $s, s' \in \St(S)$ and $\Sub_s(S) \simeq \Sub_{\cut{s}{z}}(\cut{S}{z})$ for all $z \in \mathbb D_S$. Here, $\simeq$ indicates bijections. Note that subsystems of a system may depend on the state of the system, in accordance with classical IIT. 
+
+In this article we will assume that each set $\Sub_s(S)$ is finite, discussing the extension to the infinite case in Section \ref{sec:discussion}. We will give examples of system classes and for all following definitions in Sections~\ref{sec:Classical} and~\ref{sec:quantum-IIT}.
+
+
+
+\section{Experience} \label{sec:Experience}
+
+An IIT aims to specify for each system in a particular state its \emph{conscious experience}. As such, it will require a mathematical model of such experiences. Examining classical IIT, we find the following basic features of the final experiential states it describes which are needed for its algorithm.
+
+Firstly, each experience $e$ should crucially come with an \emph{intensity}, given by a number $\norm e \norm$ in the non-negative reals  $\R^+$ (including zero). 
+This intensity will finally correspond to the overall intensity of experience, usually denoted by $\Phi$. Next, in order to compare experiences, we require a notion of \emph{distance} $d(e,e')$ between any pair of experiences $e, e'$. Finally, the algorithm will require us to be able to \emph{rescale} any given experience $e$ to have any given intensity. Mathematically, this is most easily encoded by letting us multiply any experience $e$ by any number $r \in \R^+$.
+In summary, a minimal model of experience in a generalised IIT is the following.
+
+\begin{definition} \label{def:exp-space}
+An \emph{experience space} is a set $E$ with: 
+\begin{enumerate}[label=\arabic*.]
+\item 
+an \emph{intensity} function $\norm . \norm \colon E \to \R^+$;
+\item 
+a \emph{distance} function $d \colon E \times E \to \mathbb{R}^+$;
+\item 
+a \emph{scalar multiplication} $\R^+ \times E \to E$, denoted $(r,e) \mapsto r \cdot e$, satisfying
+\begin{align*}
+\norm r \cdot e \norm = r \cdot \norm e \norm \qquad 
+r \cdot (s \cdot e) = (rs) \cdot e \qquad
+1 \cdot e = e
+\end{align*}
+for all $e \in E$ and $r, s \in \R^+$.
+\end{enumerate}
+\end{definition}
+
+
+We remark that this same axiomatisation will apply both to the full space of experiences of a system, as well as to the the spaces describing components of the experiences (`concepts' and `proto-experiences' defined in later sections). We note that the distance function does not necessarily have to satisfy the axioms of a metric. While this and further natural axioms such as $d(r \cdot e, r \cdot f) = r \cdot d(e,f)$ might hold, they are not necessary for the IIT algorithm.
+
+The above definition is very general, and in any specific theory the experiences may come with richer further structure. The following example describes the experience space used in classical IIT.
+
+\begin{example} \label{ex:IITProto}
+Any metric space $(X,d)$ may be extended to an experience space $\bar X := X \times \mathbb{R}^+$ in various ways. E.g., 
+one can define $\norm (x,r) \norm = r$, $r \cdot (x,s) = (x, rs)$ and define the distance as
+\begin{equation}\label{eq:ExIITProto}
+d\big((x,r),(y,s)\big) = r \, d(x,y) 
+\end{equation}
+This is the definition used in classical IIT (cf. Section~\ref{sec:Classical} and Appendix~\ref{sec:comparison}).
+\end{example}
+
+
+An important operation on experience spaces is taking their \emph{product}. 
+
+\begin{definition} \label{def:prod-spaces}
+For experience spaces $E$ and $F$, we define the product to be the space $E \times F$ with distance
+\begin{equation}\label{eq:DistanceProduct}
+d\big( (e,f) , (e',f') \big) = d(e,e') + d(f, f')  \:,
+\end{equation} 
+intensity $\norm (e,f) \norm = \max \{ \norm e \norm, \norm f \norm \}$ and scalar multiplication $r \cdot (e,f) = (r \cdot e, r \cdot f)$.
+This generalises to any finite product $\prod_{i \in I} E_i$ of experience spaces.
+\end{definition}
+
+
+
+
+
+\section{Repertoires} \label{sec:repertoires}
+
+% The main aim of an IIT is to assign an experience to each system~$S$ in a state $s \in \St(S)$, each of which is an element of an experience space. 
+
+In order to define the experience space and individual experiences of a system $S$, an IIT utilizes basic building blocks called `repertoires', which we will now define.
+Next to the specification of a system class, this is the essential data necessary for the IIT algorithm to be applied.
+
+Each repertoire describes a way of `decomposing' experiences, in the following sense. Let $D$ denote any set with a distinguished element $1$, for example the set $\mathbb D_S$ of decompositions of a system $S$, where the distinguished element is the trivial decomposition $1 \in \mathbb D_S$.
+
+\begin{definition}\label{def:Decomp}
+Let $e$ be an element of an experience space $E$. A \emph{decomposition of $e$ over $D$} is a mapping $\bar{e} \colon D \to E$ with $\bar{e}(1) = e$.
+\end{definition}
+
+In more detail, a repertoire specifies a proto-experience for every pair of subsystems and describes how this experience changes if the subsystems are decomposed.
+This allows one to assess how integrated the system is with respect to a particular repertoire. Two repertoires are necessary for the IIT algorithm to be applied, together called the cause-effect repertoire.
+
+For subsystems $M,P \in \Sub_s(S)$, define $\mathbb D_{M,P} := \mathbb D_M \times \mathbb D_P$. This set describes the decomposition of both subsystems simultaneously. It has a distinguished element $1 = (1_M, 1_P)$.
+
+\begin{definition} \label{def:repertoire}
+A \emph{cause-effect repertoire} at $S$ is given by a choice of experience space $\PExp(S)$, called the space of \emph{proto-experiences}, and for each 
+$s \in \St(S)$ and $M, P \in \Sub_s(S)$, a pair of elements 
+\begin{equation}\label{eq:CauseEffectRep}
+\caus_s(M,P) \  ,\  \eff_s(M,P) \  \in \ \PExp(S)
+\end{equation}
+and for each of them a decomposition over $\mathbb D_{M,P}$.
+\end{definition}
+
+Examples of cause-effect repertoires will be given in Sections~\ref{sec:Classical} and~\ref{sec:quantum-IIT}. A general definition in terms of process theories is given in~\cite{IITProcess}. For the IIT algorithm, a cause-effect repertoire needs to be specified for every system $S$, as in the following definition.
+
+\begin{definition}\label{def:cestructure}
+A \emph{cause-effect structure} is a specification of a cause-effect repertoire for every $S \in \Sys$ such that
+\begin{equation}\label{eq:cestructure}
+\PExp(S) = \PExp(\cut{S}{z}) \quad \textrm{ for all } \quad z \in \mathbb D_S \:.
+\end{equation}
+%together with an embedding $\PExp(M) \hookrightarrow \PExp(S)$, for all subsystems $M$ of $S$.
+\end{definition}
+
+The names `cause' and `effect' highlight that the definitions of $\caus_s(M,P)$ and  $\eff_s(M,P)$ in classical and quantum IIT describe the causal dynamics of the system. More precisely, they are intended to capture the manner in which the `current' state~$s$ of the system, when restricted to $M$, constrains the `previous' or `next' state of $P$, respectively. 
+
+
+\section{Integration} \label{sec:Integration}
+
+We have now introduced all of the data required to define an IIT; namely, a system class along with a cause-effect structure. From this, we will give an algorithm aiming to specify the conscious experience of a system. Before proceeding to do so, we introduce a conceptual short-cut
+which allows the algorithm to be stated in a concise form. This captures the core ingredient of an IIT, namely the computation of how integrated an entity is.
+
+\begin{definition}\label{def:IntScaling}
+Let $E$ be an experience space and $e$ an element with a decomposition over some set $D$. The \emph{integration level} of $e$ relative to this decomposition is 
+\begin{equation}\label{eq:IntegrLevel}
+\phi(e) := \min_{1 \neq z \in D} d(e, \bar{e}(z)) \:.
+\end{equation}
+Here, $d$ denotes the distance function of $E$, and the minimum is taken over all elements of $D$ besides $1$. The \emph{integration scaling} of $e$ is then the element of $E$ defined by
+\begin{equation}\label{eq:IntegrData}
+	\intscaling(e) := \phi(e) \cdot \hat{e} \:,
+\end{equation}
+where $\hat e$ denotes the \emph{normalization} of $e$, defined as
+\begin{align*}
+\hat e := \begin{cases}
+\frac{1}{\norm e \norm} \cdot e & \textrm{ if } \norm e \norm \neq 0 \\
+ e & \textrm{ if } \norm e \norm = 0 \:.
+\end{cases}
+\end{align*}
+Finally, the \emph{integration scaling} of a pair $e_1, e_2$ of such elements is the pair
+\begin{equation}\label{eq:IntScalingPair}
+\intscaling(e_1, e_2) :=
+(\phi \cdot \hat{e_1},
+\phi \cdot \hat{e_2})
+\end{equation}
+where $\phi := \min(\phi(e_1), \phi(e_2))$
+is the minimum of their integration levels.
+\end{definition}
+
+We will also need to consider indexed collections of decomposable elements.
+Let $S$ be a system in a state $s \in \St(S)$ and assume that for every $M \in \Sub_s(S)$
+an element $e_M$ of some experience space $E_M$ with a decomposition over some $D_M$ is given. We call
+$(e_M)_{M \in \Sub_s(S)}$ a \emph{collection} of decomposable elements, and denote it as
+$(e_M)_M$.
+
+\begin{definition}\label{def:IntScalingColl}
+The \emph{core} of the collection $(e_M)_{M}$ is the subsystem $C \in \Sub(S)$ for which $\phi(e_C)$ is maximal.%
+\footnote{If the maximum does not exist, we define the core to be the empty system $I$.}
+The \emph{core integration scaling} of the collection is $\intscaling(e_C)$.
+The \emph{core integration scaling} of a pair of collections $(e_M, f_M)_{M}$ is
+$\intscaling(e_{C}, f_{D})$, where $C, D$ are the cores of $(e_M)_M$ and $(f_M)_M$, respectively.
+\end{definition}
+
+
+\section{Constructions - Mechanism Level} \label{sec:alg-mech}
+
+Let $S \in \Sys$ be a physical system whose experience in a state $s \in \St(S)$ is to be determined.
+The first level of the algorithm involves fixing some subsystem $M \in \Sub_s(S)$, referred to as a `mechanism', and associating to it an object called its `concept' which belongs to the \emph{concept space}
+\begin{equation}\label{eq:Concepts}
+\Concepts(S) := \PExp(S) \times \PExp(S) \:.
+\end{equation}
+
+
+For every choice of $P \in \Sub_s(S)$, called a `purview', the repertoire values $\caus_s(M,P)$ and $\eff_s(M,P)$ are elements of $\PExp(S)$ with given decompositions over $\mathbb{D}_{M,P}$. Fixing $M$, they form collection of decomposable elements,
+\begin{align}\begin{split}\label{eq:CER}
+\caus_s(M) &:= (\caus_s(M,P))_{P \in \Sub(S)} \\
+\eff_s(M) &:= (\eff_s(M,P))_{P \in \Sub(S)} \:.
+\end{split}\end{align}
+
+
+The \emph{concept} of $M$ is then defined as the core integration scaling of this pair of collections,
+% each assignment,
+\begin{equation}\begin{split}\label{eq:DefConcept}
+\con{S,s}{M} := \textrm{Core integration scaling of }  \left(\caus_s(M), \eff_s(M) \right) \:.
+\end{split}\end{equation}
+It is an element of $\Concepts(S)$. Unravelling our definitions, the concept thus consists of the values of the cause and effect repertoires at their respective `core' purviews $P^c, P^e$, i.e.~those which make them `most integrated'. These values $\caus(M,P^c)$ and $\eff(M,P^e)$ are then each rescaled to have intensity given by the minima of their two integration levels.
+
+\section{Constructions - System Level} \label{sec:alg-sys}
+
+The second level of the algorithm specifies the experience of the system $S$ in state $s$.
+To this end, all concepts of a system are collected to form its \emph{Q-shape}, defined as
+\begin{equation} \label{eq:Q-Shape}
+\QShape_s(S) := (\con{S,s}{M})_{M \in \Sub_s(S)}  \:.
+\end{equation}
+This is an element of the space 
+\begin{equation}\label{eq:ExpS}
+\Exp(S) = \Concepts(S)^{n(S)} \:,
+\end{equation}
+where $n(S) := |\Sub_s(S)|$, which is finite and independent of the state $s$ according to our assumptions.
+We can also define a Q-shape for any cut of $S$. Let $z \in \mathbb D_S$ be a decomposition, $\cut{S}{z}$ the corresponding cut system and $\cut{s}{z}$ be the
+corresponding cut state. We define
+\begin{equation} \label{eq:Q-Shape-cuts}
+\QShape_s(\cut{S}{z}) := (\con{\cut{S}{z},\cut{s}{z}}{M})_{M \in \Sub_{\cut{s}{z}}(\cut{S}{z})} \:.
+\end{equation}
+Because of~\eqref{eq:cestructure}, and since the number of subsystems remains the same when cutting, 
+$\QShape_s(\cut{S}{z})$ is also an element of $\Exp(S)$.
+This gives a map
+\begin{align*}
+\bar \QShape_{S,s}: \mathbb D_S &\rightarrow \Exp(S)\\
+z &\mapsto \QShape_s(\cut{S}{z})
+\end{align*}
+which is a decomposition of $\QShape_s(S)$ over $\mathbb D_S$. Considering this map for every subsystem of $S$ gives a collection of decompositions
+defined as
+\begin{align*}
+\QShape(S,s) := \big( \bar \QShape_{M,s|_M} \big)_{M \in \Sub_s(S)} \:
+\end{align*}
+This is the system level-object of relevance and is what specifies the experience of a system according to IIT.
+
+\begin{definition}\label{def:ActualExp}
+The actual \emph{experience} of the system $S$ in the state $s \in \St(S)$ is
+\begin{equation}\label{eq:Exp}
+\Exp(S,s) :=  \textrm{Core integration scaling of } \QShape(S,s) \:.
+\end{equation}
+\end{definition}
+The definition implies that $\Exp(S,s) \in \Exp(M)$, where $M \in \Sub_s(S)$ is the core of the collection $\QShape(S,s)$, called the \emph{major complex}.
+It describes which part of the system $S$ is actually conscious.
+%Due to the last condition in Definition~\ref{def:cestructure}, we have $\Concepts(M)$
+In most cases there will be a natural embedding $\Exp(M) \hookrightarrow \Exp(S)$ for a subsystem $M$ of $S$, allowing us to view $\Exp(S,s)$ as an element of $\Exp(S)$ itself. Assuming this embedding
+to exist allows us to define an Integrated Information Theory concisely in the next section.
+
+\section{Integrated Information Theories}\label{sec:IITs}
+
+We can now summarise all that we have said about IITs.
+
+\begin{definition}
+An \emph{Integrated Information Theory} is determined as follows. The \emph{data} of the theory is a system class $\Sys$ along with a cause-effect structure. The theory then gives a mapping
+% An \emph{integrated information theory} is a mapping 
+\begin{equation} \label{eq:IIT-High-Level}
+\begin{tikzcd}
+\Sys\rar{\Exp} & \Expcat 
+\end{tikzcd}
+\end{equation}
+into the class $\Expcat$ of all experience spaces, sending each system $S$ to its space of experiences $\Exp(S)$ defined in~\eqref{eq:ExpS}, and a mapping
+\begin{align}\begin{split} \label{eq:IIT-On-States}
+\St(S) &\to \Exp(S) \\ 
+s &\mapsto \Exp(S,s) 
+\end{split}\end{align}
+which determines the experience of the system when in a state $s$, defined in~\eqref{eq:Exp}.
+
+\noindent The \emph{quantity} of the system's experience is given by 
+\begin{equation*}
+\Phi(S,s) := \norm \Exp(S,s) \norm \:,
+\end{equation*}
+and the quality of the system's experience is given by the normalized experience $\hat \Exp(S,s)$.
+The experience is located in the core of the collection $\QShape(S,s)$, called \emph{major complex}, which is a subsystem of $S$.
+\end{definition}
+
+
+In the next sections we specify the data of several example IITs.
+
+
