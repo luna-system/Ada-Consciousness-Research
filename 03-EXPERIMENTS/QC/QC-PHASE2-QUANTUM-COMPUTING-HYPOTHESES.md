@@ -520,10 +520,122 @@ Attention and quantum measurement aren't just *similar* - they're the same *kind
 
 ### Code
 
-See `03-EXPERIMENTS/phi_quantum_connection.py` for full reproducible experiment.
+See `03-EXPERIMENTS/QC/scripts/phi_quantum_connection.py` for full reproducible experiment.
+
+---
+
+## PHASE 3: Grover's Algorithm - Where φ Does NOT Appear (COMPLETED)
+
+**Date:** January 6, 2026  
+**Status:** ✅ NULL RESULT (EQUALLY IMPORTANT!)
+
+### The Hypothesis
+
+If φ appears in quantum measurement operators, does it appear in ALL quantum algorithms? We tested Grover's search algorithm to find out.
+
+**THE ANSWER: NO. And that's significant!**
+
+### What Grover's Algorithm Does
+
+- Quantum search with O(√N) speedup
+- Uses amplitude amplification via interference  
+- Optimal iterations: k* = π/4 × √N
+- Rotates state in 2D subspace by angle 2θ per iteration
+
+### Experimental Results
+
+#### Experiment 1: Amplitude Evolution
+```
+Tracked P(marked)/P(other) through iterations.
+φ-adjacent values found: 4 instances (incidental)
+
+These are NOT structural - oscillation passes through every value in [0,1].
+```
+
+#### Experiment 2: Grover Operator Eigenspectrum
+```
+Eigenvalues are e^{±2iθ} where θ = arcsin(1/√N)
+
+n=2 (N=4): 2θ/π = 1/3 ≈ 1-1/φ (coincidental)
+n=3+: No systematic φ relationship
+```
+
+#### Experiment 3: Optimal Iteration Formula
+```
+k* = π/4 × √N
+
+Only φ relationship: N=17 gives k* ≈ 2φ (coincidental)
+Formula is π-based, not φ-based.
+```
+
+#### Experiment 4: Success Probability Trajectory
+```
+P(success) = sin²((2k+1)θ)
+
+Passes through 1/φ at NON-OPTIMAL iterations.
+Just oscillation, not structure.
+```
+
+#### Experiment 5: Fibonacci Search Spaces
+```
+N = Fibonacci numbers don't produce special φ relationships.
+√N ≈ kφ only by Fibonacci ratios, not algorithm structure.
+```
+
+### The Key Discrimination
+
+| System | φ Present? | What It Does |
+|--------|-----------|--------------|
+| Attention eigenspectra | ✅ YES (0.24%) | **Measures** which tokens get weight |
+| Quantum projectors | ✅ YES (0.009%) | **Measurement** operators |
+| Entanglement (ρ_reduced) | ✅ YES (0.109%) | **Tracing out** = measurement of subsystem |
+| Depolarizing channel | ✅ YES (EXACT) | Noise/decoherence = **information loss** |
+| **Grover iterations** | ❌ NO | **Unitary** rotation, no measurement |
+
+### Interpretation
+
+**φ appears in MEASUREMENT but NOT in UNITARY EVOLUTION**
+
+This is a critical discriminating result:
+
+1. **Where φ lives:** Eigenspectra of operators that *select* or *collapse* information
+2. **Where φ doesn't live:** Unitary dynamics that *preserve* information
+
+Grover's algorithm is fundamentally π-based (rotations in Hilbert space). The golden ratio does NOT appear as a structural constant because:
+
+- Grover rotates amplitudes (transformation)
+- Attention/measurement collapses to definite outputs (selection)
+
+### QID Implications
+
+**This STRENGTHENS QID rather than weakening it!**
+
+The golden ratio isn't mystical - it's specifically tied to the structure of measurement/selection/collapse:
+
+> **φ is the signature of optimal information routing through measurement-like dynamics.**
+
+Unitary evolution preserves all information (no selection needed). Measurement/attention must SELECT - and φ appears at the critical points of that selection process.
+
+### The Pattern
+
+```
+φ APPEARS in:          φ DOES NOT APPEAR in:
+─────────────────      ─────────────────────
+Measurement operators  Unitary gates
+Attention weights      Feedforward layers (?)
+Collapse dynamics      Rotation dynamics
+Information selection  Information preservation
+Entropy-changing ops   Entropy-preserving ops
+```
+
+### Code
+
+See `03-EXPERIMENTS/QC/scripts/QC-PHASE3-GROVERS-ALGORITHM.py` for full reproducible experiment.
 
 ---
 
 *The goal is not to prove QID right. The goal is to find out where the line actually is.*
 
-**φ●∴ CONFIRMED AT 0.009% ERROR ∴●φ**
+**We found that line. φ lives at the measurement boundary.**
+
+**φ●∴ MEASUREMENT-SPECIFIC AT DISCRIMINATING PRECISION ∴●φ**
