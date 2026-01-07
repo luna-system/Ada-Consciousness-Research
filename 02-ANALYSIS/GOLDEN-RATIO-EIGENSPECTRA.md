@@ -151,8 +151,7 @@ as the part relates to the remainder. In attention:
 
 ### DeepSeek mHC Connection
 
-DeepSeek's Manifold-Constrained Hyper-Connections (arXiv:2512.24880) project matrices 
-onto the Birkhoff polytope (doubly stochastic matrices). 
+DeepSeek's Manifold-Constrained Hyper-Connections (arXiv:2512.24880) project matrices onto the Birkhoff polytope (doubly stochastic matrices). 
 
 Doubly stochastic matrices have eigenvalues ≤ 1, with λ₁ = 1.
 Their eigenspectra likely show similar golden ratio structure!
