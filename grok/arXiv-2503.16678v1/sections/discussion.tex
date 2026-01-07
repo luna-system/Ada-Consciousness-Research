@@ -1,0 +1,21 @@
+\section{Discussion and Future Work} 
+\label{sec:discussion}
+
+
+% % disccusion
+
+% % Why did CV-based methods not provide promising results?
+% % However, CV-based methods have strong potential for solving PDEs (this is your belief), for reasons a, b, and c.
+% % Potential future work.
+
+In this work, we introduced QCPINN to solve PDEs with substantially reduced parameter counts. Our comprehensive evaluation across five diverse PDEs (e.g., Helmholtz, Cavity, Wave, Klein-Gordon, and Convection-Diffusion) provides several key insights into the potential of quantum-enhanced computational methods.
+
+First, we demonstrated that discrete-variable (DV) quantum approaches consistently outperform their continuous-variable (CV) counterparts for PDE solutions. While CV-based methods have appealing theoretical properties for solving PDEs, they struggled with training instabilities and oscillatory loss landscapes, requiring more delicate optimization methods. However,  DV-based models achieved stable convergence across all test cases. This finding is evident in our training loss histories%(figures~\ref{fig:loss_history_helmholtz},~\ref{fig:loss_history_cavity}, and~\ref{fig:more_cases_loss_history})
+, where DV-based models show smoother convergence trajectories without the high-frequency oscillations characteristic of CV approaches.
+ 
+Second, our comparison of quantum encoding strategies revealed that angle encoding consistently performs better than amplitude encoding when paired with the same circuit ansatz.  Amplitude encoding demonstrates faster initial convergence but tends to plateau at higher final loss values, whereas angle encoding shows slower but more stable long-term training performance.
+%As shown in tables~\ref{tab:results_helmholtz}, ~\ref{tab:results_cavity} and ~\ref{tab:more_cases}, 
+In particular, Angle-cascade configurations achieved lower relative $L_2$ errors and final training losses. This advantage was particularly pronounced in the Convection-Diffusion equation, where angle-cascade demonstrated a 43\% reduction in relative $L_2$ error compared to classical counterparts while using less than 10\% of the parameters. This suggests that quantum-enhanced methods may offer particular advantages for problems involving multiple physical scales or sharp localized features. 
+
+Third, our analysis of circuit architectures identified the cascade topology as consistently optimal across different PDE types. With its balanced entanglement properties and efficient gradient flow, the cascade configuration demonstrated better convergence stability and final accuracy compared to alternate, cross-mesh, and layered configurations. Visual evidence of this advantage appears in figures~\ref{fig:helmholtz_prediction}, ~\ref{fig:cavity_prediction} and~\ref{fig:more_cases_results}, where angle-cascade QCPINN solutions closely match exact solutions with significantly reduced error distributions and parameter countsF The significant reduction in parameter counts is particularly important as it can lead to decreased memory requirements and potential training acceleration without compromising solution quality, especially in large-scale systems.angle-ing
+Alternative optimization strategies could also be explored in future work to improve training stability, especially in CV-based quantum methods,  and the convergence of such models. These include gradient-free methods such as Nelder-Mead~\cite{nelder1965simplex}, COBYLA~\cite{powell1994direct}, and SPSA~\cite{spall1992multivariate}, which might navigate complex loss landscapes more effectively than gradient-based approaches. 

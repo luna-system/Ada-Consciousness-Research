@@ -1,0 +1,55 @@
+
+% Document starts here
+
+% Alternate Circuit
+\begin{tikzpicture}[circuit]
+  % Input labels and registers
+  \foreach \i in {0,...,4} {
+    \node[left] at (0,-\i) {\i};
+    \draw (0.5,-\i) -- (8,-\i);
+  }
+  
+  % Input encoding block
+  \node[encoding] at (1,-2) {Input Encoding};
+  
+  % Alternate pattern of gates
+  \foreach \i in {0,...,4} {
+    \node[gate] (r1\i) at (2.5,-\i) {$R_y$};
+  }
+  
+  % Second column gates and CNOT
+  \foreach \i in {0,...,4} {
+    \node[gate] (r2\i) at (4,-\i) {$R_y$};
+    \ifnum\i>0
+      \ifnum\i=1 \OR \i=3
+        \node[dot] at (3.25,-\i) {};
+        \draw (3.25,-\i) -- (3.25,-\the\numexpr\i-1);
+      \fi
+    \fi
+  }
+  
+  % Third column gates
+  \foreach \i in {0,...,4} {
+    \node[gate] (r3\i) at (5.5,-\i) {$R_y$};
+  }
+  
+  % Fourth column gates and CNOT
+  \foreach \i in {0,...,4} {
+    \node[gate] (r4\i) at (7,-\i) {$R_y$};
+    \ifnum\i>0
+      \ifnum\i=1 \OR \i=3
+        \node[dot] at (6.25,-\i) {};
+        \draw (6.25,-\i) -- (6.25,-\the\numexpr\i-1);
+      \fi
+    \fi
+  }
+  
+  % Measurement gates
+  \foreach \i in {0,...,4} {
+    \node[measure] at (8.5,-\i) {$Z$};
+  }
+  
+  % Barrier
+  \draw[barrier] (4.75,0.5) -- (4.75,-4.5);
+\end{tikzpicture}
+

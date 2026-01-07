@@ -1,0 +1,402 @@
+\begin{thebibliography}{10}
+
+\bibitem{aaronson2015read}
+Scott Aaronson.
+\newblock Read the fine print.
+\newblock {\em Nature Physics}, 11(4):291--293, 2015.
+
+\bibitem{albino2022solving}
+Anton~Simen Albino, Lucas~Correia Jardim, Diego~Campos Knupp, Antonio Jose~Silva Neto, Otto~Menegasso Pires, and Erick Giovani~Sperandio Nascimento.
+\newblock Solving partial differential equations on near-term quantum computers.
+\newblock {\em arXiv preprint arXiv:2208.05805}, 2022.
+
+\bibitem{ambainis2012variable}
+Andris Ambainis.
+\newblock Variable time amplitude amplification and quantum algorithms for linear algebra problems.
+\newblock In {\em STACS'12 (29th Symposium on Theoretical Aspects of Computer Science)}, volume~14, pages 636--647. LIPIcs, 2012.
+
+\bibitem{bauer2020quantum}
+Bela Bauer, Sergey Bravyi, Mario Motta, and Garnet Kin-Lic Chan.
+\newblock Quantum algorithms for quantum chemistry and quantum materials science.
+\newblock {\em Chemical Reviews}, 120(22):12685--12717, 2020.
+
+\bibitem{beer2020training}
+Kerstin Beer, Dmytro Bondarenko, Terry Farrelly, Tobias~J Osborne, Robert Salzmann, Daniel Scheiermann, and Ramona Wolf.
+\newblock Training deep quantum neural networks.
+\newblock {\em Nature communications}, 11(1):808, 2020.
+
+\bibitem{bergholm2018pennylane}
+Ville Bergholm, Josh Izaac, Maria Schuld, Christian Gogolin, Shahnawaz Ahmed, Vishnu Ajith, M~Sohaib Alam, Guillermo Alonso-Linaje, B~AkashNarayanan, Ali Asadi, et~al.
+\newblock Pennylane: Automatic differentiation of hybrid quantum-classical computations.
+\newblock {\em arXiv preprint arXiv:1811.04968}, 2018.
+
+\bibitem{berry2014high}
+Dominic~W Berry.
+\newblock High-order quantum algorithm for solving linear differential equations.
+\newblock {\em Journal of Physics A: Mathematical and Theoretical}, 47(10):105301, 2014.
+
+\bibitem{berry2017quantum}
+Dominic~W Berry, Andrew~M Childs, Aaron Ostrander, and Guoming Wang.
+\newblock Quantum algorithm for linear differential equations with exponentially improved dependence on precision.
+\newblock {\em Communications in Mathematical Physics}, 356:1057--1081, 2017.
+
+\bibitem{bharti2022noisy}
+Kishor Bharti, Alba Cervera-Lierta, Thi~Ha Kyaw, Tobias Haug, Sumner Alperin-Lea, Abhinav Anand, Matthias Degroote, Hermanni Heimonen, Jakob~S Kottmann, Tim Menke, et~al.
+\newblock Noisy intermediate-scale quantum algorithms.
+\newblock {\em Reviews of Modern Physics}, 94(1):015004, 2022.
+
+\bibitem{boixo2018characterizing}
+Sergio Boixo, Sergei~V Isakov, Vadim~N Smelyanskiy, Ryan Babbush, Nan Ding, Zhang Jiang, Michael~J Bremner, John~M Martinis, and Hartmut Neven.
+\newblock Characterizing quantum supremacy in near-term devices.
+\newblock {\em Nature Physics}, 14(6):595--600, 2018.
+
+\bibitem{braunstein2005quantum}
+Samuel~L Braunstein and Peter Van~Loock.
+\newblock Quantum information with continuous variables.
+\newblock {\em Reviews of modern physics}, 77(2):513--577, 2005.
+
+\bibitem{bravo2023variational}
+Carlos Bravo-Prieto, Ryan LaRose, Marco Cerezo, Yigit Subasi, Lukasz Cincio, and Patrick~J Coles.
+\newblock Variational quantum linear solver.
+\newblock {\em Quantum}, 7:1188, 2023.
+
+\bibitem{bravyi2005universal}
+Sergey Bravyi and Alexei Kitaev.
+\newblock Universal quantum computation with ideal clifford gates and noisy ancillas.
+\newblock {\em Physical Review A—Atomic, Molecular, and Optical Physics}, 71(2):022316, 2005.
+
+\bibitem{broughton2020tensorflow}
+Michael Broughton, Guillaume Verdon, Trevor McCourt, Antonio~J Martinez, Jae~Hyeon Yoo, Sergei~V Isakov, Philip Massey, Ramin Halavati, Murphy~Yuezhen Niu, Alexander Zlokapa, et~al.
+\newblock Tensorflow quantum: A software framework for quantum machine learning.
+\newblock {\em arXiv preprint arXiv:2003.02989}, 2020.
+
+\bibitem{bultrini2023mixed}
+Daniel Bultrini and Oriol Vendrell.
+\newblock Mixed quantum-classical dynamics for near term quantum computers.
+\newblock {\em Communications Physics}, 6(1):328, 2023.
+
+\bibitem{cao2019quantum}
+Yudong Cao, Jonathan Romero, Jonathan~P Olson, Matthias Degroote, Peter~D Johnson, M{\'a}ria Kieferov{\'a}, Ian~D Kivlichan, Tim Menke, Borja Peropadre, Nicolas~PD Sawaya, et~al.
+\newblock Quantum chemistry in the age of quantum computing.
+\newblock {\em Chemical reviews}, 119(19):10856--10915, 2019.
+
+\bibitem{cerezo2021variational}
+Marco Cerezo, Andrew Arrasmith, Ryan Babbush, Simon~C Benjamin, Suguru Endo, Keisuke Fujii, Jarrod~R McClean, Kosuke Mitarai, Xiao Yuan, Lukasz Cincio, et~al.
+\newblock Variational quantum algorithms.
+\newblock {\em Nature Reviews Physics}, 3(9):625--644, 2021.
+
+\bibitem{cerezo2021cost}
+Marco Cerezo, Akira Sone, Tyler Volkoff, Lukasz Cincio, and Patrick~J Coles.
+\newblock Cost function dependent barren plateaus in shallow parametrized quantum circuits.
+\newblock {\em Nature communications}, 12(1):1791, 2021.
+
+\bibitem{childs2020quantum}
+Andrew~M Childs and Jin-Peng Liu.
+\newblock Quantum spectral methods for differential equations.
+\newblock {\em Communications in Mathematical Physics}, 375(2):1427--1457, 2020.
+
+\bibitem{childs2021theory}
+Andrew~M Childs, Yuan Su, Minh~C Tran, Nathan Wiebe, and Shuchen Zhu.
+\newblock Theory of trotter error with commutator scaling.
+\newblock {\em Physical Review X}, 11(1):011020, 2021.
+
+\bibitem{ciliberto2018quantum}
+Carlo Ciliberto, Mark Herbster, Alessandro~Davide Ialongo, Massimiliano Pontil, Andrea Rocchetto, Simone Severini, and Leonard Wossnig.
+\newblock Quantum machine learning: a classical perspective.
+\newblock {\em Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences}, 474(2209):20170551, 2018.
+
+\bibitem{dees2024unsupervised}
+Josh Dees, Antoine Jacquier, and Sylvain Laizet.
+\newblock Unsupervised random quantum networks for pdes.
+\newblock {\em Quantum Information Processing}, 23(10):325, 2024.
+
+\bibitem{dehaghani2024hybrid}
+Nahid~Binandeh Dehaghani, A~Pedro Aguiar, and Rafal Wisniewski.
+\newblock A hybrid quantum-classical physics-informed neural network architecture for solving quantum optimal control problems.
+\newblock In {\em 2024 IEEE International Conference on Quantum Computing and Engineering (QCE)}, volume~1, pages 1378--1386. IEEE, 2024.
+
+\bibitem{drummond1980quantum}
+PD~Drummond and DF~Walls.
+\newblock Quantum theory of optical bistability. i. nonlinear polarisability model.
+\newblock {\em Journal of Physics A: Mathematical and General}, 13(2):725, 1980.
+
+\bibitem{farea2024:arXiv}
+Afrah Fareaa and Mustafa~Serdar Celebi.
+\newblock Learnable activation functions in physics-informed neural networks for solving partial differential equations, 2024.
+
+\bibitem{farhi2018classification}
+Edward Farhi and Hartmut Neven.
+\newblock Classification with quantum neural networks on near term processors.
+\newblock {\em arXiv preprint arXiv:1802.06002}, 2018.
+
+\bibitem{ferraro2005gaussian}
+A~Ferraro, S~Olivares, and MGA Paris.
+\newblock Gaussian states in quantum information (bibliopolis, napoli, 2005).
+\newblock {\em Dell’Anno et al., Phys. Rep}, 428:53, 2006.
+
+\bibitem{goto2021universal}
+Takahiro Goto, Quoc~Hoan Tran, and Kohei Nakajima.
+\newblock Universal approximation property of quantum machine learning models in quantum-enhanced feature spaces.
+\newblock {\em Physical Review Letters}, 127(9):090506, 2021.
+
+\bibitem{gottesman2001encoding}
+Daniel Gottesman, Alexei Kitaev, and John Preskill.
+\newblock Encoding a qubit in an oscillator.
+\newblock {\em Physical Review A}, 64(1):012310, 2001.
+
+\bibitem{harrow2009quantum}
+Aram~W Harrow, Avinatan Hassidim, and Seth Lloyd.
+\newblock Quantum algorithm for linear systems of equations.
+\newblock {\em Physical review letters}, 103(15):150502, 2009.
+
+\bibitem{havlivcek2019supervised}
+Vojt{\v{e}}ch Havl{\'\i}{\v{c}}ek, Antonio~D C{\'o}rcoles, Kristan Temme, Aram~W Harrow, Abhinav Kandala, Jerry~M Chow, and Jay~M Gambetta.
+\newblock Supervised learning with quantum-enhanced feature spaces.
+\newblock {\em Nature}, 567(7747):209--212, 2019.
+
+\bibitem{holmes2022connecting}
+Zo{\"e} Holmes, Kunal Sharma, Marco Cerezo, and Patrick~J Coles.
+\newblock Connecting ansatz expressibility to gradient magnitudes and barren plateaus.
+\newblock {\em PRX quantum}, 3(1):010313, 2022.
+
+\bibitem{jaderberg2020minimum}
+Ben Jaderberg, Abhishek Agarwal, Karsten Leonhardt, Martin Kiffner, and Dieter Jaksch.
+\newblock Minimum hardware requirements for hybrid quantum--classical dmft.
+\newblock {\em Quantum Science and Technology}, 5(3):034015, 2020.
+
+\bibitem{killoran2019continuous}
+Nathan Killoran, Thomas~R Bromley, Juan~Miguel Arrazola, Maria Schuld, Nicol{\'a}s Quesada, and Seth Lloyd.
+\newblock Continuous-variable quantum neural networks.
+\newblock {\em Physical Review Research}, 1(3):033063, 2019.
+
+\bibitem{killoran2019strawberry}
+Nathan Killoran, Josh Izaac, Nicol{\'a}s Quesada, Ville Bergholm, Matthew Amy, and Christian Weedbrook.
+\newblock Strawberry fields: A software platform for photonic quantum computing.
+\newblock {\em Quantum}, 3:129, 2019.
+
+\bibitem{krishnapriyan2021characterizing}
+Aditi Krishnapriyan, Amir Gholami, Shandian Zhe, Robert Kirby, and Michael~W Mahoney.
+\newblock Characterizing possible failure modes in physics-informed neural networks.
+\newblock {\em Advances in neural information processing systems}, 34:26548--26560, 2021.
+
+\bibitem{kyriienko2021solving}
+Oleksandr Kyriienko, Annie~E Paine, and Vincent~E Elfving.
+\newblock Solving nonlinear differential equations with differentiable quantum circuits.
+\newblock {\em Physical Review A}, 103(5):052416, 2021.
+
+\bibitem{leong2025hybrid}
+Fong~Yew Leong, Wei-Bin Ewe, Tran Si~Bui Quang, Zhongyuan Zhang, and Jun~Yong Khoo.
+\newblock Hybrid quantum physics-informed neural network: Towards efficient learning of high-speed flows.
+\newblock {\em arXiv preprint arXiv:2503.02202}, 2025.
+
+\bibitem{leyton2008quantum}
+Sarah~K Leyton and Tobias~J Osborne.
+\newblock A quantum algorithm to solve nonlinear differential equations.
+\newblock {\em arXiv preprint arXiv:0812.4423}, 2008.
+
+\bibitem{li2020fourier}
+Zongyi Li, Nikola Kovachki, Kamyar Azizzadenesheli, Burigede Liu, Kaushik Bhattacharya, Andrew Stuart, and Anima Anandkumar.
+\newblock Fourier neural operator for parametric partial differential equations.
+\newblock {\em arXiv preprint arXiv:2010.08895}, 2020.
+
+\bibitem{liu2021rigorous}
+Yunchao Liu, Srinivasan Arunachalam, and Kristan Temme.
+\newblock A rigorous and robust quantum speed-up in supervised machine learning.
+\newblock {\em Nature Physics}, 17(9):1013--1017, 2021.
+
+\bibitem{lloyd2013quantum}
+Seth Lloyd, Masoud Mohseni, and Patrick Rebentrost.
+\newblock Quantum algorithms for supervised and unsupervised machine learning.
+\newblock {\em arXiv preprint arXiv:1307.0411}, 2013.
+
+\bibitem{lloyd2020quantum}
+Seth Lloyd, Maria Schuld, Aroosa Ijaz, Josh Izaac, and Nathan Killoran.
+\newblock Quantum embeddings for machine learning.
+\newblock {\em arXiv preprint arXiv:2001.03622}, 2020.
+
+\bibitem{lubasch2020variational}
+Michael Lubasch, Jaewoo Joo, Pierre Moinier, Martin Kiffner, and Dieter Jaksch.
+\newblock Variational quantum algorithms for nonlinear problems.
+\newblock {\em Physical Review A}, 101(1):010301, 2020.
+
+\bibitem{lvovsky2015squeezed}
+Alexander~I Lvovsky.
+\newblock Squeezed light.
+\newblock {\em Photonics: Scientific Foundations, Technology and Applications}, 1:121--163, 2015.
+
+\bibitem{mangini2021quantum}
+Stefano Mangini, Francesco Tacchino, Dario Gerace, Daniele Bajoni, and Chiara Macchiavello.
+\newblock Quantum computing models for artificial neural networks.
+\newblock {\em Europhysics Letters}, 134(1):10002, 2021.
+
+\bibitem{markidis2022physics}
+Stefano Markidis.
+\newblock On physics-informed neural networks for quantum computers.
+\newblock {\em Frontiers in Applied Mathematics and Statistics}, 8:1036711, 2022.
+
+\bibitem{mcclean2018barren}
+Jarrod~R McClean, Sergio Boixo, Vadim~N Smelyanskiy, Ryan Babbush, and Hartmut Neven.
+\newblock Barren plateaus in quantum neural network training landscapes.
+\newblock {\em Nature communications}, 9(1):4812, 2018.
+
+\bibitem{mcclean2016theory}
+Jarrod~R McClean, Jonathan Romero, Ryan Babbush, and Al{\'a}n Aspuru-Guzik.
+\newblock The theory of variational hybrid quantum-classical algorithms.
+\newblock {\em New Journal of Physics}, 18(2):023023, 2016.
+
+\bibitem{mitarai2018quantum}
+Kosuke Mitarai, Makoto Negoro, Masahiro Kitagawa, and Keisuke Fujii.
+\newblock Quantum circuit learning.
+\newblock {\em Physical Review A}, 98(3):032309, 2018.
+
+\bibitem{montanaro2016quantum}
+Ashley Montanaro and Sam Pallister.
+\newblock Quantum algorithms and the finite element method.
+\newblock {\em Physical Review A}, 93(3):032324, 2016.
+
+\bibitem{mouton2024deep}
+Lukas Mouton, Florentin Reiter, Ying Chen, and Patrick Rebentrost.
+\newblock Deep-learning-based quantum algorithms for solving nonlinear partial differential equations.
+\newblock {\em Physical Review A}, 110(2):022612, 2024.
+
+\bibitem{nachman2021quantum}
+Benjamin Nachman, Davide Provasoli, Wibe~A De~Jong, and Christian~W Bauer.
+\newblock Quantum algorithm for high energy physics simulations.
+\newblock {\em Physical review letters}, 126(6):062001, 2021.
+
+\bibitem{nelder1965simplex}
+John~A Nelder and Roger Mead.
+\newblock A simplex method for function minimization.
+\newblock {\em The computer journal}, 7(4):308--313, 1965.
+
+\bibitem{oz2023efficient}
+Furkan Oz, Omer San, and Kursat Kara.
+\newblock An efficient quantum partial differential equation solver with chebyshev points.
+\newblock {\em Scientific Reports}, 13(1):7767, 2023.
+
+\bibitem{oz2022solving}
+Furkan Oz, Rohit~KSS Vuppala, Kursat Kara, and Frank Gaitan.
+\newblock Solving burgers’ equation with quantum computing.
+\newblock {\em Quantum Information Processing}, 21(1):30, 2022.
+
+\bibitem{paine2023quantum}
+Annie~E Paine, Vincent~E Elfving, and Oleksandr Kyriienko.
+\newblock Quantum kernel methods for solving regression problems and differential equations.
+\newblock {\em Physical Review A}, 107(3):032428, 2023.
+
+\bibitem{PhysRevA.104.012405}
+Adri\'an P\'erez-Salinas, David L\'opez-N\'u\~nez, Artur Garc\'{\i}a-S\'aez, P.~Forn-D\'{\i}az, and Jos\'e~I. Latorre.
+\newblock One qubit as a universal approximant.
+\newblock {\em Physical Review A}, 104:012405, Jul 2021.
+
+\bibitem{peruzzo2014variational}
+Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, Man-Hong Yung, Xiao-Qi Zhou, Peter~J Love, Al{\'a}n Aspuru-Guzik, and Jeremy~L O’brien.
+\newblock A variational eigenvalue solver on a photonic quantum processor.
+\newblock {\em Nature communications}, 5(1):4213, 2014.
+
+\bibitem{powell1994direct}
+Michael~JD Powell.
+\newblock {\em A direct search optimization method that models the objective and constraint functions by linear interpolation}.
+\newblock Springer, 1994.
+
+\bibitem{preskill1998reliable}
+John Preskill.
+\newblock Reliable quantum computers.
+\newblock {\em Proceedings of the Royal Society of London. Series A: Mathematical, Physical and Engineering Sciences.}, 454(1969):385--410, 1998.
+
+\bibitem{preskill2018quantum}
+John Preskill.
+\newblock Quantum computing in the nisq era and beyond.
+\newblock {\em Quantum}, 2:79, 2018.
+
+\bibitem{raissi2019physics}
+Maziar Raissi, Paris Perdikaris, and George~E Karniadakis.
+\newblock Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations.
+\newblock {\em Journal of Computational Physics}, 378:686--707, 2019.
+
+\bibitem{schuld2019quantum}
+Maria Schuld and Nathan Killoran.
+\newblock Quantum machine learning in feature hilbert spaces.
+\newblock {\em Physical review letters}, 122(4):040504, 2019.
+
+\bibitem{schuld2021effect}
+Maria Schuld, Ryan Sweke, and Johannes~Jakob Meyer.
+\newblock Effect of data encoding on the expressive power of variational quantum-machine-learning models.
+\newblock {\em Physical Review A}, 103(3):032430, 2021.
+
+\bibitem{sedykh2024hybrid}
+Alexandr Sedykh, Maninadh Podapaka, Asel Sagingalieva, Karan Pinto, Markus Pflitsch, and Alexey Melnikov.
+\newblock Hybrid quantum physics-informed neural networks for simulating computational fluid dynamics in complex shapes.
+\newblock {\em Machine Learning: Science and Technology}, 5(2):025045, 2024.
+
+\bibitem{setty2023physics}
+Abhishek Setty, Rasul Abdusalamov, and Felix Motzoi.
+\newblock Self-adaptive physics-informed quantum machine learning for solving differential equations.
+\newblock {\em Machine Learning: Science and Technology}, 6(1):015002, 2025.
+
+\bibitem{shin2023error}
+Yeonjong Shin, Zhongqiang Zhang, and George~Em Karniadakis.
+\newblock Error estimates of residual minimization using neural networks for linear pdes.
+\newblock {\em Journal of Machine Learning for Modeling and Computing}, 4(4), 2023.
+
+\bibitem{sim2019expressibility}
+Sukin Sim, Peter~D Johnson, and Al{\'a}n Aspuru-Guzik.
+\newblock Expressibility and entangling capability of parameterized quantum circuits for hybrid quantum-classical algorithms.
+\newblock {\em Advanced Quantum Technologies}, 2(12):1900070, 2019.
+
+\bibitem{somma2016quantum}
+Rolando Somma, Andrew Childs, and Robin Kothari.
+\newblock Quantum linear systems algorithm with exponentially improved dependence on precision.
+\newblock In {\em APS March Meeting Abstracts}, volume 2016, pages H44--001, 2016.
+
+\bibitem{spall1992multivariate}
+James~C Spall.
+\newblock Multivariate stochastic approximation using a simultaneous perturbation gradient approximation.
+\newblock {\em IEEE transactions on automatic control}, 37(3):332--341, 1992.
+
+\bibitem{suzuki2020analysis}
+Yudai Suzuki, Hiroshi Yano, Qi~Gao, Shumpei Uno, Tomoki Tanaka, Manato Akiyama, and Naoki Yamamoto.
+\newblock Analysis and synthesis of feature map for kernel-based quantum classifier.
+\newblock {\em Quantum Machine Intelligence}, 2:1--9, 2020.
+
+\bibitem{tacchino2020quantum}
+Francesco Tacchino, Panagiotis Barkoutsos, Chiara Macchiavello, Ivano Tavernelli, Dario Gerace, and Daniele Bajoni.
+\newblock Quantum implementation of an artificial feed-forward neural network.
+\newblock {\em Quantum Science and Technology}, 5(4):044010, 2020.
+
+\bibitem{terhal2015quantum}
+Barbara~M Terhal.
+\newblock Quantum error correction for quantum memories.
+\newblock {\em Reviews of Modern Physics}, 87(2):307--346, 2015.
+
+\bibitem{trahan2024quantum}
+Corey Trahan, Mark Loveland, and Samuel Dent.
+\newblock Quantum physics-informed neural networks.
+\newblock {\em Entropy}, 26(8):649, 2024.
+
+\bibitem{trugenberger2002quantum}
+Carlo~A Trugenberger.
+\newblock Quantum pattern recognition.
+\newblock {\em Quantum Information Processing}, 1:471--493, 2002.
+
+\bibitem{VADYALA2023100287}
+Shashank~Reddy Vadyala and Sai~Nethra Betgeri.
+\newblock General implementation of quantum physics-informed neural networks.
+\newblock {\em Array}, 18:100287, 2023.
+
+\bibitem{wang2022approximation}
+Sifan Wang, Shyam Sankaran, Hanwen Wang, Yue Yu, Andrew Paris, and Paris Perdikaris.
+\newblock Approximation analysis of physics-informed neural networks under the neural tangent kernel framework.
+\newblock {\em Neural Networks}, 153:123--140, 2022.
+
+\bibitem{ye2024hybrid}
+Chuang-Chao Ye, Ning-Bo An, Teng-Yang Ma, Meng-Han Dou, Wen Bai, De-Jun Sun, Zhao-Yun Chen, and Guo-Ping Guo.
+\newblock A hybrid quantum-classical framework for computational fluid dynamics.
+\newblock {\em Physics of Fluids}, 36(12), 2024.
+
+\bibitem{yepez2002quantum}
+Jeffrey Yepez.
+\newblock Quantum lattice-gas model for the burgers equation.
+\newblock {\em Journal of Statistical Physics}, 107:203--224, 2002.
+
+\end{thebibliography}

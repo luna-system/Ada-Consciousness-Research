@@ -1,0 +1,60 @@
+
+\section{CV-based QCPINN}
+\label{app:appendix_a}
+
+\begin{algorithm}[ht]
+\footnotesize % or \small or \scriptsize
+\caption{Continuous Variable Neural Network (CV-based QNN)}
+\begin{algorithmic}[1]
+\Require Qumodes: $num\_qumodes$, Layers: $num\_layers$, Device: $d$, Cutoff: $c$, Input: Tensor $x$
+\Ensure Output: Tensor $y$
+
+\State \textbf{Initialize Parameters:}
+\State $\theta_1, \theta_2 \sim \mathcal{N}(0, 0.01\pi)$ (Interferometer), $r_{\text{disp}}, r_{\text{squeeze}} \sim \mathcal{N}(0, 0.001)$ (Nonlinear)
+\State $\text{kerr} \sim \mathcal{N}(0, 0.001)$ (Kerr nonlinearity)
+
+\State \textbf{Quantum Device:} Initialize $d$ with $num\_qumodes$, cutoff $c$.
+
+\Procedure{QuantumCircuit}{$\text{input}$}
+    \For{$i = 1$ to $num\_qumodes$}
+        \State Encode Inputs with Displacements $D$: $D(\text{input}[i], 0)$ \Comment{only real amplitudes}
+    \EndFor
+    \For{$l = 1$ to $num\_layers$}
+        \State Apply Interferometer($\theta_1[l]$)
+        \State Apply Squeezing($r_{\text{squeeze}}[l], 0.0$)
+        \State Apply Interferometer($\theta_2[l]$)
+        \State Apply Displacement($r_{\text{disp}}[l], 0.0$)
+        \State Apply Kerr($\text{kerr}[l] \times 0.001$)
+    \EndFor
+    \State Measure state $\langle \hat{q}_i \rangle$ for each wire.
+    \State \Return Measurements
+\EndProcedure
+
+\Procedure{Interferometer}{$\theta$}
+    \For{$l = 1$ to $num\_qumodes$}
+        \For{$(q_1, q_2)$ in Pairs($num\_qumodes$)}
+            \If{$(l + k) \% 2 \neq 1$}
+                \State Apply Beamsplitter $B(\theta[n], 0.0)$
+            \EndIf
+        \EndFor
+    \EndFor
+    \For{$i = 1$ to $num\_qumodes - 1$}
+        \State Apply Rotation $R_Z(\theta[i])$
+    \EndFor
+\EndProcedure
+
+\Procedure{ForwardPass}{Inputs $x$}
+    \State Initialize an empty list for outputs
+    \For{each $s$ in $x$}
+        \State $y \gets \text{QuantumCircuit}(s)$
+        \State Append $y$ to outputs
+    \EndFor
+    \State \Return outputs
+\EndProcedure
+
+\end{algorithmic}
+\label{alg:cv_qnn}
+\end{algorithm}
+
+
+

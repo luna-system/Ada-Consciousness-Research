@@ -1,0 +1,31 @@
+\section{Introduction}
+
+Recent advancements in machine learning have transformed approaches to solving PDEs, with physics-informed neural networks (PINNs) emerging as an innovative methodology. PINNs embed physical laws directly into the architecture of neural networks, thereby eliminating the need for labeled training data while strictly enforcing physical constraints. Unlike traditional numerical methods that rely on mesh discretization and often grapple with the curse of dimensionality, PINNs provide mesh-free approximations that can generalize effectively across differing initial conditions and boundary constraints. However, classical PINNs face limitations in accurately modeling complex, multi-scale phenomena. They often struggle with stiff systems, the capture of sharp gradients, and efficient navigation of high-dimensional parameter spaces - challenges that could benefit from the unique capabilities of quantum computing.
+
+Quantum computing, with its ability to process high-dimensional data and exploit quantum principles such as superposition and entanglement, presents a promising paradigm for overcoming these computational bottlenecks in scientific computing. Quantum algorithms, like the Harrow-Hassidim-Lloyd (HHL) algorithm, have demonstrated theoretical exponential speedups for specific linear systems, and variational quantum algorithms provide practical near-term solutions~\cite{mitarai2018quantum, havlivcek2019supervised, cerezo2021variational}. Moreover, recent developments indicate that quantum neural networks possess an expressive power that could significantly enhance the learning capabilities for modeling complex physical systems.
+% \red{1-3 sentences stating the gap in the literature that non-experts also understand. See the Writing In Sciences video on how to write an Introduction.}
+% %
+% \green{
+However, despite these advancements, the integration of quantum computing with PINNs remains largely unexplored. Existing research has yet to fully establish whether quantum-enhanced models can consistently outperform classical PINNs in real-world applications.
+% }
+% Ongoing advancements in quantum computing continue to reveal its potential for addressing computationally intensive problems, including the solution of partial differential equations (PDEs). Quantum algorithms can capture intricate patterns and model complex systems beyond the reach of classical algorithms, e.g., deep neural networks and physics-informed neural networks (PINNs). This advantage primarily stems from their ability to exploit fundamental quantum principles such as superposition, entanglement, and interference, as well as their access to an exponentially large feature spaces~\cite{mitarai2018quantum,havlivcek2019supervised,cerezo2021variational}.
+
+
+In light of this argument, we propose a Quantum-Classical Physics-Informed Neural Network (QCPINN). This hybrid architecture integrates quantum computing circuits with classical neural networks to address the limitations faced by traditional methods in solving PDEs. By leveraging the complementary strengths of both paradigms (e.g., classical computing's robustness and quantum computing's enhanced expressiveness and inherent parallelism), we systematically explore various quantum circuit architectures, including discrete-variable (qubit-based) and continuous-variable implementations across multiple circuit topologies (Alternate, Cascade, Cross-mesh, and Layered).  
+
+%- which complements the aforementioned studies by introducing a comprehensive hybrid framework - to solve a broader class of general PDEs. As illustrated in figure~\ref{fig:architecture}, we systematically explore multiple quantum circuit architectures—Alternate, Cascade, Cross-mesh, and Layered—across both discrete-variable (DV) and continuous-variable (CV) paradigms. This enables a detailed analysis of their respective strengths while benchmarking accuracy, convergence, and parameter efficiency across five diverse PDEs, including Helmholtz, Klein-Gordon, and Convection-Diffusion equations (see Section~\ref{sec:results}). By providing both theoretical insights and practical guidelines, our work contributes to the development of more scalable and effective quantum-enhanced PDE solvers for scientific computing.
+
+In summary, our contributions include the following.
+
+\begin{itemize}
+    \item Development of QCPINN, a hybrid architecture integrating quantum computing circuits with classical neural networks to solve general PDEs, utilizing both discrete-variable (DV) and continuous-variable (CV) paradigms through optimized circuit topologies that balance entanglement and training stability.
+    
+    \item Evaluation of fundamental PDEs like Helmholtz and Lid-driven Cavity Flow equations, using both classical PINN and QCPINN variants, comparing 
+    solution accuracy, convergence rates, and parameter efficiency, and also extending the analysis to Klein-Gordon, Wave, and Convection-diffusion equations.
+    
+    \item Analysis of quantum encoding strategies (amplitude vs. angle) and circuit architectures (Alternate, Cascade, Cross-mesh, Layered).
+
+\end{itemize}
+
+All components have been developed as open-source software, and the code supporting this work is publicly available on GitHub at \url{https://github.com/afrah/QCPINN} for broader engagement with the community. 
+

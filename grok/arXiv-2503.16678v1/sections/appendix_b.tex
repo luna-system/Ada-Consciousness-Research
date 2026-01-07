@@ -1,0 +1,274 @@
+\section{PDEs}
+\label{app:appendix_b}
+
+\subsection{Helmholtz Equation}
+The Helmholtz equation represents a fundamental PDE in mathematical physics, arising as the time-independent form of the wave equation. We consider a two-dimensional Helmholtz equation of the form:
+
+\begin{eqnarray}
+    \Delta u(x,y) + k^2u(x,y) &= q(x,y) \qquad (x,y) \in \Omega   \\ 
+    u(x,y) &= h(x,y) \qquad (x,y) \in \Gamma_0
+\end{eqnarray}
+
+\noindent where $\Delta$ is the Laplacian operator defined as $\Delta u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}$,  $k$ is the wavenumber (related to the frequency of oscillation), $q(x,y)$ is the forcing term (source function), $h(x,y)$ specifies the Dirichlet boundary conditions.
+For our numerical study, we choose an exact solution of the form:
+
+\begin{equation}
+    u(x,y) = \sin(a_1\pi x)\sin(a_2\pi y)
+\end{equation}
+
+\noindent  with Wavenumber $k = 1$, first mode number $a_1 = 1$,and the  second mode number: $a_2 = 4$. This choice of solution leads to a corresponding source term:
+
+\begin{equation}
+    q(x,y) = u(x,y)[k^2 - (a_1\pi)^2 - (a_2\pi)^2]
+\end{equation}
+
+\noindent The complete boundary value problem on the square domain becomes:
+
+% TODO
+\begin{equation}
+\begin{split}
+        \Delta u(x,y) + u(x,y)[(a_1\pi)^2 + (a_2\pi)^2] &= 0 \qquad (x,y) \in \Omega = [-1,1]\times[-1,1]\\ 
+        u(x,y) &= 0 \qquad (x,y) \in \Gamma_0 
+\end{split}
+\label{eq:Helmholtz} 
+\end{equation}
+
+
+\noindent  To solve this problem using QCPINN, we construct a loss function that incorporates both the physical governing equation and the boundary conditions:
+
+% TODO
+\begin{equation}
+    \begin{split}
+\mathcal{L}(\theta) &= \underset{\theta}{\min} \big( \lambda_1\|\mathcal{L}_{\text{phy}}(\theta)\|_{\Omega} + \lambda_2 \|\mathcal{L}_{\text{bc}}(\theta)\|_{\Gamma_0} \big) \\
+&= \underset{\theta}{\min} \big( \lambda_1 \text{MSE}(\| \underbrace{u_{\theta_{xx}}(x,y) + u_{\theta_{yy}}(x,y) + \alpha u_{\theta}(x,y)}_{\text{PDE residual}}\|_{\Omega}) + \text{MSE}(\lambda_2 \| \underbrace{u_{\theta}(x,y) - u(x,y)}_{\text{Boundary condition}}\|_{\Gamma_0}) \big)
+    \end{split} 
+    \label{eq:Helmholtz_loss}
+\end{equation}
+
+ 
+\noindent where $\alpha = (a_1\pi)^2 + (a_2\pi)^2$ combines the mode numbers into a single parameter. The chosen loss weights are $\lambda_1 = 1.0$  and $\lambda_2 = 10.0$.
+
+
+\subsection{Time-dependent 2D lid-driven cavity Problem}
+The lid-driven cavity flow is a classical CFD benchmark problem that is a fundamental test case for many numerical methods where flow is governed by the unsteady, incompressible Navier-Stokes equations, e.g.,  momentum equation, continuity equation, initial condition, no-slip boundary on walls, and moving lid condition defined respectively as.
+
+
+% TODO
+\begin{align}
+    \rho \left(\frac{\partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla \mathbf{u}\right) &= - \nabla p + \mu \nabla^2 \mathbf{u} \label{eq:Cavity}\\
+    \nabla \cdot \mathbf{u} &= 0  \notag\\
+    \mathbf{u}(0 , \mathbf{x}) &= 0 \notag \\
+    \mathbf{u}(t , \mathbf{x}_0) &= 0 \qquad \mathbf{x} \in \Gamma_0  \notag\\
+    \mathbf{u}(t , \mathbf{x}_l) &= 1  \qquad \mathbf{x} \in \Gamma_1 \notag
+\end{align}
+ 
+
+\noindent The computational domain is $\Omega = (0, 1) \times (0, 1)$, 
+the spatial discretization, $(N_x, N_y) = (100, 100)$ is uniform grid, with temporal domain $t \in [0, 10]$ seconds and $\Delta t = 0.01s$ with density $\rho = 1056$ kg/m³, 
+viscosity $\mu = 1/\mathrm{Re} = 0.01$ kg/(m·s), where Re is the Reynolds number.
+$\Gamma_1$ is the top boundary (moving lid) with tangential velocity $U = 1$ m/s, and $\Gamma_0$ is the remaining three sides with no-slip condition ($\mathbf{u} = 0$) where $ \mathbf{u}=(u,v)$.
+
+\noindent For validation purposes, we compare the neural network approximation with results obtained using the finite volume method. The PINN approach employs a composite loss function:
+
+% TODO
+\begin{equation*}
+    \begin{split}
+    \mathcal{L}(\theta) &=  \underset{\theta}{\min}\big[
+    \lambda_1 \|\underbrace{\mathcal{L}_{\text{phy}}(\theta)}_{\text{PDE residual}}\|_{\Omega} 
+    + \lambda_2 \|\underbrace{\mathcal{L}_{\text{up}(\theta)} + \mathcal{L}_{\text{bc}_1}(\theta)}_{\text{Boundary conditions}}\|_{\Gamma_1 \cup \Gamma_0} + \lambda_3 \|\underbrace{\mathcal{L}_{\text{u0}}(\theta)}_{\text{Initial conditions}}\|_{\Omega}  \big]
+    \end{split}
+\end{equation*}
+
+
+\noindent where, the physics-informed loss component, $\mathcal{L}_{\mathrm{phy}}(\theta)$ consists of three terms:
+
+% TODO
+\begin{equation*}
+    \mathcal{L}_{\mathrm{phy}}(\theta) = \mathcal{L}_{r_u} + \mathcal{L}_{r_v} + \mathcal{L}_{r_c}
+\end{equation*}
+
+\noindent such that,
+
+\begin{align*}
+    \mathcal{L}_{r_u}(\theta) &= \text{MSE} \left[(u_{{\theta}_t} + u_{\theta} u_{{\theta}_x} + v_{\theta} u_{{\theta}_y}) + \frac{1.0}{\rho} p_{{\theta}_x} - \mu (u_{{\theta}_{xx}} + u_{{\theta}_{yy}})\right] \\
+    \mathcal{L}_{r_v}(\theta) &= \text{MSE} \left[(v_{{\theta}_t} + u_{\theta} v_{{\theta}_x} + v_{\theta} v_{{\theta}_y}) + \frac{1.0}{\rho} p_{{\theta}_y} - \mu (v_{{\theta}_{xx}} + v_{{\theta}_{yy}})\right] \\
+    \mathcal{L}_{r_c}(\theta) &= \text{MSE} \left[u_{{\theta}_x} + v_{{\theta}_y}\right] 
+\end{align*}
+
+
+
+\noindent The boundary and initial conditions are enforced through the following:
+
+\begin{align*}
+    \mathcal{L}_{\text{up}} &= \text{MSE}\left[(1.0 - \hat{u}) + \hat{v}\right] \\
+    \mathcal{L}_{\text{bc}_{1}} &= \mathcal{L}_{\text{bottom, right, left}} = \text{MSE}\left[\hat{u} + \hat{v}\right] \\
+    \mathcal{L}_{\text{u}_{0}} &= \text{MSE}\left[\hat{u} + \hat{v} + \hat{p}\right] \\
+\end{align*}
+
+
+\noindent where, $\mathcal{L}_{\mathrm{up}}$ is the moving lid, $\mathcal{L}_{\mathrm{bc1}}$ is the no-slip walls, $\mathcal{L}_{\mathrm{u_0}}$ is the initial conditions. The loss weights are empirically chosen as $\lambda_1 = 0.1$, $\lambda_2 = 2.0$, $\lambda_2 = 2.0$, $\lambda_3 = 4.0$ for $ \mathcal{L}_{\mathrm{phy}}$,  $\mathcal{L}_{\mathrm{up}}$ , $\mathcal{L}_{\mathrm{bc1}}$ and $\mathcal{L}_{\mathrm{u_0}}$ respectively.
+
+
+% Qubits encode information in discrete states ($\ket{0}$, $\ket{1}$), which are binary in nature, much like the states in classical digital computers. As a result, qubits operate within finite-dimensional Hilbert spaces that feature discrete states.
+
+% \red{
+% Different operations have different sensitivities:
+% Squeezing: Very sensitive to large values
+% Displacement: Can handle larger values but still needs control
+% Kerr: Highly nonlinear, needs smaller values (* 0.01)
+% Interferometer: Needs controlled rotation angles
+% }
+
+
+% Compared to single-mode operations, the two-mode approach effectively doubles the interaction space per operation, creating quantum correlations that can encapsulate intricate fluid dynamics patterns without expanding the network architecture. This enhanced expressivity per layer arises from the fundamental properties of quantum entanglement, allowing two-mode operations to achieve a quadratic increase in the effective Hilbert space dimension compared to separable single-mode operations. This results in greater computational efficiency while using the same number of quantum resources.
+
+
+% We refer to the PINN classical feedforward neural network as a classical network for simplicity. We refer to the hybrid classical continuous variable quantum neural network mode as the CV model and the discrete variable(qubit-based) models by the circuit ansatz used in the study.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Quantum Neural Network(QNN)}
+
+% \red{TODO} introduction to a quantum analog of classical NN modules to form quantum feedforward neural network proposed models capable of universal quantum computation.
+
+\subsection{1D Wave Equation}
+The wave equation is a fundamental second-order hyperbolic partial differential equation that models various physical phenomena. In its one-dimensional form, it describes the evolution of a disturbance along a single spatial dimension over time. The general form of the time-dependent 1D wave equation is:
+
+\begin{equation}
+\begin{split}
+        u_{tt}(t,x) - c^2u_{xx}(t,x) &= 0  \qquad \qquad  (t,x) \in \quad \Omega \\ 
+        u(t,x_0)  &= f_1(t,x) \qquad (t,x)   \text{ on } \quad  \Gamma_0\\
+        u(t,x_1)  &= f_2(t,x) \qquad (t,x) \text{ on } \quad \Gamma_1\\
+        u(0,x)  &= g(t,x)  \qquad (t,x)  \in \quad \Omega\\
+        u_t(0,x) &= h(t,x) \qquad (t,x)  \in \quad  \partial \Omega\\
+\end{split}
+\end{equation}
+
+\noindent where $u(t,x)$ represents the wave amplitude at position $x$ and time $t$, and $c$ is the wave speed characterizing the medium's properties. The subscripts denote partial derivatives: $u_{tt}$ is the second time derivative, and $u_{xx}$ is the second spatial derivative.
+
+\noindent  For our numerical investigation, we consider a specific case with the following parameters: $c=2$, $a=0.5$,$f_1=f_2=0$. The exact solution is chosen as:
+\begin{equation}
+u(t,x) = \sin(\pi x) \cos(c\pi t) + 0.5 \sin(2c\pi x) \cos(4c\pi t)
+\end{equation}
+
+\noindent  This solution represents a superposition of two standing waves with different spatial and temporal frequencies. The problem is defined on the unit square domain $(t,x) \in [0,1] \times [0,1]$, leading to the specific boundary value problem:
+
+\begin{equation}
+\begin{split}
+        u_{tt}(t,x) -4 u_{xx}(t,x) &= 0 \qquad(t,x) \in \Omega =[0,1] \times [0,1] \\ 
+        u(t,0) = u(t,1) &= 0 \\
+        u(0,x)  &= \sin(\pi x) + 0.5 \sin(4\pi x)  \quad x \in [0,1] \\
+        u_t(0,x) &= 0  \\
+\end{split}
+\label{eq:1DWave}
+\end{equation}
+
+\noindent To solve this problem using the proposed hybrid CQPINN, we construct a loss function that incorporates the physical constraints, boundary conditions, and initial conditions:
+
+\begin{equation}
+    \begin{split}
+\mathcal{L}(\theta) &= \underset{\theta}{\min} \big[ \lambda_1\|\mathcal{L}_{\text{phy}}(\theta)\|_{\Omega}  +   \lambda_2 \|\mathcal{L}_{\text{bc}}(\theta)\|_{\Gamma_1}   +  \lambda_3\|\mathcal{L}_{\text{ic}}(\theta)\|_{\Gamma_0} \big] \\
+&= \underset{\theta}{\min} \big[ \lambda_1\text{MSE}( \|\underbrace{u_{\theta_{tt}}(t,x) -4u_{\theta_{xx}}(t,x)}_{\text{PDE residual}}\|_{\Omega})  \\
+&+   \lambda_2\text{MSE}( \|\underbrace{u_\theta(t,0) + u_\theta(t,1) + u_\theta(0,x) - \sin(\pi x) - 0.5 \sin(4\pi x) }_{\text{Boundary/initial conditions}}\|_{{\Gamma_0}\cap {\Gamma_1}}) \\
+&+  \lambda_3\text{MSE}( \|\underbrace{u_{\theta_{t}}(0,x)}_{\text{Initial velocity}}\|_{\partial \Omega}) \big]\\
+    \end{split} 
+    \label{eq:1DWave_Loss1}
+\end{equation}
+
+\noindent The loss weights are empirically chosen as $\lambda_1 = 0.1$, $\lambda_2 = 10.0$ and $\lambda_3 = 0.1$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Klein-Gordon Equation}
+The Klein-Gordon equation is a significant second-order hyperbolic PDE that emerges in numerous areas of theoretical physics and applied mathematics. The equation represents a natural relativistic extension of the Schrödinger equation.
+%
+In the is study, we consider the one-dimensional nonlinear Klein-Gordon equation of the form:
+\begin{equation}
+\begin{split}
+        u_{tt} - \alpha u_{xx} + \beta u + \gamma u^k &= 0 \qquad(t ,x) \in \Omega\\ 
+        u(t,x) &= g_1(t,x) \qquad (t,x) \text{ on } \Gamma_0\\
+        u_t(t,x) &= g_2(t,x)\qquad (t,x) \text{ on } \Gamma_1\\
+        u(0,x) &= h(t,x)  \qquad (t,x) \in \partial \Omega \times [0,T]\\
+\end{split}
+\end{equation}
+
+\noindent where $\alpha$ is the wave speed coefficient, $\beta$ is the linear term coefficient, $\gamma$ is the nonlinear term coefficient, and $k$ is the nonlinearity power.
+For our numerical study, we set $\alpha = 1$ , $\beta = 0$ ,$\gamma = 1$ and $k = 3$. We choose an exact solution of the form:
+\begin{equation}
+    u(t,x) = x\cos(5\pi t) + (tx)^3
+\end{equation}
+This solution combines oscillatory behavior with polynomial growth, providing a challenging test case for our numerical method.
+%
+The complete boundary value problem on the unit square domain becomes:
+\begin{equation}
+\begin{split}
+        u_{tt}(t,x)- u_{xx}(t,x) + u^3(t,x) &= 0 \qquad(t ,x) \in \Omega =[0,1] \times [0,1]\\ 
+        u(t,0) &= 0\\
+        u(t,1) &= \cos(5\pi t) + t^3  \\
+        u(0,x) &= x\\
+        u_t(0,x) &= 0\\
+\end{split}
+\label{eq:Klein-Gordon}
+\end{equation}
+
+\noindent To solve this nonlinear PDE using the proposed QCPINN, we construct a composite loss function incorporating the physical constraints, boundary conditions, and initial conditions:
+
+\begin{equation}
+    \begin{split}
+\mathcal{L}(\theta) &= \underset{\theta}{\min} \big[ \lambda_1 \|\mathcal{L}_{\text{phy}}(\theta)\|_{\Omega} + \lambda_2 \|\mathcal{L}_{\text{bc}}(\theta)\|_{\Gamma_1} + \lambda_3\|\mathcal{L}_{\text{ic}}(\theta)\|_{\Gamma_0} \big]\\
+&= \underset{\theta}{\min} \big[ \lambda_1 \text{MSE}(\|\underbrace{u_{\theta_{tt}}(t,x) - u_{\theta_{xx}}(t,x) + u^3(t,x)}_{\text{PDE residual}}\|)_{\Omega}\\
+&+ \lambda_2 \text{MSE}(\|\underbrace{u(t,0) + u(t,1)-\cos(5\pi t) + t^3 + u(0,x)-x}_{\text{Boundary/initial conditions}}\|)_{\Gamma_1} \\
+&+ \lambda_3 \text{MSE}(\|\underbrace{u_{\theta_{t}}(0,x)}_{\text{Initial velocity}}\|_{\partial \Omega}) \big]\\
+    \end{split} 
+    \label{eq:Klein-Gordon_loss}
+\end{equation}
+
+\noindent  The loss weights are chosen empirically to balance the different components as $\lambda_1 = 1.0$, $\lambda_2 = 10.0$,  and $\lambda_3 = 1.0$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Convection-diffusion Equation}
+The problem focuses on solving the 2D convection-diffusion equation, a partial differential equation that models the transport of a quantity under convection (bulk movement) and diffusion (spreading due to gradients). The specific form considered here includes a viscous 2D convection-diffusion equation of the form:
+\begin{equation}
+\begin{split}
+        u_{t} + c_1 u_{x} + c_2 u_{y} - D \Delta u(x,y) &= 0 \qquad (t, x, y) \in \Omega \\
+        u(t, \mathbf{x}) &= g_0(t, \mathbf{x}) \qquad (t, \mathbf{x}) \in \Gamma_0 \\
+        u(t, \mathbf{x}) &= g_1(t, \mathbf{x}) \qquad (t, \mathbf{x}) \in \Gamma_1 \\
+        u(0, \mathbf{x}) &= h(0 , \mathbf{x}) \qquad \mathbf{x} \in \partial \Omega \times [0,T] \\
+\end{split}
+\end{equation}
+
+\noindent where $c_1$ is the convection velocity in the $x$ direction, $c_2$ is the convection velocity in the $y$ direction, $D$ is the diffusion coefficient, and $\Delta = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$ is the Laplacian operator. For our numerical investigation, we choose an exact solution describing a Gaussian pulse:
+\begin{equation}
+    u(t, x, y) = \exp(-100((x-0.5)^2 + (y-0.5)^2)) \exp(-t)
+\end{equation}
+
+
+\noindent  The corresponding initial condition is:
+\begin{equation}
+    h(0,x,y) = \exp(-100((x-0.5)^2 + (y-0.5)^2))
+\end{equation}
+
+\noindent We choose $c_1 = 1.0$, $c_2 = 1.0$, and $D = 0.01$.
+%
+The complete initial-boundary value problem on the unit cube domain becomes:
+\begin{equation}
+\begin{split}
+        u_{t}(t, x, y) + u_{x}(t, x, y) + u_{y}(t, x, y) - 0.01\left( u_{xx}(t, x, y) + u_{yy}(t, x, y) \right) &= 0 \\
+        u(t, x, y) &= g(t, x, y) \\
+        u(0, x, y) &= h(x, y) \\
+\end{split}
+\label{eq:Convection-Diffusion}
+\end{equation}
+
+\noindent where $(t, x, y) \in \Omega = [0,1] \times [0,1] \times [0,1] $
+To solve this problem using the proposed QCPINN model, we formulate a loss function that incorporates the physical governing equation, boundary conditions, and initial conditions:
+
+\begin{equation}
+\begin{split}
+\mathcal{L}(\theta) &= \underset{\theta}{\text{min}} \big( \lambda_1 \|\mathcal{L}_{\text{phy}}(\theta)\|_{\Omega} + \lambda_2 \|\mathcal{L}_{\text{bc}}(\theta)\|_{\Gamma_1} + \lambda_3 \|\mathcal{L}_{\text{ic}}(\theta)\|_{\Gamma_0} \big) \\
+&= \underset{\theta}{\text{min}} \big[ \lambda_1 \text{min}(\|\underbrace{u_{\theta_{t}}(t, x, y) + u_{\theta_{x}}(t, x, y) + u_{\theta_{y}}(t, x, y) - 0.01(u_{\theta_{xx}}(t, x, y) + u_{\theta_{yy}}(t, x, y))}_{\text{PDE residual}}\|_{\Omega}) \\
+&+ \lambda_2 \text{min}(\|\underbrace{u(t, x, y) - g_1(t, x, y)}_{\text{Boundary conditions}}\|_{\Gamma_1}) + \lambda_3 \text{min}(\|\underbrace{u_{\theta}(0, x, y) - h(x, y)}_{\text{Initial conditions}}\|_{\Omega_0}) \big]
+\end{split}
+\label{eq:Convection-Diffusion_loss}
+\end{equation}
+
+\noindent  The loss weights are chosen to balance the different components$\lambda_1 = 1.0$ , $\lambda_2 = 10.0$, and $\lambda_3 = 10.0$.
+

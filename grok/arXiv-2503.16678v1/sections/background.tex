@@ -1,0 +1,75 @@
+\section{Background}
+\label{sec:background}
+\subsection{Physics Informed Neural Network (PINNs)}
+
+PINNs \cite{raissi2019physics} provide a robust and flexible framework to embed governing physical laws directly into neural network architectures. This approach enables complex, nonlinear simulations using data-driven learning and physical constraints. When integrated with quantum computing frameworks, PINNs gain the potential to tackle high-dimensional PDEs more efficiently, leveraging quantum parallelism and entanglement to explore solution spaces that would be computationally prohibitive for classical methods. Experimental results reported in~\cite{kyriienko2021solving,markidis2022physics,VADYALA2023100287,sedykh2024hybrid,trahan2024quantum,ye2024hybrid} show that such hybrid models enhanced network capacity and improved the fidelity of solutions to complex systems.
+
+The PINN loss function combines terms representing governing equations and boundary conditions designed to minimize deviations from physical laws. More formally:
+
+\begin{equation} 
+    \begin{split}
+    \mathcal{L}(\theta) =& \arg\min_{\theta} \sum_{k=1}^{n} \lambda_k \mathcal{L}_k(\theta) \\
+    =& \arg\min_{\theta} \left( \lambda_1 \mathcal{L}_1(D[u_{\theta}(\mathbf{x}); \mathbf{a}] - f(\mathbf{x}))
+    +\sum_{k=2}^{n} \lambda_k \mathcal{L}_k(B[u_{\theta}(\mathbf{x})] - g_k(\mathbf{x})) \right),
+    \end{split}
+ \end{equation}
+
+\noindent where $n$ denotes the total number of loss terms, $\lambda_k$   are the weighting coefficients, and $\theta$ represents trainable parameters. Here, $[D[u_{\theta}(\mathbf{x});\mathbf{a}]$ and $[B[u_{\theta}(\mathbf{x})]$ are the arbitrary differential operators and initial/boundary conditions, respectively, that are applied to the output of the neural network $u_{\theta}(\mathbf{x})$. While the initial and boundary conditions ensure that the network output satisfies predefined constraints at specific spatial or temporal locations,  the physics loss acts as a regularizer, guiding the network to learn physically consistent solutions and preventing overfitting to sparse or noisy data. The balance between these loss components is crucial for achieving accurate solutions, as improper weighting can lead to underfitting the initial/boundary conditions or failing to capture the system dynamics correctly.
+
+
+\subsection{Continuous Variable QNN}
+
+In photonic quantum computing, CV quantum computation addresses quantum states with continuous degrees of freedom, such as the position ($x$) and momentum ($p$) quadratures of the electromagnetic field. The computational space is, in principle, unbounded, involving infinite-dimensional Hilbert spaces with continuous spectra.
+To make these simulations computationally feasible, a cutoff dimension is employed to limit the number of basis states used for approximation. The computational state space is defined as $r = n^m$, where $m$ represents the number of qumodes and $n$ is the cutoff dimension. For example, with three qumodes and a cutoff dimension of 2, the state space is 8-dimensional. By adjusting the cutoff dimension and the number of qumodes, we can control the trade-off between computational efficiency and simulation accuracy. Ideally, higher cutoff dimensions(up to a certain threshold ) yield more precise results but at the cost of increased computational complexity.
+
+In this work, we adhere to the affine transformation proposed in \cite{killoran2019continuous}, embedding the quantum circuit into the PINN framework to solve PDEs. Our implementation of this algorithm is shown in~\ref{app:appendix_a}. The proposed circuit ansatz comprises a sequence of operations that manipulate quantum states in phase space.  Each layer of the CV-based QNN consists of the following key components:
+
+
+\begin{enumerate}
+    \item \textbf{Interferometers (\(U_1(\theta_1, \phi_1)\) and \(U_2(\theta_2, \phi_2)\))}: Linear optical interferometers perform orthogonal transformations, represented by symplectic matrices. These transformations adjust the state by applying rotation and mixing between modes, corresponding to beam splitting and phase-shifting operations. 
+    \item \textbf{Squeezing Gates (\(S(r, \phi_s)\))}: These gates scale the position and momentum quadratures independently, introducing anisotropic adjustments to the phase space. The ability to encode sharp gradients using squeezing gates is particularly appealing for PDE solvers, as it allows fine-tuning of local characteristics \cite{sedykh2024hybrid}.
+    \item \textbf{Displacement Gates (\(D(\alpha, \phi_d)\))}: These gates shift the state in phase space by adding a displacement vector \(\alpha\), effectively translating the state globally without altering its internal symplectic structure.  
+    \item \textbf{Non-Gaussian Gate (\(\Phi(\lambda)\))}: To introduce nonlinearity, a non-Gaussian operation, such as a cubic phase and Kerr gates, is applied. This step enables the neural network to approximate nonlinear functions and enhances the ability to solve complex, nontrivial PDEs.
+\end{enumerate}
+
+These components together mimic the classical affine transformation such that:
+\begin{equation}
+    L(\ket{x}) = \ket{\Phi(Mx + b)} =  \Phi(D \circ U_2 \circ S \circ U_1),
+\label{eq:affine_transform}
+\end{equation}
+
+where \(M\) represents the combined symplectic matrix of the interferometers and squeezing gates, \(x\) is the input vector in the phase space, $b$ is the displacement vector, and \(\Phi\) is the nonlinear transformation. 
+
+While such a model exhibits intriguing theoretical properties, their practical implementation in real-world problem-solving seems to suffer from fundamental stability issues. This is mainly due to their inherent sensitivity and reliance on continuous degrees of freedom, which complicate optimization compared to DV-based approaches. This sensitivity stems from several factors, including the precision required for state preparation, noise from decoherence, and the accumulation of errors in variational quantum circuits. Furthermore, the transformations involved in CV quantum circuits are prone to numerical instabilities, particularly when optimized using gradient-based methods, as seen in the following section. Although foundational studies about the barren plateau problem, such~\cite{mcclean2018barren,cerezo2021cost,holmes2022connecting}, primarily address DV-based systems, the analysis indicates that similar issues can arise in CV-based quantum systems. In particular, the infinite-dimensional Hilbert space and the continuous nature of parameterization can exacerbate barren plateau effects. 
+
+
+To mitigate these issues, several strategies can be employed. Regularization techniques can prevent parameter divergence by constraining the magnitude of squeezing values to $|r| \leq 1.5$ and Kerr interactions to $|\chi| \leq 0.01$. Gradient clipping can also be applied during optimization to stabilize training by preventing exploding gradients. Furthermore, adaptive learning rates using optimizers like Adam can help prevent overshooting in parameter updates. On the experimental side, error correction techniques, such as Gottesman–Kitaev–Preskill (GKP) encoding~\cite{gottesman2001encoding}, have been proposed to counteract noise and loss in CV quantum computing. However, normalization and scaling to small values necessary for maintaining stability in CV transformations can diminish gradients during backpropagation, significantly hindering the optimization process.
+
+
+
+\subsection{Discrete Variable QNN}
+
+While CV-based quantum models do not inherently provide affine transformations as a core feature like CV-based QNNs, they can achieve affine-like behaviour through parameterized single-qubit rotations, controlled operations, and phase shifts for amplitude adjustments. Therefore, the affine transform of equation (\ref{eq:affine_transform}) can be reinterpreted to align with their architecture such that:
+
+\begin{enumerate}
+    \item \( Mx + b \): can be achieved through a combination of parameterized quantum gates:
+    \begin{itemize}
+        \item \( U_1, U_2 \): A unitary operators that can be represented by parameterized single-qubit rotations, such as \( R_x(\theta), R_y(\theta) \), or \( R_z(\theta) \).
+        \item \( S \): A sequence of controlled gates (e.g., CNOT, CZ) responsible for introducing entanglement, which enables the representation of correlated variables and interactions.
+        % \item \( U_2 \): Another unitary operator may have additional parameterized gates to implement transformations between qubits or modify their phases.
+        \item \( D \): Data encoding circuits that map classical data into quantum states through techniques such as basis encoding, amplitude encoding, or angle encoding.
+    \end{itemize}
+
+    \item \textbf{Non-linear Activation (\(\Phi\))}:
+    \begin{itemize}
+        \item DV-based QNNs lack intrinsic quantum nonlinearity due to the linearity of quantum mechanics. However, classical measurements with/without non-linear activation, like $Tanh$ and $ReLU$, can be applied to the output between quantum layers~\cite{tacchino2020quantum,mangini2021quantum}.
+    \end{itemize}
+\end{enumerate}
+
+
+
+
+
+
+
+
