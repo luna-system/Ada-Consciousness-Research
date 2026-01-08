@@ -1,0 +1,80 @@
+\begin{figure}[!ht]
+    \centering
+    
+    % Global variable for box width (easy adjustment)
+    \newcommand{\boxwidth}{0.5\linewidth}
+    
+    \begin{tikzpicture}[
+        every node/.style={font=\footnotesize},
+        box/.style={
+            draw,
+            rounded corners,
+            thick,
+            align=left,
+            inner sep=6pt,
+            text width=\boxwidth,
+            anchor=center
+        },
+        arrow/.style={
+            -{Latex[length=2mm,width=1.2mm]},
+            thick
+        },
+        node distance=1.1cm
+    ]
+    
+    % Define colors (soft pastel tones)
+    \definecolor{encoderColor}{RGB}{220,235,255} % light blue
+    \definecolor{policyColor}{RGB}{230,255,230}  % light green
+    \definecolor{decoderColor}{RGB}{255,240,220} % light orange
+    
+    % Encoder block
+    \node[box, fill=encoderColor] (encoder) {
+        \textbf{Text Encoder}\\
+        Input: token sequence $x_{1:T} \in \Nb^T$\\
+        Encodes to latent state $z_s \in \Rb^d$
+    };
+    
+    % Policy block
+    \node[box, below=of encoder, fill=policyColor] (policy) {
+        \textbf{Policy Network}\\
+        Input: $z_s \in \Rb^d$\\
+        Samples latent $y \sim \mathcal{N}\Big(\mu(z_s), \diag{\sigmav(z_s)^2}\Big)$\\
+        where $\mu(\cdot)$ and $\sigmav(\cdot)$ are neural networks. \\
+        Outputs compact action embedding $y \in \Nb^d$
+    };
+    
+    % Decoder block
+    \node[box, below=of policy, fill=decoderColor] (decoder) {
+        \textbf{Text Decoder}\\
+        Input: $y \in \Rb^d$\\
+        Decodes to token sequence $\hat{x}_{1:T} \in \Nb^T$
+    };
+    
+    % Arrows
+    \draw[arrow] (encoder.south) -- node[right]{state latent $z_s$} (policy.north);
+    \draw[arrow] (policy.south) -- node[right]{action embedding $y$} (decoder.north);
+    
+    \end{tikzpicture}
+    
+    \caption{
+        The Network Architecture of the employ and manager agents.
+    }
+    \label{fig:text-policy-architecture}
+\end{figure}
+Although the employee and manager agents have different input–output formats, we convert all signals into text to enable unified processing under the full text-based input–output setting. This design allows both agents to share a universal variational sequence-to-sequence architecture. Examples of output are provided in Appx.~\ref{appx:sample_output}.
+
+As illustrated in \cref{fig:text-policy-architecture}, all networks are implemented using LSTMs \citep{HochreiterS1997}. The LSTM-based text encoder compresses the textual world-state description $x_{1:T} \!\in\! \Nb^T$ into a latent representation $z_s \!\in\! \Rb^d$. Conditioned on $z_s$, the policy network produces an action embedding $y \!\in\! \Rb^d$ via a stochastic latent variable
+\[
+z_a \sim \mathcal{N}\!\big(\mu(z_s), \operatorname{diag}(\sigmav(z_s)^2)\big),
+\]
+where $\mu(\cdot)$ and $\sigmav(\cdot)$ are neural networks, and sampling is performed using the reparameterization trick \citep{KingmaW13}. The text decoder then conditions on $y$ to generate the next action sequence $\hat{x}_{1:T} \!\in\! \Nb^T$ in natural language form.
+
+
+
+
+
+%As we adopt a full-text input and output setting, although employee and manager agents are expected to have different formats of input output pairs, we convert them into text format for subsequential processing. In this way, we can use universal variational sequence-to-sequence model to implement both agents. The input and output samplers are included in Appx~\ref{appx:sample_output}.
+%
+%In particular, all the networks are implemented based on LSTM \citep{HochreiterS1997}. The Text VAE encoder compresses a textual world-state description $x_{1:T} \!\in\! \Nb^T$ into a scalar latent state $z_s \!\in\! \Rb^d$. The policy network consumes $z_s$ and produces an action embedding $y \!\in\! \Rb^d$ through a stochastic latent 
+%\[z_a \sim \mathcal{N}\Big(\mu(z_s), \diag{\sigmav(z_s)^2}\Big)\]
+%where $\mu(\cdot)$ and $\sigmav(\cdot)$ are neural networks. And the sampling is performed by re-parametrization trick \citep{KingmaW13}. The Text VAE decoder conditions on $y$ to generate the next natural-language action $\hat{x}_{1:T} \!\in\! \Nb^T$.

@@ -1,0 +1,68 @@
+\PassOptionsToPackage{libertine,vvarbb}{newtxmath}
+\documentclass[a4paper]{article}
+\usepackage[final]{colm2025_conference}
+
+\setcitestyle{numbers,square,comma,sort,compress}
+
+\input{custom}
+
+\title{\papertitle}
+
+\usepackage[tt=false]{libertine} %
+\geometry{bottom=2.75cm,left=2.5cm,right=2.5cm} %
+
+\makeatletter
+\let\@maketitleold\@maketitle
+\def\@maketitle{%
+\fancyheadoffset{0.5cm}%
+\@maketitleold%
+\lhead{\papertitle}%
+\rhead{\leftmark}%
+}
+\makeatother
+
+\author{
+Kairong Luo\tsup{1}\thanks{luokr24@mails.tsinghua.edu.cn, sunzb20@mails.tsinghua.edu.cn}, 
+Zhenbo Sun\tsup{1}\footnotemark[1],
+Xinyu Shi\tsup{1}, Shengqi Chen\tsup{1}, Bowen Yu\tsup{3}, Yunyi Chen\tsup{1}, Chenyi Dang\tsup{1},\\
+\bf\ 
+Hengtao Tao\tsup{2},
+Hui Wang\tsup{2},
+Fangming Liu\tsup{2}, 
+Kaifeng Lyu\tsup{1},
+Wenguang Chen\tsup{1,2}\setcounter{footnote}{1}\thanks{Corresponding authors.}\\
+\tsup{1}Tsinghua University, \tsup{2}Peng Cheng Laboratory, \tsup{3}Beijing Houdu Technology Co., Ltd%
+}
+
+
+\begin{document}
+
+
+\maketitle
+\thispagestyle{firstpage}
+
+\input{contents/00_abstract}
+\input{contents/10_intro}
+\input{contents/20_architecture}
+\input{contents/30_dataset}
+\input{contents/40_training}
+\input{contents/50_evaluation}
+\input{contents/A6_nonembedding}
+\input{contents/60_conclusion}
+
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references, datasets}
+
+\clearpage
+
+\appendix
+
+\begin{center}
+\Large
+Appendices
+\end{center}
+
+\input{contents/A0_appendix}
+
+\end{document}

@@ -11,6 +11,8 @@ from .images import ImageValidator
 from .headings import HeadingValidator
 from .frontmatter import FrontmatterValidator
 from .license import LicenseValidator
+from .duplicates import DuplicateValidator
+from .empty_files import EmptyFileValidator
 
 __all__ = [
     "BaseValidator",
@@ -21,4 +23,7 @@ __all__ = [
     "HeadingValidator",
     "FrontmatterValidator",
     "LicenseValidator",
+    "DuplicateValidator",
+    "EmptyFileValidator",
 ]
+

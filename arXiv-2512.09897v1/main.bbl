@@ -1,0 +1,268 @@
+\begin{thebibliography}{42}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ahn et~al.(2022)Ahn, Brohan, Brown, Chebotar, Cortes, et~al.]{AhnBBCC2022}
+Michael Ahn, Anthony Brohan, Noah Brown, Yevgen Chebotar, Omar Cortes, et~al.
+\newblock Do as i can, not as i say: Grounding language in robotic affordances.
+\newblock \emph{Science Robotics}, 7\penalty0 (66), 2022.
+\newblock \doi{10.1126/scirobotics.abo0860}.
+\newblock URL \url{https://www.science.org/doi/10.1126/scirobotics.abo0860}.
+
+\bibitem[{Anthropic AI}(2024)]{anthropic_claude3_2024}
+{Anthropic AI}.
+\newblock The claude 3 model family: Opus, sonnet, haiku.
+\newblock Technical report, Anthropic, 2024.
+\newblock URL \url{https://www.anthropic.com/claude-3-model-card}.
+\newblock Model card / technical report.
+
+\bibitem[Barto \& Mahadevan(2003)Barto and Mahadevan]{BartoM2003}
+Andrew~G. Barto and Sridhar Mahadevan.
+\newblock Recent advances in hierarchical reinforcement learning.
+\newblock \emph{Discrete Event Dynamic Systems}, 13\penalty0 (4):\penalty0 341--379, 2003.
+\newblock \doi{10.1023/A:1025696116075}.
+\newblock URL \url{https://doi.org/10.1023/A:1025696116075}.
+
+\bibitem[Bercher et~al.(2019)Bercher, Alford, and Höller]{BercherAL2019}
+Pascal Bercher, Ron Alford, and Daniel Höller.
+\newblock A survey on hierarchical planning – one abstract idea, many concrete realizations.
+\newblock In \emph{Proceedings of the Twenty-Eighth International Joint Conference on Artificial Intelligence (IJCAI 2019)}, pp.\  6267--6275. International Joint Conferences on Artificial Intelligence Organization, 7 2019.
+\newblock \doi{10.24963/ijcai.2019/875}.
+\newblock URL \url{https://doi.org/10.24963/ijcai.2019/875}.
+
+\bibitem[Brown et~al.(2020)Brown, Mann, Ryder, Subbiah, Kaplan, Dhariwal, Neelakantan, Shyam, Sastry, Askell, Agarwal, Herbert-Voss, Krueger, Henighan, Child, Ramesh, Ziegler, Wu, Winter, Hesse, Chen, Sigler, Litwin, Gray, Chess, Clark, Berner, McCandlish, Radford, Sutskever, and Amodei]{BrownMRSSKD2020}
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared~D. Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel Ziegler, Jeffrey Wu, Clemens Winter, Chris Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, and Dario Amodei.
+\newblock Language models are few-shot learners.
+\newblock In Hugo Larochelle, Marc'Aurelio Ranzato, Raia Hadsell, Maria-Florina Balcan, and Hsuan-Tien Lin (eds.), \emph{Advances in Neural Information Processing Systems}, volume~33, pp.\  1877--1901. Curran Associates, Inc., 2020.
+
+\bibitem[Dalal et~al.(2024)Dalal, Chiruvolu, Chaplot, and Salakhutdinov]{DalalCCS2024}
+Murtaza Dalal, Tarun Chiruvolu, Devendra Chaplot, and Ruslan Salakhutdinov.
+\newblock Plan-seq-learn: Language model guided rl for solving long horizon robotics tasks.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[Dayan \& Hinton(1992)Dayan and Hinton]{DayanH1992}
+Peter Dayan and Geoffrey~E. Hinton.
+\newblock Feudal reinforcement learning.
+\newblock In \emph{Advances in Neural Information Processing Systems 5 (NIPS 1992)}, pp.\  271--278, San Francisco, CA, USA, 1992. Morgan Kaufmann Publishers Inc.
+\newblock ISBN 1558602747.
+
+\bibitem[de~Boer et~al.(2005)de~Boer, Kroese, Mannor, and Rubinstein]{deBoerKMR2005}
+Pieter-Tjerk de~Boer, Dirk~P. Kroese, Shie Mannor, and Reuven~Y. Rubinstein.
+\newblock A tutorial on the cross-entropy method.
+\newblock \emph{Annals of Operations Research}, 134\penalty0 (1):\penalty0 19--67, 2005.
+\newblock ISSN 1572-9338.
+\newblock \doi{10.1007/s10479-005-5724-z}.
+\newblock URL \url{https://doi.org/10.1007/s10479-005-5724-z}.
+
+\bibitem[{DeepSeek-AI} et~al.(2025){DeepSeek-AI}, Guo, Yang, Zhang, Song, Zhang, Xu, Zhu, Ma, Wang, Bi, Zhang, Yu, Wu, Wu, Gou, Shao, Li, Gao, Liu, Xue, Wang, Wu, Feng, Lu, Zhao, Deng, Zhang, Ruan, Dai, Chen, Ji, Li, Lin, Dai, Luo, Hao, Chen, Li, Zhang, Bao, Xu, Wang, Ding, Xin, Gao, Qu, Li, Guo, Li, Wang, Chen, Yuan, Qiu, Li, Cai, Ni, Liang, Chen, Dong, Hu, Gao, Guan, Huang, Yu, Wang, Zhang, Zhao, Wang, Zhang, Xu, Xia, Zhang, Zhang, Tang, Li, Wang, Li, Tian, Huang, Zhang, Wang, Chen, Du, Ge, Zhang, Pan, Wang, Chen, Jin, Chen, Lu, Zhou, Chen, Ye, Wang, Yu, Zhou, Pan, Li, Zhou, Wu, Ye, Yun, Pei, Sun, Wang, Zeng, Zhao, Liu, Liang, Gao, Yu, Zhang, Xiao, An, Liu, Wang, Chen, Nie, Cheng, Liu, Xie, Liu, Yang, Li, Su, Lin, Li, Jin, Shen, Chen, Sun, Wang, Song, Zhou, Wang, Shan, Li, Wang, Wei, Zhang, Xu, Li, Zhao, Sun, Wang, Yu, Zhang, Shi, Xiong, He, Piao, Wang, Tan, Ma, Liu, Guo, Ou, Wang, Gong, Zou, He, Xiong, Luo, You, Liu, Zhou, Zhu, Xu, Huang, Li, Zheng, Zhu, Ma, Tang, Zha, Yan, Ren, Ren, Sha, Fu, Xu, Xie, Zhang, Hao, Ma, Yan, Wu, Gu, Zhu, Liu, Li, Xie, Song, Pan, Huang, Xu, Zhang, and Zhang]{DeepSeek-AI2025}
+{DeepSeek-AI}, Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, Xiaokang Zhang, Xingkai Yu, Yu~Wu, Z~F Wu, Zhibin Gou, Zhihong Shao, Zhuoshu Li, Ziyi Gao, Aixin Liu, Bing Xue, Bingxuan Wang, Bochao Wu, Bei Feng, Chengda Lu, Chenggang Zhao, Chengqi Deng, Chenyu Zhang, Chong Ruan, Damai Dai, Deli Chen, Dongjie Ji, Erhang Li, Fangyun Lin, Fucong Dai, Fuli Luo, Guangbo Hao, Guanting Chen, Guowei Li, H~Zhang, Han Bao, Hanwei Xu, Haocheng Wang, Honghui Ding, Huajian Xin, Huazuo Gao, Hui Qu, Hui Li, Jianzhong Guo, Jiashi Li, Jiawei Wang, Jingchang Chen, Jingyang Yuan, Junjie Qiu, Junlong Li, J~L Cai, Jiaqi Ni, Jian Liang, Jin Chen, Kai Dong, Kai Hu, Kaige Gao, Kang Guan, Kexin Huang, Kuai Yu, Lean Wang, Lecong Zhang, Liang Zhao, Litong Wang, Liyue Zhang, Lei Xu, Leyi Xia, Mingchuan Zhang, Minghua Zhang, Minghui Tang, Meng Li, Miaojun Wang, Mingming Li, Ning Tian, Panpan Huang, Peng Zhang, Qiancheng Wang, Qinyu Chen, Qiushi Du, Ruiqi Ge, Ruisong Zhang, Ruizhe Pan, Runji Wang, R~J Chen, R~L Jin, Ruyi Chen, Shanghao Lu, Shangyan Zhou, Shanhuang Chen, Shengfeng Ye, Shiyu Wang, Shuiping Yu, Shunfeng Zhou, Shuting Pan, S~S Li, Shuang Zhou, Shaoqing Wu, Shengfeng Ye, Tao Yun, Tian Pei, Tianyu Sun, T~Wang, Wangding Zeng, Wanjia Zhao, Wen Liu, Wenfeng Liang, Wenjun Gao, Wenqin Yu, Wentao Zhang, W~L Xiao, Wei An, Xiaodong Liu, Xiaohan Wang, Xiaokang Chen, Xiaotao Nie, Xin Cheng, Xin Liu, Xin Xie, Xingchao Liu, Xinyu Yang, Xinyuan Li, Xuecheng Su, Xuheng Lin, X~Q Li, Xiangyue Jin, Xiaojin Shen, Xiaosha Chen, Xiaowen Sun, Xiaoxiang Wang, Xinnan Song, Xinyi Zhou, Xianzu Wang, Xinxia Shan, Y~K Li, Y~Q Wang, Y~X Wei, Yang Zhang, Yanhong Xu, Yao Li, Yao Zhao, Yaofeng Sun, Yaohui Wang, Yi~Yu, Yichao Zhang, Yifan Shi, Yiliang Xiong, Ying He, Yishi Piao, Yisong Wang, Yixuan Tan, Yiyang Ma, Yiyuan Liu, Yongqiang Guo, Yuan Ou, Yuduan Wang, Yue Gong, Yuheng Zou, Yujia He, Yunfan Xiong, Yuxiang Luo, Yuxiang You, Yuxuan Liu, Yuyang Zhou, Y~X Zhu, Yanhong Xu, Yanping Huang,
+  Yaohui Li, Yi~Zheng, Yuchen Zhu, Yunxian Ma, Ying Tang, Yukun Zha, Yuting Yan, Z~Z Ren, Zehui Ren, Zhangli Sha, Zhe Fu, Zhean Xu, Zhenda Xie, Zhengyan Zhang, Zhewen Hao, Zhicheng Ma, Zhigang Yan, Zhiyu Wu, Zihui Gu, Zijia Zhu, Zijun Liu, Zilin Li, Ziwei Xie, Ziyang Song, Zizheng Pan, Zhen Huang, Zhipeng Xu, Zhongyu Zhang, and Zhen Zhang.
+\newblock {DeepSeek-R1}: Incentivizing reasoning capability in {LLMs} via reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2501.12948}, January 2025.
+
+\bibitem[Dietterich(2000)]{Dietterich2000}
+Thomas~G. Dietterich.
+\newblock Hierarchical reinforcement learning with the maxq value function decomposition.
+\newblock \emph{Journal of Artificial Intelligence Research}, 13\penalty0 (1):\penalty0 227--303, 2000.
+\newblock ISSN 1076-9757.
+
+\bibitem[Florensa et~al.(2017)Florensa, Duan, and Abbeel]{FlorensaDA2017}
+Carlos Florensa, Yan Duan, and Pieter Abbeel.
+\newblock Stochastic neural networks for hierarchical reinforcement learning.
+\newblock In \emph{International Conference on Learning Representations}, 2017.
+\newblock URL \url{https://openreview.net/forum?id=B1oK8aoxe}.
+
+\bibitem[Fox et~al.(2017)Fox, Krishnan, Stoica, and Goldberg]{FoxKSG2017}
+Roy Fox, Sanjay Krishnan, Ion Stoica, and Ken Goldberg.
+\newblock Multi-level discovery of deep options, 2017.
+
+\bibitem[Gupta et~al.(2019)Gupta, Kumar, Lynch, Levine, and Hausman]{GuptaKLLH2019}
+Abhishek Gupta, Vikash Kumar, Corey Lynch, Sergey Levine, and Karol Hausman.
+\newblock Relay policy learning: Solving long horizon tasks via imitation and reinforcement learning.
+\newblock \emph{Conference on Robot Learning (CoRL)}, 2019.
+
+\bibitem[Hengst(2010)]{Hengst2010}
+Bernhard Hengst.
+\newblock Hierarchical reinforcement learning.
+\newblock In Claude Sammut and Geoffrey~I. Webb (eds.), \emph{Encyclopedia of Machine Learning}, pp.\  495--502. Springer US, Boston, MA, 2010.
+\newblock ISBN 978-0-387-30164-8.
+\newblock \doi{10.1007/978-0-387-30164-8_363}.
+\newblock URL \url{https://doi.org/10.1007/978-0-387-30164-8_363}.
+
+\bibitem[Hochreiter \& Schmidhuber(1997)Hochreiter and Schmidhuber]{HochreiterS1997}
+Sepp Hochreiter and Jürgen Schmidhuber.
+\newblock Long short-term memory.
+\newblock \emph{Neural computation}, 9\penalty0 (8):\penalty0 1735--1780, 1997.
+
+\bibitem[Hu et~al.(2024)Hu, Huang, Liu, Kompella, Ilhan, Tekin, Xu, Yahn, and Liu]{HuHLKITYXYL2024}
+Sihao Hu, Tiansheng Huang, Gaowen Liu, Ramana~Rao Kompella, Fatih Ilhan, Selim~Furkan Tekin, Yichang Xu, Zachary Yahn, and Ling Liu.
+\newblock A survey on large language model-based game agents, 2024.
+
+\bibitem[Ibrahim et~al.(2024)Ibrahim, Mostafa, Jnadi, Salloum, and Osinenko]{IbrahimMJSO2024}
+Sinan Ibrahim, Mostafa Mostafa, Ali Jnadi, Hadi Salloum, and Pavel Osinenko.
+\newblock Comprehensive overview of reward engineering and shaping in advancing reinforcement learning applications.
+\newblock \emph{IEEE Access}, 12:\penalty0 175473--175500, 2024.
+\newblock \doi{10.1109/ACCESS.2024.3504735}.
+
+\bibitem[Ichter et~al.(2023)Ichter, Brohan, Chebotar, Finn, Hausman, Herzog, Ho, Ibarz, Irpan, Jang, Julian, Kalashnikov, Levine, Lu, Parada, Rao, Sermanet, Toshev, Vanhoucke, Xia, Xiao, Xu, Yan, Brown, Ahn, Cortes, Sievers, Tan, Xu, Reyes, Rettinghouse, Quiambao, Pastor, Luu, Lee, Kuang, Jesmonth, Joshi, Jeffrey, Ruano, Hsu, Gopalakrishnan, David, Zeng, and Fu]{IchterBCKFHP2023}
+Brian Ichter, Anthony Brohan, Yevgen Chebotar, Chelsea Finn, Karol Hausman, Alexander Herzog, Daniel Ho, Julian Ibarz, Alex Irpan, Eric Jang, Ryan Julian, Dmitry Kalashnikov, Sergey Levine, Yao Lu, Carolina Parada, Kanishka Rao, Pierre Sermanet, Alexander~T Toshev, Vincent Vanhoucke, Fei Xia, Ted Xiao, Peng Xu, Mengyuan Yan, Noah Brown, Michael Ahn, Omar Cortes, Nicolas Sievers, Clayton Tan, Sichun Xu, Diego Reyes, Jarek Rettinghouse, Jornell Quiambao, Peter Pastor, Linda Luu, Kuang-Huei Lee, Yuheng Kuang, Sally Jesmonth, Nikhil~J. Joshi, Kyle Jeffrey, Rosario~Jauregui Ruano, Jasmine Hsu, Keerthana Gopalakrishnan, Byron David, Andy Zeng, and Chuyuan~Kelly Fu.
+\newblock Do as i can, not as i say: Grounding language in robotic affordances.
+\newblock In Karen Liu, Dana Kulic, and Jeff Ichnowski (eds.), \emph{Proceedings of The 6th Conference on Robot Learning}, volume 205 of \emph{Proceedings of Machine Learning Research}, pp.\  287--318. PMLR, 14--18 Dec 2023.
+\newblock URL \url{https://proceedings.mlr.press/v205/ichter23a.html}.
+
+\bibitem[Jong et~al.(2008)Jong, Hester, and Stone]{JongHST2008}
+Nicholas~K. Jong, Todd Hester, and Peter Stone.
+\newblock The utility of temporal abstraction in reinforcement learning.
+\newblock In \emph{Proceedings of the 7th International Joint Conference on Autonomous Agents and Multiagent Systems (AAMAS '08), Volume 1}, AAMAS '08', pp.\  299--306, Richland, SC, USA, 2008. International Foundation for Autonomous Agents and Multiagent Systems.
+\newblock ISBN 9780981738109.
+\newblock \doi{10.5555/1402383.1402429}.
+
+\bibitem[Kingma \& Ba(2015)Kingma and Ba]{KingmaB2015}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock In \emph{International Conference on Learning Representations (ICLR)}, 2015.
+\newblock URL \url{https://arxiv.org/abs/1412.6980}.
+
+\bibitem[Kingma \& Welling(2014)Kingma and Welling]{KingmaW13}
+Diederik~P Kingma and Max Welling.
+\newblock Auto-encoding variational bayes.
+\newblock \emph{International Conference on Learning Representations}, 2014.
+\newblock URL \url{https://openreview.net/forum?id=33X9fd2-9FyZd}.
+
+\bibitem[Levy et~al.(2019)Levy, Platt, and Saenko]{LevyPS2018}
+Andrew Levy, Robert Platt, and Kate Saenko.
+\newblock Hierarchical reinforcement learning with hindsight.
+\newblock In \emph{International Conference on Learning Representations}, 2019.
+\newblock URL \url{https://openreview.net/forum?id=ryzECoAcY7}.
+
+\bibitem[Li et~al.(2026)Li, Pang, Song, Fu, Xu, Yuan, Xu, and Zhang]{LiPSFXZ2026}
+Qianxi Li, Bao Pang, Yong Song, Hongze Fu, Qingyang Xu, Xianfeng Yuan, Xiaolong Xu, and Chengjin Zhang.
+\newblock Large language model-assisted hierarchical reinforcement learning training.
+\newblock \emph{Information Sciences}, 723:\penalty0 122688, 2026.
+\newblock ISSN 0020-0255.
+\newblock \doi{10.1016/j.ins.2025.122688}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0020025525008217}.
+
+\bibitem[Mannor et~al.(2003)Mannor, Rubinstein, and Gat]{MannorRG2003}
+Shie Mannor, Reuven Rubinstein, and Yohai Gat.
+\newblock The cross-entropy method for fast policy search.
+\newblock In \emph{Proceedings of the Twentieth International Conference on Machine Learning (ICML 2003)}, International Conference on Machine Learning, pp.\  512--519, Washington, DC, USA, 2003. Association for the Advancement of Artificial Intelligence.
+\newblock ISBN 1-57735-189-4.
+
+\bibitem[{Mistral AI}(2025)]{mistral_small3_2025}
+{Mistral AI}.
+\newblock Mistral small 3.
+\newblock \url{https://mistral.ai/news/mistral-small-3}, 2025.
+\newblock Technical blog post describing the Mistral Small 3 model.
+
+\bibitem[Nachum et~al.(2018)Nachum, Gu, Lee, and Levine]{NachumGLN2018}
+Ofir Nachum, Shixiang~(Shane) Gu, Honglak Lee, and Sergey Levine.
+\newblock Data-efficient hierarchical reinforcement learning.
+\newblock In S.~Bengio, H.~Wallach, H.~Larochelle, K.~Grauman, N.~Cesa-Bianchi, and R.~Garnett (eds.), \emph{Advances in Neural Information Processing Systems}, volume~31. Curran Associates, Inc., 2018.
+
+\bibitem[Nachum et~al.(2019)Nachum, Tang, Lu, Gu, Lee, and Levine]{NachumTLGLL2019}
+Ofir Nachum, Haoran Tang, Xingyu Lu, Shixiang Gu, Honglak Lee, and Sergey Levine.
+\newblock Why does hierarchy (sometimes) work so well in reinforcement learning?, 2019.
+\newblock URL \url{https://arxiv.org/abs/1909.10618}.
+
+\bibitem[{OpenAI} et~al.(2024{\natexlab{a}}){OpenAI}, Hurst, Lerer, Goucher, Perelman, Ramesh, Clark, Ostrow, Welihinda, Hayes, Radford, M{\k a}dry, Baker-Whitcomb, Beutel, Borzunov, Carney, Chow, Kirillov, Nichol, Paino, Renzin, Passos, Kirillov, Christakis, Conneau, Kamali, Jabri, Moyer, Tam, Crookes, Tootoochian, Tootoonchian, Kumar, Vallone, Karpathy, Braunstein, Cann, Codispoti, Galu, Kondrich, Tulloch, Mishchenko, Baek, Jiang, Pelisse, Woodford, Gosalia, Dhar, Pantuliano, Nayak, Oliver, Zoph, Ghorbani, Leimberger, Rossen, Sokolowsky, Wang, Zweig, Hoover, Samic, McGrew, Spero, Giertler, Cheng, Lightcap, Walkin, Quinn, Guarraci, Hsu, Kellogg, Eastman, Lugaresi, Wainwright, Bassin, Hudson, Chu, Nelson, Li, Shern, Conger, Barette, Voss, Ding, Lu, Zhang, Beaumont, Hallacy, Koch, Gibson, Kim, Choi, McLeavey, Hesse, Fischer, Winter, Czarnecki, Jarvis, Wei, Koumouzelis, Sherburn, Kappler, Levin, Levy, Carr, Farhi, Mely, Robinson, Sasaki, Jin, Valladares, Tsipras, Li, Nguyen, Findlay, Oiwoh, Wong, Asdar, Proehl, Yang, Antonow, Kramer, Peterson, Sigler, Wallace, Brevdo, Mays, Khorasani, Such, Raso, Zhang, von Lohmann, Sulit, Goh, Oden, Salmon, Starace, Brockman, Salman, Bao, Hu, Wong, Wang, Schmidt, Whitney, Jun, Kirchner, Pinto, Ren, Chang, Chung, Kivlichan, O'Connell, O'Connell, Osband, Silber, Sohl, Okuyucu, Lan, Kostrikov, Sutskever, Kanitscheider, Gulrajani, Coxon, Menick, Pachocki, Aung, Betker, Crooks, Lennon, Kiros, Leike, Park, Kwon, Phang, Teplitz, Wei, Wolfe, Chen, Harris, Varavva, Lee, Shieh, Lin, Yu, Weng, Tang, Yu, Jang, Candela, Beutler, Landers, Parish, Heidecke, Schulman, Lachman, McKay, Uesato, Ward, Kim, Huizinga, Sitkin, Kraaijeveld, Gross, Kaplan, Snyder, Achiam, Jiao, Lee, Zhuang, Harriman, Fricke, Hayashi, Singhal, Shi, Karthik, Wood, Rimbach, Hsu, Nguyen, Gu-Lemberg, Button, Liu, Howe, Muthukumar, Luther, Ahmad, Kai, Itow, Workman, Pathak, Chen, Jing, Guy, Fedus, Zhou, Mamitsuka, Weng, McCallum, Held, Ouyang, Feuvrier, Zhang, Kondraciuk, Kaiser, Hewitt, Metz, Doshi, Aflak, Simens, Boyd,
+  Thompson, Dukhan, Chen, Gray, Hudnall, Zhang, Aljubeh, Litwin, Zeng, Johnson, Shetty, Gupta, Shah, Yatbaz, Yang, Zhong, Glaese, Chen, Janner, Lampe, Petrov, Wu, Wang, Fradin, Pokrass, Castro, de~Castro, Pavlov, Brundage, Wang, Khan, Murati, Bavarian, Lin, Yesildal, Soto, Gimelshein, Cone, Staudacher, Summers, LaFontaine, Chowdhury, Ryder, Stathas, Turley, Tezak, Felix, Kudige, Keskar, Deutsch, Bundick, Puckett, Nachum, Okelola, Boiko, Murk, Jaffe, Watkins, Godement, Campbell-Moore, Chao, McMillan, Belov, Su, Bak, Bakkum, Deng, Dolan, Hoeschele, Welinder, Tillet, Pronin, Tillet, Dhariwal, Yuan, Dias, Lim, Arora, Troll, Lin, Lopes, Puri, Miyara, Leike, Gaubert, Zamani, Wang, Donnelly, Honsby, Smith, Sahai, Ramchandani, Huet, Carmichael, Zellers, Chen, Chen, Nigmatullin, Cheu, Jain, Altman, Schoenholz, Toizer, Miserendino, Agarwal, Culver, Ethersmith, Gray, Grove, Metzger, Hermani, Jain, Zhao, Wu, Jomoto, Wu, {Shuaiqi}, {Xia}, Phene, Papay, Narayanan, Coffey, Lee, Hall, Balaji, Broda, Stramer, Xu, Gogineni, Christianson, Sanders, Patwardhan, Cunninghman, Degry, Dimson, Raoux, Shadwell, Zheng, Underwood, Markov, Sherbakov, Rubin, Stasi, Kaftan, Heywood, Peterson, Walters, Eloundou, Qi, Moeller, Monaco, Kuo, Fomenko, Chang, Zheng, Zhou, Manassra, Sheu, Zaremba, Patil, Qian, Kim, Cheng, Zhang, He, Zhang, Jin, Dai, and Malkov]{OpenAI2024}
+{OpenAI}, Aaron Hurst, Adam Lerer, Adam~P Goucher, Adam Perelman, Aditya Ramesh, Aidan Clark, A~J Ostrow, Akila Welihinda, Alan Hayes, Alec Radford, Aleksander M{\k a}dry, Alex Baker-Whitcomb, Alex Beutel, Alex Borzunov, Alex Carney, Alex Chow, Alex Kirillov, Alex Nichol, Alex Paino, Alex Renzin, Alex~Tachard Passos, Alexander Kirillov, Alexi Christakis, Alexis Conneau, Ali Kamali, Allan Jabri, Allison Moyer, Allison Tam, Amadou Crookes, Amin Tootoochian, Amin Tootoonchian, Ananya Kumar, Andrea Vallone, Andrej Karpathy, Andrew Braunstein, Andrew Cann, Andrew Codispoti, Andrew Galu, Andrew Kondrich, Andrew Tulloch, Andrey Mishchenko, Angela Baek, Angela Jiang, Antoine Pelisse, Antonia Woodford, Anuj Gosalia, Arka Dhar, Ashley Pantuliano, Avi Nayak, Avital Oliver, Barret Zoph, Behrooz Ghorbani, Ben Leimberger, Ben Rossen, Ben Sokolowsky, Ben Wang, Benjamin Zweig, Beth Hoover, Blake Samic, Bob McGrew, Bobby Spero, Bogo Giertler, Bowen Cheng, Brad Lightcap, Brandon Walkin, Brendan Quinn, Brian Guarraci, Brian Hsu, Bright Kellogg, Brydon Eastman, Camillo Lugaresi, Carroll Wainwright, Cary Bassin, Cary Hudson, Casey Chu, Chad Nelson, Chak Li, Chan~Jun Shern, Channing Conger, Charlotte Barette, Chelsea Voss, Chen Ding, Cheng Lu, Chong Zhang, Chris Beaumont, Chris Hallacy, Chris Koch, Christian Gibson, Christina Kim, Christine Choi, Christine McLeavey, Christopher Hesse, Claudia Fischer, Clemens Winter, Coley Czarnecki, Colin Jarvis, Colin Wei, Constantin Koumouzelis, Dane Sherburn, Daniel Kappler, Daniel Levin, Daniel Levy, David Carr, David Farhi, David Mely, David Robinson, David Sasaki, Denny Jin, Dev Valladares, Dimitris Tsipras, Doug Li, Duc~Phong Nguyen, Duncan Findlay, Edede Oiwoh, Edmund Wong, Ehsan Asdar, Elizabeth Proehl, Elizabeth Yang, Eric Antonow, Eric Kramer, Eric Peterson, Eric Sigler, Eric Wallace, Eugene Brevdo, Evan Mays, Farzad Khorasani, Felipe~Petroski Such, Filippo Raso, Francis Zhang, Fred von Lohmann, Freddie Sulit, Gabriel Goh, Gene Oden, Geoff Salmon, Giulio Starace, Greg Brockman, Hadi
+  Salman, Haiming Bao, Haitang Hu, Hannah Wong, Haoyu Wang, Heather Schmidt, Heather Whitney, Heewoo Jun, Hendrik Kirchner, Henrique Ponde de~Oliveira Pinto, Hongyu Ren, Huiwen Chang, Hyung~Won Chung, Ian Kivlichan, Ian O'Connell, Ian O'Connell, Ian Osband, Ian Silber, Ian Sohl, Ibrahim Okuyucu, Ikai Lan, Ilya Kostrikov, Ilya Sutskever, Ingmar Kanitscheider, Ishaan Gulrajani, Jacob Coxon, Jacob Menick, Jakub Pachocki, James Aung, James Betker, James Crooks, James Lennon, Jamie Kiros, Jan Leike, Jane Park, Jason Kwon, Jason Phang, Jason Teplitz, Jason Wei, Jason Wolfe, Jay Chen, Jeff Harris, Jenia Varavva, Jessica~Gan Lee, Jessica Shieh, Ji~Lin, Jiahui Yu, Jiayi Weng, Jie Tang, Jieqi Yu, Joanne Jang, Joaquin~Quinonero Candela, Joe Beutler, Joe Landers, Joel Parish, Johannes Heidecke, John Schulman, Jonathan Lachman, Jonathan McKay, Jonathan Uesato, Jonathan Ward, Jong~Wook Kim, Joost Huizinga, Jordan Sitkin, Jos Kraaijeveld, Josh Gross, Josh Kaplan, Josh Snyder, Joshua Achiam, Joy Jiao, Joyce Lee, Juntang Zhuang, Justyn Harriman, Kai Fricke, Kai Hayashi, Karan Singhal, Katy Shi, Kavin Karthik, Kayla Wood, Kendra Rimbach, Kenny Hsu, Kenny Nguyen, Keren Gu-Lemberg, Kevin Button, Kevin Liu, Kiel Howe, Krithika Muthukumar, Kyle Luther, Lama Ahmad, Larry Kai, Lauren Itow, Lauren Workman, Leher Pathak, Leo Chen, Li~Jing, Lia Guy, Liam Fedus, Liang Zhou, Lien Mamitsuka, Lilian Weng, Lindsay McCallum, Lindsey Held, Long Ouyang, Louis Feuvrier, Lu~Zhang, Lukas Kondraciuk, Lukasz Kaiser, Luke Hewitt, Luke Metz, Lyric Doshi, Mada Aflak, Maddie Simens, Madelaine Boyd, Madeleine Thompson, Marat Dukhan, Mark Chen, Mark Gray, Mark Hudnall, Marvin Zhang, Marwan Aljubeh, Mateusz Litwin, Matthew Zeng, Max Johnson, Maya Shetty, Mayank Gupta, Meghan Shah, Mehmet Yatbaz, Meng~Jia Yang, Mengchao Zhong, Mia Glaese, Mianna Chen, Michael Janner, Michael Lampe, Michael Petrov, Michael Wu, Michele Wang, Michelle Fradin, Michelle Pokrass, Miguel Castro, Miguel Oom~Temudo de~Castro, Mikhail Pavlov, Miles Brundage, Miles Wang, Minal Khan, Mira
+  Murati, Mo~Bavarian, Molly Lin, Murat Yesildal, Nacho Soto, Natalia Gimelshein, Natalie Cone, Natalie Staudacher, Natalie Summers, Natan LaFontaine, Neil Chowdhury, Nick Ryder, Nick Stathas, Nick Turley, Nik Tezak, Niko Felix, Nithanth Kudige, Nitish Keskar, Noah Deutsch, Noel Bundick, Nora Puckett, Ofir Nachum, Ola Okelola, Oleg Boiko, Oleg Murk, Oliver Jaffe, Olivia Watkins, Olivier Godement, Owen Campbell-Moore, Patrick Chao, Paul McMillan, Pavel Belov, Peng Su, Peter Bak, Peter Bakkum, Peter Deng, Peter Dolan, Peter Hoeschele, Peter Welinder, Phil Tillet, Philip Pronin, Philippe Tillet, Prafulla Dhariwal, Qiming Yuan, Rachel Dias, Rachel Lim, Rahul Arora, Rajan Troll, Randall Lin, Rapha~Gontijo Lopes, Raul Puri, Reah Miyara, Reimar Leike, Renaud Gaubert, Reza Zamani, Ricky Wang, Rob Donnelly, Rob Honsby, Rocky Smith, Rohan Sahai, Rohit Ramchandani, Romain Huet, Rory Carmichael, Rowan Zellers, Roy Chen, Ruby Chen, Ruslan Nigmatullin, Ryan Cheu, Saachi Jain, Sam Altman, Sam Schoenholz, Sam Toizer, Samuel Miserendino, Sandhini Agarwal, Sara Culver, Scott Ethersmith, Scott Gray, Sean Grove, Sean Metzger, Shamez Hermani, Shantanu Jain, Shengjia Zhao, Sherwin Wu, Shino Jomoto, Shirong Wu, {Shuaiqi}, {Xia}, Sonia Phene, Spencer Papay, Srinivas Narayanan, Steve Coffey, Steve Lee, Stewart Hall, Suchir Balaji, Tal Broda, Tal Stramer, Tao Xu, Tarun Gogineni, Taya Christianson, Ted Sanders, Tejal Patwardhan, Thomas Cunninghman, Thomas Degry, Thomas Dimson, Thomas Raoux, Thomas Shadwell, Tianhao Zheng, Todd Underwood, Todor Markov, Toki Sherbakov, Tom Rubin, Tom Stasi, Tomer Kaftan, Tristan Heywood, Troy Peterson, Tyce Walters, Tyna Eloundou, Valerie Qi, Veit Moeller, Vinnie Monaco, Vishal Kuo, Vlad Fomenko, Wayne Chang, Weiyi Zheng, Wenda Zhou, Wesam Manassra, Will Sheu, Wojciech Zaremba, Yash Patil, Yilei Qian, Yongjik Kim, Youlong Cheng, Yu~Zhang, Yuchen He, Yuchen Zhang, Yujia Jin, Yunxing Dai, and Yury Malkov.
+\newblock {GPT-4o} system card.
+\newblock \emph{arXiv preprint arXiv:2410.21276}, October 2024{\natexlab{a}}.
+
+\bibitem[{OpenAI} et~al.(2024{\natexlab{b}}){OpenAI}, Jaech, Kalai, Lerer, Richardson, El-Kishky, Low, Helyar, Madry, Beutel, Carney, Iftimie, Karpenko, Passos, Neitz, Prokofiev, Wei, Tam, Bennett, Kumar, Saraiva, Vallone, Duberstein, Kondrich, Mishchenko, Applebaum, Jiang, Nair, Zoph, Ghorbani, Rossen, Sokolowsky, Barak, McGrew, Minaiev, Hao, Baker, Houghton, McKinzie, Eastman, Lugaresi, Bassin, Hudson, Li, de~Bourcy, Voss, Shen, Zhang, Koch, Orsinger, Hesse, Fischer, Chan, Roberts, Kappler, Levy, Selsam, Dohan, Farhi, Mely, Robinson, Tsipras, Li, Oprica, Freeman, Zhang, Wong, Proehl, Cheung, Mitchell, Wallace, Ritter, Mays, Wang, Such, Raso, Leoni, Tsimpourlas, Song, von Lohmann, Sulit, Salmon, Parascandolo, Chabot, Zhao, Brockman, Leclerc, Salman, Bao, Sheng, Andrin, Bagherinezhad, Ren, Lightman, Chung, Kivlichan, O'Connell, Osband, Gilaberte, Akkaya, Kostrikov, Sutskever, Kofman, Pachocki, Lennon, Wei, Harb, Twore, Feng, Yu, Weng, Tang, Yu, Candela, Palermo, Parish, Heidecke, Hallman, Rizzo, Gordon, Uesato, Ward, Huizinga, Wang, Chen, Xiao, Singhal, Nguyen, Cobbe, Shi, Wood, Rimbach, Gu-Lemberg, Liu, Lu, Stone, Yu, Ahmad, Yang, Liu, Maksin, Ho, Fedus, Weng, Li, McCallum, Held, Kuhn, Kondraciuk, Kaiser, Metz, Boyd, Trebacz, Joglekar, Chen, Tintor, Meyer, Jones, Kaufer, Schwarzer, Shah, Yatbaz, Guan, Xu, Yan, Glaese, Chen, Lampe, Malek, Wang, Fradin, McClay, Pavlov, Wang, Wang, Murati, Bavarian, Rohaninejad, McAleese, Chowdhury, Chowdhury, Ryder, Tezak, Brown, Nachum, Boiko, Murk, Watkins, Chao, Ashbourne, Izmailov, Zhokhov, Dias, Arora, Lin, Lopes, Gaon, Miyara, Leike, Hwang, Garg, Brown, James, Shu, Cheu, Greene, Jain, Altman, Toizer, Toyer, Miserendino, Agarwal, Hernandez, Baker, McKinney, Yan, Zhao, Hu, Santurkar, Chaudhuri, Zhang, Fu, Papay, Lin, Balaji, Sanjeev, Sidor, Broda, Clark, Wang, Gordon, Sanders, Patwardhan, Sottiaux, Degry, Dimson, Zheng, Garipov, Stasi, Bansal, Creech, Peterson, Eloundou, Qi, Kosaraju, Monaco, Pong, Fomenko, Zheng, Zhou, McCabe, Zaremba, Dubois, Lu, Chen, Cha, Bai, He, Zhang,
+  Wang, Shao, and Li]{OpenAI2024-o1}
+{OpenAI}, Aaron Jaech, Adam Kalai, Adam Lerer, Adam Richardson, Ahmed El-Kishky, Aiden Low, Alec Helyar, Aleksander Madry, Alex Beutel, Alex Carney, Alex Iftimie, Alex Karpenko, Alex~Tachard Passos, Alexander Neitz, Alexander Prokofiev, Alexander Wei, Allison Tam, Ally Bennett, Ananya Kumar, Andre Saraiva, Andrea Vallone, Andrew Duberstein, Andrew Kondrich, Andrey Mishchenko, Andy Applebaum, Angela Jiang, Ashvin Nair, Barret Zoph, Behrooz Ghorbani, Ben Rossen, Benjamin Sokolowsky, Boaz Barak, Bob McGrew, Borys Minaiev, Botao Hao, Bowen Baker, Brandon Houghton, Brandon McKinzie, Brydon Eastman, Camillo Lugaresi, Cary Bassin, Cary Hudson, Chak~Ming Li, Charles de~Bourcy, Chelsea Voss, Chen Shen, Chong Zhang, Chris Koch, Chris Orsinger, Christopher Hesse, Claudia Fischer, Clive Chan, Dan Roberts, Daniel Kappler, Daniel Levy, Daniel Selsam, David Dohan, David Farhi, David Mely, David Robinson, Dimitris Tsipras, Doug Li, Dragos Oprica, Eben Freeman, Eddie Zhang, Edmund Wong, Elizabeth Proehl, Enoch Cheung, Eric Mitchell, Eric Wallace, Erik Ritter, Evan Mays, Fan Wang, Felipe~Petroski Such, Filippo Raso, Florencia Leoni, Foivos Tsimpourlas, Francis Song, Fred von Lohmann, Freddie Sulit, Geoff Salmon, Giambattista Parascandolo, Gildas Chabot, Grace Zhao, Greg Brockman, Guillaume Leclerc, Hadi Salman, Haiming Bao, Hao Sheng, Hart Andrin, Hessam Bagherinezhad, Hongyu Ren, Hunter Lightman, Hyung~Won Chung, Ian Kivlichan, Ian O'Connell, Ian Osband, Ignasi~Clavera Gilaberte, Ilge Akkaya, Ilya Kostrikov, Ilya Sutskever, Irina Kofman, Jakub Pachocki, James Lennon, Jason Wei, Jean Harb, Jerry Twore, Jiacheng Feng, Jiahui Yu, Jiayi Weng, Jie Tang, Jieqi Yu, Joaquin~Qui{\~n}onero Candela, Joe Palermo, Joel Parish, Johannes Heidecke, John Hallman, John Rizzo, Jonathan Gordon, Jonathan Uesato, Jonathan Ward, Joost Huizinga, Julie Wang, Kai Chen, Kai Xiao, Karan Singhal, Karina Nguyen, Karl Cobbe, Katy Shi, Kayla Wood, Kendra Rimbach, Keren Gu-Lemberg, Kevin Liu, Kevin Lu, Kevin Stone, Kevin Yu, Lama Ahmad, Lauren Yang, Leo Liu,
+  Leon Maksin, Leyton Ho, Liam Fedus, Lilian Weng, Linden Li, Lindsay McCallum, Lindsey Held, Lorenz Kuhn, Lukas Kondraciuk, Lukasz Kaiser, Luke Metz, Madelaine Boyd, Maja Trebacz, Manas Joglekar, Mark Chen, Marko Tintor, Mason Meyer, Matt Jones, Matt Kaufer, Max Schwarzer, Meghan Shah, Mehmet Yatbaz, Melody~Y Guan, Mengyuan Xu, Mengyuan Yan, Mia Glaese, Mianna Chen, Michael Lampe, Michael Malek, Michele Wang, Michelle Fradin, Mike McClay, Mikhail Pavlov, Miles Wang, Mingxuan Wang, Mira Murati, Mo~Bavarian, Mostafa Rohaninejad, Nat McAleese, Neil Chowdhury, Neil Chowdhury, Nick Ryder, Nikolas Tezak, Noam Brown, Ofir Nachum, Oleg Boiko, Oleg Murk, Olivia Watkins, Patrick Chao, Paul Ashbourne, Pavel Izmailov, Peter Zhokhov, Rachel Dias, Rahul Arora, Randall Lin, Rapha~Gontijo Lopes, Raz Gaon, Reah Miyara, Reimar Leike, Renny Hwang, Rhythm Garg, Robin Brown, Roshan James, Rui Shu, Ryan Cheu, Ryan Greene, Saachi Jain, Sam Altman, Sam Toizer, Sam Toyer, Samuel Miserendino, Sandhini Agarwal, Santiago Hernandez, Sasha Baker, Scott McKinney, Scottie Yan, Shengjia Zhao, Shengli Hu, Shibani Santurkar, Shraman~Ray Chaudhuri, Shuyuan Zhang, Siyuan Fu, Spencer Papay, Steph Lin, Suchir Balaji, Suvansh Sanjeev, Szymon Sidor, Tal Broda, Aidan Clark, Tao Wang, Taylor Gordon, Ted Sanders, Tejal Patwardhan, Thibault Sottiaux, Thomas Degry, Thomas Dimson, Tianhao Zheng, Timur Garipov, Tom Stasi, Trapit Bansal, Trevor Creech, Troy Peterson, Tyna Eloundou, Valerie Qi, Vineet Kosaraju, Vinnie Monaco, Vitchyr Pong, Vlad Fomenko, Weiyi Zheng, Wenda Zhou, Wes McCabe, Wojciech Zaremba, Yann Dubois, Yinghai Lu, Yining Chen, Young Cha, Yu~Bai, Yuchen He, Yuchen Zhang, Yunyun Wang, Zheng Shao, and Zhuohan Li.
+\newblock {OpenAI} o1 system card.
+\newblock \emph{arXiv preprint arXiv:2412.16720}, December 2024{\natexlab{b}}.
+
+\bibitem[Pateria et~al.(2021)Pateria, Subagdja, Tan, and Quek]{PateriaSTQ2021}
+Shubham Pateria, Budhitama Subagdja, Ah-hwee Tan, and Chai Quek.
+\newblock Hierarchical reinforcement learning: A comprehensive survey.
+\newblock \emph{ACM Comput. Surv.}, 54\penalty0 (5), June 2021.
+\newblock ISSN 0360-0300.
+\newblock \doi{10.1145/3453160}.
+\newblock URL \url{https://doi.org/10.1145/3453160}.
+
+\bibitem[Prasad et~al.(2024)Prasad, Koller, Hartmann, Clark, Sabharwal, Bansal, and Khot]{PrasadKHCSBK2024}
+Archiki Prasad, Alexander Koller, Mareike Hartmann, Peter Clark, Ashish Sabharwal, Mohit Bansal, and Tushar Khot.
+\newblock {AD}a{PT}: As-needed decomposition and planning with language models.
+\newblock In Kevin Duh, Helena Gomez, and Steven Bethard (eds.), \emph{Findings of the Association for Computational Linguistics: {NAACL} 2024}, pp.\  4226--4252, Mexico City, Mexico, June 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.findings-naacl.264}.
+\newblock URL \url{https://aclanthology.org/2024.findings-naacl.264/}.
+
+\bibitem[{Qwen} et~al.(2024){Qwen}, Yang, Yang, Zhang, Hui, Zheng, Yu, Li, Liu, Huang, Wei, Lin, Yang, Tu, Zhang, Yang, Yang, Zhou, Lin, Dang, Lu, Bao, Yang, Yu, Li, Xue, Zhang, Zhu, Men, Lin, Li, Tang, Xia, Ren, Ren, Fan, Su, Zhang, Wan, Liu, Cui, Zhang, and Qiu]{Qwen2024}
+{Qwen}, An~Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen Yu, Chengyuan Li, Dayiheng Liu, Fei Huang, Haoran Wei, Huan Lin, Jian Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jingren Zhou, Junyang Lin, Kai Dang, Keming Lu, Keqin Bao, Kexin Yang, Le~Yu, Mei Li, Mingfeng Xue, Pei Zhang, Qin Zhu, Rui Men, Runji Lin, Tianhao Li, Tianyi Tang, Tingyu Xia, Xingzhang Ren, Xuancheng Ren, Yang Fan, Yang Su, Yichang Zhang, Yu~Wan, Yuqiong Liu, Zeyu Cui, Zhenru Zhang, and Zihan Qiu.
+\newblock Qwen2.5 technical report.
+\newblock \emph{arXiv preprint arXiv:2412.15115}, December 2024.
+
+\bibitem[Schoepp et~al.(2025)Schoepp, Jafaripour, Cao, Yang, Abdollahi, Golestan, Sufiyan, Zaiane, and Taylor]{SchoeppJCYAGSZT2025}
+Sheila Schoepp, Masoud Jafaripour, Yingyue Cao, Tianpei Yang, Fatemeh Abdollahi, Shadan Golestan, Zahin Sufiyan, Osmar~R. Zaiane, and Matthew~E. Taylor.
+\newblock The evolving landscape of llm- and vlm-integrated reinforcement learning, 2025.
+
+\bibitem[Sutton et~al.(1999)Sutton, Precup, and Singh]{SuttonPS2000}
+Richard~S. Sutton, Doina Precup, and Satinder Singh.
+\newblock Between mdps and semi-mdps: A framework for temporal abstraction in reinforcement learning.
+\newblock \emph{Artificial Intelligence}, 112\penalty0 (1):\penalty0 181--211, 1999.
+\newblock ISSN 0004-3702.
+\newblock \doi{10.1016/S0004-3702(99)00052-1}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0004370299000521}.
+
+\bibitem[Tang et~al.(2023)Tang, Yu, Tan, Zen, Faust, and Harada]{TangYTZFH2023}
+Yujin Tang, Wenhao Yu, Jie Tan, Heiga Zen, Aleksandra Faust, and Tatsuya Harada.
+\newblock Saytap: Language to quadrupedal locomotion.
+\newblock In Jie Tan, Marc Toussaint, and Kourosh Darvish (eds.), \emph{Proceedings of the 7th Conference on Robot Learning}, volume 229 of \emph{Proceedings of Machine Learning Research}, pp.\  3556--3570. PMLR, 06--09 Nov 2023.
+\newblock URL \url{https://proceedings.mlr.press/v229/tang23a.html}.
+\newblock \url{https://saytap.github.io}.
+
+\bibitem[Vezhnevets et~al.(2017)Vezhnevets, Osindero, Schaul, Heess, Jaderberg, Silver, and Kavukcuoglu]{VezhnevetsOSHJSK2017}
+Alexander~Sasha Vezhnevets, Simon Osindero, Tom Schaul, Nicolas Heess, Max Jaderberg, David Silver, and Koray Kavukcuoglu.
+\newblock Feudal networks for hierarchical reinforcement learning.
+\newblock In Doina Precup and Yee~Whye Teh (eds.), \emph{Proceedings of the 34th International Conference on Machine Learning (ICML 2017)}, volume~70 of \emph{Proceedings of Machine Learning Research}, pp.\  3540--3549. PMLR, August 2017.
+\newblock URL \url{https://proceedings.mlr.press/v70/vezhnevets17a.html}.
+
+\bibitem[Wang \& Ba(2020)Wang and Ba]{WangB2020}
+Tingwu Wang and Jimmy Ba.
+\newblock Exploring model-based planning with policy networks.
+\newblock In \emph{International Conference on Learning Representations (ICLR)}, 2020.
+\newblock URL \url{https://openreview.net/forum?id=H1exf64KwH}.
+
+\bibitem[Wang et~al.(2023)Wang, Cai, Chen, Liu, Ma, Liang, and CraftJarvis]{WangCaiCLJLM2023}
+Zihao Wang, Shaofei Cai, Guanzhou Chen, Anji Liu, Xiaojian Ma, Yitao Liang, and Team CraftJarvis.
+\newblock Describe, explain, plan and select: interactive planning with large language models enables open-world multi-task agents.
+\newblock In \emph{Proceedings of the 37th International Conference on Neural Information Processing Systems (NeurIPS 2023)}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=ceIO1w0PmT}.
+
+\bibitem[Wang et~al.(2024)Wang, Cai, Mu, Lin, Zhang, Liu, Li, Liu, Ma, and Liang]{WangCMLJLM2024}
+Zihao Wang, Shaofei Cai, Zhancun Mu, Haowei Lin, Ceyao Zhang, Xuejie Liu, Qing Li, Anji Liu, Xiaojian Ma, and Yitao Liang.
+\newblock Omni{JARVIS}: Unified vision-language-action tokenization enables open-world instruction following agents.
+\newblock In \emph{Proceedings of the Thirty-eighth Annual Conference on Neural Information Processing Systems (NeurIPS 2024)}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=ceIO1w0PmT}.
+
+\bibitem[Yang et~al.(2020)Yang, Caluwaerts, Iscen, Zhang, Tan, and Sindhwani]{YangCIZTS2020}
+Yuxiang Yang, Ken Caluwaerts, Atil Iscen, Tingnan Zhang, Jie Tan, and Vikas Sindhwani.
+\newblock Data-efficient reinforcement learning for legged robots.
+\newblock In \emph{Proceedings of the Conference on Robot Learning (CoRL 2020)}. PMLR, 2020.
+
+\bibitem[Zhang et~al.(2023)Zhang, Hu, and Liu]{ZhangHL2023}
+Xiang Zhang, Junjie Hu, and Qiang Liu.
+\newblock Llm-powered hierarchical language agent for real-time collaboration.
+\newblock In \emph{OpenReview 2023}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=HLA2023}.
+
+\bibitem[Zhou et~al.(2024)Zhou, Hu, Zhao, Zhang, and Liu]{ZhouHZZL2024}
+Zihao Zhou, Bin Hu, Chenyang Zhao, Pu~Zhang, and Bin Liu.
+\newblock Large language model as a policy teacher for training reinforcement learning agents.
+\newblock In \emph{Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence (IJCAI '24)}, 2024.
+\newblock ISBN 978-1-956792-04-1.
+\newblock \doi{10.24963/ijcai.2024/627}.
+\newblock URL \url{https://doi.org/10.24963/ijcai.2024/627}.
+
+\end{thebibliography}

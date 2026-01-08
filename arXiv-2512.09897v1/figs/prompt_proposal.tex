@@ -1,0 +1,253 @@
+%\section*{Appendix: Chat History (Exact Verbatim Record)}
+
+
+
+\textbf{[User]}
+\begin{UserTurn}
+Definition
+A subgoal is defined as a high-level action or decision that, when performed correctly, significantly advances progress toward successfully completing the overall task. Subgoals may consist of one or more intermediate steps that must be achieved in order to reach the ultimate goal.
+
+Task Description
+1. Induce a consistent high-level plan or strategy-a sequence of subgoals-based on the provided set of expert trajectories.
+2. Summarize the key steps required to successfully complete the task.
+3. The number of subgoals should be smaller than the total number of steps in the trajectory (0 < num_subgoals < num_steps). In other words, not every step is a subgoal.
+4. Use consistent methodology in determining these subgoals such that the logic is transferrable.
+Output Requirements
+- Produce a list of subgoals derived from the given trajectories that collectively lead to the overall goal.
+- Each subgoal must be expressed in the exact format:
+  the required state needed to achieve the subgoal
+- The ultimate goal must appear as the final subgoal in the list.
+Please complete this task systematically, so that we can later design a program to automate the process.
+Input Format
+The provided trajectories will have the following structure:
+[goal]
+[list of (action, outcome_state) tuples]
+The trajectories are below:
+0.
+Goal: craft birch trapdoor.
+craft 6 birch slab using 3 birch planks
+get 2 birch logs, {'birch logs': 2}
+craft 4 birch planks using 1 birch logs, {'birch planks': 4, 'birch logs': 1}
+craft 4 birch planks using 1 birch logs, {'birch planks': 8}
+craft 2 birch trapdoor using 6 birch planks, {'birch trapdoor': 2, 'birch planks': 2}
+1.
+Goal: craft black terracotta.
+get 8 terracotta, {'terracotta': 8}
+get 1 wither rose, {'terracotta': 8, 'wither rose': 1}
+craft 1 black dye using 1 wither rose, {'terracotta': 8, 'black dye': 1}
+craft 8 black terracotta using 8 terracotta, 1 black dye, {'black terracotta': 8}
+2.
+Goal: craft birch button.
+get 1 birch logs, {'birch logs': 1}
+craft 4 birch planks using 1 birch logs, {'birch planks': 4}
+craft 1 birch button using 1 birch planks, {'birch planks': 3, 'birch button': 1}
+3.
+Goal: craft pink banner.
+(get 6 pink tulip ... craft 1 pink banner using 6 pink wool, 1 stick)
+4.
+Goal: craft crossbow.
+(get 2 string ... craft 1 crossbow using 2 string, 3 stick, 1 iron ingot, 1 tripwire hook)
+\end{UserTurn}
+
+
+\textbf{[GPT-5]}
+\begin{ModelTurn}
+Here’s a consistent, recipe-aware decomposition for each trajectory...
+
+# 0) Goal: craft birch trapdoor
+- {'birch logs': 1}
+- {'birch planks': 6}
+- {'birch trapdoor': 1}
+
+# 1) Goal: craft black terracotta
+- {'terracotta': 8}
+- {'black dye': 1}
+- {'black terracotta': 8}
+
+# 2) Goal: craft birch button
+- {'birch logs': 1}
+- {'birch planks': 1}
+- {'birch button': 1}
+
+# 3) Goal: craft pink banner
+- {'white wool': 6}
+- {'pink dye': 6}
+- {'pink wool': 6}
+- {'stick': 1}
+- {'pink banner': 1}
+
+# 4) Goal: craft crossbow
+- {'string': 2}
+- {'stick': 4}
+- {'iron ingot': 2}
+- {'warped planks': 1}
+- {'tripwire hook': 1}
+- {'crossbow': 1}
+\end{ModelTurn}
+
+\textbf{[User]}
+\begin{UserTurn}
+Good, now create a Python function to programmatically perform this inference
+\end{UserTurn}
+
+\textbf{[GPT-5]}
+\begin{ModelTurn}
+import re
+from collections import defaultdict, deque
+
+CRAFT_RE = re.compile(r"^craft\s+(\d+)\s+([a-z ]+?)\s+using\s+(.+)$")
+GET_RE = re.compile(r"^get\s+(\d+)\s+([a-z ]+?)$")
+
+def _parse_ingredients(txt):
+    """
+    '8 terracotta, 1 black dye' -> list of (qty:int, item:str)
+    """
+    parts = [p.strip() for p in txt.split(",")]
+    out = []
+    for p in parts:
+        m = re.match(r"^(\d+)\s+([a-z ]+?)$", p.strip())
+        if not m:
+            # be tolerant of stray punctuation (e.g., trailing periods)
+            p = p.strip().rstrip(".,;:")
+            m = re.match(r"^(\d+)\s+([a-z ]+?)$", p)
+        if m:
+            out.append((int(m.group(1)), m.group(2).strip()))
+    return out
+
+def _parse_action(line):
+    """
+    Returns a dict with keys:
+      kind: 'craft' or 'get' or None
+      out_qty, out_item, ing: for craft
+      qty, item: for get
+    """
+    line = line.strip()
+    # cut off trailing inventory dict if present: ", {...}"
+    if ", {" in line:
+        line = line[:line.index(", {")].strip()
+
+    m = CRAFT_RE.match(line)
+    if m:
+        out_qty = int(m.group(1))
+        out_item = m.group(2).strip()
+        ing_txt = m.group(3).strip()
+        # tolerate a trailing inventory after a comma already removed; also strip trailing periods
+        ing_txt = ing_txt.rstrip(".")
+        ing = _parse_ingredients(ing_txt)
+        return {"kind": "craft", "out_qty": out_qty, "out_item": out_item, "ing": ing}
+
+    m = GET_RE.match(line)
+    if m:
+        return {"kind": "get", "qty": int(m.group(1)), "item": m.group(2).strip()}
+
+    return {"kind": None}
+
+def infer_subgoals_from_trajectory(goal_item, action_lines):
+    """
+    Parameters
+    ----------
+    goal_item : str
+        e.g., 'birch trapdoor', 'black terracotta'
+    action_lines : list[str]
+        Lines like:
+          'get 8 terracotta, {...}'
+          'craft 8 black terracotta using 8 terracotta, 1 black dye, {...}'
+
+    Returns
+    -------
+    subgoals : list[dict]
+        Each element is a required inventory state (e.g., {'terracotta': 8})
+        Ordered from base → intermediates → final goal.
+    """
+    # 1) Parse actions into recipes and note which items can be crafted.
+    recipes = {}  # product_item -> (out_qty, [(qty, item), ...])
+    seen_get = set()
+    all_actions = []
+    for line in action_lines:
+        a = _parse_action(line)
+        all_actions.append(a)
+        if a["kind"] == "craft":
+            recipes[a["out_item"]] = (a["out_qty"], a["ing"])
+        elif a["kind"] == "get":
+            seen_get.add(a["item"])
+
+    # 2) Find the final craft that produces the goal_item (if present).
+    # If absent, we still assume we want at least 1 goal_item.
+    if goal_item not in recipes:
+        # We can't expand dependencies; just return the final subgoal.
+        return [{goal_item: 1}]
+
+    # 3) Recursive expansion to compute ingredient requirements for one goal item.
+    # We will compute a dependency graph and a "required counts" per node.
+    # For items with recipes, we compute how much of each ingredient is needed
+    # to yield the requested quantity (ceil div if needed).
+    import math
+
+    # store required quantities for intermediates (not bases)
+    required = defaultdict(int)
+    # frontier items to expand: (item, qty_needed)
+    frontier = deque([(goal_item, 1)])
+
+    # Graph for topo order: edges (ingredient -> product)
+    edges = defaultdict(set)
+    nodes = set()
+
+    # Track per-item total requirement (for all nodes, including base)
+    total_required = defaultdict(int)
+    total_required[goal_item] = 1
+
+    while frontier:
+        item, need_qty = frontier.popleft()
+        nodes.add(item)
+
+        if item in recipes:
+            out_qty, ing = recipes[item]
+            # crafts needed to produce at least need_qty
+            crafts_needed = math.ceil(need_qty / out_qty)
+            # accumulate requirements for ingredients
+            for q, ing_item in ing:
+                req = q * crafts_needed
+                total_required[ing_item] += req
+                edges[ing_item].add(item)
+                nodes.add(ing_item)
+
+                # If ingredient itself is craftable, expand further; else it's base.
+                if ing_item in recipes:
+                    # push what *this node* needs (not cumulative to avoid overcounting)
+                    frontier.append((ing_item, req))
+
+    # 4) Identify base vs intermediates (base = no recipe)
+    base_items = [n for n in nodes if n not in recipes and n != goal_item]
+    inter_items = [n for n in nodes if n in recipes and n != goal_item]
+
+    # 5) Topological order (Kahn) so that base → intermediates → goal.
+    indeg = {n: 0 for n in nodes}
+    for u in edges:
+        for v in edges[u]:
+            indeg[v] += 1
+
+    q = deque([n for n in nodes if indeg[n] == 0])
+    topo = []
+    while q:
+        u = q.popleft()
+        topo.append(u)
+        for v in edges.get(u, []):
+            indeg[v] -= 1
+            if indeg[v] == 0:
+                q.append(v)
+
+    # 6) Build subgoals:
+    #    - For each base item appearing before any of its consumers, include {item: required_count}
+    #    - For each intermediate item, include {item: required_count}
+    #    - End with {goal_item: 1}
+    subgoals = []
+    for n in topo:
+        if n == goal_item:
+            continue
+        if n in total_required and total_required[n] > 0:
+            subgoals.append({n: total_required[n]})
+
+    # Final goal state: have at least 1 of the goal item.
+    subgoals.append({goal_item: 1})
+    return subgoals
+\end{ModelTurn}

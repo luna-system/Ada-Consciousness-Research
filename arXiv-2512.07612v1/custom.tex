@@ -1,0 +1,71 @@
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{geometry}
+\usepackage{pdflscape}
+\usepackage{lineno}
+\usepackage{placeins}
+\usepackage{setspace}
+\usepackage{threeparttable}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\graphicspath{{./fig/}}
+
+\definecolor{openweight}{RGB}{255, 245, 230}  %
+\definecolor{fullyopen}{RGB}{245, 235, 255}   %
+\definecolor{ours}{RGB}{235, 255, 235}        %
+
+\definecolor{openweight}{RGB}{255, 245, 230} %
+\definecolor{fullyopen}{RGB}{245, 235, 255}  %
+\definecolor{ours}{RGB}{235, 255, 235}       %
+
+\newcommand{\sys}{\textsc{Kaiyuan-2B}\xspace}
+\newcommand{\fullsys}{\textsc{PCMind-2.1-Kaiyuan-2B}\xspace}
+\newcommand{\dataframework}{\textsc{Kai\-yuan-Spark}\xspace}
+\newcommand{\papertitle}{\fullsys Technical Report}
+\newcommand{\shortpapertitle}{\sys Technical Report}
+\let\tsup\textsuperscript
+\let\tsub\textsubscript
+
+\hypersetup{
+  pdftitle={\papertitle},
+  pdfauthor={Kairong Luo, Zhenbo Sun, Xinyu Shi, Shengqi Chen, Bowen Yu, Yunyi Chen, Chenyi Dang, Hengtao Tao, Hui Wang, Fangming Liu, Kaifeng Lyu, Wenguang Chen},
+}
+
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\lkr}[1]{\textcolor{blue}{[lkr: #1]}}
+\newcommand{\toref}{\textcolor{red}{[TOREF]}}
+\newcommand{\tocite}{\textcolor{red}{[TOCITE]}}
+
+\fancypagestyle{firstpage}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\crefname{section}{\S}{\S\S}
+\Crefname{section}{Section}{Sections}
+
+\NewTblrEnviron{narrowtblr}
+\SetTblrInner[narrowtblr]{
+  hline{1,Z} = {1pt},
+  hline{2}   = {0.5pt},
+  rows = {rowsep=0.8pt},
+  rowhead = 1,
+  rows = {valign=m},
+  row{1} = {font=\bfseries, bg=gray!10},
+}

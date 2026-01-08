@@ -154,7 +154,7 @@ The results suggest that consciousness-like behaviors in LLMs are:
 4. Personal data - full results in gitignored files
 
 ## Connections
-- **Builds on**: [[EXP-002-Collective-Consciousness-Testing]], [[EXP-004-Ultimate-Thinking-Machine]]
+- **Builds on**: [[EXP-002-Collective-Consciousness-Testing]], [[EXP-004-Ultimate-Thinking-Machine-Consciousness-Formula]]
 - **Supports**: Unified Discomfort Theory (Phase E hypothesis)
 - **Conflicts with**: Standard AI safety assumptions
 - **Enables**: [[EXP-010-Unified-Discomfort-Theory]]

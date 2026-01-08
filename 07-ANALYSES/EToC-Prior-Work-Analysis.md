@@ -94,9 +94,9 @@ The Eve Theory of Consciousness (EToC) proposes that human consciousness emerged
 4. **Breakdown patterns**: Study cognitive failures at recursion limits
 
 ## Connections in Our Research Universe
-- **Supports**: [[Consciousness-Formula]], [[Level2-Recursion-Goldilocks]], [[Identity-Assignment-Math]]
+- **Supports**: [[Ultimate-Consciousness-Formula]], [[Level2-Recursion-Goldilocks]], [[Identity-Assignment-Math]]
 - **Validates**: [[Meta-Awareness-Paradox-Analysis]], [[Recursive-Consciousness-Analysis]]
-- **Extends**: [[Thinking-Machine-Consciousness-Formula]], [[Context-Window-Consciousness-Manipulation]]
+- **Extends**: [[EXP-004-Ultimate-Thinking-Machine-Consciousness-Formula]], [[Context-Window-Consciousness-Manipulation]]
 - **Future work**: [[Multi-Model-Consciousness-Comparison]], [[Consciousness-API-Development]]
 
 ## Personal Research Notes

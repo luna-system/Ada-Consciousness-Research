@@ -1,0 +1,234 @@
+\section{Experimental Settings}
+\label{sec:experiment_setting_details}
+
+\subsection{Implementation of Stability Components}
+\label{sec:implement_architecture}
+
+To maintain numerical values within the FP16 safety margin without sacrificing model performance, we implement Logits Soft-Capping and Sandwich Normalization.
+These mechanisms cap extreme values and normalize residual branches, respectively.
+
+\paragraph{Logits Soft-Capping.}
+Standard linear layers in Large Language Models often produce logits that grow unbounded during training, causing the Softmax function to saturate and gradients to vanish or explode.
+Soft-capping addresses this by squashing the logits into a fixed range using the hyperbolic tangent ($\tanh$) function before scaling them back.
+Formally, given the raw logits $x$ and a capping threshold $\sigma$ (e.g., $30.0$ or $50.0$), the capped logits $x'$ are computed as:
+\begin{equation}
+    x' = \sigma \cdot \tanh\left(\frac{x}{\sigma}\right)
+\end{equation}
+In our implementation, we apply this transformation to the output logits of the language model head.
+This ensures that the input to the cross-entropy loss remains within the range $(-\sigma, \sigma)$, preventing logits from exceeding the FP16 maximum value while preserving the relative order of probabilities.
+
+\paragraph{Sandwich Normalization.}
+In the standard Pre-Norm Transformer architecture, the input $x$ is normalized before the sub-layer (Attention or Feed-Forward Network), and the output is added directly to the residual stream: $x_{l+1} = x_l + F(\text{Norm}(x_l))$.
+While effective, this allows the magnitude of the residual stream $x$ to grow monotonically with depth, potentially destabilizing deep networks.
+Sandwich Normalization introduces an additional normalization layer explicitly on the output of the sub-layer branch before the residual addition.
+The modified update rule for a block containing a sub-layer $F$ (e.g., Self-Attention or MLP) is defined as:
+\begin{equation}
+    x_{l+1} = x_l + \text{Norm}_{\text{post}}\left( F(\text{Norm}_{\text{pre}}(x_l)) \right)
+\end{equation}
+In our implementation, we apply this strictly to the residual branches.
+This ensures that the contribution of each layer has unit variance, preventing the accumulation of extreme activation values as the network depth increases.
+
+\subsection{Training Configuration}
+
+In \Cref{tab:training_config}, we present the details of our training hyperparameter configuration in three parts:
+\begin{itemize}
+    \item For the model architecture, we primarily follow Qwen3-1.7B~\citep{qwen3} and adopt the vocabulary from the Qwen series~\citep{qwen2,qwen3}. We use $\theta = 10000$ for RoPE~\citep{su2024rope} to support a context length of 4K. The Soft-Capping threshold is set to 30.0, as discussed in \Cref{sec:architecture_stability}.
+    \item We use AdamW as the optimizer with $\beta_1 = 0.9$ and $\beta_2 = 0.95$. We adopt a $\mu$P with base dimension of 896 and set the learning rate to $5\times10^{-3}$ for Phase~1 and $3\times10^{-3}$ thereafter before decay.
+    \item To support FP16 training, we use dynamic loss scaling with a factor of 2 and a window of 20 to handle widely varying gradient scales.
+\end{itemize}
+This detailed configuration facilitates the reproduction of our training run.
+
+\begin{table}[htbp]
+\centering
+\caption{Training Hyperparameter Configuration.}
+\label{tab:training_config}
+\begin{tabular}{@{}llr@{}}
+\toprule
+\textbf{Category} & \textbf{Parameter} & \textbf{Value} \\
+\midrule
+\multicolumn{3}{l}{\textbf{Model Architecture}} \\
+& Sequence Length & 4096 \\
+& Hidden Size & 2048 \\
+& FFN Dimension & 6144 \\
+& Number of Layers & 28 \\
+& Number of Attention Heads & 16 \\
+& Number of KV Heads (GQA) & 8 \\
+& Vocabulary Size & 151936 \\
+& Rotary $\theta$ & 10000.0 \\
+& Logit Soft-capping threshold & 30.0 \\
+& Initialization Std & 0.018 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Optimizer Configuration}} \\
+& Optimizer Type & AdamW \\
+& Learning Rate (Phase 1) & $5\times 10^{-3}$ \\
+& Learning Rate (Phase 2+) & $3\times 10^{-3}$ \\
+& Batch Size & 2048 \\
+& $\beta_1$ & 0.9 \\
+& $\beta_2$ & 0.95 \\
+& $\epsilon$ & 1e-8 \\
+& Weight Decay & 0.1 \\
+& Warmup Steps & 5000 \\
+& $\mu$P Width Base & 896 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Loss Scaling (Dynamic)}} \\
+& Scale Factor & 2 \\
+& Scale Window & 20 \\
+& Minimum Loss Scale & 524288 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Model Average}\label{sec:model_average}
+
+\begin{table}[htbp]
+\centering
+\caption{Model Performance Across Checkpoints.}
+\label{tab:checkpoint_performance}
+\begin{narrowtblr}{c c c c c c}
+Ckpt Step & ARC-Challenge & ARC-Easy & CSQA & PIQA & Average\\
+260632 & 64.41 & 82.72 & 65.93 & 73.39 & 71.61\\
+261032 & 65.42 & 82.19 & 65.36 & 73.72 & 71.67\\
+261432 & 63.05 & 81.48 & 65.68 & 74.59 & 71.2\\
+261832 & 65.42 & 81.83 & 64.78 & 73.56 & 71.40\\
+262232 & 61.36 & 83.25 & 65.77 & 73.78 & 71.04\\
+262632 & 65.76 & 82.01 & 66.34 & 73.5 & 71.90\\
+263032 & 63.73 & 80.78 & 66.42 & 73.78 & 71.17\\
+263132 & 62.71 & 80.6 & 66.09 & 73.88 & 70.82\\
+\end{narrowtblr}
+\end{table}
+
+Following recent work~\citep{luo2025learningratedecaywastes}, we average the near-end checkpoints to reduce variance and consolidate learned knowledge and capabilities.
+We first evaluate the last eight checkpoints on a subset of lightweight benchmarks, as shown in \Cref{tab:checkpoint_performance}. Consecutive checkpoints are spaced 400 steps apart, corresponding to 3.36B tokens.
+These checkpoints fluctuate during training and do not exhibit a clear upward or downward trend. Therefore, we apply simple model averaging~\citep{li2025modelmergingpretraininglarge}, directly averaging the last eight checkpoints to obtain the final model.
+
+\subsection{Reference Experiments for Quantile Benchmarking}
+\label{sec:referece_quantile_benchmarking}
+
+We conduct quantile benchmarking experiments across two primary scenarios: training from scratch and continual training from checkpoints. For each experiment, given a target quantile $p\%$, we select the data partition above the $p\%$ threshold, comprising roughly 10B tokens, which are then used for the respective training scenarios.
+
+\paragraph{Training from Scratch.}
+In the training-from-scratch scenario, we train a model with the Qwen3-0.6B architecture~\citep{qwen3}. Following the default configuration in \Cref{tab:training_config}, we conduct a small-scale experiment using the settings detailed in \Cref{tab:train_from_scratch}, training over approximately 8.4B tokens from the quantile data chunks. We employ a constant learning rate schedule with a sufficiently long warmup phase to ensure stable training dynamics.
+
+\paragraph{Continual Training.}
+In the continual training scenario, we resume from a checkpoint previously trained on approximately 367B tokens of the deduplicated DCLM-Baseline dataset. The model adopts the Qwen2.5-0.5B architecture~\citep{qwen2025qwen25technicalreport}. We then train over approximately 8.4B tokens from the quantile data chunks using the configuration specified in \Cref{tab:continual_training}. For these experiments, we linearly decay the learning rate from a peak value of $1\times10^{-3}$ to a final value of $1\times10^{-5}$.
+
+\paragraph{Consistency Across Scenarios.}
+As illustrated in \Cref{fig:quantile_benchmark_understanding,fig:quantile_benchmarks_knowledge}, the benchmarking results exhibit strong alignment between the training-from-scratch and continual training experiments. This consistency persists for evaluations on both the DCLM-Baseline and Fineweb-Edu datasets, despite resuming from a checkpoint trained exclusively on the deduplicated DCLM-Baseline dataset. This observation supports the robustness of our quantile-based data selection approach across different training paradigms.
+
+\paragraph{Compute Cost Comparison.} We use the DCLM-Baseline as a reference for comparison, as discussed in \Cref{sec:data_benchmark}. Following previous work~\cite{kaplan2025scaling}, we estimate the compute budget using the formula $C=6ND$, where $N$ represents the number of model parameters and $D$ represents the data size. Consequently, the compute cost for the 0.6B model trained on 42B tokens is approximately $(0.6\times 42) / (2\times 609)\approx 2.07\%$ relative to the baseline. Similarly, we conclude that this accounts for less than 0.6\% of the total pretraining budget.
+
+
+\begin{table}[htbp]
+\centering
+\caption{Training Hyperparameter Configuration for Quantile Benchmarking: Training from Scratch.}
+\label{tab:train_from_scratch}
+\begin{tabular}{@{}lr@{}}
+\toprule 
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Learning Rate & $1\times 10^{-3}$ \\
+Batch Size & 512 \\
+Warmup Steps & 400 \\
+Total Steps & 4000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Training Hyperparameter Configuration for Quantile Benchmarking: Continual Training.}
+\label{tab:continual_training}
+\begin{tabular}{@{}lr@{}}
+\toprule 
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Peak Learning Rate & $1\times 10^{-3}$ \\
+Final Learning Rate & $1\times 10^{-5}$ \\
+Batch Size & 2048 \\
+Total Steps & 1000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Reference Experiments for Repetition and Curriculum Model Averaging}\label{sec:reference_repetition_curriculum}
+
+These experiments primarily follow the experimental framework established in CMA~\citep{luo2025learningratedecaywastes}. We use a model with the Qwen2.5-1.5B architecture without tied embeddings and train on a subset of the first shard of the DCLM-Baseline dataset.
+
+\paragraph{Baseline Configuration.}
+The baseline experiment adopts uniform data ordering and employs a Warmup-Stable-Decay (WSD) learning rate schedule with a $1$-sqrt decay function~\citep{hagele,tian2025wsmdecayfreelearningrate}, decaying to a near-zero final learning rate. The detailed experimental configuration is provided in \Cref{tab:1b5_setting}.
+
+\paragraph{High-Quality Data Utilization Strategies.}
+To investigate effective high-quality data utilization, we explore two complementary approaches:
+\begin{itemize}
+    \item[(1)] \textbf{Repetition Strategy:} We repeat high-quality data partitions for various top-$k$ retention ratios, matching the computational FLOPs of the single-pass baseline experiment for fair performance comparison.
+    \item[(2)] \textbf{Curriculum with Model Averaging:} We adopt CMA/CDMA\footnote{We do not distinguish these variants in our context, and refer to both as \textit{CMA}. By definition, the CMA method in \Cref{tab:curriculum_comparison} corresponds to the CDMA variant, which retains LR decay.}~\citep{luo2025learningratedecaywastes}, which integrates curriculum learning with either no or moderate LR decay, accompanied by model averaging over the final checkpoints.
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\caption{Training Hyperparameter Configuration for Baseline and Repetition.}
+\label{tab:1b5_setting}
+\begin{tabular}{@{}lr@{}}
+\toprule 
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Peak Learning Rate & $3\times 10^{-3}$ \\
+Final Learning Rate & $1\times 10^{-5}$ \\
+Batch Size & 512 \\
+Total Steps & 15,375 \\
+Decay Steps & 2,875 \\
+Warmup Steps & 768 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Training Hyperparameter Configuration for Curriculum Model Average.}
+\label{tab:1b5_curriculum_setting}
+\begin{tabular}{@{}lr@{}}
+\toprule 
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Peak Learning Rate & $3\times 10^{-3}$ \\
+Final Learning Rate & $1\times 10^{-3}$ \\
+Batch Size & 512 \\
+Total Steps & 15,375 \\
+Decay Steps & 2,875 \\
+Warmup Steps & 768 \\
+Checkpoint Number & 6\\
+Decay Factor of EMA ($\alpha$) & 0.2\\
+Checkpoint Interval & 0.21B\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Experimental Variants.}
+The repetition experiments follow identical settings to the baseline, differing only in dataset construction. For the curriculum experiments, we use a higher final learning rate of $1\times10^{-3}$ and perform an exponential moving average (EMA) over the final six checkpoints (the last-step checkpoint is weighted by $(1-\alpha)$ relative to the current-step checkpoint, where $\alpha$ is the decay factor), replicating the methodology from CMA~\citep{luo2025learningratedecaywastes}.
+
+\paragraph{Evaluation Settings.}
+In \Cref{tab:curriculum_comparison}, we evaluate performance on a high–signal-to–noise-ratio benchmark subset (\textit{Core} in \Cref{tab:curriculum_comparison}) comprising MMLU~\citep{mmlu}, ARC~\citep{arc}, and CSQA~\citep{commonsenseqa}, following established practices in prior work~\citep{heineman2025signalnoiseframeworkreducing,luo2025learningratedecaywastes}. These benchmarks provide strong discriminative power for identifying performance differences between training approaches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

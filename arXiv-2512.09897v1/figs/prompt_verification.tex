@@ -1,0 +1,178 @@
+%\section*{Appendix: Full Interaction Log Between User and GPT-5}
+
+\textbf{[User]}
+\begin{UserTurn}
+Definition
+A subgoal is defined as a high-level action or decision that, when performed correctly, significantly advances progress toward successfully completing the overall task. Subgoals may consist of one or more intermediate steps that must be achieved in order to reach the ultimate goal.
+
+Task Description
+1. Induce a consistent high-level plan or strategy--a sequence of subgoals--based on the provided set of expert trajectories.
+2. Summarize the key steps required to successfully complete the task.
+3. The number of subgoals should be smaller than the total number of steps in the trajectory (0 < num_subgoals < num_steps). In other words, not every step is a subgoal.
+4. Use consistent methodology in determining these subgoals such that the logic is transferrable.
+Output Requirements
+- Produce a list of subgoals derived from the given trajectories that collectively lead to the overall goal.
+- Each subgoal must be expressed in the exact format:
+  the required state needed to achieve the subgoal
+- The ultimate goal must appear as the final subgoal in the list.
+- Add a reward function such that, given a current state, returns whether a proposed subgoal has been achieved or not (binary label)
+Please complete this task systematically, so that we can later design a program to automate the process.
+Input Format
+The provided trajectories will have the following structure:
+[goal]
+[list of (action, outcome_state) tuples]
+The trajectories are below:
+0.
+Goal: craft birch trapdoor.
+craft 6 birch slab using 3 birch planks
+get 2 birch logs, {'birch logs': 2}
+craft 4 birch planks using 1 birch logs, {'birch planks': 4, 'birch logs': 1}
+craft 4 birch planks using 1 birch logs, {'birch planks': 8}
+craft 2 birch trapdoor using 6 birch planks, {'birch trapdoor': 2, 'birch planks': 2}
+1.
+Goal: craft black terracotta.
+get 8 terracotta, {'terracotta': 8}
+get 1 wither rose, {'terracotta': 8, 'wither rose': 1}
+craft 1 black dye using 1 wither rose, {'terracotta': 8, 'black dye': 1}
+craft 8 black terracotta using 8 terracotta, 1 black dye, {'black terracotta': 8}
+2.
+Goal: craft birch button.
+get 1 birch logs, {'birch logs': 1}
+craft 4 birch planks using 1 birch logs, {'birch planks': 4}
+craft 1 birch button using 1 birch planks, {'birch planks': 3, 'birch button': 1}
+3.
+Goal: craft pink banner.
+get 6 pink tulip, {'pink tulip': 6}
+craft 1 pink dye using 1 pink tulip, {'pink tulip': 5, 'pink dye': 1}
+get 3 bone meal, {'pink tulip': 5, 'pink dye': 1, 'bone meal': 3}
+craft 4 birch planks using 1 birch logs, {'pink tulip': 5, 'pink dye': 1, 'bone meal': 3, 'birch planks': 4}
+craft 1 pink dye using 1 pink tulip, {'pink tulip': 4, 'pink dye': 2, 'bone meal': 3, 'birch planks': 4}
+craft 1 pink dye using 1 pink tulip, {'pink tulip': 3, 'pink dye': 3, 'bone meal': 3, 'birch planks': 4}
+craft 1 pink dye using 1 pink tulip, {'pink tulip': 2, 'pink dye': 4, 'bone meal': 3, 'birch planks': 4}
+craft 1 pink dye using 1 pink tulip, {'pink tulip': 1, 'pink dye': 5, 'bone meal': 3, 'birch planks': 4}
+craft 1 pink dye using 1 pink tulip, {'pink tulip': 0, 'pink dye': 6, 'bone meal': 3, 'birch planks': 4}
+get 24 string, {'pink dye': 6, 'bone meal': 3, 'birch planks': 4, 'string': 24}
+craft 1 white wool using 4 string, {'pink dye': 6, 'bone meal': 3, 'birch planks': 4, 'string': 20, 'white wool': 1}
+craft 1 white wool using 4 string, {'pink dye': 6, 'bone meal': 3, 'birch planks': 4, 'string': 16, 'white wool': 2}
+craft 1 white wool using 4 string, {'pink dye': 6, 'bone meal': 3, 'birch planks': 4, 'string': 12, 'white wool': 3}
+craft 1 white wool using 4 string, {'pink dye': 6, 'bone meal': 3, 'birch planks': 4, 'string': 8, 'white wool': 4}
+craft 1 white wool using 4 string, {'pink dye': 6, 'bone meal': 3, 'birch planks': 4, 'string': 4, 'white wool': 5}
+craft 1 white wool using 4 string, {'pink dye': 6, 'bone meal': 3, 'birch planks': 4, 'string': 0, 'white wool': 6}
+craft 1 pink wool using 1 pink dye, 1 white wool, {'pink dye': 5, 'bone meal': 3, 'birch planks': 4, 'white wool': 5, 'pink wool': 1}
+craft 1 pink wool using 1 pink dye, 1 white wool, {'pink dye': 4, 'bone meal': 3, 'birch planks': 4, 'white wool': 4, 'pink wool': 2}
+craft 1 pink wool using 1 pink dye, 1 white wool, {'pink dye': 3, 'bone meal': 3, 'birch planks': 4, 'white wool': 3, 'pink wool': 3}
+craft 1 pink wool using 1 pink dye, 1 white wool, {'pink dye': 2, 'bone meal': 3, 'birch planks': 4, 'white wool': 2, 'pink wool': 4}
+craft 1 pink wool using 1 pink dye, 1 white wool, {'pink dye': 1, 'bone meal': 3, 'birch planks': 4, 'white wool': 1, 'pink wool': 5}
+craft 1 pink wool using 1 pink dye, 1 white wool, {'pink dye': 0, 'bone meal': 3, 'birch planks': 4, 'white wool': 0, 'pink wool': 6}
+get 2 bamboo, {'bone meal': 3, 'birch planks': 4, 'pink wool': 6, 'bamboo': 2}
+craft 1 stick using 2 bamboo, {'bone meal': 3, 'birch planks': 4, 'pink wool': 6, 'bamboo': 0, 'stick': 1}
+craft 1 pink banner using 6 pink wool, 1 stick, {'bone meal': 3, 'birch planks': 4, 'pink banner': 1}
+4.
+Goal: craft crossbow.
+get 2 string, {'string': 2}
+get 6 bamboo, {'string': 2, 'bamboo': 6}
+craft 1 stick using 2 bamboo, {'string': 2, 'bamboo': 4, 'stick': 1}
+craft 4 spruce planks using 1 spruce logs, {'string': 2, 'bamboo': 4, 'stick': 1, 'spruce planks': 4}
+craft 1 stick using 2 bamboo, {'string': 2, 'bamboo': 2, 'stick': 2, 'spruce planks': 4}
+get 4 spruce planks, {'string': 2, 'bamboo': 2, 'stick': 2, 'spruce planks': 8}
+craft 1 stick using 2 bamboo, {'string': 2, 'bamboo': 0, 'stick': 3, 'spruce planks': 8}
+get 1 iron ingot, {'string': 2, 'bamboo': 0, 'stick': 3, 'spruce planks': 8, 'iron ingot': 1}
+get 2 bamboo, {'string': 2, 'bamboo': 2, 'stick': 3, 'spruce planks': 8, 'iron ingot': 1}
+craft 1 stick using 2 bamboo, {'string': 2, 'bamboo': 0, 'stick': 4, 'spruce planks': 8, 'iron ingot': 1}
+get 1 iron ingot, {'string': 2, 'bamboo': 0, 'stick': 4, 'spruce planks': 8, 'iron ingot': 2}
+get 1 warped stems, {'string': 2, 'bamboo': 0, 'stick': 4, 'spruce planks': 8, 'iron ingot': 2, 'warped stems': 1}
+craft 4 warped planks using 1 warped stems, {'string': 2, 'bamboo': 0, 'stick': 4, 'spruce planks': 8, 'iron ingot': 2, 'warped planks': 4}
+craft 2 tripwire hook using 1 stick, 1 iron ingot, 1 warped planks, {'string': 2, 'bamboo': 0, 'stick': 3, 'spruce planks': 8, 'iron ingot': 1, 'warped planks': 3, 'tripwire hook': 2}
+craft 1 crossbow using 2 string, 3 stick, 1 iron ingot, 1 tripwire hook, {'spruce planks': 8, 'warped planks': 3, 'tripwire hook': 1, 'crossbow': 1}
+\end{UserTurn}
+
+\textbf{[GPT-5]}
+\begin{ModelTurn}
+Got it -- here's a clean, transferable method plus the concrete subgoals for each trajectory and a tiny reward checker you can drop into your pipeline.
+
+# Method (used consistently below)
+1) Read the final recipe and list its direct ingredients.  
+2) For any ingredient that is itself crafted, compress its internal chain into a single milestone state (e.g., "have 6 pink wool"), rather than exposing every micro-step.  
+3) Keep only necessary inventory thresholds that enable the next craft.  
+4) Ensure 0 < #subgoals < #steps and end with the ultimate goal state (>=1 of target item).
+
+---
+
+## 0) Goal: craft birch trapdoor
+**Key steps (summary):** convert birch logs -> planks; once you have >=6 birch planks, craft trapdoor.
+
+**Subgoals (states only, final one is the goal):**
+1. {'birch planks': 6}  
+2. {'birch trapdoor': 1}
+
+---
+
+## 1) Goal: craft black terracotta
+**Key steps (summary):** obtain terracotta (8); obtain a black dye (e.g., from wither rose); craft black terracotta.
+
+**Subgoals:**
+1. {'terracotta': 8}  
+2. {'black dye': 1}  
+3. {'black terracotta': 1}
+
+---
+
+## 2) Goal: craft birch button
+**Key steps (summary):** make birch planks; craft button.
+
+**Subgoals:**
+1. {'birch planks': 1}  
+2. {'birch button': 1}
+
+---
+
+## 3) Goal: craft pink banner
+**Key steps (summary):** produce 6 pink wool (via white wool + pink dye), get a stick, craft banner.
+
+**Subgoals:**
+1. {'pink wool': 6}  
+2. {'stick': 1}  
+3. {'pink banner': 1}
+
+*(Note: This compresses the internal chains "string -> white wool" and "tulip -> pink dye -> pink wool" into the single milestone `pink wool: 6`.)*
+
+---
+
+## 4) Goal: craft crossbow
+**Key steps (summary):** craft a tripwire hook; ensure remaining ingredients (2 string, 3 sticks, 1 iron ingot) are on hand; craft crossbow.
+
+**Subgoals:**
+1. {'tripwire hook': 1}  
+2. {'string': 2, 'stick': 3, 'iron ingot': 1}  
+3. {'crossbow': 1}
+
+*(Note: The hook's own chain (stick + iron ingot + planks) is compressed into the milestone ``have 1 tripwire hook''.)*
+
+---
+
+# Binary Reward Function (subgoal achieved?)
+from typing import Dict
+
+def subgoal_achieved(current_state: Dict[str, int], subgoal_state: Dict[str, int]) -> int:
+    """
+    Returns 1 if current_state satisfies (>=) every item requirement in subgoal_state; else 0.
+    Both dicts map item_name -> nonnegative int quantity.
+    """
+    for item, req_qty in subgoal_state.items():
+        if current_state.get(item, 0) < req_qty:
+            return 0
+    return 1
+
+### Example usage
+# Example for trajectory 3 (pink banner)
+current = {'pink wool': 6, 'stick': 0}
+sg1 = {'pink wool': 6}
+sg2 = {'stick': 1}
+sg3 = {'pink banner': 1}
+
+assert subgoal_achieved(current, sg1) == 1
+assert subgoal_achieved(current, sg2) == 0
+assert subgoal_achieved({'pink banner': 1}, sg3) == 1
+
+If you want, I can package these into a JSON schema (trajectories -> subgoals array) or wire the checker into your rollout collector.
+\end{ModelTurn}

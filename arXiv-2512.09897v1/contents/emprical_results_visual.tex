@@ -1,0 +1,57 @@
+\begin{table*}
+\centering
+\caption{Success rates for crafting ace items in TextCraft. \textbf{Top:} ADaPT \citep{PrasadKHCSBK2024} is a hierarchical agent that uses a GPT-3.5-based planner \citep{BrownMRSSKD2020}. \textbf{Bottom:} Ablation results. SCOPE (hand-engineered-subgoal) replaces LLM-generated subgoals with manually constructed, interpretable ones. SCOPE (without manager RL-finetuning) removes the manager-level RL stage.
+}
+\label{tab:performance}
+\begin{tabular}{l c c}
+\toprule
+\textbf{Setting} & \textbf{Success Rate} & \textbf{\# Parameters} \\
+\midrule
+ADaPT \citep{PrasadKHCSBK2024} & 0.52 & 175B \\
+SCOPE (\textbf{ours})  & 0.56 & 11.04M \\
+\midrule
+SCOPE (hand-engineered-subgoal) & 0.58 & 11.04M \\
+SCOPE (without manager RL-finetuning) & 0.24 & 11.04M \\
+\bottomrule
+\end{tabular}
+\vspace{1em}  
+\end{table*}
+
+
+
+\begin{table*}[t]
+    \centering
+    \caption{Success rates for crafting ace items in TextCraft for ADaPT \citep{PrasadKHCSBK2024} with different backends. The original implementation uses GPT-3.5 \citep{BrownMRSSKD2020} as the backend.}
+    \label{tab:backend-success}
+%    \begin{tabular}{lcc}
+%        \toprule
+%        \textbf{Backend} & \textbf{Success Rate} & \textbf{\# Parameters} \\
+%        \midrule
+%        GPT-4o            & 0.58  & 1.8T$^{*}$ \\
+%        Mistral Small 3  & 0.58   & 24B \\
+%        SCOPE            & 0.56   & 11.04M \\
+%        GPT-3.5           & 0.52   & 175B \\
+%        GPT-4o mini       & 0.43  & 8B$^{*}$ \\
+%        DeepSeek-R1-Distill-Qwen-32B           & 0.13   & 32B \\
+%        Claude-3 Haiku   & 0.00      & 20B$^{*}$ \\
+%        \bottomrule
+%    \end{tabular}
+
+\resizebox{\textwidth}{!}{
+    \begin{tabular}{lccc}
+    \toprule
+    \textbf{Backend} & \textbf{Success Rate} & \textbf{\# Parameters} & \textbf{Open Weight?} \\
+    \midrule
+    GPT-4o \citep{OpenAI2024}                         & 0.58 & 1.8T$^{*}$ & No  \\
+    Mistral Small 3 \citep{mistral_small3_2025}       & 0.58 & 24B        & Yes \\
+    SCOPE (\textbf{ours})                          & 0.56 & 11.04M     & - \\
+    GPT-3.5 \citep{BrownMRSSKD2020}                        & 0.52 & 175B       & No  \\
+    GPT-4o mini \citep{OpenAI2024}                    & 0.43 & 8B$^{*}$   & No  \\
+    DeepSeek-R1-Distill-Qwen-32B \citep{DeepSeek-AI2025}    & 0.13 & 32B        & Yes \\
+    Claude-3 Haiku \citep{anthropic_claude3_2024}                 & 0.00 & 20B$^{*}$  & No  \\
+    \bottomrule
+\end{tabular} 
+}%  
+    \vspace{0.3em}
+    {\footnotesize $^{*}$ Rough estimates based on publicly discussed or widely believed parameter counts.}
+\end{table*}

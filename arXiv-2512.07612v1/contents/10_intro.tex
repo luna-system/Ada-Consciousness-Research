@@ -1,0 +1,84 @@
+\vspace{-0.2in}
+\section{Introduction}
+
+\begin{figure}[!ht]
+\vspace{-0.2in}
+\centering
+\includegraphics[width=0.95\linewidth]{model_performance_comparison.pdf}
+\vspace{-0.1in}
+\caption{Model Performance Comparison. \sys surpasses the frontier of fully open-source models at a similar scale, and approaches open-weight models such as Qwen2-1.5B~\citep{qwen2} and Llama3.2-3B~\citep{llama3.2}. A full version of the corresponding benchmark scores is detailed in \Cref{tab:model_comparison_full}.}
+\label{fig:model_perf_comp}
+\end{figure}
+
+The field of Large Language Models (LLMs) has seen remarkable advancements, demonstrating comprehensive capabilities across a wide spectrum of tasks. The performance of these models fundamentally depends on the quality and scale of their pretraining~\citep{yue2025does,hernandez2021transfer}. However, the core science and engineering behind large-scale LLM pretraining remain underexplored by the academic and open-source communities due to two main industry practices: (1) \textbf{Closed-source pretraining} of leading models~\citep{openai2023gpt4,gemini2025gemini25}. (2) Release of \textbf{open model weights} but with \textbf{closed-source training recipes}~\citep{deepseekai2025deepseekv3technicalreport,deepseekai2025deepseekr1incentivizingreasoningcapability,qwen3}.
+
+
+\noindent \textbf{Fully open-source models}, which publish both weights, datasets, and detailed pretraining procedures, are essential to bridge this knowledge gap and facilitate academic exploration. Pioneer works in this direction include the OLMo series~\citep{groeneveld-etal-2024-olmo,olmo20252olmo2furious,muennighoff2025olmoe}, SmolLM series~\citep{smol2,smollm3}, and Yulan series~\citep{zhu2024yulan,hu2024yulan}. Furthermore, the increasing availability of high-quality, open-source pretraining datasets, spanning English, multilingual, code, and math domains~\citep{fineweb,DCLM,stack-v2,kydlicek2025finepdfs,together2023redpajama,fineweb-edu-chinese,zhou2025megamath}, lays a crucial foundation for more open pretraining attempts.
+
+Despite these advancements, significant challenges persist in open-source pretraining, particularly when attempting to match the performance of state-of-the-art open-weight models under resource constraints. In this technical report, we introduce the \textbf{\fullsys (\sys in short), a fully open-source model}, and detail its pretraining methodology. Our work focuses on two critical challenges faced by resource-limited communities:
+
+\begin{enumerate}
+\item \textbf{Heterogeneous Open-Source Data:} While many pretraining-scale datasets are available, their sources and preprocessing pipelines vary significantly~\citep{DCLM,fineweb,stack-v2}. This leads to vast differences in data features, posing a challenge for the effective comparison, selection, and mixing of these heterogeneous datasets~\citep{su2025nemotroncctransformingcommoncrawl}.
+\item \textbf{Limited Compute Resources:} The academic community typically cannot afford to train on the scale of tokens (e.g., tens of trillions) used by industry leaders~\citep{qwen3}. This necessitates novel strategies to improve training efficiency with limited data and computational resources.
+\end{enumerate}
+
+\noindent  Our primary goal is to push the frontier of open-source pretraining by directly addressing these two questions:
+\begin{enumerate}
+\item How can one properly compare, select, and effectively mix heterogeneous open-source datasets?
+\item How to improve the training efficiency, especially when dealing with the inherent sparsity of high-quality data?
+\end{enumerate}
+
+In the pretraining of the \sys model, we propose and implement practical solutions to these challenges, centered on data management and training efficiency. Given the domains of accessible open-source datasets, we focus on improving the model's Chinese, coding, and math capabilities, in addition to its general knowledge and reasoning capabilities. As shown in \Cref{fig:model_perf_comp}, through these practices, our \sys model demonstrates competitive performance within the fully open-source category and narrows the gap to open-weight models. Our contributions include the following aspects:
+
+\paragraph{Deduplication and Quantile Data Benchmarking.}
+We propose a novel \textbf{quantile benchmarking} method to systematically evaluate and compare leading open-source datasets (e.g., DCLM-Baseline~\citep{DCLM}, Fineweb-Edu~\citep{fineweb}). The rationale is twofold: (1) Open-source datasets often include rule-based or model-based quality metrics, which have proven effective in filtering and can be used to inform the importance of samples during comparison~\citep{fineweb,DCLM}. (2) By selecting a data subset around a target quality score quantile and training a small reference model over it, we can measure the subset's characteristics via the reference model's downstream performance. This method allows us to understand how different datasets or distinct partitions within a single dataset perform across various capabilities. The approach enables systematic benchmarking across heterogeneous collections, especially for the leading datasets that account for the majority of training tokens. Crucially, deduplication is performed before the quantile benchmarking process. (\cref{sec:data_benchmarking_subsec})
+
+\paragraph{System Infrastructure and Training Stability.}
+To support these data-centric efforts, we built a high-performance and scalable data preprocessing pipeline based on Spark~\citep{zaharia2012spark} and optimized with the Chukonu framework~\citep{chukonu}. This optimized framework efficiently supports deduplication and leverages Spark's native sorting for curriculum implementation.
+Finally, our pretraining experiments were conducted on Ascend 910A clusters. Ascend 910A is comparable to V100 hardware and supports only $\text{FP}16$. To ensure training stability under these conditions, we modify the model architecture based on Qwen3-1.7B by incorporating sandwich normalization and soft capping, in addition to standard $\text{QK}$ normalization. (\cref{sec:architecture_stability,sec:data_preprocessing_framework})
+
+\paragraph{Strategic Selective Repetition for Sparse High-Quality Data.}
+Our data benchmarking confirms that high-quality data is extremely useful but sparse. To exploit this utility without excessive resource expenditure, we adopt a multi-phase training paradigm that implements selective repetition.
+Without specification, each data sample appears exactly once within each phase, but high-quality samples may appear in multiple phases.
+This ensures that higher-quality data samples are repeated more frequently. We employ a five-phase training pipeline, which limits repetition such that the overall benefit remains similar to that observed in one-pass training regimes~\citep{muennighoff2023data_constrained,yan2025largerdatasetsrepeatedmore}. (\cref{sec:multi_phase_mixture_subsec})
+
+\paragraph{Multi-Domain Curriculum Training.}
+In addition to strategic repetition, we integrate a data curriculum within training phases 3, 4, and 5. This curriculum ensures a stable data mixture across different datasets while sorting data samples in ascending order of their quality metrics within each dataset. Datasets without explicit quality labels are simply shuffled. This means that more important and high-quality samples are presented to the model in the latter training steps. To make full use of the benefit of the data curriculum, we adopt a moderate Learning Rate (LR) decay and apply model averaging over the last several checkpoints, following recent findings~\citep{luo2025learningratedecaywastes}. (\cref{sec:multi_dataset_curriculum_subsec})
+
+\paragraph{Pushing the Frontier of Fully Open-Source Models.} 
+\sys lies in the frontier of fully open-source models, achieving superior performance at comparable model scales. 
+Most notably, our model demonstrates remarkable capabilities in three focused domains: Chinese language understanding, mathematical reasoning, and code generation. 
+As illustrated in \Cref{tab:lang_math_code}, \sys substantially outperforms Gemma2-2B despite operating at a similar parameter scale. 
+Beyond these targeted capabilities, our model also exhibits competitive performance in reasoning and knowledge-intensive tasks, approaching or matching the performance of larger models such as Gemma2-2B and Yulan-Mini-2.4B. 
+When accounting for non-embedding parameters alone (only 1.4B), our model's efficiency advantages become even more pronounced, as demonstrated in \Cref{fig:performance_comparison_on_nonembedding}. (\cref{sec:eval})
+
+
+The rest of this report is organized as follows: In \Cref{sec:architecture_stability}, we will discuss how to stabilize training on FP16-only hardware through architecture design. In \Cref{sec:data_benchmark}, we will introduce our quantile benchmarking approach to deepen our understanding of how various score metrics reflect the data inherent in different feature dimensions. In \Cref{sec:multi_phase_curriculum}, we will discuss two approaches to leverage high-quality data in our training: selective repetition and quality-based curriculum. Then in \Cref{sec:eval}, we will report our evaluation settings and results, positioning \sys in the fully-open and open-weight models. Additionally, \Cref{sec:non_embedding_comparison} shows model performance comparison relative to non-embedding parameters; \Cref{sec:quantile_benchmark_results} lists quantile benchmarking results; \Cref{sec:dataset_used} lists all used datasets along with license details; \Cref{sec:data_mixture_details} lists dataset mixture details in all phases; \Cref{sec:experiment_setting_details} presents the implementation details and experiment settings in our training and small-scale experiments. \Cref{sec:model_perf_full} shows the full table for model performance comparison.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

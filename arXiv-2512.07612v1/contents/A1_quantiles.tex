@@ -1,0 +1,77 @@
+\section{Quality-Score Quantile Benchmarking}
+\label{sec:quantile_benchmark_results}
+
+We show full quantile benchmarking results in \Cref{fig:quantile_benchmark_understanding,fig:quantile_benchmarks_knowledge}. The overall observations are discussed in \Cref{sec:data_benchmark} in detail. The DCLM-Baseline leading experiments are shown in \Cref{fig:quantile_benchmark_understanding} and Fineweb-Edu leading experiments are shown in \Cref{fig:quantile_benchmarks_knowledge}. 
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/HSwag_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/HSwag_run.pdf} 
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/Social_IQa_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/Social_IQa_run.pdf} 
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/PIQA_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/PIQA_run.pdf} 
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/WinoGrande_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/WinoGrande_run.pdf} 
+    \end{subfigure}
+    \caption{Quantile Benchmarks: DCLM-Baseline is better on understanding-oriented benchmarks.}
+    \label{fig:quantile_benchmark_understanding}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/MMLU_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/MMLU_run.pdf} 
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/ARC-Easy_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/ARC-Easy_run.pdf} 
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/ARC-Challenge_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/ARC-Challenge_run.pdf} 
+    \end{subfigure}    
+    \\
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/CSQA_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/CSQA_run.pdf} 
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_resume/boolq_resume.pdf} 
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{benchmark_plots_run/boolq_run.pdf} 
+    \end{subfigure}
+    \caption{Quantile Benchmarks: FineWeb-Edu is better on knowledge-oriented benchmarks.}
+    \label{fig:quantile_benchmarks_knowledge}
+\end{figure}

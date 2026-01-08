@@ -1,0 +1,83 @@
+Developing agents capable of planning and reasoning over long horizons remains a central challenge in reinforcement learning (RL). Classical RL and planning methods have achieved notable success in environments with compact state representations and finite action spaces \citep{BercherAL2019, PateriaSTQ2021}. However, such favourable conditions typically rely on substantial domain expertise to design effective state abstractions, carefully shaped rewards, and constrained action sets \citep{IbrahimMJSO2024}. Extending these successes to more general and unstructured settings is considerably more difficult, as many real-world problems lack such engineered structure, leading to persistent challenges in exploration, credit assignment, and generalization.
+
+Motivated by the empirical success of large language models (LLMs) and their strong capability for general-purpose text processing, recent RL research has begun leveraging their semantic knowledge to support high-level reasoning and planning in embodied agents. This approach has shown strong promise in both robotic control \citep{AhnBBCC2022} and long-term planning in open-world environments such as Minecraft \citep{WangCMLJLM2024}. However, because these methods rely heavily on querying LLMs during both training and inference, they incur high computational costs and are difficult to deploy efficiently. Furthermore, although some approaches introduce additional trainable components to give the LLM-based planner limited adaptability, the LLM itself is typically kept frozen, preventing its parameters from being updated to better fit the target task. 
+
+To address the high computational cost and limited flexibility of LLM-based planners, \citet{ZhouHZZL2024, LiPSFXZ2026} propose an alternative approach in which the LLM serves as a teacher to supervise a small student network for high-level decision making. Early in training, the student closely follows the LLM’s guidance, but its reliance gradually diminishes, eventually allowing it to operate independently at inference time. Although this approach removes the need for the LLM during deployment, it still requires iterative LLM queries throughout training to provide ongoing guidance to the student. 
+
+
+Adopting a similar idea, in this work, we propose SCOPE (Subgoal-COnditioned Pretraining for Efficient planning), a more efficient approach that uses LLM-generated subgoals only once at initialization, assuming access to a set of suboptimal example trajectories. Unlike prior methods that repeatedly query the LLM to generate subgoals during training adaptively, SCOPE directly extracts subgoal sequences from demonstrations and uses them to pretrain a student planner. Although these subgoals are suboptimal as the LLM does not interact with the environment, our preliminary results on TextCraft (a simplified, text-only version of Minecraft) show that they still provide a strong starting point for the planner in text-based planning tasks. After fine-tuning the planner by maximizing expected return through interaction with a world model, SCOPE achieves strong performance. In particular, compared to the LLM-based hierarchical agent ADaPT \citep{PrasadKHCSBK2024}, which obtains a 0.52 success rate on TextCraft, SCOPE reaches 0.56. It is also significantly more efficient at inference time: SCOPE completes the game in an average of 3.0 seconds on a single NVIDIA A10 GPU, whereas ADaPT requires 164.4 seconds using a GPT-3.5 backend accessed via the OpenAI API under ideal network conditions.
+
+
+%We show that after finetuning by maximizing the expected return through interacting with a world model, the proposed method can achieve impressive results. In particular, compared to the LLM-based hierarchical agent ADaPT \citep{PrasadKHCSBK2024}, which achieves a 52.0\% success rate on TextCraft, our method reaches \red{XX.X\%}. In terms of inference efficiency, our agent completes the game in an average of 3.0 seconds on an NVIDIA A10 GPU, whereas ADaPT requires 164.4 seconds using a GPT-3.5 backend accessed via the OpenAI API under ideal network conditions.
+
+
+%Compared to the LLM-based hierarchical agent ADaPT \citep{PrasadKHCSBK2024}, which achieves an ultimate-goal success rate of 52.0\%, our method reaches $\red{XX.X\%}$. In terms of inference efficiency, our agent completes the game in an average of 3.0 seconds on a NVIDIA A10, whereas ADaPT requires 164.4 seconds on average with GPT3.5 backend accessed through OpenAI API under a perfect network condition.
+
+
+%In this work, we propose a more efficient approach that uses LLM-generated subgoals only once at initialization, assuming access to a set of suboptimal example trajectories. Unlike prior methods that repeatedly query the LLM to adaptively generate subgoals during training, our method directly extracts subgoal sequences from the demonstrations and uses them to pretrain a student planner. Although the resulting subgoals are suboptimal--since the LLM does not interact with the environment--our preliminary results on TextCraft (a simplified, purely text-based version of Minecraft) show that they still provide an effective starting point for hierarchical goal decomposition in text-based planning tasks. In comparison to the existing LLM-based hierarchical agent like ADaPT, which has an ultimate goal success rate $52.0\%$, our method achieves the success rate $\red{XX.X\%}$. With respect to the inference time, our model only needs, on average, 3.0 seconds to complete the game, while ADaPT needs 164.4 seconds. 
+
+%our method does not 
+
+
+%This eliminates the need for repeated LLM queries during training, greatly improving efficiency, albeit at the cost of reduced interpretability and potentially suboptimal subgoals. Nevertheless, our results show that even these suboptimal subgoals provide a strong foundation for hierarchical goal decomposition in text-based planning tasks.
+
+%In this work, we propose a more efficient method that uses LLM-generated subgoals only once at the initialization stage by assuming access to a set of suboptimal example trajectories. Unlike prior approaches that distill LLM knowledge by repeatedly prompting the model to adaptively generate subgoals during training, our method derives subgoals directly from example trajectories. This design removes the need for repeated LLM queries, significantly improving efficiency, though at the cost of reduced explainability and potentially suboptimal subgoals. Despite their suboptimality, our results show that LLM-generated subgoals can still serve as a strong starting point for hierarchical goal decomposition in text-based planning tasks. 
+
+
+
+
+
+
+%Since then, LLM-based task planning has been widely explored, with methods broadly falling into two categories: comprehensive planners, which generate all subgoals in advance \citep{TangYTZFH2023, DalalCCS2024}, and incremental planners, which adapt subgoals dynamically based on feedback or environmental changes \citep{IchterBCKFHP2023, ZhangHL2023, WangCMLJLM2024}.
+
+%Motivated by the remarkable empirical success of large language models (LLMs) and their strong ability to process general-purpose text, recent research in RL has begun to leverage the rich semantic knowledge to guide agents for high-level reasoning and planning in embodied agents. \citet{AhnBBCC2022} first demonstrated this by proposing a hierarchical framework in which a low-level controller executes primitive actions (e.g., opening a gripper) while an LLM-based high-level agent issues abstract instructions (e.g., “put the Coke on the counter”). Since then, many works have explored LLMs as task planners, typically falling into two categories: comprehensive planners that generate all subgoals upfront \citep{TangYTZFH2023, DalalCCS2024}, and incremental planners that adaptively update subgoals based on feedback or environmental changes \citep{IchterBCKFHP2023, ZhangHL2023, WangCMLJLM2024}.
+
+%Due to the vast number of trainable parameters in LLM-based agents, directly optimizing them through fine-tuning is often impractical and computationally demanding (\red{cite}). Consequently, most existing approaches improve the behaviour of LLM agents indirectly, by refining their prompts based on environmental feedback and/or by allowing the LLM to generate multiple high-level action candidates, from which a separate value function selects the most appropriate one \citep{AhnBBCC2022, WangCaiCLJLM2023}. 
+
+
+
+%explore text-based Markov decision processes (MDPs), where both states and actions are represented in natural language \citep{FengWYZKDWW2024, OsborneNF2022}. 
+
+
+%These approaches show that encoding observations and admissible actions as text enables interactive decision-making in environments with richer and more descriptive state representations \citep{RahmanX2024, GruppiDMC2025}. While this design offers a universal input–output interface that flexibly captures complex situations and may inform future frameworks for LLM-based agents capable of long-term planning, it also introduces substantial challenges: open-ended action spaces, high-dimensional and ambiguous observations, and sparse rewards make exploration and credit assignment considerably more difficult than in traditional RL.
+
+%In this work, we present a preliminary yet promising approach to addressing the challenge of long-term planning in the universal text-based RL setting through a hierarchical decision-making framework. The framework consists of two complementary agents: a short-sighted employee agent, which specializes in solving elementary tasks defined by subgoals, and a long-term manager agent, which proposes and organizes these subgoals to guide overall task completion while dynamically adapting to the imperfect reasoning of the employee agent.
+
+
+
+
+%While similar hierarchical frameworks have been effectively implemented in visually grounded environments such as Minecraft, this work explores a comparable idea in a purely textual setting -- one that lacks visual state representations. Specifically, we conduct empirical studies on TextCraft, a text-only variant of Minecraft that focuses solely on collecting and crafting items without spatial or visual components. Our results demonstrate that introducing subgoals significantly enhances planning efficiency and long-horizon reasoning in text-based environments. Although LLM-generated subgoals are not always optimal or fully explainable, they nevertheless provide a strong starting point for hierarchical goal decomposition, enabling more structured and efficient exploration in complex textual domains.
+
+
+%\red{\citep{ErdoganFKLMAG2025}}
+
+% \red{We need to differentiate our work with the pure LLM-based hierarchical reasoning. See Appendix for related work we need to discuss.}
+
+% we propose a hierarchical text-based RL framework that decomposes complex tasks into intermediate subgoals, enabling more effective long-term reasoning and improving sample efficiency. Preliminary experiments on the TextCraft environment demonstrate that our method enhances both learning efficiency and overall task performance.
+
+% Challenges of Real-World Reinforcement Learning by \citep{ArnoldLMLPGH2021} - lays out the difficulties RL faces in real-world settings including weak reward signals, large state/action spaces, etc.
+
+% To better capture these complex settings, we consider agents that interact entirely through natural language, representing both states and actions as text. 
+
+
+% This universal text-based interface allows flexible descriptions of intricate situations—such as those involving structured information like inventories or environment attributes—and may inspire future frameworks for large language model (LLM)-based agents capable of extended reasoning and planning. However, this design also introduces substantial challenges: open-ended action spaces, high-dimensional and ambiguous observations, and sparse rewards make exploration and credit assignment significantly harder than in traditional RL. 
+
+
+
+% Kaheer: One thing we need to keep in mind is we probably need a way to explain that method for collecting data that gets the optimal trajectories that is something that is probably not doable in most environments you can say this was akin to human trajectories this makes it more important that we are able to show this method works on other environments.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

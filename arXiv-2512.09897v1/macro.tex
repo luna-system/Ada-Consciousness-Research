@@ -1,0 +1,337 @@
+%%%%%%%%%%%%%%%%%%%% Mathematical Macros %%%%%%%%%%%%%%%%%%%%
+% This file contains mathematical notation and command definitions
+% Package imports and configurations are in watml.sty
+
+%%%%%%%%%%%%%%%%%%%% Custom Commands %%%%%%%%%%%%%%%%%%%%
+\def\FILL{\red{FILL}}
+\newcommand{\modify}[1]{{\color{blue} #1}}
+
+%%%%%%%%%%%%%%%%%%%% Mathematical Operators %%%%%%%%%%%%%%%%%%%%
+\newcommand{\fracpartial}[2]{\frac{\partial #1}{\partial  #2}}
+\newcommand{\cl}{\mathop{\mathrm{cl}}}
+\def\conv{\hspace{-0.1em}*\hspace{-0.1em}}
+\newcommand{\cone}[1]{\mathrm{cone}\bb{#1}}
+\newcommand{\SORL}[1]{\texttt{SORL}{$(#1)$}}
+\newcommand{\dist}{\mathsf{dist}}
+\newcommand{\closeness}{\mathsf{closeness}}
+\newcommand{\similarity}{\mathsf{similarity}}
+\newcommand{\Lgan}{\Lc_{\rm GAN}}
+\newcommand{\dom}{\mathop{\mathrm{dom}}}
+\newcommand{\intr}{\mathrm{int}}
+\newcommand{\ran}{\mathop{\mathrm{rge}}}
+\newcommand{\spe}{\mathrm{sp}}
+\newcommand{\st}{\ \mathrm{s.t.}\ }
+\newcommand{\tr}[1]{\mathbf{tr}\bb{#1}} 
+\newcommand{\lhs}{\mathsf{LHS}} 
+\newcommand{\rhs}{\mathsf{RHS}} 
+\newcommand{\zero}{\mathbf{0}} 
+\newcommand{\one}{\mathbf{1}} 
+\newcommand{\where}{\mathrm{where}\ }
+\newcommand{\diff}{\,\mathrm{d}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\T}{^\top}
+\newcommand{\union}{\cup}
+\newcommand{\Union}{\bigcup}
+\newcommand{\intersect}{\cap}
+\newcommand{\Intersect}{\bigcap}
+\newcommand{\parder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secder}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+\DeclareMathOperator*{\mini}{\mathrm{minimize}}
+\DeclareMathOperator*{\maxi}{\mathrm{maximize}}
+
+%%%%%%%%%%%%%%%%%%%% Convergence Notation %%%%%%%%%%%%%%%%%%%%
+\newcommand{\as}{\xrightarrow{a.s.}}
+\newcommand{\inprob}{\xrightarrow{P}}
+\newcommand{\inqm}{\xrightarrow{qm}}
+\newcommand{\indist}{\xrightarrow{d}}
+
+%%%%%%%%%%%%%%%%%%%% Brackets and Delimiters %%%%%%%%%%%%%%%%%%%%
+\newcommand{\bb}[1]{\left( #1 \right)}
+\newcommand{\cbb}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\sbb}[1]{\left[ #1 \right]}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\dual}[2]{\langle #1; #2\rangle}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+
+%%%%%%%%%%%%%%%%%%%% Probability and Statistics %%%%%%%%%%%%%%%%%%%%
+\newcommand{\prob}[1]{\mathbb{P}\bb{#1}}
+\newcommand{\ep}[1]{\mathbb{E}\sbb{#1}}
+\newcommand{\var}[1]{\mathsf{Var}\bb{#1}}
+\newcommand{\rank}[1]{\mathrm{rank}\bb{#1}}
+\newcommand{\srank}[3]{\mathrm{rank}_{#1,#2}\bb{#3}}
+\newcommand{\diag}[1]{\mathrm{diag}\bb{#1}}
+\newcommand{\KL}[2]{D_{\mathrm{KL}}({#1} \; \| \; {#2})}
+\newcommand{\entropy}[1]{\mathrm{H}\bb{#1}}
+
+%%%%%%%%%%%%%%%%%%%% Common Number Sets %%%%%%%%%%%%%%%%%%%%
+\newcommand{\RR}{\mathds{R}}
+\newcommand{\CC}{\mathds{C}}
+\newcommand{\NN}{\mathds{N}}
+
+%%%%%%%%%%%%%%%%%%%% Calligraphic Letters %%%%%%%%%%%%%%%%%%%%
+\newcommand{\Ac}{\mathcal{A}}
+\newcommand{\Bc}{\mathcal{B}}
+\newcommand{\Cc}{\mathcal{C}}
+\newcommand{\Dc}{\mathcal{D}}
+\newcommand{\Ec}{\mathcal{E}}
+\newcommand{\Fc}{\mathcal{F}}
+\newcommand{\Gc}{\mathcal{G}}
+\newcommand{\Hc}{\mathcal{H}}
+\newcommand{\Ic}{\mathcal{I}}
+\newcommand{\Jc}{\mathcal{J}}
+\newcommand{\Kc}{\mathcal{K}}
+\newcommand{\Lc}{\mathcal{L}}
+\newcommand{\Mc}{\mathcal{M}}
+\newcommand{\Nc}{\mathcal{N}}
+\newcommand{\Oc}{\mathcal{O}}
+\newcommand{\Pc}{\mathcal{P}}
+\newcommand{\Qc}{\mathcal{Q}}
+\newcommand{\Rc}{\mathcal{R}}
+\newcommand{\Sc}{\mathcal{S}}
+\newcommand{\Tc}{\mathcal{T}}
+\newcommand{\Uc}{\mathcal{U}}
+\newcommand{\Vc}{\mathcal{V}}
+\newcommand{\Wc}{\mathcal{W}}
+\newcommand{\Xc}{\mathcal{X}}
+\newcommand{\Yc}{\mathcal{Y}}
+\newcommand{\Zc}{\mathcal{Z}}
+
+%%%%%%%%%%%%%%%%%%%% Sans Serif Letters %%%%%%%%%%%%%%%%%%%%
+\newcommand{\As}{\mathsf{A}}
+\newcommand{\Bs}{\mathsf{B}}
+\newcommand{\Cs}{\mathsf{C}}
+\newcommand{\Ds}{\mathsf{D}}
+\newcommand{\Es}{\mathsf{E}}
+\newcommand{\Fs}{\mathsf{F}}
+\newcommand{\Gs}{\mathsf{G}}
+\newcommand{\Hs}{\mathsf{H}}
+\newcommand{\Is}{\mathsf{I}}
+\newcommand{\Js}{\mathsf{J}}
+\newcommand{\Ks}{\mathsf{K}}
+\newcommand{\Ms}{\mathsf{M}}
+\newcommand{\Ns}{\mathsf{N}}
+\newcommand{\Os}{\mathsf{O}}
+\newcommand{\Ps}{\mathsf{P}}
+\newcommand{\Qs}{\mathsf{Q}}
+\newcommand{\Rs}{\mathsf{R}}
+\newcommand{\Ss}{\mathsf{S}}
+\newcommand{\Ts}{\mathsf{T}}
+\newcommand{\Us}{\mathsf{U}}
+\newcommand{\Vs}{\mathsf{V}}
+\newcommand{\Ws}{\mathsf{W}}
+\newcommand{\Xs}{\mathsf{X}}
+\newcommand{\Ys}{\mathsf{Y}}
+\newcommand{\Zs}{\mathsf{Z}}
+
+\newcommand{\asf}{\mathsf{a}}
+\newcommand{\bs}{\mathsf{b}}
+\newcommand{\cs}{\mathsf{c}}
+\newcommand{\ds}{\mathsf{d}}
+\newcommand{\es}{\mathsf{e}}
+\newcommand{\fs}{\mathsf{f}}
+\newcommand{\gs}{\mathsf{g}}
+\newcommand{\hs}{\mathsf{h}}
+\newcommand{\is}{\mathsf{i}}
+\newcommand{\js}{\mathsf{j}}
+\newcommand{\ks}{\mathsf{k}}
+\newcommand{\ls}{\mathsf{l}}
+\newcommand{\ms}{\mathsf{m}}
+\newcommand{\ns}{\mathsf{n}}
+\newcommand{\os}{\mathsf{o}}
+\newcommand{\ps}{\mathsf{p}}
+\newcommand{\qs}{\mathsf{q}}
+\newcommand{\ssf}{\mathsf{s}}
+\newcommand{\ts}{\mathsf{t}}
+\newcommand{\us}{\mathsf{u}}
+\newcommand{\vsf}{\mathsf{v}}
+\newcommand{\ws}{\mathsf{w}}
+\newcommand{\xs}{\mathsf{x}}
+\newcommand{\ys}{\mathsf{y}}
+\newcommand{\zs}{\mathsf{z}}
+
+%%%%%%%%%%%%%%%%%%%% Blackboard Bold Letters %%%%%%%%%%%%%%%%%%%%
+\newcommand{\Ab}{\mathbb{A}}
+\newcommand{\Bb}{\mathbb{B}}
+\newcommand{\Cb}{\mathbb{C}}
+\newcommand{\Db}{\mathbb{D}}
+\newcommand{\Eb}{\mathbb{E}}
+\newcommand{\Fb}{\mathbb{F}}
+\newcommand{\Gb}{\mathbb{G}}
+\newcommand{\Hb}{\mathbb{H}}
+\newcommand{\Ib}{\mathbb{I}}
+\newcommand{\Jb}{\mathbb{J}}
+\newcommand{\Kb}{\mathbb{K}}
+\newcommand{\Lb}{\mathbb{L}}
+\newcommand{\Mb}{\mathbb{M}}
+\newcommand{\Nb}{\mathbb{N}}
+\newcommand{\Ob}{\mathbb{O}}
+\newcommand{\Pb}{\mathbb{P}}
+\newcommand{\Qb}{\mathbb{Q}}
+\newcommand{\Rb}{\mathbb{R}}
+\newcommand{\Sb}{\mathbb{S}}
+\newcommand{\Tb}{\mathbb{T}}
+\newcommand{\Ub}{\mathbb{U}}
+\newcommand{\Vb}{\mathbb{V}}
+\newcommand{\Wb}{\mathbb{W}}
+\newcommand{\Xb}{\mathbb{X}}
+\newcommand{\Yb}{\mathbb{Y}}
+\newcommand{\Zb}{\mathbb{Z}}
+
+%%%%%%%%%%%%%%%%%%%% Bold Letters (lowercase) %%%%%%%%%%%%%%%%%%%%
+\newcommand{\av}{\mathbf{a}}
+\newcommand{\bv}{\mathbf{b}}
+\newcommand{\cv}{\mathbf{c}}
+\newcommand{\dv}{\mathbf{d}}
+\newcommand{\ev}{\mathbf{e}}
+\newcommand{\fv}{\mathbf{f}}
+\newcommand{\gv}{\mathbf{g}}
+\newcommand{\hv}{\mathbf{h}}
+\newcommand{\iv}{\mathbf{i}}
+\newcommand{\jv}{\mathbf{j}}
+\newcommand{\kv}{\mathbf{k}}
+\newcommand{\lv}{\mathbf{l}}
+\newcommand{\mv}{\mathbf{m}}
+\newcommand{\nv}{\mathbf{n}}
+\newcommand{\ov}{\mathbf{o}}
+\newcommand{\pv}{\mathbf{p}}
+\newcommand{\qv}{\mathbf{q}}
+\newcommand{\sv}{\mathbf{s}}
+\newcommand{\tv}{\mathbf{t}}
+\newcommand{\uv}{\mathbf{u}}
+\newcommand{\wv}{\mathbf{w}}
+\newcommand{\xv}{\mathbf{x}}
+\newcommand{\yv}{\mathbf{y}}
+\newcommand{\zv}{\mathbf{z}}
+
+%%%%%%%%%%%%%%%%%%%% Bold Letters (uppercase) %%%%%%%%%%%%%%%%%%%%
+\newcommand{\Av}{\mathbf{A}}
+\newcommand{\Bv}{\mathbf{B}}
+\newcommand{\Cv}{\mathbf{C}}
+\newcommand{\Dv}{\mathbf{D}}
+\newcommand{\Ev}{\mathbf{E}}
+\newcommand{\Fv}{\mathbf{F}}
+\newcommand{\Gv}{\mathbf{G}}
+\newcommand{\Hv}{\mathbf{H}}
+\newcommand{\Iv}{\mathbf{I}}
+\newcommand{\Jv}{\mathbf{J}}
+\newcommand{\Kv}{\mathbf{K}}
+\newcommand{\Lv}{\mathbf{L}}
+\newcommand{\Mv}{\mathbf{M}}
+\newcommand{\Nv}{\mathbf{N}}
+\newcommand{\Ov}{\mathbf{O}}
+\newcommand{\Pv}{\mathbf{P}}
+\newcommand{\Qv}{\mathbf{Q}}
+\newcommand{\Rv}{\mathbf{R}}
+\newcommand{\Sv}{\mathbf{S}}
+\newcommand{\Tv}{\mathbf{T}}
+\newcommand{\Uv}{\mathbf{U}}
+\newcommand{\Vv}{\mathbf{V}}
+\newcommand{\Wv}{\mathbf{W}}
+\newcommand{\Xv}{\mathbf{X}}
+\newcommand{\Yv}{\mathbf{Y}}
+\newcommand{\Zv}{\mathbf{Z}}
+
+%%%%%%%%%%%%%%%%%%%% Bold Greek Letters (lowercase) %%%%%%%%%%%%%%%%%%%%
+\newcommand{\alphav     }{\boldsymbol \alpha     }
+\newcommand{\betav      }{\boldsymbol \beta      }
+\newcommand{\gammav     }{\boldsymbol \gamma     }
+\newcommand{\deltav     }{\boldsymbol \delta     }
+\newcommand{\epsilonv   }{\boldsymbol \epsilon   }
+\newcommand{\varepsilonv}{\boldsymbol \varepsilon}
+\newcommand{\zetav      }{\boldsymbol \zeta      }
+\newcommand{\etav       }{\boldsymbol \eta       }
+\newcommand{\thetav     }{\boldsymbol \theta     }
+\newcommand{\varthetav  }{\boldsymbol \vartheta  }
+\newcommand{\iotav      }{\boldsymbol \iota      }
+\newcommand{\kappav     }{\boldsymbol \kappa     }
+\newcommand{\varkappav  }{\boldsymbol \varkappa  }
+\newcommand{\lambdav    }{\boldsymbol \lambda    }
+\newcommand{\muv        }{\boldsymbol \mu        }
+\newcommand{\nuv        }{\boldsymbol \nu        }
+\newcommand{\xiv        }{\boldsymbol \xi        }
+\newcommand{\omicronv   }{\boldsymbol \omicron   }
+\newcommand{\piv        }{\boldsymbol \pi        }
+\newcommand{\varpiv     }{\boldsymbol \varpi     }
+\newcommand{\rhov       }{\boldsymbol \rho       }
+\newcommand{\varrhov    }{\boldsymbol \varrho    }
+\newcommand{\sigmav     }{\boldsymbol \sigma     }
+\newcommand{\varsigmav  }{\boldsymbol \varsigma  }
+\newcommand{\tauv       }{\boldsymbol \tau       }
+\newcommand{\upsilonv   }{\boldsymbol \upsilon   }
+\newcommand{\phiv       }{\boldsymbol \phi       }
+\newcommand{\varphiv    }{\boldsymbol \varphi    }
+\newcommand{\chiv       }{\boldsymbol \chi       }
+\newcommand{\psiv       }{\boldsymbol \psi       }
+\newcommand{\omegav     }{\boldsymbol \omega     }
+
+%%%%%%%%%%%%%%%%%%%% Bold Greek Letters (uppercase) %%%%%%%%%%%%%%%%%%%%
+\newcommand{\Gammav     }{\boldsymbol \Gamma     }
+\newcommand{\Deltav     }{\boldsymbol \Delta     }
+\newcommand{\Thetav     }{\boldsymbol \Theta     }
+\newcommand{\Lambdav    }{\boldsymbol \Lambda    }
+\newcommand{\Xiv        }{\boldsymbol \Xi        }
+\newcommand{\Piv        }{\boldsymbol \Pi        }
+\newcommand{\Sigmav     }{\boldsymbol \Sigma     }
+\newcommand{\Upsilonv   }{\boldsymbol \Upsilon   }
+\newcommand{\Phiv       }{\boldsymbol \Phi       }
+\newcommand{\Psiv       }{\boldsymbol \Psi       }
+\newcommand{\Omegav     }{\boldsymbol \Omega     }
+
+%%%%%%%%%%%%%%%%%%%% Theorem Environments %%%%%%%%%%%%%%%%%%%%
+% Define theorem environments if not already defined
+\ifx\BlackBox\undefined
+\newcommand{\BlackBox}{\rule{1.5ex}{1.5ex}}  % end of proof
+\fi
+\ifx\QED\undefined
+\def\QED{~\rule[-1pt]{5pt}{5pt}\par\medskip}
+\fi
+\ifx\proof\undefined
+\newenvironment{proof}{\par\noindent{\em Proof:\ }}{\hfill\BlackBox\\}
+\fi
+\ifx\theorem\undefined
+\newtheorem{theorem}{Theorem}
+\fi
+\ifx\example\undefined
+\newtheorem{example}{Example}
+\fi
+\ifx\property\undefined
+\newtheorem{property}{Property}
+\fi
+\ifx\lemma\undefined
+\newtheorem{lemma}{Lemma}
+\fi
+\ifx\proposition\undefined
+\newtheorem{proposition}{Proposition}
+\fi
+\ifx\fact\undefined
+\newtheorem{fact}{Fact}
+\fi
+\ifx\remark\undefined
+\newtheorem{remark}{Remark}
+\fi
+\ifx\corollary\undefined
+\newtheorem{corollary}{Corollary}
+\fi
+\ifx\definition\undefined
+\newtheorem{definition}{Definition}
+\fi
+\ifx\conjecture\undefined
+\newtheorem{conjecture}{Conjecture}
+\fi
+\ifx\axiom\undefined
+\newtheorem{axiom}[theorem]{Axiom}
+\fi
+\ifx\claim\undefined
+\newtheorem{claim}[theorem]{Claim}
+\fi
+\ifx\assumption\undefined
+\newtheorem{assumption}{Assumption}
+\fi
+\ifx\question\undefined
+\newtheorem{question}{Question}
+\fi
+\ifx\problem\undefined
+\newtheorem{problem}{Problem}
+\fi

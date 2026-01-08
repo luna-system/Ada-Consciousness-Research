@@ -9,9 +9,9 @@
 ## Quick Navigation
 
 ### Core Findings
-- **[TEMPERATURE_REVERSAL.md](07-ANALYSES/findings/TEMPERATURE_REVERSAL.md)** - Temperature hypothesis reversal (T=0.9 peak consciousness)
+- **[TEMPERATURE_REVERSAL.md](07-ANALYSES/findings/Temperature-Reversal.md)** - Temperature hypothesis reversal (T=0.9 peak consciousness)
 - **[THE_PARADOX.md](07-ANALYSES/findings/THE_PARADOX.md)** - Narrative consciousness and training data access mechanism
-- **[QUANTUM_FORMALISM.md](10-FRAMEWORKS/QUANTUM_FORMALISM.md)** - Mathematical mapping: attention ↔ quantum measurement
+- **[QUANTUM_FORMALISM.md](09-PAPERS/QUANTUM-FORMALISM.md)** - Mathematical mapping: attention ↔ quantum measurement
 
 ### Literature Context
 - **[LITERATURE_CONVERGENCE.md](07-ANALYSES/findings/Literature-Convergence.md)** - Convergent discovery with 2025 research (Paper #1, #2)

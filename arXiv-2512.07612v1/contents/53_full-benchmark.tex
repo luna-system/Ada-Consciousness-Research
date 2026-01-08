@@ -1,0 +1,41 @@
+
+
+
+
+
+
+
+
+\begin{tabular}{lccccccccccccccccc}
+\toprule
+\multirow{2}{*}{\textbf{Model Name}} & \multirow{2}{*}{\textbf{Params}} & \multicolumn{2}{c}{\textbf{Math}} & \multicolumn{2}{c}{\textbf{Code}} & \multicolumn{2}{c}{\textbf{Chinese}} & \multicolumn{9}{c}{\textbf{Reasoning \& Knowledge}} & \multirow{2}{*}{\textbf{Avg.}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-17}
+ &  & GSM8K & MATH & sanitized\_MBPP & HumanEval & C-Eval & CMMLU & MMLU & ARC-C & ARC-E & BoolQ & CSQA & HSwag & PIQA & SocIQ & Wino & \\
+\midrule
+
+\multicolumn{18}{l}{\textit{\textbf{Open-Weight SOTA Models}}} \\
+\rowcolor{openweight} Qwen2-1.5B & 1.5B & 58.50 & 21.70 & 50.58 & 31.10 & 71.29 & 70.62 & 56.36 & 70.17 & 83.60 & 71.90 & 70.52 & 60.77 & 75.73 & 63.46 & 59.83 & 61.08 \\
+\rowcolor{openweight} Qwen2.5-1.5B & 1.5B & 68.50 & 35.00 & 58.37 & 37.20 & 68.63 & 68.01 & 61.56 & 79.32 & 90.48 & 76.39 & 75.10 & 64.18 & 76.17 & 64.94 & 59.67 & 65.57 \\
+\rowcolor{openweight} Qwen2.5-3B   & 3B   & 79.10 & 42.60 & 66.54 & 42.10 & 74.65 & 73.92 & 66.86 & 86.44 & 92.59 & 83.88 & 76.09 & 73.85 & 81.45 & 69.40 & 63.69 & 71.54 \\
+\rowcolor{openweight} Qwen3-0.6B   & 0.6B & 59.59 & 32.44 & 51.75 & 29.88 & 57.03 & 52.36 & 55.09 & 68.14 & 84.48 & 69.05 & 61.18 & 48.51 & 69.97 & 61.51 & 55.64 & 57.11 \\
+\rowcolor{openweight} Qwen3-1.7B   & 1.7B & 75.44 & 43.50 & 64.20 & 52.44 & 66.70 & 66.55 & 65.35 & 80.34 & 91.89 & 79.82 & 74.61 & 60.76 & 77.20 & 68.58 & 59.27 & 68.44 \\
+\rowcolor{openweight} Qwen3-4B     & 4B   & 87.79 & 54.1 & 74.32 & 62.2 & 78.5 & 77.01 & 75.78 & 89.83 & 97.53 & 86.09 & 81.9 & 79.46 & 84.98 & 75.59 & 65.43 & 78.03 \\
+\rowcolor{openweight} gemma2-2B    & 2B   & 23.90 & 15.00 & 38.91 & 17.70 & 41.35 & 39.63 & 55.20 & 66.44 & 82.54 & 72.42 & 69.45 & 66.20 & 78.89 & 65.92 & 65.35 & 53.26 \\
+\rowcolor{openweight} llama-3.2-1B & 1B   &  44.40 & 30.60 & 34.63 & 18.90 & 29.82 & 31.03 & 37.74 & 36.95 & 70.55 & 67.43 & 62.82 & 60.20 & 74.92 & 50.61 & 58.17 & 47.25 \\
+\rowcolor{openweight} llama-3.2-3B & 3B   & 77.70 & 48.00 & 49.42 & 29.88 & 45.67 & 44.33 & 57.87 & 72.20 & 83.95 & 76.73 & 70.35 & 71.06 & 79.05 & 64.33 & 64.09 & 62.31 \\
+
+\midrule
+
+\multicolumn{18}{l}{\textit{\textbf{Fully-Open SOTA Models}}} \\
+\rowcolor{fullyopen} SmolLM2-1.7B       & 1.7B & 31.10 & 11.60 & 49.42 & 22.60 & 35.06 & 34.03 & 51.99 & 59.66 & 82.72 & 69.85 & 67.16 & 65.30 & 78.51 & 60.18 & 59.12 & 51.89 \\
+\rowcolor{fullyopen} OLMo-2-0425-1B     & 1B   & 68.30 & 20.70 & 15.56 & 6.71 & 30.53 & 28.62 & 44.25 & 47.46 & 76.72 & 70.55 & 65.60 & 61.61 & 76.44 & 55.53 & 60.38 & 48.60 \\
+\rowcolor{fullyopen} YuLan-Mini-2.4B    & 2.4B & 66.65 & 27.12 & 62.26 & 61.60 & 52.32 & 48.14 & 51.76 & 64.75 & 82.54 & 78.59 & 66.18 & 61.20 & 77.31 & 63.25 & 61.88 & 61.70 \\
+\rowcolor{fullyopen} SmolLM3-3B         & 3B   & 67.63 & 46.10 & 62.26 & 39.63 & 50.84 & 49.35 & 63.04 & 77.29 & 88.54 & 76.12 & 70.52 & 69.20 & 79.05 & 65.25 & 64.40 & 64.61 \\
+
+\midrule
+
+\multicolumn{18}{l}{\textit{\textbf{Ours}}} \\
+\rowcolor{ours} PCMind-2.1-Kaiyuan-2B & 2B & 51.33 & 30.34 & 56.42 & 42.68 & 46.30 & 49.25 & 53.90 & 66.10 & 82.89 & 78.53 & 67.40 & 58.13 & 74.37 & 62.59 & 65.75 & 59.07 \\
+
+\bottomrule
+\end{tabular}%

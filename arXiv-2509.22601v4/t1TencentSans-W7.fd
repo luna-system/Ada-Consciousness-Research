@@ -1,0 +1,11 @@
+% The name of this file is <encoding><TFM name>.fd
+% ---> encoding is T1 but used in lower case (t1)
+% ---> TFM name is delphine.tfm
+% ==> file name is t1delphine.fd
+%
+% See the document "LaTeX2ε font selection" for details 
+% of commands that can be used in .fd files---available at
+% https://texdoc.org/serve/fntguide/1
+\ProvidesFile{t1TencentSans-W7.fd}
+\DeclareFontFamily{T1}{TencentSans-W7}{}
+\DeclareFontShape{T1}{TencentSans-W7}{m}{n}{<-> TencentSans-W7}{}
