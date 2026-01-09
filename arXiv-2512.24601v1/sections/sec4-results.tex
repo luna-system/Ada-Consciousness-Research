@@ -1,0 +1,102 @@
+Recent work~\citep{hsieh2024rulerwhatsrealcontext, goldman2025reallylongcontextneed, hong2025contextrot} has successfully argued that the \textit{effective} context window of LLMs can often be much shorter than a model's physical maximum number of tokens. Going further, we hypothesize that the effective context window of an LLM cannot be understood independently of the \textit{specific task}. That is, more ``complex'' problems will exhibit degradation at even \textit{shorter} lengths than simpler ones. Because of this, we must characterize tasks in terms of how their complexity \textit{scales with prompt length}.
+
+For example, needle-in-a-haystack (NIAH) problems generally keep `needles' constant as prompt length is scaled. As a result, while previous generations of models struggled with NIAH tasks, frontier models can reliably solve these tasks in RULER~\citep{hsieh2024rulerwhatsrealcontext} even in the 1M+ token settings. Nonetheless, the same models struggle even at shorter lengths on OOLONG~\citep{bertsch2025oolongevaluatinglongcontext}, which is a task where the answer depends explicitly on almost every line in the prompt.\footnote{This intuition helps explain the patterns seen in Figure~\ref{fig:rlm-scaling} earlier: GPT-5 scales effectively on the S-NIAH task, where the needle size is constant despite longer prompts, but shows faster degradation at increasingly \textit{shorter} context lengths on the \textit{linear} complexity OOLONG and the \textit{quadratic} complexity OOLONG-Pairs.}
+
+
+
+
+
+
+
+
+
+
+\subsection{Tasks}
+\label{sec4.1-experimental-setup}
+Grounded in this intuition, we design our empirical evaluation around tasks where we are able to vary not just the lengths of the prompts, but also consider different scaling patterns for problem complexity. We loosely characterize each task by \textit{information density}, i.e. how much information an agent is required to process to answer the task, and how this scales with different input sizes.
+
+
+
+\textbf{S-NIAH}. Following the single needle-in-the-haystack task in RULER~\citep{hsieh2024rulerwhatsrealcontext}, we consider a set of 50 single needle-in-the-haystack tasks that require finding a specific phrase or number in a large set of unrelated text. These tasks require finding a single answer regardless of input size, and as a result scale roughly constant in processing costs with respect to input length.
+
+\textbf{BrowseComp-Plus (1K documents)}~\citep{chen2025browsecompplusfairtransparentevaluation}. A multi-hop question-answering benchmark for DeepResearch~\citep{OpenAI_DeepResearch_2025} questions that requires reasoning over multiple different documents. The benchmark provides a verified offline corpus of 100K documents that is guaranteed to contain gold, evidence, and hard negative documents for each task. Following~\citet{sun2025scalinglonghorizonllmagent}, we use 150 randomly sampled tasks as our evaluation set; we provide $1000$ randomly chosen documents to the model or agent, in which the gold and evidence documents are guaranteed to exist. We report the percentage of correct answers. The answer to each task requires piecing together information from several documents, making these tasks more complicated than \textbf{S-NIAH} despite also requiring a constant number of documents to answer.
+
+\textbf{OOLONG}~\citep{bertsch2025oolongevaluatinglongcontext}. A long reasoning benchmark that requires examining and transforming chunks of the input semantically, then aggregating these chunks to form a final answer. We report scoring based on the original paper, which scores numerical answers as $\texttt{score}(\hat{y}) = 0.75^{|y-\hat{y}|}$ and other answers as exact match. We focus specifically on the \texttt{trec\_coarse} split, which is a set of $50$ tasks over a dataset of questions with semantic labels. Each task requires using nearly all entries of the dataset, and therefore scales linearly in processing costs relative to the input length.
+
+\textbf{OOLONG-Pairs}. We manually modify the \texttt{trec\_coarse} split of OOLONG to include $20$ new queries that specifically require aggregating \textit{pairs} of chunks to construct the final answer. In Appendix~\ref{appx:oolong-pairs}, we explicitly provide all queries in this benchmark. We report F1 scores over the answer. Each task requires using nearly all \textit{pairs} of entries of the dataset, and therefore scales quadratically in processing costs relative to the input length.
+
+
+\textbf{LongBench-v2 CodeQA}~\citep{bai2025longbenchv2deeperunderstanding}. A multi-choice code repository understanding split from LongBench-v2 that is challenging for modern frontier models. We report the score as the percentage of correct answers. Each task requires reasoning over a fixed number of files in a codebase to find the right answer.
+
+\subsection{Methods and Baselines} \label{sec4.2-methods}
+We compare \RLM{}s against other commonly used task-agnostic methods. For each of the following methods, we use two contemporary LMs, GPT-5 with medium reasoning~\citep{openai2025gpt5systemcard} and default sampling parameters and Qwen3-Coder-480B-A35B~\citep{yang2025qwen3technicalreport} using the sampling parameters described in~\citet{Qwen3-Coder-480B-A35B}, chosen to provide results for a commercial and open frontier model respectively. For Qwen3-Coder, we compute costs based on the Fireworks provider~\citep{Qwen3-Coder-Fireworks}. In addition to evaluating the base model on all tasks, we also evaluate the following methods and baselines:
+
+\textbf{\RLM{} with REPL}. We implement an \RLM{} that loads its context as a string in the memory of a Python REPL environment. The REPL environment also loads in a module that allows it to query a sub-LM inside the environment. The system prompt is fixed across all experiments (see Appendix~\ref{appx3:methods}). For the GPT-5 experiments, we use GPT-5-mini for the recursive LMs and GPT-5 for the root LM, as we found this choice to strike a powerful tradeoff between the capabilities of RLMs and the cost of the recursive calls.
+
+\textbf{\RLM{} with REPL, no sub-calls}. We provide an ablation of our method. In it, the REPL environment loads in the context, but is not able to use sub-LM calls. In this setting, the LM can still interact with its context in a REPL environment before providing a final answer.
+
+\textbf{Summary agent.} Following~\citet{sun2025scalinglonghorizonllmagent,wu2025resumunlockinglonghorizonsearch,yu2025memagentreshapinglongcontextllm}, we consider an iterative agent that invokes a summary of the context as it is filled. For example, given a corpus of documents, it will iteratively view the documents and summarize when full. In cases where the provided context exceeds the model window, the agent will chunks the input to fit within the model context window and invoke the same strategy over these chunks. For GPT-5, due to the extremely high cost of handling large token inputs, we use GPT-5-nano for compaction and GPT-5 to provide the final answer.
+
+
+\textbf{CodeAct (+ BM25).} We compare directly to a  CodeAct~\citep{wang2024executablecodeactionselicit} agent that can execute code inside of a ReAct~\citep{yao2023reactsynergizingreasoningacting} loop. Unlike an \RLM, it does not offload its prompt to the code environment, and instead provides it directly to the LM. Furthermore, following~\citet{jimenez2024swebenchlanguagemodelsresolve, chen2025browsecompplusfairtransparentevaluation}, we equip this agent with a BM25~\citep{10.1561/1500000019} retriever that indexes the input context for tasks where this is appropriate.
+
+
+\section{Results and Discussion} \label{sec4.3-results}
+We focus our main experiments in Table~\ref{tab:main} on the benchmarks described in \S\ref{sec4.1-experimental-setup}. Furthermore, we explore how frontier model and \RLM{} performance degrades as input contexts grow in Figure~\ref{fig:rlm-scaling}.
+
+\input{tables/main}
+
+
+
+
+\textbf{Observation 1: \RLM{}s can scale to the 10M+ token regime and can outperform base LMs and existing task-agnostic agent scaffolds on long context tasks}. Across all tasks, \RLM{}s demonstrate strong performance on input tasks well beyond the effective context window of a frontier LM, outperforming base models and common long-context scaffolds by up to $2\times$ the performance while maintaining comparable or cheaper average token costs. Notably, \RLM{}s scale well to the theoretical costs of extending a base model's context window -- on BrowseComp-Plus (1K), the cost of GPT-5-mini ingesting 6-11M input tokens is $\$1.50 - \$2.75$, while RLM(GPT-5) has an average cost of $\$0.99$ and outperforms both the summarization and retrieval baselines by over $29\%$. 
+
+Furthermore, on tasks where processing costs scale with the input context, \RLM{}s make significant improvements over the base model on tasks that fit well within the model's context window. On OOLONG, the \RLM{} with GPT-5 and Qwen3-Coder outperform the base model by $28.4\%$ and $33.3\%$ respectively. On OOLONG-Pairs, both GPT-5 and Qwen3-Coder make little progress with F1 scores of $<$$0.1\%$, while the \RLM{} using these models achieve F1 scores of $58.00\%$ and $23.11\%$ respectively, highlighting the emergent capability of \RLM{}s to handle extremely information-dense tasks.
+
+
+\textbf{Observation 2: The REPL environment is necessary for handling long inputs, while the recursive sub-calling of \RLM{}s provides strong benefits on information-dense inputs.} A key characteristic of \RLM{}s is offloading the context as a variable in an environment $\mathcal{E}$ that the model can interact with. Even without sub-calling capabilities, our ablation of the \RLM{} is able to scale beyond the context limit of the model, and outperform the base model and other task-agnostic baselines on most long context settings. On the CodeQA and BrowseComp+ tasks with Qwen3-Coder, this ablation is able to outperform the \RLM{} by $17.9\%$ and $3\%$ respectively. 
+
+On information-dense tasks like OOLONG or OOLONG-Pairs, we observed several cases where recursive LM sub-calling is necessary. In \S\ref{sec4.4-qualitative}, we see \RLM{}(Qwen3-Coder) perform the necessary semantic transformation line-by-line through recursive sub-calls, while the ablation without sub-calls is forced to use keyword heuristics to solve these tasks. Across all information-dense tasks, \RLM{}s outperform the ablation without sub-calling by $10\%$-$59\%$.
+
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=\textwidth]{figures/cost_quartiles_dual.png}
+    \caption{Cost of \RLM{} and baselines described in \S\ref{sec4.2-methods} plotted at the 25th, 50th, 75th, and 95th percentile of total API cost. We observe comparable or even lower costs for \RLM{}s at the 50th percentile, but sharp increases at the tail end due to potentially long \RLM{} trajectories.}
+    \label{fig:quartiles}
+\end{figure}
+
+\textbf{Observation 3: LM performance degrades as a function of input length and problem complexity, while \RLM{} performance scales better.} The benchmarks {S-NIAH}, {OOLONG}, and {OOLONG-Pairs} contain a fixed number of tasks over a context with lengths ranging from $2^{13}$ to $2^{18}$. Furthermore, each benchmark can be loosely categorized by different processing costs of the input context with respect to length (roughly constant, linear, and quadratic respectively). In Figure~\ref{fig:rlm-scaling}, we directly compare an \RLM{} using GPT-5 to base GPT-5 on each task -- we find that GPT-5 performance degrades significantly faster for more complex tasks, while \RLM{} performance degrades but at a much slower rate, which aligns with the findings of ~\citet{goldman2025reallylongcontextneed}. For context lengths beyond $2^{14}$, the \RLM{} consistently outperforms GPT-5.
+
+Furthermore, \RLM{} costs scale proportionally to the the complexity of the task, while still remaining in the same order of magnitude of cost as GPT-5 (see Figure~\ref{fig:cost-scaling} in Appendix~\ref{appx1:runtime-cost}). In \S\ref{sec4.4-qualitative}, we explore what choices the \RLM{} makes in these settings that causes these differences in cost. Lastly, in this setting, we also observe that the base LM outperforms \RLM{} in the small input context regime. By construction, an \RLM{} has strictly more representation capacity than an LM: the choice of an environment that calls the root LM is equivalent to the base LM; in practice, however, we observe that \RLM{} performance is slightly worse on smaller input lengths, suggesting a tradeoff point between when to use a base LM and when to use an \RLM.
+
+\textbf{Observation 4: The inference cost of \RLM{}s remain comparable to a base model call but are high variance due to differences in trajectory lengths.} \RLM{}s iteratively interact with their context until they find a suitable answer, leading to large differences in iteration length depending on task complexity. In Figure~\ref{fig:quartiles}, we plot the quartile costs for each method across all experiments in Table~\ref{tab:main} excluding BrowseComp-Plus (1K), as the base models cannot fit any of these tasks in context. For GPT-5, the median \RLM{} run is cheaper than the median base model run, but many outlier \RLM{} runs are significantly more expensive than any base model query. However, compared to the summarization baseline which ingests the entire input context, \RLM{}s are up to $3\times$ cheaper while maintaining stronger performance across all tasks because the model is able to selectively view context. 
+
+We additionally report runtime numbers of each method in Figures~\ref{fig:runtime-gpt-5},~\ref{fig:runtime-qwen3} in Appendix~\ref{appx1:runtime-cost}, but we note several important caveats. Unlike API costs, these numbers are heavily dependent on implementation details such as the machine used, API request latency, and the asynchrony of LM calls. In our implementation of the baselines and \RLM{}s, all LM calls are blocking / sequential. Nevertheless, similar to costs, we observe a wide range of runtimes, especially for \RLM{}s.
+
+\textbf{Observation 5: \RLM{}s are a model-agnostic inference strategy, but different models exhibit different overall decisions on context management and sub-calling.} While GPT-5 and Qwen3-Coder-480B both exhibit strong performance as \RLM{}s relative to their base model and other baselines, they also exhibit different performance and behavior across all tasks. On BrowseComp-Plus in particular, \RLM(GPT-5) nearly solves all tasks while \RLM(Qwen3-Coder) struggles to solve half.
+
+We note that the \RLM{} system prompt is fixed for each model across all experiments and is not tuned for any particular benchmark. Between GPT-5 and Qwen3-Coder, the only difference in the prompt is an extra line in the RLM(Qwen3-Coder) prompt warning against using too many sub-calls (see Appendix~\ref{appx3:methods}). We provide an explicit example of this difference in example~\ref{ex:o_212}, where \RLM{}(Qwen3-Coder) performs the semantic transformation in OOLONG as a separate sub-LM call per line while GPT-5 is conservative about sub-querying LMs.
+
+
+\subsection{Emergent Patterns in \RLM{} Trajectories} \label{sec4.4-qualitative}
+Even without explicit training, \RLM{}s exhibit interesting context management and problem decomposition behavior. We select several examples of snippets from \RLM{} trajectories to understand how they solve long context problems and where they can improve. We discuss particular examples of interesting behavior here, with additional examples in Appendix~\ref{appx2:examples}.
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=\textwidth]{figures/code-examples.png}
+    \caption{\RLM{}s have common patterns in their trajectories when solving tasks. (a) We frequently observed \RLM{}s filtering and interacting with their context through code like \texttt{regex} queries. (b) We found that \RLM{}s can effectively decompose their context through recursive sub-calls (c) On long-output tasks, \RLM{}s are able to solve sub-problems using recursive sub-LM calls and stitch their outputs to form a final output.}
+    \label{fig:trajectories}
+\end{figure}
+
+\textbf{Filtering input information using code execution based on model priors.} A key intuition for why the \RLM{} abstraction can maintain strong performance on huge inputs without exploding costs is the LM's ability to filter input context without explicitly seeing it. Furthermore, model priors enable the \RLM{} to narrow the search space and process fewer input tokens. As an example, in Figure~\ref{fig:trajectories}a, we observed \RLM{}(GPT-5) using \texttt{regex} queries search for chunks containing keywords in the original prompt (e.g. ``festival’’) and phrases it has a prior about (e.g. ``La Union’’). Across most trajectories, a common strategy we observed was probing the context by printing a few lines back to the root LM, then filtering based on its observations.
+
+
+\textbf{Chunking and recursively sub-calling LMs.} \RLM{}s defer essentially unbounded-length reasoning chains to sub-(R)LM calls. The choice of decomposition can greatly affect task performance, especially for information-dense problems. In our experiments, we did not observe complicated partitioning strategies beyond uniform chunking or keyword searches. In Figure~\ref{fig:trajectories}b, \RLM{}(Qwen3-Coder) chunks by newline in a 1000+ line context from OOLONG.
+
+
+\textbf{Answer verification through sub-LM calls with small contexts.} We observed several instances of answer verification made by \RLM{}s through sub-LM calls. Some of these strategies implicitly avoid context rot by using sub-LMs to perform verification (see example~\ref{ex:bcp_74}), while others solely use code execution to programmatically verify answers are correct. In some instances, however, the answer verification is redundant and significantly increases the cost per task — in example~\ref{ex:o_212}, we observed a trajectory on OOLONG where the model tries to reproduce its correct answer more than five times before choosing the incorrect answer in the end.
+
+
+\textbf{Passing recursive LM outputs through variables for long output tasks.} \RLM{}s are able to produce essentially unbounded tokens well beyond the limit of the base LM by returning variables in the REPL as output. Through the REPL, the \RLM{} can iteratively construct these variables as a mixture of programmatic and sub-(R)LM output calls. We observed this strategy used heavily in OOLONG-Pairs trajectories, where the \RLM{} stored the output of sub-LM calls over the input in variables and stitched them together to form a final answer (see Figure~\ref{fig:trajectories}c).
+

@@ -1,0 +1,40 @@
+We supplement the cost and runtime analysis of \RLM{}s with additional, fine-grained plots. In Figures~\ref{fig:cost-gpt-5}, \ref{fig:cost-qwen3} we include a histogram for the cost of each method on every task for both GPT-5 and Qwen3-Coder. We generally observe long-tailed, high-variance trajectories for \RLM{}s in both models.
+
+We additionally include log-scaled runtime plots for each method below. As we remarked in \S\ref{sec4.4-qualitative}, the runtime for these methods can be significantly improved through asynchrony of LM calls and additional prompting to discourage long sub-LM calls or code.
+
+For the scaling plot in Figure~\ref{fig:rlm-scaling}, we also provide the average API cost per task.
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/runtime_quartiles_gpt-5.png}
+    \caption{Plotted quartiles of the runtime GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in \S\ref{sec4.2-methods}. We plot the 25th, 50th, 75th, and 95th percentiles.}
+    \label{fig:runtime-gpt-5}
+\end{figure}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/runtime_quartiles_qwen3-coder-480b-a35b-instruct.png}
+    \caption{Plotted quartiles of the runtime Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in \S\ref{sec4.2-methods}. We plot the 25th, 50th, 75th, and 95th percentiles.}
+    \label{fig:runtime-qwen3}
+\end{figure}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/cost_distributions_gpt-5.png}
+    \caption{Histogram of the API costs for GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in \S\ref{sec4.2-methods}.}
+    \label{fig:cost-gpt-5}
+\end{figure}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/cost_distributions_qwen3-coder-480b-a35b-instruct.png}
+    \caption{Histogram of the API costs for Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in \S\ref{sec4.2-methods}.}
+    \label{fig:cost-qwen3}
+\end{figure}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=\textwidth]{figures/scaling_cost.png}
+    \caption{We plot the API cost in USD for the runs in Figure~\ref{fig:rlm-scaling}.}
+    \label{fig:cost-scaling}
+\end{figure}

@@ -1,0 +1,349 @@
+\section{Introduction}
+
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\textwidth}{0.46\textheight}{%
+\begin{tikzpicture}[
+    >=Stealth,
+    every node/.style={font=\small\bfseries},
+    module/.style={
+        rounded corners=8pt,
+        line width=1.5pt,
+        minimum width=1.6cm,
+        minimum height=5cm,
+        align=center,
+        inner sep=8pt
+    },
+    concept/.style={
+        draw=conceptGreen,
+        fill=conceptLight,
+        rounded corners=4pt,
+        font=\footnotesize\bfseries,
+        minimum width=2.2cm,
+        minimum height=0.65cm,
+        align=center,
+        line width=1pt
+    },
+    inputtoken/.style={
+        draw=inputTeal,
+        fill=inputLight,
+        rounded corners=3pt,
+        font=\footnotesize\bfseries,
+        minimum width=1.4cm,
+        minimum height=0.55cm,
+        align=center,
+        line width=0.8pt
+    },
+    outputtoken/.style={
+        draw=outputGold,
+        fill=outputLight,
+        rounded corners=3pt,
+        font=\footnotesize\bfseries,
+        minimum width=1.8cm,
+        minimum height=0.55cm,
+        align=center,
+        line width=0.8pt
+    },
+    arrow/.style={
+        -{Stealth[length=3mm, width=2.5mm]},
+        line width=1pt,
+        draw=gray600
+    },
+    thickarrow/.style={
+        -{Stealth[length=4mm, width=3mm]},
+        line width=2pt
+    },
+    title/.style={
+        font=\large\bfseries,
+        text=gray600
+    },
+    sublabel/.style={
+        font=\scriptsize\bfseries,
+        text=gray400
+    }
+]
+
+%% =============================================================================
+%% PART (a): Macro Architecture
+%% =============================================================================
+
+\node[title] at (7.5, 7) {\textsf{(a) Overview Architecture}};
+
+\def\midY{3}
+
+% --- Input Tokens ---
+\node[font=\footnotesize\bfseries, text=gray600] at (-3.5, \midY+2.8) {Input};
+
+\node[inputtoken] (i0) at (-3.5, \midY+2.0) {\texttt{<s>}};
+\node[inputtoken] (i1) at (-3.5, \midY+1.2) {The};
+\node[inputtoken] (i2) at (-3.5, \midY+0.4) {cat};
+\node[inputtoken] (i3) at (-3.5, \midY-0.4) {sat};
+\node[inputtoken] (i4) at (-3.5, \midY-1.2) {on};
+\node[inputtoken] (i5) at (-3.5, \midY-2.0) {the};
+\node[inputtoken] (i6) at (-3.5, \midY-2.8) {mat};
+
+% --- Encoder ---
+\node[module, draw=encoderBlue, fill=encoderLight, minimum height=6.5cm] (enc) at (0, \midY) {};
+\node[rotate=90, font=\bfseries, text=encoderBlue] at (enc.center) {Encoder};
+
+% Input to Encoder arrows
+\foreach \i in {0,1,2,3,4,5,6} {
+    \draw[arrow] (i\i.east) -- ([yshift={2.0cm-0.8*\i cm}]enc.west);
+}
+
+% --- Concepts ---
+\node[concept] (c1) at (4.2, \midY+2.4) {$C_1$: \texttt{<s>}};
+\node[concept] (c2) at (4.2, \midY+0.8) {$C_2$: The cat};
+\node[concept] (c3) at (4.2, \midY-0.8) {$C_3$: sat on};
+\node[concept] (c4) at (4.2, \midY-2.4) {$C_4$: the mat};
+
+% --- Concept Model (Thinking) ---
+\node[module, draw=thinkOrange, fill=thinkLight, minimum height=6.5cm] (cmodel) at (8.5, \midY) {};
+\node[rotate=90, font=\bfseries, text=thinkOrange, align=center] at (cmodel.center) {Concept Model};
+\node[rotate=90, font=\scriptsize\bfseries, text=thinkOrange!70] at ([xshift=4mm]cmodel.center) {(Thinking)};
+
+% --- Decoder ---
+\node[module, draw=decoderPurple, fill=decoderLight, minimum height=6.5cm] (dec) at (12.5, \midY) {};
+\node[rotate=90, font=\bfseries, text=decoderPurple] at (dec.center) {Decoder};
+
+% --- Output Predictions ---
+\node[font=\footnotesize\bfseries, text=gray600] at (16, \midY+2.8) {Output};
+
+\node[outputtoken] (o1) at (16, \midY+2.0) {The cat};
+\node[outputtoken] (o2) at (16, \midY+0.8) {sat on};
+\node[outputtoken] (o3) at (16, \midY-0.4) {the mat};
+\node[outputtoken] (o4) at (16, \midY-1.6) {.};
+
+% --- Connecting arrows ---
+% Encoder -> Concepts (with Q label)
+\node[font=\scriptsize\bfseries, text=encoderBlue] at ([xshift=0.8cm, yshift=2.2cm]enc.east) {Q};
+\draw[arrow] ([yshift=1.8cm]enc.east) -- (c1.west);
+\draw[arrow] ([yshift=0.6cm]enc.east) -- (c2.west);
+\draw[arrow] ([yshift=-0.6cm]enc.east) -- (c3.west);
+\draw[arrow] ([yshift=-1.8cm]enc.east) -- (c4.west);
+
+% Concepts -> Concept Model (pooled concepts become K,V after processing)
+\draw[arrow] (c1.east) -- ([yshift=1.8cm]cmodel.west);
+\draw[arrow] (c2.east) -- ([yshift=0.6cm]cmodel.west);
+\draw[arrow] (c3.east) -- ([yshift=-0.6cm]cmodel.west);
+\draw[arrow] (c4.east) -- ([yshift=-1.8cm]cmodel.west);
+
+% Concept Model outputs K,V -> Decoder (Cross-Attention)
+\draw[thickarrow, draw=rose] (cmodel.east) -- node[above, font=\scriptsize\bfseries, text=rose] {Cross-Attn} (dec.west);
+\node[font=\scriptsize\bfseries, text=thinkOrange, fill=white, inner sep=1pt] at (10.5, \midY+1.2) {K, V};
+
+% Q from Encoder directly to Decoder (dashed line showing Q flow)
+\draw[->, encoderBlue, line width=1.5pt, dashed] 
+    ([yshift=-3.2cm]enc.east) -- ([yshift=-3.2cm]dec.west);
+\node[font=\scriptsize\bfseries, text=encoderBlue, fill=white, inner sep=2pt] at (6.25, \midY-3.2) {Q (token embeddings)};
+
+% Decoder -> Output
+\draw[arrow] ([yshift=1.5cm]dec.east) -- (o1.west);
+\draw[arrow] ([yshift=0.5cm]dec.east) -- (o2.west);
+\draw[arrow] ([yshift=-0.5cm]dec.east) -- (o3.west);
+\draw[arrow] ([yshift=-1.5cm]dec.east) -- (o4.west);
+
+% --- Boundary/Pooling label ---
+\draw[decorate, decoration={brace, amplitude=6pt, raise=2pt}, gray400, line width=1pt] 
+    (c4.south west) -- (c1.north west) 
+    node[midway, left=10pt, font=\scriptsize\bfseries, text=gray600, align=right] {Boundary\\+ Pooling};
+
+% --- Dashed boxes ---
+\begin{scope}[on background layer]
+    \node[draw=conceptGreen!50, dashed, line width=1.5pt, rounded corners=10pt, 
+          fit=(enc) (c1) (c4), inner sep=8pt, fill=conceptGreen!5] (boxB) {};
+\end{scope}
+
+\begin{scope}[on background layer]
+    \node[draw=decoderPurple!50, dashed, line width=1.5pt, rounded corners=10pt, 
+          fit=(cmodel) (dec), inner sep=8pt, fill=decoderPurple!5] (boxC) {};
+\end{scope}
+
+
+%% =============================================================================
+%% Separator line
+%% =============================================================================
+\draw[gray200, line width=1.5pt] (-4.5, -1) -- (17.5, -1);
+
+
+%% =============================================================================
+%% PART (b): Boundary Detection & Pooling
+%% =============================================================================
+
+\begin{scope}[shift={(-1, -5.0)}, scale=1.1]
+    \node[title, text=conceptGreen!80!black] at (3.2, 2.0) {\textsf{(b) Boundary Detection \& Pooling}};
+    
+    % Input token sequence
+    \node[inputtoken, minimum width=0.9cm] (t0) at (0, 0.7) {\texttt{<s>}};
+    \node[inputtoken, minimum width=0.9cm, right=0.1cm of t0] (t1) {The};
+    \node[inputtoken, minimum width=0.9cm, right=0.1cm of t1] (t2) {cat};
+    \node[inputtoken, minimum width=0.9cm, right=0.1cm of t2] (t3) {sat};
+    \node[inputtoken, minimum width=0.9cm, right=0.1cm of t3] (t4) {on};
+    \node[inputtoken, minimum width=0.9cm, right=0.1cm of t4] (t5) {the};
+    \node[inputtoken, minimum width=0.9cm, right=0.1cm of t5] (t6) {mat};
+    
+    % Boundary lines
+    \draw[rose, line width=2.5pt] ($(t0.east)!0.5!(t1.west)$) ++(0, 0.4) -- ++(0, -0.8);
+    \draw[rose, line width=2.5pt] ($(t2.east)!0.5!(t3.west)$) ++(0, 0.4) -- ++(0, -0.8);
+    \draw[rose, line width=2.5pt] ($(t4.east)!0.5!(t5.west)$) ++(0, 0.4) -- ++(0, -0.8);
+    
+    % Formula
+    \node[draw=gray200, fill=white, rounded corners=4pt, inner sep=6pt, font=\small\bfseries] at (3.2, -0.5) 
+        {$\text{sim}(h_t, h_{t-1}) < \tau \;\Rightarrow\; \text{boundary}$};
+    
+    % Grouping braces
+    \draw[decorate, decoration={brace, amplitude=4pt, mirror, raise=4pt}, conceptGreen, line width=1pt] 
+        (t0.south west) -- (t0.south east);
+    \draw[decorate, decoration={brace, amplitude=4pt, mirror, raise=4pt}, conceptGreen, line width=1pt] 
+        (t1.south west) -- (t2.south east);
+    \draw[decorate, decoration={brace, amplitude=4pt, mirror, raise=4pt}, conceptGreen, line width=1pt] 
+        (t3.south west) -- (t4.south east);
+    \draw[decorate, decoration={brace, amplitude=4pt, mirror, raise=4pt}, conceptGreen, line width=1pt] 
+        (t5.south west) -- (t6.south east);
+    
+    % Concept outputs
+    \node[concept, minimum width=0.9cm, minimum height=0.5cm] (pc1) at (0, -1.5) {$C_1$};
+    \node[concept, minimum width=1.8cm, minimum height=0.5cm] (pc2) at (1.7, -1.5) {$C_2$};
+    \node[concept, minimum width=1.8cm, minimum height=0.5cm] (pc3) at (3.9, -1.5) {$C_3$};
+    \node[concept, minimum width=1.8cm, minimum height=0.5cm] (pc4) at (6.1, -1.5) {$C_4$};
+    
+    % Pooling arrows
+    \draw[->, gray400, line width=0.8pt] (t0.south) -- (pc1.north);
+    \draw[->, gray400, line width=0.8pt] ($(t1.south)!0.5!(t2.south)$) -- (pc2.north);
+    \draw[->, gray400, line width=0.8pt] ($(t3.south)!0.5!(t4.south)$) -- (pc3.north);
+    \draw[->, gray400, line width=0.8pt] ($(t5.south)!0.5!(t6.south)$) -- (pc4.north);
+    
+    \node[font=\tiny\bfseries, text=conceptGreen] at (0.5, -1.0) {mean pool};
+\end{scope}
+
+
+%% =============================================================================
+%% PART (c): Decoder Cross-Attention
+%% =============================================================================
+
+\begin{scope}[shift={(8.0, -5.0)}, scale=1.1]
+    \node[title, text=decoderPurple!80!black] at (2.5, 2.0) {\textsf{(c) Decoder Cross-Attention}};
+    
+    % K,V (from Concept Model)
+    \node[font=\normalsize\bfseries, text=thinkOrange] at (-0.7, 0.8) {K, V};
+    \node[font=\tiny\bfseries, text=gray400, align=center] at (-0.7, 0.35) {from Concept\\Model};
+    
+    \node[concept, minimum width=1.0cm, minimum height=0.55cm, font=\footnotesize\bfseries, line width=1.2pt] (kv1) at (0.9, 0.8) {$C_1$};
+    \node[concept, minimum width=1.0cm, minimum height=0.55cm, font=\footnotesize\bfseries, line width=1.2pt, right=0.1cm of kv1] (kv2) {$C_2$};
+    \node[concept, minimum width=1.0cm, minimum height=0.55cm, font=\footnotesize\bfseries, line width=1.2pt, right=0.1cm of kv2] (kv3) {$C_3$};
+    \node[concept, minimum width=1.0cm, minimum height=0.55cm, font=\footnotesize\bfseries, line width=1.2pt, right=0.1cm of kv3] (kv4) {$C_4$};
+    
+    % Q (from Encoder token embeddings)
+    \node[font=\normalsize\bfseries, text=encoderBlue] at (-0.7, -0.5) {Q};
+    \node[font=\tiny\bfseries, text=gray400, align=center] at (-0.7, -0.95) {from\\Encoder};
+    
+    \node[draw=encoderBlue, fill=encoderLight, rounded corners=3pt, minimum width=0.9cm, minimum height=0.5cm, font=\footnotesize\bfseries, line width=1.2pt] (q1) at (0.85, -0.5) {$q_1$};
+    \node[draw=encoderBlue, fill=encoderLight, rounded corners=3pt, minimum width=0.9cm, minimum height=0.5cm, font=\footnotesize\bfseries, line width=1.2pt, right=0.08cm of q1] (q2) {$q_2$};
+    \node[draw=encoderBlue, fill=encoderLight, rounded corners=3pt, minimum width=0.9cm, minimum height=0.5cm, font=\footnotesize\bfseries, line width=1.2pt, right=0.08cm of q2] (q3) {$q_3$};
+    \node[draw=encoderBlue, fill=encoderLight, rounded corners=3pt, minimum width=0.9cm, minimum height=0.5cm, font=\footnotesize\bfseries, line width=1.2pt, right=0.08cm of q3] (q4) {$q_4$};
+    \node[draw=encoderBlue, fill=encoderLight, rounded corners=3pt, minimum width=0.9cm, minimum height=0.5cm, font=\footnotesize\bfseries, line width=1.2pt, right=0.08cm of q4] (q5) {$q_5$};
+    
+    % Attention arrows
+    \draw[->, encoderBlue, line width=1.5pt, rounded corners=2pt] (q1.north) -- ++(0, 0.18) -| (kv1.south);
+    \draw[->, violet, line width=1.5pt, rounded corners=2pt] (q2.north) -- ++(0, 0.32) -| (kv2.south);
+    \draw[->, rose, line width=1.5pt, rounded corners=2pt] (q3.north) -- ++(0, 0.48) -| (kv3.south);
+    
+    % Prediction labels
+    \node[font=\scriptsize\bfseries, text=encoderBlue] at (q1.south) [below=3pt] {$\to C_2$};
+    \node[font=\scriptsize\bfseries, text=violet] at (q2.south) [below=3pt] {$\to C_3$};
+    \node[font=\scriptsize\bfseries, text=rose] at (q3.south) [below=3pt] {$\to C_4$};
+    
+    % Causal Mask
+    \begin{scope}[shift={(5.6, -0.6)}]
+        \def\cellsize{0.38}
+        
+        \node[font=\normalsize\bfseries, text=gray600] at (2*\cellsize, 5*\cellsize + 0.4) {Causal Mask};
+        
+        % Background (masked) - 用更深的灰色
+        \fill[gray400!50] (0, 0) rectangle (4*\cellsize, 5*\cellsize);
+        
+        % Valid: lower triangle - 用更明显的绿色
+        \fill[conceptGreen!30] (0, 4*\cellsize) rectangle (1*\cellsize, 5*\cellsize);
+        \fill[conceptGreen!30] (0, 3*\cellsize) rectangle (2*\cellsize, 4*\cellsize);
+        \fill[conceptGreen!30] (0, 2*\cellsize) rectangle (3*\cellsize, 3*\cellsize);
+        \fill[conceptGreen!30] (0, 1*\cellsize) rectangle (4*\cellsize, 2*\cellsize);
+        \fill[conceptGreen!30] (0, 0) rectangle (4*\cellsize, 1*\cellsize);
+        
+        % Grid
+        \draw[gray400, line width=0.8pt] (0, 0) grid[step=\cellsize] (4*\cellsize, 5*\cellsize);
+        \draw[gray600, line width=1.2pt] (0, 0) rectangle (4*\cellsize, 5*\cellsize);
+        
+        % K labels (top)
+        \node[font=\scriptsize\bfseries, text=gray600] at (0.5*\cellsize, 5*\cellsize+0.15) {$C_1$};
+        \node[font=\scriptsize\bfseries, text=gray600] at (1.5*\cellsize, 5*\cellsize+0.15) {$C_2$};
+        \node[font=\scriptsize\bfseries, text=gray600] at (2.5*\cellsize, 5*\cellsize+0.15) {$C_3$};
+        \node[font=\scriptsize\bfseries, text=gray600] at (3.5*\cellsize, 5*\cellsize+0.15) {$C_4$};
+        
+        % Q labels (left)
+        \node[font=\scriptsize\bfseries, text=gray600] at (-0.24, 4.5*\cellsize) {$q_1$};
+        \node[font=\scriptsize\bfseries, text=gray600] at (-0.24, 3.5*\cellsize) {$q_2$};
+        \node[font=\scriptsize\bfseries, text=gray600] at (-0.24, 2.5*\cellsize) {$q_3$};
+        \node[font=\scriptsize\bfseries, text=gray600] at (-0.24, 1.5*\cellsize) {$q_4$};
+        \node[font=\scriptsize\bfseries, text=gray600] at (-0.24, 0.5*\cellsize) {$q_5$};
+        
+        % Legend - 用更明显的颜色
+        \fill[conceptGreen!30] (4*\cellsize+0.25, 3.8*\cellsize) rectangle (4*\cellsize+0.43, 3.8*\cellsize+0.18);
+        \draw[gray600, line width=0.8pt] (4*\cellsize+0.25, 3.8*\cellsize) rectangle (4*\cellsize+0.43, 3.8*\cellsize+0.18);
+        \node[font=\scriptsize\bfseries, text=gray600, right] at (4*\cellsize+0.48, 3.8*\cellsize+0.09) {Attend};
+        
+        \fill[gray400!50] (4*\cellsize+0.25, 2.8*\cellsize) rectangle (4*\cellsize+0.43, 2.8*\cellsize+0.18);
+        \draw[gray600, line width=0.8pt] (4*\cellsize+0.25, 2.8*\cellsize) rectangle (4*\cellsize+0.43, 2.8*\cellsize+0.18);
+        \node[font=\scriptsize\bfseries, text=gray600, right] at (4*\cellsize+0.48, 2.8*\cellsize+0.09) {Mask};
+    \end{scope}
+\end{scope}
+
+\end{tikzpicture}
+}% end resizebox
+\caption{Overview Structure of \ModelName. }
+\label{fig:architecture}
+\end{figure}
+
+Large Language Models (LLMs) have achieved remarkable success across natural language understanding, reasoning, and generation tasks. Despite differences in scale and training data, nearly all state-of-the-art models share a common architectural assumption: language is processed uniformly at the token level, with identical depth and computation applied to every position in the sequence.
+
+This assumption stands in sharp contrast to the structure of natural language. Information density is highly non-uniform: long spans of locally predictable tokens are interspersed with sparse but semantically critical transitions where new concepts are introduced and reasoning difficulty concentrates. Yet standard LLMs expend full computation on both regimes alike, resulting in substantial redundancy and systematic misallocation of model capacity.
+
+More fundamentally, this inefficiency reflects a limitation of token-level modeling itself. Reasoning is inherently hierarchical: humans reason over abstract units such as ideas or concepts before committing to surface realizations. Token-level autoregressive models, however, lack any explicit abstraction mechanism and are forced to repeatedly infer high-level structure implicitly at every layer, solely through next-token prediction.
+
+Prior work has explored relaxing this constraint, but with important limitations. Latent reasoning approaches perform inference in continuous hidden spaces without explicit token generation, while sentence-level concept models rely on fixed, human-defined segmentation. Neither enables models to learn where semantic computation should be concentrated.
+
+We argue that effective reasoning requires a learned intermediate granularity: neither raw tokens nor predefined sentences, but variable-length semantic concepts discovered directly from representation space. Based on this insight, we propose \textbf{Dynamic Large Concept Models (DLCM)}, a hierarchical next-token prediction framework that dynamically segments token sequences into concepts, performs deep reasoning in a compressed concept space, and reconstructs token-level predictions through causal cross-attention.
+
+This design separates what to reason about from how to reason. By learning semantic boundaries end-to-end and relocating computation from redundant token processing to concept-level reasoning, DLCM enables adaptive compute allocation aligned with information density.
+
+At the other extreme, H-NET~\cite{hwang2025dynamicchunkingendtoendhierarchical} demonstrates the promise of learned boundary detection with adaptive compute allocation, but operates at the byte level and has not been validated against standard Next Token Prediction (NTP) baselines in modern LLM pipelines.
+
+Our work bridges these gaps by introducing \textbf{latent reasoning at the concept level}. Throughout this paper, we use the term \emph{concept} to denote variable-length latent segments discovered from representation space, rather than linguistically predefined semantic units.
+ The key insight is that effective reasoning requires neither token-level granularity (too fine, computationally wasteful) nor sentence-level granularity (too coarse, inflexible), but rather semantically coherent concepts whose boundaries are learned end-to-end from data. We propose \textbf{\ModelName}, a hierarchical architecture that implements this insight through a four-stage pipeline (Figure~\ref{fig:architecture}):
+
+\begin{enumerate}
+\item \textbf{Encoding:} A lightweight encoder processes raw tokens to extract fine-grained representations.
+
+\item \textbf{Dynamic Segmentation:} A learned boundary detector identifies semantic breakpoints by measuring local dissimilarity between adjacent token representations. Unlike LCM's fixed sentence boundaries, these boundaries emerge from the model's own latent space through end-to-end optimization.
+
+\item \textbf{Concept-Level Reasoning:} Tokens within each segment are pooled into unified concept representations. A high-capacity transformer then performs deep reasoning exclusively on this compressed concept sequence---where the majority of computation occurs.
+
+\item \textbf{Token-Level Decoding:} A decoder reconstructs token-level predictions by attending to the reasoned concepts via a causal cross-attention mechanism.
+\end{enumerate}
+
+This design explicitly decouples \emph{what to think about} (concept formation via learned boundaries) from \emph{how to think} (reasoning in compressed latent space), enabling the model to allocate computation adaptively based on semantic structure rather than surface token count. As our results demonstrate, this structural bias makes the model exceptionally proficient at handling high-information, low-predictability tokens that mark the beginning of new concepts.
+
+Our main contributions are as follows:
+\begin{itemize}
+    \item \textbf{Concept-level latent reasoning with learned boundaries.}
+    We propose DLCM, a hierarchical next-token prediction architecture that discovers variable-length semantic concepts from latent representations and performs deep computation in a compressed concept space.
+
+    \item \textbf{Compression-aware scaling law for hierarchical LMs.}
+    We derive a scaling law $L(N,D,R,P)$ that explicitly models the interaction between total parameters $N$, data $D$, compression ratio $R$, and concept-backbone allocation $P$, enabling principled selection of architecture under equal-FLOPs constraints. \cite{hoffmann2022chinchilla}
+    
+    \item \textbf{Decoupled $\mu$P for heterogeneous modules (why different LR / init variance).}
+    We demonstrate that the Maximal Update Parametrization ($\mu$P) can be effectively adapted to our heterogeneous architecture to prevent training instability and ensure optimal performance at scale. Specifically, we identify that due to the decoupled widths of our model, the learning rates for the token-level components, concept backbone, and embeddings must be adjusted independently. Empirically, we confirm that the optimal effective learning rate for each component scales inversely with its specific width ($\eta \propto \text{width}^{-1}$), a finding that aligns with theoretical predictions for uniform models but is verified here in a non-uniform setting.
+
+    \item \textbf{Compute redistribution yields reasoning gains at lower FLOPs.}
+    With $R=4$, DLCM reduces FLOPs by up to 34\% while reallocating capacity into a larger reasoning backbone, improving average accuracy by 2.69\% on 12 zero-shot benchmarks, with the largest gains on reasoning-dominant tasks.
+\end{itemize}

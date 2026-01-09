@@ -1,0 +1,339 @@
+\section{Methodology}
+
+We now describe the technical details of \ModelName{}. The overall architecture is illustrated in Figure~\ref{fig:architecture}.
+
+\subsection{Overview}
+
+\ModelName{} processes a token sequence through four stages: (1) \textbf{Encoding} extracts fine-grained token representations; (2) \textbf{Dynamic Segmentation} identifies semantic boundaries and pools tokens into concepts; (3) \textbf{Concept-Level Reasoning} performs deep computation on the compressed sequence; and (4) \textbf{Token-Level Decoding} reconstructs predictions by attending to reasoned concepts. We formalize this as:
+\begin{align}
+    \mathbf{H} &= \mathcal{E}(\mathbf{x}) && \text{(Encoding)} \\
+    \mathbf{C} &= \Phi(\mathbf{H}) && \text{(Segmentation \& Pooling)} \\
+    \mathbf{Z} &= \mathcal{M}(\mathbf{C}) && \text{(Concept Reasoning)} \\
+    \hat{\mathbf{y}} &= \mathcal{D}(\Psi(\mathbf{H}, \mathbf{Z})) && \text{(Decoding)}
+\end{align}
+where $\mathcal{E}$ is the encoder, $\Phi$ is the segmentation-pooling operation, $\mathcal{M}$ is the concept-level transformer, $\mathcal{D}$ is the decoder, and $\Psi$ is the cross-attention expansion defined in Eq.~\ref{eq:cross_attn}.
+
+\subsection{Encoding}
+
+The encoder $\mathcal{E}$ is a standard causal Transformer that processes raw tokens $\mathbf{x} = [x_1, \dots, x_L]$ to produce fine-grained representations $\mathbf{H} = [\mathbf{h}_1, \dots, \mathbf{h}_L] \in \mathbb{R}^{L \times d_{\text{token}}}$. These representations capture local contextual information and serve as the basis for both boundary detection and final token-level decoding.
+
+\subsection{Dynamic Segmentation}
+
+While boundary scores are learned end-to-end from latent representations, we intentionally decouple the discrete segmentation decision from the language modeling loss to avoid optimization interference.
+This design trades full end-to-end discreteness for training stability and controllable compression, which we find essential at scale.
+
+\subsubsection{Boundary Detection}
+
+Our key hypothesis is that transitions between distinct concepts are marked by significant shifts in the latent feature space. We detect these ``semantic breaks'' by measuring local dissimilarity between adjacent tokens.
+
+Given encoder outputs $\mathbf{H}$, we project each token into a query-key space of dimension $d_{\text{scan}}$:
+\begin{equation}
+    \mathbf{q}_t = \mathbf{W}_q \mathbf{h}_t, \quad \mathbf{k}_t = \mathbf{W}_k \mathbf{h}_t
+\end{equation}
+The boundary probability $p_t \in [0,1]$ is computed as the normalized dissimilarity:
+\begin{equation}
+    p_t = \frac{1 - \cos(\mathbf{q}_{t-1}, \mathbf{k}_t)}{2} = \frac{1}{2} \left( 1 - \frac{\mathbf{q}_{t-1}^{\top}\mathbf{k}_t}{\|\mathbf{q}_{t-1}\|_2 \|\mathbf{k}_t\|_2} \right)
+    \label{eq:boundary}
+\end{equation}
+We enforce $p_1 = 1$ so that the first token always starts a new concept.
+
+\paragraph{Discrete Sampling.}
+While $p_t$ is continuous, downstream processing requires discrete segment assignments. We adopt different strategies for training and inference:
+\begin{itemize}
+    \item \textbf{Training:} We sharpen probabilities by temperature $\alpha$, then sample $b_t \sim \text{Bernoulli}(p_t^{\text{sharp}})$ to encourage exploration.
+    \item \textbf{Inference:} We use a \textbf{hard thresholding} rule: $b_t = [\, p_t \ge 0.5 \,]$.
+\end{itemize}
+
+\subsubsection{Concept Formation via Pooling}
+
+Given boundary indicators $\mathbf{b} = [b_1, \dots, b_L]$, we partition tokens into $M$ contiguous segments $S_1, \dots, S_M$. Each segment is compressed into a single concept representation via mean pooling, followed by a projection to the concept dimension $d_{\text{concept}}$:
+\begin{equation}
+    \mathbf{c}_k^{\text{raw}} = \frac{1}{|S_k|} \sum_{t \in S_k} \mathbf{h}_t, \quad \mathbf{c}_k = \mathbf{W}_{\text{up}}\mathbf{c}_k^{\text{raw}}
+\end{equation}
+where $\mathbf{W}_{\text{up}} \in \mathbb{R}^{d_{\text{concept}} \times d_{\text{token}}}$ aligns the feature space. The resulting concept sequence $\mathbf{C} = [\mathbf{c}_1, \dots, \mathbf{c}_M]$ has length $M \ll L$.
+
+\subsubsection{Adaptive Compression via Global Load Balancing}
+\label{sec:adaptive_compression}
+
+Similar to H-Net~\cite{hwang2025dynamicchunkingendtoendhierarchical}, natural language exhibits varying information density. To enable content-adaptive compression while maintaining a target ratio $R$ (e.g., $R=4$ means 4 tokens per concept on average), we impose constraints at the \emph{global batch level} rather than per-sequence.
+
+Let $\mathcal{T}$ denote all tokens across the distributed batch. We track:
+\begin{align}
+    G_{\text{global}} &= \frac{1}{|\mathcal{T}|} \sum_{(i,t) \in \mathcal{T}} p_{i,t} && \text{(expected boundary rate)} \\
+    F_{\text{global}} &= \frac{1}{|\mathcal{T}|} \sum_{(i,t) \in \mathcal{T}} b_{i,t} && \text{(actual boundary rate)}
+\end{align}
+These statistics are synchronized across ranks via \texttt{AllReduce}. We optimize an auxiliary loss:
+\begin{equation}
+    \mathcal{L}_{\text{aux}} = \frac{R}{R-1} \left[ (R-1) \cdot F_{\text{global}} \cdot G_{\text{global}} + (1 - F_{\text{global}}) \cdot (1 - G_{\text{global}}) \right] - 1
+\end{equation}
+This encourages the global compression rate to converge to $1/R$ while allowing local fluctuation. We refer to this globally regularized segmentation mechanism as the \textit{Global Parser}, which serves as a critical component for enabling content-adaptive granularity.
+
+\subsection{Concept-Level Reasoning}
+\label{sec:backbone}
+
+The concept-level transformer $\mathcal{M}$ is the computational core of \ModelName{}. Operating on the compressed sequence $\mathbf{C} \in \mathbb{R}^{M \times d_{\text{concept}}}$, it performs deep reasoning with significantly reduced attention complexity.
+
+$\mathcal{M}$ is a standard causal Transformer with $L_{\text{concept}}$ layers. Because concepts represent semantic units rather than surface tokens, this module can focus on high-level reasoning without being distracted by low-level token prediction. The output $\mathbf{Z} = \mathcal{M}(\mathbf{C})$ contains enriched concept representations.
+
+\subsection{Token-Level Decoding}
+\label{sec:decoding}
+
+The decoder reconstructs token-level predictions by attending to the reasoned concepts. This involves two components: concept smoothing and causal cross-attention.
+
+\subsubsection{Concept Smoothing}
+
+Hard pooling can introduce discretization artifacts at segment boundaries. We apply a lightweight smoothing module $\mathcal{S}$ to integrate adjacent concepts:
+\begin{equation}
+    \tilde{\mathbf{Z}} = \mathcal{S}(\mathbf{Z})
+\end{equation}
+
+\subsubsection{Causal Cross-Attention}
+
+The decoder $\mathcal{D}$ generates token predictions by querying the smoothed concepts. Crucially, we enforce causality so token $t$ can only attend to concepts formed up to index $j(t) = \sum_{i=1}^t b_i$.
+
+To handle the heterogeneous architecture ($d_{\text{token}} \neq d_{\text{concept}}$), the cross-attention mechanism projects queries from the encoder space and keys/values from the concept space into a common head dimension $d_{\text{head}}$:
+\begin{align}
+    \mathbf{Q} &= \mathbf{H}\mathbf{W}_Q, \quad \text{where } \mathbf{W}_Q \in \mathbb{R}^{d_{\text{token}} \times d_{\text{head}}} \\
+    \mathbf{K} &= \tilde{\mathbf{Z}}\mathbf{W}_K, \quad \mathbf{V} = \tilde{\mathbf{Z}}\mathbf{W}_V, \quad \text{where } \mathbf{W}_{K,V} \in \mathbb{R}^{d_{\text{concept}} \times d_{\text{head}}}
+\end{align}
+
+The attention output is computed as:
+\begin{equation}
+    \Psi(\mathbf{H}, \mathbf{Z}) = \text{Softmax}\left( \frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{d_{\text{head}}}} + \mathbf{M} \right) \mathbf{V}\mathbf{W}_O + \mathbf{H}
+    \label{eq:cross_attn}
+\end{equation}
+where $\mathbf{W}_O \in \mathbb{R}^{d_{\text{head}} \times d_{\text{token}}}$ projects the result back to the token dimension for the residual connection.
+
+\subsection{Training Objective}
+
+The total loss combines next-token prediction with adaptive compression:
+\begin{equation}
+    \mathcal{L} = \mathcal{L}_{\text{CE}} + \lambda \mathcal{L}_{\text{aux}}
+\end{equation}
+where $\mathcal{L}_{\text{CE}}$ is cross-entropy on output tokens and $\mathcal{L}_{\text{aux}}$ is the load-balancing loss.
+
+\section{Implementation Details}
+
+\paragraph{Packed Sequence Training.}
+We adopt the Variable Length (VarLen) approach from FlashAttention~\cite{dao2022flashattention} to ensure global compression statistics are computed over diverse tokens.
+
+\paragraph{QK Normalization.}
+Bridging token-level and concept-level representations with different statistical properties can cause training instability. Following~\cite{henry2020query, dehghani2023scaling}, we apply RMSNorm to queries and keys before attention:
+\begin{equation}
+    \mathbf{Q}' = \text{RMSNorm}(\mathbf{Q}), \quad \mathbf{K}' = \text{RMSNorm}(\mathbf{K})
+\end{equation}
+
+\subsection{Efficient Cross-Attention via Concept Replication}
+
+The decoder's cross-attention mechanism (Section~\ref{sec:decoding}) presents a significant implementation challenge. Mathematically, tokens must attend to concepts with variable-length mappings ($L \times M$), creating irregular attention patterns. As illustrated in Figure~\ref{fig:cross_attn_optimization}, when tokens $\{t_1\}$ belong to concept $c_1$, and tokens $\{t_2, t_3\}$ belong to $c_2$, the resulting attention mask effectively has a "ragged" boundary.
+
+Implementing this directly with \textbf{Flex Attention} incurs significant overhead from dynamic mask generation and irregular memory access patterns. To address this, we adopt a \textbf{concept replication strategy} to bridge the gap between the theoretical $L \times M$ formulation and hardware-friendly $L \times L$ kernels. Analogous to Grouped Query Attention (GQA), we expand concepts via \texttt{repeat\_interleave} to match token positions.
+
+Specifically, for each token $t_i$ belonging to concept $c_j$, we replicate the concept feature $c_j$ at position $i$ in the key/value sequence:
+\begin{equation}
+\tilde{\mathbf{K}} = \texttt{repeat\_interleave}(\mathbf{K}, \text{segment\_lengths}), \quad \tilde{\mathbf{V}} = \texttt{repeat\_interleave}(\mathbf{V}, \text{segment\_lengths})
+\end{equation}
+This transformation aligns the Key/Value length with the Query length ($L$), enabling the use of \textbf{Flash Attention with Variable Length (Varlen)}. This allows us to leverage highly optimized CUDA kernels designed for standard causal masking, treating the problem as a specialized form of self-attention where keys and values are locally constant within each concept segment.
+
+\begin{figure*}[t]
+\centering
+\resizebox{0.98\textwidth}{!}{
+\begin{tikzpicture}[
+    >=Stealth,
+    font=\sffamily,
+    % --- 配色 ---
+    panel style/.style={
+        draw=gray!25, fill=gray!3, rounded corners=10pt, line width=1pt
+    },
+    title prob/.style={text=red!55!black, font=\Large\bfseries},
+    title sol/.style={text=teal!55!black, font=\Large\bfseries},
+    % Token box
+    token box/.style={
+        draw=gray!50, fill=white, rounded corners=3pt, line width=0.7pt,
+        minimum width=0.85cm, minimum height=0.55cm, font=\bfseries\small, align=center
+    },
+    % Concept box
+    concept box/.style={
+        draw=#1!70, fill=#1!55, rounded corners=3pt, line width=0.8pt,
+        minimum width=0.85cm, minimum height=0.55cm, font=\bfseries\small, align=center, text=white
+    },
+    % 标签样式
+    row label/.style={font=\small\bfseries, text=black!70, anchor=east},
+    grid line/.style={draw=gray!40, line width=0.5pt},
+    active cell/.style={fill=teal!70!black},
+    masked cell/.style={fill=gray!12},
+    highlight line/.style={line width=2.5pt, line cap=round, line join=round}
+]
+
+% ===================== 先画两个PANEL (背景层) =====================
+\def\leftcenter{4.0}
+\def\rightcenter{14.0}
+\def\panelwidth{8.0}
+\def\panelheight{10.0}
+
+\node[panel style, minimum width=\panelwidth cm, minimum height=\panelheight cm] (left_panel) at (\leftcenter, -5) {};
+\node[panel style, minimum width=\panelwidth cm, minimum height=\panelheight cm] (right_panel) at (\rightcenter, -5) {};
+
+% ===================== MIDDLE ARROW (在panel之后、内容之前画) =====================
+\pgfmathsetmacro{\arrowstart}{\leftcenter + \panelwidth/2 + 0.5}
+\pgfmathsetmacro{\arrowend}{\rightcenter - \panelwidth/2 - 0.5}
+\pgfmathsetmacro{\arrowmid}{(\arrowstart+\arrowend)/2}
+
+% 箭头
+\draw[->, line width=3pt, gray!40] (\arrowstart, -5.0) -- (\arrowend, -5.0);
+% 文字 - 白色背景确保不被遮挡
+\node[font=\ttfamily\bfseries\small, text=blue!55!black, fill=white, inner sep=3pt] at (\arrowmid, -4.4) {repeat\_interleave};
+
+
+% ===================== LEFT PANEL 内容 =====================
+\node[title prob, anchor=north, yshift=-10pt] at (left_panel.north) {Problem: Variable Segments};
+\node[text=gray!55, font=\small, anchor=north, yshift=-32pt] at (left_panel.north) {Irregular Mask ($L \times M$)};
+
+\begin{scope}[shift={(\leftcenter, -2.3)}]
+    \def\tokenspacing{0.95}
+    \def\labeloffset{-2.8}
+    
+    \node[row label] at (\labeloffset, 0) {Query};
+    \foreach \i in {1,...,5} {
+        \pgfmathsetmacro{\xpos}{(\i-3)*\tokenspacing}
+        \pgfmathtruncatemacro{\idx}{\i}
+        \ifnum\i=1
+            \node[token box, fill=blue!12] (t\i) at (\xpos, 0) {$t_\idx$};
+        \else\ifnum\i<4
+            \node[token box, fill=green!12] (t\i) at (\xpos, 0) {$t_\idx$};
+        \else
+            \node[token box, fill=orange!12] (t\i) at (\xpos, 0) {$t_\idx$};
+        \fi\fi
+    }
+
+    \node[row label] at (\labeloffset, -1.3) {Key, Value};
+    \node[concept box=blue] (c1) at (-2*\tokenspacing, -1.3) {$c_1$};
+    \node[concept box=green!70!black] (c2) at (-0.5*\tokenspacing, -1.3) {$c_2$};
+    \node[concept box=orange!80!black] (c3) at (1.5*\tokenspacing, -1.3) {$c_3$};
+
+    \draw[->, gray!40, dashed, line width=0.8pt] (t1) -- (c1);
+    \draw[->, gray!40, dashed, line width=0.8pt] (t2) -- (c2);
+    \draw[->, gray!40, dashed, line width=0.8pt] (t3) -- (c2);
+    \draw[->, gray!40, dashed, line width=0.8pt] (t4) -- (c3);
+    \draw[->, gray!40, dashed, line width=0.8pt] (t5) -- (c3);
+\end{scope}
+
+\begin{scope}[shift={(\leftcenter - 1.1, -8.5)}, scale=0.72]
+    \node[font=\bfseries\color{black!70}, anchor=south] at (1.5, 5.7) {Flex Attention};
+    
+    \foreach \r/\label in {1/$t_1$, 2/$t_2$, 3/$t_3$, 4/$t_4$, 5/$t_5$} {
+        \node[font=\scriptsize\color{black!60}, anchor=east] at (-0.15, 5.5-\r) {\label};
+    }
+    \foreach \c/\label in {1/$c_1$, 2/$c_2$, 3/$c_3$} {
+        \node[font=\scriptsize\color{black!60}, anchor=south] at (\c-0.5, 5.15) {\label};
+    }
+    
+    \foreach \r in {1,...,5} \foreach \c in {1,2,3} {
+        \pgfmathtruncatemacro{\on}{
+            (\r==1 && \c==1) || (\r==2 && \c<=2) || (\r==3 && \c<=2) || (\r>=4 && \c<=3) ? 1 : 0
+        }
+        \ifnum\on=1 \fill[active cell] (\c-1, 5-\r) rectangle +(1,1);
+        \else \fill[masked cell] (\c-1, 5-\r) rectangle +(1,1); \fi
+        \draw[grid line] (\c-1, 5-\r) rectangle +(1,1);
+    }
+    \draw[red!55, highlight line] (1,5) -- (1,3) -- (2,3) -- (2,0);
+    
+    \node[font=\scriptsize\bfseries\color{red!50!black}] at (1.5, -0.6) {Irregular boundary};
+\end{scope}
+
+
+% ===================== RIGHT PANEL 内容 =====================
+\node[title sol, anchor=north, yshift=-10pt] at (right_panel.north) {Solution: Regular Alignment};
+\node[text=gray!55, font=\small, anchor=north, yshift=-32pt] at (right_panel.north) {Standard Causal Mask ($L \times L$)};
+
+\begin{scope}[shift={(\rightcenter, -2.3)}]
+    \def\tokenspacing{0.95}
+    \def\labeloffset{-2.8}
+    
+    \node[row label] at (\labeloffset, 0) {Query};
+    \foreach \i in {1,...,5} {
+        \pgfmathsetmacro{\xpos}{(\i-3)*\tokenspacing}
+        \pgfmathtruncatemacro{\idx}{\i}
+        \ifnum\i=1
+            \node[token box, fill=blue!12] (rt\i) at (\xpos, 0) {$t_\idx$};
+        \else\ifnum\i<4
+            \node[token box, fill=green!12] (rt\i) at (\xpos, 0) {$t_\idx$};
+        \else
+            \node[token box, fill=orange!12] (rt\i) at (\xpos, 0) {$t_\idx$};
+        \fi\fi
+    }
+
+    \node[row label] at (\labeloffset, -1.3) {Key, Value};
+    \foreach \i in {1,...,5} {
+        \pgfmathsetmacro{\xpos}{(\i-3)*\tokenspacing}
+        \ifnum\i=1
+            \node[concept box=blue] (rc\i) at (\xpos, -1.3) {$c_1$};
+        \else\ifnum\i<4
+            \node[concept box=green!70!black] (rc\i) at (\xpos, -1.3) {$c_2$};
+        \else
+            \node[concept box=orange!80!black] (rc\i) at (\xpos, -1.3) {$c_3$};
+        \fi\fi
+    }
+
+    \foreach \i in {1,...,5} {
+        \draw[->, gray!40, line width=0.9pt] (rt\i) -- (rc\i);
+    }
+\end{scope}
+
+\begin{scope}[shift={(\rightcenter - 1.8, -8.5)}, scale=0.72]
+    \node[font=\bfseries\color{black!70}, anchor=south] at (2.5, 5.7) {Flash Attention};
+    
+    \foreach \r/\label in {1/$t_1$, 2/$t_2$, 3/$t_3$, 4/$t_4$, 5/$t_5$} {
+        \node[font=\scriptsize\color{black!60}, anchor=east] at (-0.15, 5.5-\r) {\label};
+    }
+    \foreach \c/\label in {1/$c_1$, 2/$c_2$, 3/$c_2$, 4/$c_3$, 5/$c_3$} {
+        \node[font=\scriptsize\color{black!60}, anchor=south] at (\c-0.5, 5.15) {\label};
+    }
+    
+    \foreach \r in {1,...,5} \foreach \c in {1,...,5} {
+        \pgfmathtruncatemacro{\on}{\c <= \r ? 1 : 0}
+        \ifnum\on=1 \fill[active cell] (\c-1, 5-\r) rectangle +(1,1);
+        \else \fill[masked cell] (\c-1, 5-\r) rectangle +(1,1); \fi
+        \draw[grid line] (\c-1, 5-\r) rectangle +(1,1);
+    }
+    \draw[teal!55!black, highlight line] (1,5) -- (2,4) -- (3,3) -- (4,2) -- (5,1);
+    
+    \node[font=\scriptsize\bfseries\color{teal!50!black}] at (2.5, -0.6) {Standard causal};
+\end{scope}
+
+% ===================== BOTTOM SPEEDUP =====================
+\node[draw=gray!35, fill=white, rounded corners=6pt, line width=1pt, inner sep=12pt] at ({(\leftcenter+\rightcenter)/2}, -11.3) {
+    \large\bfseries Speedup: \normalfont\large Flash Varlen achieves \textbf{1.26--1.73$\times$} faster than Flex Attention
+};
+
+\end{tikzpicture}
+}
+\caption{\textbf{Cross-Attention Optimization via Concept Replication.} 
+\textit{Left:} The decoder's cross-attention creates an irregular $L \times M$ mask due to variable token-to-concept mappings. 
+\textit{Right:} By replicating concepts via \texttt{repeat\_interleave} to match token positions, we obtain a standard $L \times L$ causal mask, enabling optimized Flash Attention kernels.}
+\label{fig:cross_attn_optimization}
+\end{figure*}
+
+\subsection{Performance Benchmarks}
+
+We benchmark the efficiency of our concept replication strategy against Flex Attention using independent kernel profiling. Note that the hidden sizes listed here (1024, 2048, 4096) are standard benchmarking dimensions and do not necessarily match the specific architectural dimensions ($d_{\text{token}}$, $d_{\text{concept}}$) of \ModelName{}, as the primary goal is to demonstrate algorithmic scalability.
+
+Table~\ref{tab:perf_comparison} provides detailed performance . To more intuitively analyze the performance trends, we have plotted the speedup ($T_{\text{flex}} / T_{\text{flash}}$) in Figure~\ref{fig:speedup_plot}.
+
+
+
+
+
+\subsection{Key Observations and Analysis}
+
+We can draw three key conclusions from these results:
+
+\begin{itemize}
+    \item \textbf{Consistent Performance Advantage:} In all tested configurations, Flash Attention Varlen with concept replication significantly outperforms Flex Attention. The speedup ranges from \textbf{1.26$\times$ to 1.73$\times$}, validating the efficacy of the ``memory-for-computation'' trade-off.
+
+    \item \textbf{Insensitivity to Hidden Size:} As shown in Figure~\ref{fig:speedup_plot}, the three lines representing different hidden sizes (1024, 2048, and 4096) are nearly identical. This indicates that the performance bottleneck is dominated by the memory access patterns of the attention mechanism, not the computational complexity of the hidden dimension. Flash Varlen's optimized, regular memory access pattern remains stable across various model widths.
+
+    \item \textbf{Superior Scalability with Sequence Length:} The most critical finding is that Flash Varlen's performance advantage \textbf{scales with increasing sequence length}. At a 2K sequence length, the average speedup is $\sim$1.44$\times$. When the sequence length increases 8-fold to 16K, the average speedup climbs to $\sim$1.70$\times$, peaking at \textbf{1.73$\times$} for a hidden size of 2048.
+\end{itemize}
+
+This scalability trend strongly suggests that the overhead from Flex Attention's dynamic mask generation and irregular memory access patterns grows faster than the computational cost. Conversely, despite its increased memory footprint for the K/V cache, Flash Varlen's highly optimized kernel and regular causal access pattern prove far more efficient, especially at longer sequences.

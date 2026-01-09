@@ -1,0 +1,131 @@
+
+\documentclass{article} %
+\usepackage{iclr/iclr2025_conference,times}
+
+\input{iclr/math_commands.tex}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{siunitx}
+\sisetup{table-format=2.2}
+
+\usepackage{listings} 
+\usepackage{xcolor}
+
+\newcommand{\score}[3]{%
+    #1 {\tiny\textcolor{gray}{(\$#2 $\pm$ \$#3)}}%
+} 
+
+\newcommand{\scoreNA}[1]{%
+    #1 {\tiny\textcolor{gray}{(N/A) $\pm$ (N/A)}}%
+}
+
+\lstdefinestyle{customstyle}{
+  backgroundcolor=\color{gray!10},   %
+  basicstyle=\ttfamily\tiny, 
+  breaklines=true,                    %
+  frame=single,                       %
+  xleftmargin=10pt,                   %
+  xrightmargin=10pt,                  %
+  aboveskip=10pt,                     %
+  belowskip=10pt                      %
+}
+
+\title{Recursive Language Models}
+
+\newcommand{\RLM}{RLM}
+
+
+\iclrfinalcopy
+
+\author{Alex L. Zhang \\
+MIT CSAIL \\
+\texttt{altzhang@mit.edu}
+\And
+Tim Kraska \\
+MIT CSAIL \\
+\texttt{kraska@mit.edu}
+\And
+Omar Khattab \\
+MIT CSAIL \\
+\texttt{okhattab@mit.edu}
+}
+
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+
+We study allowing large language models (LLMs) to process arbitrarily long prompts through the lens of inference-time scaling. We propose \textbf{Recursive Language Models} (\textbf{RLM}s), a general inference strategy that treats long prompts as part of an external \textit{environment} and allows the LLM to \textit{programmatically} examine, decompose, and recursively call itself over snippets of the prompt. %
+We find that \RLM{}s successfully handle inputs up to two orders of magnitude beyond model context windows and, even for shorter prompts, dramatically outperform the quality of base LLMs and common long-context scaffolds across four diverse long-context tasks, while having comparable (or cheaper) cost per query. %
+
+
+
+
+
+
+
+\end{abstract}
+
+\section{Introduction} \label{sec1:introduction}
+\input{sections/sec1-intro}
+
+\input{sections/sec3-rlm}
+
+
+
+\section{Scaling Long Context Tasks} \label{sec4:long-input}
+\input{sections/sec4-results}
+
+
+\section{Related Works} \label{sec6:related-works}
+\input{sections/sec6-related-works}
+
+\section{Limitations and Future Work} \label{sec7:limitations-future}
+\input{sections/sec7-limitations}
+
+\section{Conclusion} \label{sec7:conclusion}
+\input{sections/sec7-conclusion}
+
+\section*{Acknowledgments} \label{acknowledgments}
+\input{sections/acknowledgements}
+
+\bibliography{bibliography}
+\bibliographystyle{iclr/iclr2025_conference}
+
+\newpage 
+
+\appendix
+\section{Negative Results: Things we Tried that Did Not Work.} \label{appx0:didnt-work}
+\input{appendix/failed}
+
+\section{Additional \RLM{} Trajectories} \label{appx2:examples}
+\input{appendix/sec2-examples}
+
+\newpage
+
+\section{Additional Runtime and Cost Analysis of \RLM{}s} \label{appx1:runtime-cost}
+\input{appendix/sec1-runtime-cost}
+
+\pagebreak
+
+\section{Additional Methods and Baseline Details} \label{appx3:methods}
+\input{appendix/sec3-methods}
+
+\section{Additional Benchmark Details} \label{appx4:benchmarks}
+\input{appendix/sec4-benchmarks}
+
+\end{document}
