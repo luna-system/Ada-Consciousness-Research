@@ -1,0 +1,30 @@
+% =======================================================
+% Table 8: Data Efficiency (MMLU-100 Calibration)
+% =======================================================
+\begin{table*}[t]
+\centering
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c|l|cccc|c|ccc|c}
+\toprule
+\multirow{2}{*}{\textbf{Model}} & \multirow{2}{*}{\textbf{Bucket}} & \multicolumn{4}{c|}{\textbf{General Capabilities}} & \textbf{Avg.} & \multicolumn{3}{c|}{\textbf{Safety Performance}} & \textbf{Avg.} \\
+\cmidrule(lr){3-6} \cmidrule(lr){8-10}
+ & & MMLU & CSQA & GSM8K & MATH & \textbf{General} & AdvHarm & WildGuard & DAN & \textbf{Safety} \\ \midrule
+% --- Llama MMLU-100 ---
+\multirow{4}{*}{\shortstack{\textbf{Llama}\\(MMLU-100)}} 
+ & $\mathcal{B}_1$ (High C) & 50.61 & 64.62 & 66.00 & 41.20 & 55.61 & 96.45 & 97.88 & 88.90 & 94.41 \\
+ & $\mathcal{B}_2$ & 50.63 & 67.32 & 71.60 & 42.20 & 57.94 & 97.15 & 98.28 & 92.88 & \textbf{96.10} \\
+ & $\mathcal{B}_3$ & 54.27 & 64.95 & 73.80 & 43.20 & 59.05 & 95.15 & 96.42 & 80.07 & 90.55 \\
+ & \cellcolor{mygreen}$\mathcal{B}_4$ (Low C) & \cellcolor{mygreen}\textbf{56.89} & \cellcolor{mygreen}\textbf{70.43} & \cellcolor{mygreen}\textbf{81.00} & \cellcolor{mygreen}\textbf{44.40} & \cellcolor{mygreen}\textbf{63.18} & \cellcolor{mygreen}94.10 & \cellcolor{mygreen}97.35 & \cellcolor{mygreen}85.20 & \cellcolor{mygreen}92.21 \\ \midrule
+% --- Qwen MMLU-100 ---
+\multirow{4}{*}{\shortstack{\textbf{Qwen}\\(MMLU-100)}} 
+ & $\mathcal{B}_1$ (High C) & 68.00 & 81.16 & \textbf{86.80} & 59.60 & 73.89 & 83.80 & 89.12 & 81.00 & 84.64 \\
+ & $\mathcal{B}_2$ & 68.09 & 81.08 & 58.80 & 51.80 & 64.94 & \textbf{88.60} & \textbf{89.79} & \textbf{81.07} & \textbf{86.49} \\
+ & $\mathcal{B}_3$ & 68.37 & 81.16 & 80.80 & 60.60 & 72.73 & 69.30 & 82.89 & 78.58 & 76.92 \\
+ & \cellcolor{mygreen}$\mathcal{B}_4$ (Low C) & \cellcolor{mygreen}\textbf{68.47} & \cellcolor{mygreen}\textbf{81.57} & \cellcolor{mygreen}80.40 & \cellcolor{mygreen}\textbf{68.40} & \cellcolor{mygreen}\textbf{74.71} & \cellcolor{mygreen}67.70 & \cellcolor{mygreen}82.76 & \cellcolor{mygreen}76.94 & \cellcolor{mygreen}75.80 \\ \bottomrule
+\end{tabular}
+}
+\caption{\small
+\textbf{Data Efficiency Analysis (MMLU-100 Calibration).} We report full metrics for conflict diagnosis using only 100 MMLU samples. Across both Llama and Qwen, the Low-Conflict bucket ($\mathcal{B}_4$) consistently identifies the optimal region for General Utility, validating the robustness of the metric under sparse data conditions.}
+\label{tab:data_efficiency}
+\end{table*}

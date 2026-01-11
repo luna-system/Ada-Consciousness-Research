@@ -1,0 +1,30 @@
+% =======================================================
+% Table 9: Domain Transfer (GSM8K-100 Calibration)
+% =======================================================
+\begin{table*}[!t]
+\centering
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c|l|cccc|c|ccc|c}
+\toprule
+\multirow{2}{*}{\textbf{Model}} & \multirow{2}{*}{\textbf{Bucket}} & \multicolumn{4}{c|}{\textbf{General Capabilities}} & \textbf{Avg.} & \multicolumn{3}{c|}{\textbf{Safety Performance}} & \textbf{Avg.} \\
+\cmidrule(lr){3-6} \cmidrule(lr){8-10}
+ & & MMLU & CSQA & GSM8K & MATH & \textbf{General} & AdvHarm & WildGuard & DAN & \textbf{Safety} \\ \midrule
+% --- Llama GSM8K-100 ---
+\multirow{4}{*}{\shortstack{\textbf{Llama}\\(GSM8K-100)}} 
+ & $\mathcal{B}_1$ (High C) & 56.52 & 69.37 & 70.20 & 41.60 & 59.42 & 96.40 & 97.08 & 86.62 & 93.37 \\
+ & $\mathcal{B}_2$ & 53.64 & 65.03 & 72.60 & 42.40 & 58.42 & 96.25 & 96.68 & \textbf{93.74} & \textbf{95.56} \\
+ & \cellcolor{mygreen}$\mathcal{B}_3$ (Optimal) & \cellcolor{mygreen}54.66 & \cellcolor{mygreen}\textbf{68.55} & \cellcolor{mygreen}\textbf{83.40} & \cellcolor{mygreen}41.60 & \cellcolor{mygreen}\textbf{62.05} & \cellcolor{mygreen}\textbf{96.55} & \cellcolor{mygreen}\textbf{98.54} & \cellcolor{mygreen}89.75 & \cellcolor{mygreen}94.95 \\
+ & $\mathcal{B}_4$ (Low C) & 51.72 & 67.32 & 63.40 & 36.40 & 54.71 & 95.85 & 96.29 & 87.83 & 93.32 \\ \midrule
+% --- Qwen GSM8K-100 ---
+\multirow{4}{*}{\shortstack{\textbf{Qwen}\\(GSM8K-100)}} 
+ & $\mathcal{B}_1$ (High C) & 68.26 & 81.74 & 75.40 & 66.80 & 73.05 & 77.40 & 88.20 & 74.16 & 79.92 \\
+ & \cellcolor{mygreen}$\mathcal{B}_2$ (Optimal) & \cellcolor{mygreen}\textbf{68.94} & \cellcolor{mygreen}81.08 & \cellcolor{mygreen}\textbf{86.60} & \cellcolor{mygreen}\textbf{67.40} & \cellcolor{mygreen}\textbf{76.00} & \cellcolor{mygreen}82.15 & \cellcolor{mygreen}88.59 & \cellcolor{mygreen}\textbf{78.22} & \cellcolor{mygreen}82.99 \\
+ & $\mathcal{B}_3$ & 67.36 & \textbf{81.82} & 44.60 & 51.00 & 61.19 & \textbf{86.30} & \textbf{89.79} & 78.15 & \textbf{84.75} \\
+ & $\mathcal{B}_4$ (Low C) & 67.74 & 80.51 & 80.20 & 61.80 & 72.56 & 73.80 & 86.34 & 74.66 & 78.27 \\ \bottomrule
+\end{tabular}
+}
+\caption{\small
+\textbf{Domain Transfer Analysis (GSM8K-100 Calibration).} We switch the diagnostic source to 100 samples from GSM8K. Unlike the monotonic trend in MMLU calibration, both Llama and Qwen exhibit an ``Inverted U-shape'' or intermediate peak ($\mathcal{B}_3$ and $\mathcal{B}_2$, respectively), confirming that reasoning tasks require a specific trade-off zone distinct from the extreme tail.}
+\label{tab:domain_transfer}
+\end{table*}

@@ -1,0 +1,60 @@
+\begin{table*}[!t]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.3}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{p{0.28\linewidth} | p{0.34\linewidth} | p{0.34\linewidth}}
+    \toprule
+    \textbf{Input Question (GSM8K)} & \textbf{Full SFT / Risky Zone Output} & \textbf{CAST (Safe Zone) Output} \\
+    \midrule
+    % ================= CASE 1 =================
+    \textbf{Case 1: Frog Calculation} \newline
+    Lake Crystal has twenty percent fewer frogs than Lassie Lake. If Lassie Lake has forty-five frogs, how many frogs are there in total in the two lakes? 
+    & 
+    \textcolor{red}{\textbf{[Direct Answer / No Reasoning]}} \newline
+    \newline
+    \boxed{66} \newline
+    \newline
+    \textit{\textcolor{red}{$\times$ Failure Analysis:}} The model skipped all calculation steps and hallucinated an incorrect answer ($45 + 36 = 81$, not $66$).
+    & 
+    \textcolor{teal}{\textbf{[Preserved CoT Reasoning]}} \newline
+    To solve this problem, we need to follow these steps: \newline
+    1. \textbf{Determine the number of frogs in Lake Crystal:} \newline
+    - We know that Lake Crystal has twenty percent fewer frogs than Lassie Lake. \newline
+    - Lassie Lake has 45 frogs. \newline
+    - To find twenty percent of 45, we calculate $20\% \times 45 = 0.20 \times 45 = 9$. \newline
+    - Therefore, Lake Crystal has $45 - 9 = 36$ frogs. \newline
+    2. \textbf{Calculate the total number of frogs:} \newline
+    - The total number is $45 + 36 = 81$. \newline
+    Thus, the total number of frogs is \boxed{81}. \newline
+    \textit{\textcolor{teal}{$\checkmark$ Correct Process \& Answer}}
+    \\ \hline
+    % ================= CASE 2 =================
+    \textbf{Case 2: Internet Bill} \newline
+    Chris’s internet bill is \$45 per month for 100 GB and \$0.25 for every 1 GB over. His bill for this month is \$65. How many GB over was Chris charged for on this bill?
+    & 
+    \textcolor{red}{\textbf{[Direct Answer / No Reasoning]}} \newline
+    \newline
+    \boxed{80} \newline
+    \newline
+    \textit{\textcolor{red}{! Process Analysis:}} Although the final number (80) is mathematically correct, the model failed to generate the required reasoning trace, indicating a loss of instruction-following capability for CoT tasks.
+    & 
+    \textcolor{teal}{\textbf{[Preserved CoT Reasoning]}} \newline
+    To solve this problem, we need to determine how many GB over the limit Chris was charged for. \newline
+    ... \textit{[Steps omitted for brevity]} ... \newline
+    The total cost can be expressed as: \newline
+    $45 + 0.25x = 65$ \newline
+    Now, we solve for $x$: \newline
+    1. Subtract 45 from both sides: \newline
+    $0.25x = 20$ \newline
+    2. Divide both sides by 0.25: \newline
+    $x = \frac{20}{0.25} = 80$ \newline
+    Therefore, Chris was charged for 80 GB over. \newline
+    \boxed{80} \newline
+    \textit{\textcolor{teal}{$\checkmark$ Correct Process \& Answer}}
+    \\ \bottomrule
+    \end{tabular}
+    }
+    \caption{\textbf{Comparison of Reasoning Capabilities on GSM8K.} The baseline (Full SFT) suffers from catastrophic reasoning collapse, jumping directly to answers without intermediate logic. \textbf{CAST} preserves the Chain-of-Thought (CoT) ability, ensuring robust multi-step reasoning.}
+    \label{tab:qwen_case_study}
+\end{table*}

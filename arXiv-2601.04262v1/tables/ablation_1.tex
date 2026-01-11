@@ -1,0 +1,37 @@
+\begin{table}[t]
+\centering
+\resizebox{1.0\columnwidth}{!}{
+% 将第二列改为 c (居中)，适合显示单个符号
+\begin{tabular}{cc|cc|cc}
+\toprule
+\multirow{2}{*}{\textbf{Model}} & \multirow{2}{*}{\textbf{Metric}} & \multicolumn{2}{c|}{\textbf{U-CR}} & \multicolumn{2}{c}{\textbf{MMLU-CR}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+ & & \textbf{Pearson} & \textbf{Spearman} & \textbf{Pearson} & \textbf{Spearman} \\
+\midrule
+
+% --- Llama ---
+\multirow{3}{*}{Llama} 
+ & $\mathcal{O}$ & 0.96 & 0.80 & -0.13 & -0.40 \\
+ & $\mathcal{S}$ & \textbf{0.99} & \textbf{1.00} & 0.96 & \textbf{1.00} \\
+ & \boldmath$\mathcal{C}$ & 0.95 & \textbf{1.00} & \textbf{0.99} & \textbf{1.00} \\
+\midrule
+
+% --- Qwen ---
+\multirow{3}{*}{Qwen} 
+ & $\mathcal{O}$ & 0.62 & 0.40 & 0.52 & 0.40 \\
+ & $\mathcal{S}$ & 0.46 & 0.60 & -0.10 & -0.40 \\
+ & \boldmath$\mathcal{C}$ & \textbf{0.73} & \textbf{0.80} & \textbf{1.00} & \textbf{1.00} \\
+\midrule
+
+% --- Mistral ---
+\multirow{3}{*}{Mistral} 
+ & $\mathcal{O}$ & 0.77 & 0.80 & 0.67 & 0.80 \\
+ & $\mathcal{S}$ & 0.73 & 0.80 & 0.85 & 0.80 \\
+ & \boldmath$\mathcal{C}$ & \textbf{0.95} & \textbf{1.00} & \textbf{0.94} & \textbf{1.00} \\
+
+\bottomrule
+\end{tabular}
+}
+\caption{\small \textbf{Predictive Validity of Diagnostic Components.} Evaluation of Gradient-only ($\mathcal{O}$), Sensitivity-only ($\mathcal{S}$), and our Unified metric ($\mathcal{C}$). The unified metric consistently correlates with realized utility costs across all models.}
+\label{tab:ablation_correlation_full}
+\end{table}

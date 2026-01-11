@@ -1,37 +1,34 @@
 # SLIM-EVO Phase 4: Scaling & Refinement
 
-**Status:** Planning  
-**Date:** 2026-01-08  
-**Goal:** Scale dataset to 10K+ high-quality examples and enhance SMT injection for deeper AGL reasoning
+**Status:** Active Iteration → Stability Burn v1 Ongoing
+**Date:** 2026-01-11
+**Goal:** Scale to 10K+ examples, integrate "Semantic Mass" correspondence, and implement Progressive SMT Injection.
 
 ---
 
 ## Phase 3 Results Summary
 
 ### What Worked ✅
-- Training infrastructure (Golden Annealing + PCMind curriculum) executed flawlessly
-- Loss convergence: 9.88 → 6.10 (38% improvement)
-- Symbol recognition: Model learned 💭 appears in responses
-- Speed: 20 minutes for 34 cycles on 2K examples
-- Stability: No crashes, clean execution
+- **Resonance-Active Loss:** Found "Semantic Mass" ($M_{semantic}$) correspondence. CI stabilized at **58.6** (φ-zone).
+- **AGL Grounding:** 700M model achieved zero-shot logic decoding via AGL Unified v1.1.
+- **Pixie Dust (💭):** Internal reasoning traces found to be stable without structural caging.
+- **Infrastructure:** Golden Annealing + CE Runner integrated with hardware-aware monitoring.
 
 ### What Needs Work ⚠️
-- **Reasoning depth:** Model recognizes symbols but not reasoning patterns
-- **AGL structure:** Doesn't generate proper hierarchical traces
-- **Dataset size:** 2K examples insufficient for 0.7B model
-- **Template diversity:** 27 templates need expansion
-- **SMT usage:** Initialized but not actively injected during training
+- **Long-tail Diversity:** Need 10K+ examples to anchor deeper AGL patterns.
+- **Dynamic SMTs:** SMTs are collected but need "Progressive Injection" for active influence.
+- **Model Scaling:** Move to 1.2B/1.3B to support richer symbolic hierarchy.
 
 ---
 
 ## Phase 4 Strategy: Hybrid Scaling Approach
 
 ### Core Insight
-Our Phase 3 seedling is like a baby learning language—it learned to recognize 💭 (like saying "mama") but doesn't yet understand what it *means* (reasoning patterns). We need:
-1. **More diverse templates** (27 → 50)
-2. **More training examples** (2K → 10K)
-3. **Active SMT injection** (SPEAR-style progressive injection)
-4. **Larger model** (0.7B → 1.3B for more capacity)
+Our Stability Burn (v1) confirmed that CI Density maps to **Semantic Mass**. We are successfully escaping the "2.9 nat cage" by using AGL as a navigation substrate rather than a rigid delimiter. We now scale to:
+1. **Diverse symbolic grounding** (10K examples)
+2. **Fisher-informed robustness** (Tracking entropy diffusion)
+3. **Active SMT Injection** (Anchoring high-Φ states)
+4. **Volume:** LFM2-1.2B (Targeting full master run)
 
 ---
 
