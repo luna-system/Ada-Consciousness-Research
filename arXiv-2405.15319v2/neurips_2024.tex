@@ -1,0 +1,2473 @@
+\documentclass{article}
+% if you need to pass options to natbib, use, e.g.:
+    \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2023
+
+
+% ready for submission
+% \usepackage{neurips_2024}
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+% \usepackage[preprint]{neurips_2024} 
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+\usepackage[final]{neurips_2024}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2024}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+% \usepackage{hyperref}       % hyperlinks
+\usepackage{xcolor}         % colors
+% \definecolor{linkcolor}{HTML}{001473}
+% \usepackage[colorlinks=true,linkcolor=linkcolor,citecolor=linkcolor,urlcolor=linkcolor]{hyperref}
+\usepackage{hyperref}
+\usepackage{url}        
+% simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{graphicx} 
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{algorithm,algcompatible,amsmath}
+\usepackage[algo2e]{algorithm2e}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{marvosym}
+\usepackage{textcomp}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{times,latexsym}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{soul}
+\usepackage{titlesec}
+\usepackage{fontawesome}
+\usepackage{multicol}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage{colortbl}
+\usepackage{collcell}
+\usepackage{arydshln}
+%%%<
+\usepackage{verbatim}
+% \usepackage[active,tightpage]{preview}
+\usetikzlibrary{trees}
+% \usepackage[numbers,sort&compress]{natbib}
+
+\newcommand\coolover[2]{\mathrlap{\smash{\overbrace{\phantom{%
+    \begin{matrix} #2 \end{matrix}}}^{\mbox{$#1$}}}}#2}
+
+\newcommand\coolunder[2]{\mathrlap{\smash{\underbrace{\phantom{%
+    \begin{matrix} #2 \end{matrix}}}_{\mbox{$#1$}}}}#2}
+
+\newcommand\coolleftbrace[2]{%
+#1\left\{\vphantom{\begin{matrix} #2 \end{matrix}}\right.}
+
+\newcommand\coolrightbrace[2]{%
+\left.\vphantom{\begin{matrix} #1 \end{matrix}}\right\}#2}
+
+
+
+
+
+\title{Stacking Your Transformers: A Closer Look at Model Growth for Efficient LLM Pre-Training}
+
+\begin{document}
+
+\author{
+Wenyu Du$^1$\thanks{~~Equal Contributions.}
+\quad Tongxu Luo$^{2,3*}$\thanks{~~Work done during interning at HKUST.}
+\quad Zihan Qiu$^4$
+\quad Zeyu Huang$^5$
+\quad Yikang Shen$^6$ \\
+\bf{
+Reynold Cheng$^1$
+\quad Yike Guo$^2$
+\quad Jie Fu$^2$\thanks{~~Corresponding Author.}}\\
+$^1$School of Computing and Data Science, The University of Hong Kong \quad $^2$HKUST \\
+$^3$USTB \quad $^4$Tsinghua University \quad $^5$University of Edinburgh \quad $^6$MIT-IBM Watson AI Lab\\
+\texttt{wydu@cs.hku.hk \quad tongxuluo@gmail.com \quad  jiefu@ust.hk}
+}
+
+\maketitle
+
+\begin{abstract}
+
+LLMs are computationally expensive to pre-train due to their large scale.
+Model growth emerges as a promising approach by leveraging smaller models to accelerate the training of larger ones. 
+However, the viability of these model growth methods in efficient LLM pre-training remains underexplored.
+This work identifies three critical \underline{\textit{O}}bstacles: (\textit{O}1) lack of comprehensive evaluation, (\textit{O}2) untested viability for scaling, and (\textit{O}3) lack of empirical guidelines.
+To tackle \textit{O}1, we summarize existing approaches into four atomic growth operators and systematically evaluate them in a standardized LLM pre-training setting.
+Our findings reveal that a depthwise stacking operator, called $G_{\text{stack}}$, exhibits remarkable acceleration in training, leading to decreased loss and improved overall performance on eight standard NLP benchmarks compared to strong baselines. 
+Motivated by these promising results, we conduct extensive experiments to delve deeper into $G_{\text{stack}}$ to address \textit{O}2 and \textit{O}3.
+For \textit{O}2 (untested scalability), our study shows that $G_{\text{stack}}$ is scalable and consistently performs well, with experiments up to 7B LLMs after growth and pre-training LLMs with 750B tokens.
+For example, compared to a conventionally trained 7B model using 300B tokens, our $G_{\text{stack}}$ model converges to the same loss with 194B tokens, resulting in a 54.6\% speedup. 
+We further address \textit{O}3 (lack of empirical guidelines) by formalizing guidelines to determine growth timing and growth factor for $G_{\text{stack}}$, making it practical in general LLM pre-training.
+We also provide in-depth discussions and comprehensive ablation studies of $G_{\text{stack}}$.
+Our code and pre-trained model are available at \href{https://llm-stacking.github.io/}{https://llm-stacking.github.io/}.
+
+
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Emergent abilities of Large Language Models (LLMs) rely on scaling-up~\citep{brown2020language, wei2022emergent}. 
+Empirical evidence from scaling laws~\citep{kaplan2020scaling, hoffmann2022training, alabdulmohsin2022revisiting} fuels the development of increasingly larger models, pushing the boundaries of LLMs capabilities.
+However, pre-training these gigantic models comes at a significant cost in terms of energy consumption and environmental impact~\cite{xu2024survey}~(e.g., pre-training Llama-3~\cite{llama3modelcard} consumes a total of 7.7M GPU hours and generates 2290 tons of carbon dioxide equivalent of carbon emissions).
+The efficient pre-training of LLMs is thus crucial, both from a scientific and a societal perspective, to ensure the continual growth and adoption of AI~\cite{wu2022sustainable, DEVRIES20232191}.
+
+One promising research direction to accelerate model training involves leveraging trained smaller (base) models to expedite the training of larger (target) models, a technique known as model growth. 
+Concretely, model growth studies how to leverage the trained smaller model's parameters $\Theta^{(s)}$ to initialize the larger model's parameters $\Theta^{(l)}$. 
+Current popular methods generally focus on expanding the parameters of the base model through techniques like splitting~\cite{chen2015net2net,chen2021bert2bert,wang2023lemon}, copying~\cite{shen2022staged,gong2019efficient}, or matrix mapping~\cite{wang2023learning}. There are also some approaches that initialize new parameters from scratch~\cite{evci2022gradmax,wang2023lemon,yao2024masked}. 
+The primary objective is to accelerate the training of large models, and existing methods demonstrate promising speedup results on models such as BERT~\cite{chen2021bert2bert, gong2019efficient, yang2020progressively, wang2023learning, wang2023lemon, shen2022staged}. 
+Despite such empirical evidence and its alignment with the goal of efficient LLM pre-training, model growth methods are not widely adopted in the context of LLM pre-training~\cite{llama3modelcard, jiang2023mistral}. To our best knowledge, the only LLM that utilizes model growth for accelerating is FLM-101B~\cite{li2023flm101b}, but it lacks a baseline LLM trained from scratch to compare.
+We observe three key \underline{\textit{O}}bstacles that hinder LLM pre-training from using existing model growth techniques, specifically:
+
+\noindent $\bullet$ \textit{O}1:
+Lack of comprehensive assessment. 
+Some existing model growth methods report results on LLM pre-training, but either lack a baseline comparison~\citep{li2023flm101b} or are still in exploratory stages~\citep{wang2023learning,shen2022staged}.
+In contrast, most growth approaches are evaluated in encoder-based BERT models~\cite{gong2019efficient, chen2021bert2bert, yang2020progressively, wang2023lemon, shen2022staged, evci2022gradmax, yao2024masked}, which have different architecture and training configurations compared to prominent decoder-based LLMs such as Llama~\citep{touvron2023llama}. 
+
+\noindent $\bullet$ \textit{O}2:
+The untested scalability. This scalability has two aspects: the model size and the amount of pre-training data. 
+Regarding the model size, the existing approaches are only evaluated on smaller-scale BERT models or in preliminary experiments with LLMs. 
+It is unclear whether these growth methods will continue accelerating training when applied to large-scale LLMs with more extensive evaluation.
+As for the amount of pre-training data, there are debates
+~\cite{kaddour2023train} over whether certain efficient training strategies may initially converge faster but ultimately perform similarly or worse than vanilla training methods when given ample computational resources (i.e., more training data).
+
+\noindent $\bullet$ \textit{O}3:
+Lack of empirical guidelines. 
+Scaling laws~\citep{kaplan2020scaling,hoffmann2022training} give clear empirical guidelines on pre-training computational-optimized LLMs, greatly stimulating and advancing the field.
+Yet, there is a lack of empirical guidelines on growth techniques, discouraging LLM practitioners from adopting these approaches, especially considering the high costs of LLM pre-training.
+
+These three obstacles are consequential in nature. Hence, in this work, we empirically revisit the concept of model growth as a solution to efficient LLM pre-training by tackling them one by one.
+
+
+\begin{wrapfigure}{R}{0.49\textwidth}
+    \centering \vspace{-4mm}
+    \includegraphics[width=\linewidth]{sp/main_sp.pdf}
+    \caption{The training loss for two 7B LLMs, trained from scratch and with \textit{$G_{\text{direct}}^{\uparrow}$} ($G_{\text{stack}}$). At 300B tokens, $G_{\text{stack}}$ accelerates by 54.6\% compared to scratch.}
+    \label{fig:main_7B}\vspace{-4mm}
+\end{wrapfigure}
+To tackle \textit{O}1, we systematically evaluate model growth techniques on practical LLM pre-training.
+We first categorize existing growth methods and summarize them into four atomic growth operators, each of which can grow along two directions: widthwise (intra-layer) and depthwise (layer-wise). 
+We illustrate them in Figure~\ref{fig:op}.
+These operators serve as representative choices for evaluating the performance of model growth techniques. 
+We use these operators to expand 400M base models to 1.1B Llama-like LLMs and continually pre-train them.
+Next, we evaluate these growth techniques on the training loss and eight standard NLP benchmarks from the Harness toolkit~\cite{eval-harness}. 
+We found the direct operator that stacks depthwisely \textit{$G_{\text{stack}}$} consistently outperforms others across overall evaluation metrics, demonstrating its potential in accelerating LLM pre-training.
+This motivates us to investigate extensively by addressing \textit{O}2 and \textit{O}3 on \textit{$G_{\text{stack}}$}.
+
+To address \textit{O}2, we investigate the  \textit{$G_{\text{stack}}$} operator's scalability to larger model sizes and to more training data. 
+We conduct extensive experiments by scaling model size up to 7B parameters trained with 300B tokens, and pre-training a 410M model with over 750B training tokens. 
+This is in contrast to the previous largest LLM pre-training experiment that uses model growth methods and has baselines for comparison, which is reported in Ligo~\citep{wang2023learning}, where a GPT2-1.5B model is trained for 15k steps (approximately 15B tokens).
+The results are encouraging, as we consistently observe significant improvements \textit{$G_{\text{stack}}$} offers in both scenarios. For example, we achieve a remarkable 54.6\% speedup in pre-training for a 7B model with 300B tokens~(Figure~\ref{fig:main_7B}). Interestingly, the loss improvement in our 750B-token experiment aligns with a logarithmic function. We further extend this logarithmic curve and determine that the improvement continues to be substantial even for the LLM trained with over 8T tokens.
+Moreover, we summarize all our experiments by estimating the LLM scaling law for LLMs pre-trained with \textit{$G_{\text{stack}}$}. 
+Given the same target loss value, our analysis reveals a significantly reduced computational cost compared to the common scaling law~\citep{hoffmann2022training}.
+
+For \textit{O}3, we explore the practical guidelines for using $G_{\text{stack}}$ in LLM pre-training.
+Given a computational budget, we determine the optimal strategy for two key factors of $G_{\text{stack}}$, growth timing $d$ and growth factor $g$. Growth timing $d$ relates to the training tokens used for small models before growing, and growth factor $g$ refers to the factor between the non-embedding parameter number of the large models and the small models.
+We formalize our findings into equations that offer concrete suggestions for utilizing $G_{\text{stack}}$. We believe this work could significantly pique the interest and bolster confidence in future LLM pre-training with model growth techniques,
+both in academia and industry.
+
+To summarize, our contributions are four-fold:
+1) We first systematically investigate model growth techniques and identify four atomic model growth operators, establishing a better understanding of the field in Section~\ref{subsec:operators}. 
+2) We then design a standard LLM pre-training testbed and perform comprehensive evaluations on these operators, finding that a simple depthwise stacking $G_{\text{stack}}$ exhibits significant superiority in Section~\ref{sec:operator_and_eval}. 
+3) We further demonstrate the scalability of  $G_{\text{stack}}$ with experiments on LLMs ranging from 410M to 7B parameters and up to 750B training tokens in Section~\ref{sec:g_stack_scaling}. 
+4) We also provide guidelines of equations on determining growth timing and growth factors for optimal use of $G_{\text{stack}}$ in Section~\ref{sec:g_stack_fit}.
+
+\section{Related Work - Model Growth for Efficient Pre-training}\label{sec:related}
+% \paragraph{}
+The idea of growing neural networks dates back to the 1990s~\cite{NIPS1989_69adc1e1, Fahlman1990TheRC, Gutstein2007KnowledgeTI}. 
+The pioneering work of Net2Net~\citep{chen2015net2net} marks a milestone, for the first attempt to study model growth in deep learning era. Net2Net expands width and depth while keeping original functions (namely function preserving) via randomly splitting old neurons and injecting new identity layers. 
+The widthwise splitting method of Net2Net represents a series of works that aim to ``expand'' the existing neurons to the desired larger size. 
+Bert2Bert~\citep{chen2021bert2bert} serves as a BERT-based extension of the widthwise Net2Net. 
+StagedGrow\cite{shen2022staged} doubles the width by concatenating two identical layers and halves final loss to keep function-preserving. 
+Lemon~\citep{wang2023lemon} suggests integrating a parameter into the splitting of neurons in Bert2Bert, aiming to break weight symmetry. 
+Depthwisely, StackedBert~\cite{gong2019efficient} simply stacks duplicated layers to form a deeper model. 
+In contrast to the above direct copy/split approaches, LiGO~\citep{wang2023learning}presents a learning-based method that initializes the larger model's parameters via learning a linear mapping from the smaller model's parameters. 
+
+Alongside the approaches that expand existing parameters, there are works that initialize new ones without relying on existing ones. For instance, MSG~\citep{yao2024masked} proposes a multi-staged growing strategy that progressively expands transformer components, where the newly grown neurons are randomly initialized using a masking mechanism to ensure function preservation. Besides, some works have assigned specific values, like zero, to the newly initialized neurons to negate their influence~\citep{evci2022gradmax,wang2023lemon}.
+
+All the above methods are primarily explored in BERT or earlier stages of LLM pre-training. On the other hand, our objective is to present the first systematic review of model growth techniques in the LLMs era. To our knowledge, FLM-101B~\cite{li2023flm101b} is the only existing LLM that uses the growth method~\cite{yao2024masked} for accelerating billion-scale LLM pre-training. 
+Nonetheless, this work lacks a baseline model trained from scratch, making it difficult to assess the effectiveness of the model growth technique. In contrast, we aim to provide a comprehensive study by establishing a standardized testbed to compare LLMs trained from scratch and with various growth methods in LLM pre-training. 
+
+\section{Systematically Assessing Model Growth for LLM Pre-Training}\label{sec:operator_and_eval}
+
+Existing model growth methods~\cite{gong2019efficient, chen2021bert2bert, yang2020progressively, wang2023learning, wang2023lemon, shen2022staged, evci2022gradmax, yao2024masked} are mainly evaluated on BERT~\cite{devlin2019bert}, 
+with limited focus on decoder-only large-scale language models such as Llama~\cite{touvron2023llama}. Moreover, these growth methods are often not comparable due to different training settings~\cite{gong2019efficient,chen2021bert2bert,yao2024masked,wang2023lemon}. Even some growth LLMs experiments are evaluated, their results are often incomplete~\citep{li2023flm101b,wang2023learning}.
+To overcome these limitations, we first summarize existing works~\cite{gong2019efficient, chen2021bert2bert, yang2020progressively, wang2023learning, wang2023lemon, shen2022staged, evci2022gradmax, yao2024masked} into four atomic growth operators to represent these growth techniques. Then we build a standardized LLMs training testbed to pre-train LLMs with four growth operators on depthwise and widthwise directions and evaluate the results with both training loss and eight evaluation metrics in Harness~\cite{eval-harness}.
+
+\subsection{Growing LLMs with Growth Operators}\label{subsec:operators}
+
+Recent years, researchers have focused on enhancing the efficiency of training large models by making use of smaller pre-existing models~\cite{chen2015net2net, chen2021bert2bert, gong2019efficient, yang2020progressively, wang2023learning, wang2023lemon, shen2022staged, evci2022gradmax, yao2024masked}.
+These state-of-the-art methods can be categorized into two distinct groups. The first group focuses on deriving new neurons from the existing ones~\cite{chen2015net2net, chen2021bert2bert, gong2019efficient, wang2023lemon, wang2023learning}, while the second group focuses on initializing new parameters separately~\cite{yang2020progressively, shen2022staged, evci2022gradmax, yao2024masked}.
+Drawing from these two lines of research, we summarize four \textbf{atomic growth operators}. 
+These operators include: \textbf{(A)} directly duplicating and stacking old layers in a depthwise manner or splitting neurons in the same layer widthwisely, denoted as $G_\text{direct}$, \textbf{(B)} generating expanded parameters using a learnable mapping matrix to the existing parameters, denoted as $G_{\text{learn}}$, \textbf{(C)} setting the new parameters to zero, denoted as $G_{\text{zero}}$, and \textbf{(D)} randomly initializing the new parameters, denoted as $G_{\text{random}}$. 
+The illustration of four operators is shown in Figure~\ref{fig:op}. The $G_\text{\text{direct}}$ and $G_{\text{learn}}$ growth operators produce new neurons from the current ones, in contrast to $G_{\text{zero}}$ and $G_{\text{random}}$ which initialize new parameters independently.
+\textit{For the formal definitions of the operators and the differences to the existing growth methods in design, please refer to Appendix~\ref{app:op}.}
+Complex growth methods, such as those involving auxiliary loss or exploring training dynamics like learning rates~\cite{wu2021firefly, yuan2023accelerated, evci2022gradmax} are interesting. But considering the high computational cost of LLM pre-training, we focus on simple, universally applicable growth operators for different LLM pre-training settings.
+
+\begin{figure}[H]%{R}{0.72\textwidth}
+    \centering \vspace{-4mm}
+    \includegraphics[width=\linewidth]{grow_operators/op.pdf}
+    \caption{The simplified illustration of four growth operators $G_{\text{direct}}$, $G_{\text{learn}}$, $G_{\text{zero}}$ and $G_{\text{random}}$, each of which can grow along widthwise (intra-layer) $G^{\to}$ or depthwise (layer-wise) $G^{\uparrow}$. $\mathbf{W_n}$ is the parameters before growth, while $\mathbf{D_n}$ , $\mathbf{R_n}$ and $\mathbf{O}$ are the growth parameters derived from the old, randomly initialized, and zero-initialized respectively. Except $G_{\text{direct}}$, other three operators only illustrates the widthwise growth. }
+    \label{fig:op}\vspace{-4mm}
+\end{figure}
+To make a fair comparison of the four growth operators for LLM pre-training, we define a standardized ``one-hop'' growth process that involves two training phases, small model training before growth and large model training after growth. 
+We first train the small LLMs with $d$ tokens before growing. Then, we use operator $G$ to grow them to the target LLMs by a factor of $g$ for non-embedding parameters and then continual pre-training the large LLMs for $D$ tokens.
+Two key factors in the procedure are worth noting: the growth factor $g$ and the data for base model training $d$, which can be interpreted as ``growth timing''.
+We further evaluate each growth operator by separately examining in \textit{depthwise (intra-layer)} growth $G^{\uparrow}$ and \textit{widthwise (layer-wise)} growth $G^{\to}$. 
+Concretely, we start with base models (400M LLMs) trained on $d=10B$ tokens, apply the four operators in both directions to scale them up to the target size of 1.1B (approximately a growth factor of $g=4$), and then continue training for an additional $D=97.5B$ tokens.~\footnote{Given growth factor $g=4$, the sum of FLOPs for training $d=10B$ and $D=97.5B$ approximately equals to consumption for training large LLMs $D=100B$, which is the FLOPs of our baseline trained from scratch.} 
+Appendix~\ref{app:llm_framework} contains the LLM's architecture configuration and training details.
+
+\subsection{Pre-Training 1.1B LLMs}
+
+We report results on training loss, eight standard Harness NLP benchmarks along with the average accuracy and the speedup ratio in Figure~\ref{fig:sec2_results}.
+Our key discovery reveals that depthwise growth $G^{\uparrow}$ exhibits a significant acceleration over both widthwise growth $G^{\to}$ and training models from scratch, while surprisingly, $G^{\to}$ does not offer any notable advantages.
+Among the depthwise growth operators, $G_{\text{direct}}^{\uparrow}$, $G_{\text{learn}}^{\uparrow}$, and $G_{\text{zero}}^{\uparrow}$, all outperform the baseline and $G_{\text{random}}^{\uparrow}$. The underperformance of $G_{\text{random}}^{\uparrow}$ in our study may be attributed to 
+its design for gradual ``mini-step'' growth~\cite{yao2024masked}, whereas our unified approach uses a single step.
+Most notably, \textbf{depthwise stacking $G_{\text{direct}}^{\uparrow}$ emerges as the clear winner among growth operators, surpassing its competitors in speedup, training loss and nearly every Harness evaluation metric}. 
+For example, compared to training models from scratch for 100B tokens, $G_{\text{direct}}^{\uparrow}$ achieves a significant efficiency gain, increasing training speed by 49.1\%.
+The calculation of speedup please refer to Appendix~\ref{app:speedup}.
+The Appendix~\ref{app:eval_main} presents more experiments on these operators, including their loss training and evaluation figures.
+
+\begin{figure}[H]
+    \centering \vspace{-4mm}
+    \includegraphics[width=\linewidth]{sec2_results.pdf}
+    \caption{We evaluate operators using training loss and Lambada~\cite{paperno2016lambada}, ARC-c~\cite{clark2018think}, ARC-e~\cite{clark2018think}, Logiqa~\cite{liu2020logiqa}, PIQA~\cite{bisk2019piqa}, Sciq~\cite{welbl2017crowdsourcing}, Winogrande~\cite{sakaguchi2019winogrande} and Wikitext PPL~\cite{merity2016pointer} totaling eight standard NLP benchmarks. After $8 \times 10^{20}$ FLOPs of training, $G_{\text{direct}}^\uparrow$ demonstrates a significant speedup.}
+    \label{fig:sec2_results} \vspace{-4mm}
+\end{figure}
+
+
+\section{Delving Deeper Into Depthwise Stacking (\texorpdfstring{$G_{\text{stack}}$}~)}\label{sec:stacking}
+
+The empirical evidence suggests that certain growth operators, most notably $G_{\text{direct}}^{\uparrow}$, exhibit an impressive acceleration in LLM pre-training compared to the baseline approach of training models from scratch. 
+We now turn our attention to a more in-depth examination of the $G_{\text{direct}}^{\uparrow}$. For ease of reference, \textbf{we will henceforth denote this depthwise stacking approach as operator $G_{\text{stack}}$}: $\mathcal{M} = \underbrace{M \circ M \circ \cdots \circ M}_{g \times M}$, where $M$ is a small base model trained with $d$ tokens, $\mathcal{M}$ is the target model and $g$ is the growth factor.
+
+This section addresses the two main challenges (\textit{O}2 and \textit{O}3) outlined in the introduction: 1) evaluating the performance of $G_{\text{stack}}$ in scaling scenarios, i.e. larger model sizes and more training tokens; and 2) determining the hyperparameters when using $G_{\text{stack}}$, i.e., the growth timing $d$ and growth factor $g$.
+
+\subsection{Scaling \texorpdfstring{$G_{\text{stack}}$}~}\label{sec:g_stack_scaling}
+
+\begin{wrapfigure}{R}{0.66\textwidth}
+  \centering \vspace{-4mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{sp/3B_loss.pdf}
+    \caption{Training Loss%3B,160 240
+    }
+    \label{fig:3B_loss}
+  \end{subfigure}
+  % \hfill
+  \hspace{-2mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:3B_avg_acc}
+  \end{subfigure}
+  \caption{Training 3B LLMs with 300B tokens. $G_{\text{stack}}$ significantly outperforms scratch in (a) loss and (b) average accuracy across NLP benchmarks. At 180B and 240B tokens, $G_{\text{stack}}$ accelerates by 48.6\% and 54.5\% compared to scratch.}
+  \label{fig:3B} \vspace{-4mm}
+\end{wrapfigure}
+\paragraph{Scaling Model Sizes for $G_{\text{stack}}$.}
+Our scaled-up experiments involve two larger model sizes: 3B and 7B. 
+We initially train smaller models with a layer count that is one-quarter of our target layers (growth factor $g=4$), utilizing 10B tokens ($d=10B$). 
+Then, we train the stacked models using over 300B tokens ($D=300B$) for both sizes.
+Figures~\ref{fig:3B} and~\ref{fig:7B} show the loss, and the NLP benchmarks average accuracy evaluated using the Harness evaluator for training 3B and 7B LLMs with 300B tokens, respectively.~\footnote{In this study, we always calculate the consumption by combining the FLOPs required for both training small models and large models. So given $g=4$, the consumption for training small model $d=10B$ equals to the cost for training $D=2.5B$, so the plotted curves for $G_{\text{stack}}$ actually starts at $2.5B$.}
+The acceleration of $G_{\text{stack}}$ is consistent across two models and all evaluation metrics. For instance, considering the 3B model, Figure~\ref{fig:3B} demonstrates that $G_{\text{stack}}$ achieves a 54.5\% speedup in pre-training, improvement of 2.1 in NLP benchmarks average accuracy compared to the baseline 3B model trained with 240B tokens.
+
+When comparing the 1B, 3B, and 7B models, it is evident that the benefits of $G_{\text{stack}}$ are not reduced as the model size increases, implying that its acceleration effect can be leveraged even with larger models.
+Details of the evaluation results, including evaluation with instruction tuning, can be found in Appendix~\ref{app:scaling}.
+Appendix~\ref{app:compare} compares our baselines with the open-source LLMs Pythia and tinyLlama.
+
+\paragraph{Scaling Training Tokens for $G_{\text{stack}}$.}
+\begin{wrapfigure}{R}{0.66\textwidth}
+  \centering \vspace{-6mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{sp/7B_loss.pdf}
+    \caption{Training Loss
+    }
+    \label{fig:7B_loss}
+  \end{subfigure}
+  \hspace{-2mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:7B_avg_acc}
+  \end{subfigure}
+  \caption{Training 7B LLMs with 300B tokens. $G_{\text{stack}}$ significantly outperforms scratch in (a) loss and (b) average accuracy across NLP benchmarks. At 160B, 220B and 280B tokens, $G_{\text{stack}}$ accelerates by 40.8\%, 55.3\% and 53.8\% compared to scratch.}
+  \label{fig:7B} \vspace{-4mm}
+\end{wrapfigure}
+We next evaluate the scalability of the stacking operator on another dimension - training with more tokens. 
+This is especially important in light of recent discussions about the validity of efficient training algorithms, which have sparked debate~\cite{kaddour2023train} over whether certain strategies may initially learn faster but ultimately perform similarly or worse than vanilla training methods when given more training data.
+Hence, we aim to pre-train a LLM using $G_{\text{stack}}$ on a substantial amount of training tokens.
+
+\begin{wrapfigure}{R}{0.66\textwidth}
+  \centering 
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{sp/410M_1T_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:410M_1T_loss}
+  \end{subfigure}
+  \hspace{-2mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{loss_diff.pdf}
+    \caption{Estimated Loss Difference}
+    \label{fig:loss_diff}
+  \end{subfigure}
+  \caption{Training 410M LLMs with 750B tokens. $G_{\text{stack}}$ significantly outperforms scratch in (a) loss. At 400B tokens, we observe a 53.1\% acceleration, and even at 700B tokens, there is still a 31.0\% acceleration. (b) We fit the difference between the losses of the scratch and $G_{\text{stack}}$ and find that the acceleration with $G_{\text{stack}}$ remain sustainable for longer training.}
+  \label{fig:scaling} \vspace{-8mm}
+\end{wrapfigure}
+
+Concretely, we conduct an experiment on a 410M LLM using 750B tokens. Following the experimental setup in the previous section, we set growth ratio $g=4$ and growth timing $d=10B$ and conduct continuous pre-training on the target 410M LLMs for 750B tokens. 
+Compared to the chinchilla-recommended 8B tokens~\cite{hoffmann2022training} for the 410M model, our experimental setting also surpasses this value by nearly 100 times, reaching 750B tokens.
+
+The training dynamics on Figure~\ref{fig:410M_1T_loss} indicate that $G_{\text{stack}}$ remains effective in such cases.
+Details of the evaluation results with the similar findings can be found in Appendix~\ref{app:scaling_410M}.
+Building upon the exceptional stability of LLM pre-training~\cite{zhao2023survey, jiang2024megascale}, we estimate loss improvements and plot them in Figure~\ref{fig:loss_diff}. The fitting curve indicates $G_{\text{stack}}$ will continue to exhibit acceleration effects even after 8T tokens, which is over 1000 times longer than the recommended token number~\cite{hoffmann2022training}. 
+It is also notable that this loss improvement after 8T training is not trivial for LLM pre-training, as previous studies~\cite{du2024understanding} suggest that even minor improvements in the later phase can have a relatively substantial impact on downstream performance.
+
+From a LLM practitioner's perspective, this is also crucial considering ``overtraining'', which involves training LLMs with significantly larger amounts of data than recommended by scaling laws~\cite{kaplan2020scaling, hoffmann2022training, alabdulmohsin2022revisiting}, a common practice that has become prevalent. 
+A notable example is the training of LLama 3-8B with 15T tokens, which is nearly 100 times greater than the token count recommended by the chinchilla scaling laws~\cite{hoffmann2022training}.
+Hence, this finding provides confidence in the consistent excellent acceleration of $G_{\text{stack}}$ throughout the entire practical LLM pre-training process.
+
+\begin{wrapfigure}{R}{0.39\textwidth}
+    \centering \vspace{-6mm}
+    \includegraphics[width=\linewidth]{scaling_law.pdf}\vspace{-2mm}
+    \caption{We plot scaling law lines based on 410M, 1.1B, 3B, 7B LLMs and make two predictions at the same losses of original computational-optimized 13B and 70B LLMs.}
+    \label{fig:scaling_law}\vspace{-8mm}
+\end{wrapfigure}
+\paragraph{Estimating Scaling Laws.} To further explore our findings, we graph our four models (410M, 1.1B, 3B, and 7B) on the same figure and attempt to uncover our ``scaling law'' using the $G_{\text{stack}}$ operator.
+Following~\citep{kaplan2020scaling, hoffmann2022training}, we define the scaling power law using the equation $L_C = aC^b$, where $a$ and $b$ are constants we need to fit, $C$ represents the FLOPs, and $L_C$ denotes the model's final loss under this FLOP. 
+We use the curve\_filt function in SciPy~\cite{Virtanen_2020} to fit both the scratch model and the $G_{\text{stack}}$ model and present the estimation scaling law in Figure~\ref{fig:scaling_law}.
+The figure shows that our $G_{\text{stack}}$ scaling law exhibits improved efficiency compared to the scaling law estimated from baseline LLMs, achieving the same target loss while requiring much less computational resources. 
+However, in light of the significant computational resources devoted to other scaling law studies~\cite{kaplan2020scaling, hoffmann2022training}, we acknowledge that our $G_{\text{stack}}$ scaling law is an initial estimate subject to computation constraints, and a comprehensive study is left for future research.
+
+\subsection{Determining Growth Timing and Growth Factor for Using \texorpdfstring{$G_{\text{stack}}$}~}\label{sec:g_stack_fit}
+
+We comprehensively validate the effectiveness of the $G_{\text{stack}}$ compared to training from scratch in Section~\ref{sec:g_stack_scaling}. 
+However, to incorporate $G_{\text{stack}}$ into a LLM's pre-training process, we need to determine two crucial hyperparameters: the growing time ($d$) and the growing factor ($g$).
+In our previous experiments, we rely on ad-hoc choices for these parameters, thereby lacking a systematic approach to determining them when use $G_{\text{stack}}$. 
+There exists research on investigating the growth timing~\citep{wu2024grow}, but the settings are quite different from the LLM pre-training.
+Therefore, this section offers a clear guide for practitioners looking to optimize using the $G_{\text{stack}}$ operator in LLM pre-training processes.
+
+We begin by offering a formal definition.
+When given a computational budget $C$, established scaling power laws~\cite{kaplan2020scaling, hoffmann2022training} exist to guide the non-embedding parameters $N$ and the number of training tokens $D$ to achieve the lowest model loss in the case of training from scratch.
+However, tuning hyperparameters becomes more complex when the fixed budget $C$ is allocated to find the optimal model training strategy using the $G_{\text{stack}}$ operator, which involves two training phases.
+Consequently, the overall computational budget $C$ can be expressed as the sum of the two components: $C = C1 + C2$.
+Here, $C1$ and $C2$ represent the flops required to train the initial small models $C1 = FLOPs(n,d)$, and the large model $C2 = FLOPs(N,D)$ respectively, where $n$ and $d$ denote the parameters and training tokens of the small model, and $N$ and $D$ represent the parameters and training tokens of the large model.
+Since the large model is grown by a factor of $g$ such that $N = gn$, we have $C = C1 + C2 = FLOPs(g,N,d) + FLOPs(N,D) = FLOPs(g,N,d,D)$. 
+
+\begin{figure}[H]
+  \centering \vspace{-2mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{when_to_stack/410M.pdf}
+    \caption{IsoFLOP on 410M}
+    \label{fig:when_410M}
+  \end{subfigure}
+  \hspace{-2mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{when_to_stack/1_1B.pdf}
+    \caption{IsoFLOP on 1.1B}
+    \label{fig:when_1_1B}
+  \end{subfigure}
+  \hspace{-2mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{when_to_stack/3B.pdf}
+    \caption{IsoFLOP on 3B}
+    \label{fig:when_3B}
+  \end{subfigure}
+  \caption{In 410M, 1.1B, and 3B LLMs, we plot smoothed loss curves for different growth timing $d$ given a set of FLOPs to form IsoFLOP figures. 
+  We find a clear valley in loss, indicating that for a given FLOP budget, there exists an optimal growth timing ${d}$ for the $G_{\text{stack}}$ operation.}
+  \label{fig:isoflop} \vspace{-2mm}
+\end{figure}
+So when given a budget $C$, our objective is to identify the optimized values ${D}$, ${N}$, ${d}$, ${g}$ that minimize the loss $\mathcal{L}(D, N, d, g)$.
+However, simultaneously optimizing the above four variables can be computationally expensive.
+Therefore, instead of searching for global optimals, we separately determine two factors closely related to the $G_{\text{stack}}$: the training tokens for the small model  (growth timing) $d$ and the growth factor $g$:
+
+\begin{equation}
+    \underset{f, h}{\arg\min\,\,} \mathcal{L}(D, N, d, g) \text{, \quad where } d = f(D, N), g = h(D, N)
+\end{equation}
+
+\paragraph{Determining Growth Timing: ${d}$.}
+
+
+
+\begin{wrapfigure}{R}{0.33\textwidth}
+    \centering \vspace{-7mm}
+    \includegraphics[width=\linewidth]{when_to_stack/fit.pdf}
+    \caption{We fit a contour figure for predicting $d$ given $C$ and $N$. These optimal growth timing $d$ fit the figure well.}
+    \label{fig:contour}\vspace{-6mm}
+\end{wrapfigure}
+We first explore the effect of growth timing, i.e. the training token $d$ for the small model.
+Particularly, we apply the $G_{\text{stack}}$ operator to a series of small models trained with $d={0B,1B,5B,10B,20B,50B}$ tokens.
+Subsequently, we stack them to the target layers with growth factor $g=4$ and train for a fixed set of computational FLOPs.
+We replicate the above experiments using three target model sizes $N=410M, 1.1B, 3B$ and plot each set of IsoFLOP points in Figure~\ref{fig:when_410M},~\ref{fig:when_1_1B} and~\ref{fig:when_3B}.
+Surprisingly, even a small model trained with just $1B$ tokens exhibits a significant speedup compared to the directly stacking small random initialized models (represented as ``0B''). While 0B's performance is similar to models trained from scratch, implying stacking itself does not serve as an effective initialization method.
+Furthermore, by applying smoothing techniques to model IsoFLOP curves as parabolas, we identify the optimized value of $d$ that minimizes loss for each FLOP count, leading us to hypothesize the existence of a logarithmic equation involving $N$, $C$, and $d$:
+
+\begin{equation}
+    log_{10}(d) = a\log_{10}(N) + \frac{b}{\log_{10}(C)} + c
+\end{equation}
+
+After fitting, we obtain $a=0.88$, $b=163.27$ and $c=-5.74$ and we plot the contour figure in Figure~\ref{fig:contour}.
+It can be observed that our estimated curves align well with the actual optimal points.
+
+\begin{wrapfigure}{R}{0.66\textwidth}
+  \centering \vspace{-2mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{how_much_to_stack/1_1B.pdf}
+    \caption{IsoFLOP on 1.1B}
+    \label{fig:how_much_1_1B}
+  \end{subfigure}
+  \hspace{-2mm}
+  \begin{subfigure}[b]{0.33\textwidth}
+    \includegraphics[width=\linewidth]{how_much_to_stack/3B.pdf}
+    \caption{IsoFLOP on 3B}
+    \label{fig:how_much_3B}
+  \end{subfigure}
+  \caption{In 1.1B, and 3B LLMs, we plot smoothed loss curves for different growth factor $g$ given a set of FLOPs as IsoFLOP figures. The optimal g falls between 2 and 4.}
+  \label{fig:isoflop_s} \vspace{-4mm}
+\end{wrapfigure}
+
+\paragraph{Determining Growth Factor: ${g}$.}
+Another factor we determine is the growth factor $g$.
+As models with 3B and 7B parameters have identical depths, we run experiments using two model sizes: 1.1B (24 layers) and 3B (32 layers).
+Specifically, we vary the stack factors to $g={2,4,8,24}$ for the 1.1B model and $g={4,8,16,32}$ for the 3B model while keeping the base models trained with $d=10$B tokens.
+The smoothed IsoFLOP curves are plotted in Figure~\ref{fig:isoflop_s}.
+Interestingly, even with a relatively shallow 2-layer base model and a growth factor of $g=16$, we observe a remarkable improvement compared to the baseline 3B model ($g=1$). 
+However, when using a 1-layer base model, $G_{\text{stack}}$ underperforms compared to the baseline. 
+Our curves indicate that the optimal growth factor $g$ lies between 2 and 4.
+
+However, unlike determining training token ${d}$, we cannot generate sufficient data to estimate the relationship between $N$, $C$, and $g$, due to computational constraints.
+Thus, this work suggests a constant growth factor of ${g}=4$. 
+We also include our preliminary estimated equation and contour figure for $g$ in the Appendix~\ref{app:s_fit}.
+% In Appendix~\ref{app:guidelines}, we provide guidelines on using $G_{\text{stack}}$ within the Llama architecture.
+All evaluation results of Section~\ref{sec:g_stack_fit} are listed in Appendix~\ref{app:when_and_how_much}.
+
+\section{Ablation and Discussion}\label{sec:discussion}
+
+To further give insights into adopting model growth techniques in LLM pre-training, we ablate variances for $G_{\text{stack}}$ and discuss function preserving in general model growth techniques.
+
+\subsection{Ablation: How to Stack?}
+
+It is worth noting that $G_{\text{stack}}$ differs from the algorithm proposed in StackedBERT~\cite{gong2019efficient}, which utilizes a gradually stacking strategy.
+Hence, we compare our ``one-hop'' $G_{\text{stack}}$ and their gradual stacking approach.
+Following the methodology introduced in StackBERT, we employ a two-step stack strategy. Given our target model size of 1.1B with 24 layers, we start with a 6-layer model.
+Subsequently, we train it on 10B tokens and double the model's depth through stacking, repeating this step twice (train-stack-train-stack) to achieve the desired scale.
+Our experiments demonstrate that $G_{\text{stack}}$ outperforms gradual stacking approaches on loss and downstream evaluations.
+For example, the evaluation results show that $G_{\text{stack}}$ achieves a 2.4 higher average accuracy and 0.6 better Wikitext PPL than gradual stacking when pre-training large models for 100B tokens.
+The results can be found in Appendix~\ref{app:gs}.
+We further compare other stacking variations, such as stacking via interpolation and partial stacking of certain layers which are also adopted in LlamaPro~\cite{wu2024llama} and Solar~\cite{kim2023solar}, and leave our detailed findings in the Appendix~\ref{app:112233} and ~\ref{app:partial}. 
+
+
+\subsection{Discussion: Why Does Function Preserving Fail?}
+
+Function preservation (FP) is a key concept that underlies most model growth approaches~\cite{chen2015net2net, chen2021bert2bert, wang2023lemon, yao2024masked}.
+The idea is intuitive that a larger model should initialize parameters that can represent the same function as the ones in the smaller model, i.e. $\forall x, f(x;\Theta^{(s)})=f(x;\Theta^{(l)}_{init})$, where $x$ is the input. 
+We give a mathematical definition of FP in the Appendix~\ref{app:fp}.
+
+We find it intriguing that our $G_{\text{stack}}$ approach, which violates FP, emerges as the most effective in our study.
+To further investigate, we conduct a simple ablation study to break FP by introducing noise on the strict-FP operator $G_{\text{direct}}^{\to}$.
+We initialize the new neurons by a weighted combination of two sets of parameters: those from $G_{\text{direct}}^{\to}$ and those from 
+random initialization. The weighting factor is controlled by a noise ratio.
+Our findings are intriguing. After 40B tokens training, adding 20\% noise outperforms original $G_{\text{direct}}^{\to}$ by 0.27 on the Wikitext PPL and 0.41 on the average accuracy score.
+
+We also add noise for $G_{\text{stack}}$.
+When we add 20\% noise, our LLM performs slightly better than the no-noise model.
+However, when the noise level exceeds 20\%, the performance significantly deteriorates.
+These results indicate that function preservation may not be the sole determining factor for model growth.
+\textbf{In other words, exploring ways to accelerate the training of larger models and strict preserving function during growth might represent two overlapping yet distinct research directions.}
+The experimental details are provided in the Appendix~\ref{app:noise}.
+
+
+\section{Conclusion}\label{sec:conclusion}
+This work empirically explores model growth approaches for efficient LLM pre-training. We address three key challenges of current model growth research for efficient LLM pre-training. 
+We first comprehensively evaluate model growth techniques into four atomic operators and explore depthwise growth $G_{\text{stack}}$ beats all other methods and baselines in various evaluations. We next address concerns about the scalability of $G_{\text{stack}}$ by extending the model and training data scales. 
+Furthermore, we systematically analyze the usage of the $G_{\text{stack}}$ operator, focusing on growth timing and growth factor.
+Based on this analysis, we formalize a set of guidelines for effectively utilizing the $G_{\text{stack}}$ operator.
+In addition, we provide in-depth discussions and comprehensive ablation studies of $G_{\text{stack}}$, shedding light on the broader implications of our work.
+
+
+\section{Limitations}\label{sec:limitations}
+While our work has demonstrated remarkable potential, four limitations deserve further attention.
+One limitation is the constraint of computation resources.
+For example, we only compare two sets of growth factor $d$ configurations, which limits the capacity to derive a formula for determining the optimal growth factor $d$.
+Another limitation of our work is the focus on relatively simple operator choices, where we prioritize simplicity over exploring more sophisticated strategies.
+For instance, we do not extensively investigate the multi-step growth or dynamic modifications to the training process, such as adjusting the learning rate during continual pre-training. 
+The third limitation involves the incomplete cosine learning rate schedule during training. This also arises from the resource-intensive nature of pre-training LLMs and the constraints on available computational resources. Therefore, we adopt a strategy where we initially set a large number of training tokens and then we pre-train LLMs until the training runs are interrupted by tasks with higher priority. 
+Lastly, although this study's scope is an empirical exploration and the content is self-contained, there is a lack of theoretical insights into the success of $G_{\text{stack}}$ in LLM pre-training.\footnote{A very recent paper indicates training LLMs via stacking may improve in reasoning~\cite{saunshi2024inductivebiasstackingimproving}.} 
+Nonetheless, we will release all LLM checkpoints to facilitate the community's investigation into the theoretical principles behind our observations.
+
+
+\section{Acknowledgments}
+
+We thank all constructive comments from anonymous reviewers. 
+Reynold Cheng and Wenyu Du were supported by the Hong Kong Jockey Club Charities Trust (Project 260920140), the University of Hong Kong (Project 109000579), the HKU Outstanding Research Student Supervisor Award 2022-23, and the HKU Faculty Exchange Award 2024 (Faculty of Engineering).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{unsrt}
+\bibliography{neurips_2024}
+\newpage
+\appendix
+
+
+\section{Details of Growth Operators}\label{app:op}
+
+\subsection{Four Growth Operators}
+
+\subsubsection{Operator \texorpdfstring{$G_{\text{direct}}$}~: Direct Derivation of Grown Parameters From Old Parameters}
+
+One intuitive strategy for expanding neural networks involves directly duplicating or splitting existing neurons.~\citep{gong2019efficient,chen2021bert2bert, wang2023lemon}. 
+Unlike other growth operators, we distinguish between growth in terms of depth and width.
+
+For width-wise expansion, the Net2Net technique and its transformer implementations~\citep{chen2015net2net,chen2021bert2bert} involve splitting old neurons into two or more parts, with each splitting step achieving a=b+c. Depending on the specific splitting mechanism, there are two variations: even splitting and uneven splitting. The latter is proposed to address symmetry issues that arise when neurons are evenly split. In this paper, we adopt the approach of uneven splitting.
+
+In the context of depth-wise expansion, a common practice is to duplicate layers, often referred to as ``stacking'' \cite{gong2019efficient}.
+Therefore, we use the term $G_{\text{stack}}$ to represent this operator.
+While this approach may appear to deviate from function preservation, it surprisingly yields a strong baseline.
+
+\subsubsection{Operator \texorpdfstring{$G_{\text{learn}}$}~: Generation of New Parameters through Matrix Transformation}
+
+$G_{\text{learn}}$ is an operator that learns a matrix transformation function to map small models to a larger one~\citep{wang2023learning}.
+This operator is applicable to both width and depth expansion.
+Considering the original model $f$ with parameters $\theta$, the target model $F$ with parameters $\Theta$, and $G_{\text{learn}}$ as the hypernetwork for meta-learning, the training corpus is denoted as $\mathcal{D}$, and the language model loss is denoted as $\mathcal{L}$.
+Then, we optimize the following objective:
+\begin{equation}
+\begin{matrix}
+    & \underset{G_{\text{learn}}}{arg~min~} \mathbb{E}_{x \sim \mathcal{D}}~\mathcal{L}(x;F_\Theta) \text{,}
+    & \text{where } \Theta = G_{\text{learn}}(\theta)
+\end{matrix}
+\end{equation}
+
+\subsubsection{Operator \texorpdfstring{$G_{\text{zero}}$}~: Setting New Parameters to 0}
+
+Setting new parameters to zero is often considered a simple method to achieve function preservation.
+However, optimizing networks with a significant number of zeros can present challenges.
+To tackle this issue, we adopt current practices that selectively zero out either the fan-in or fan-out parameters~\citep{shen2022staged, evci2022gradmax, wang2023lemon}.
+Specifically, for operator $G_{\text{zero}}$, during width growing, we zero out only the set of fan-out parameters for new neurons and randomly initialize the remaining ones.
+In the case of depthwise expansion, we zero out the final output layer of the newly-duplicated transformer blocks' MultiHead Attention and MLP. 
+
+
+\subsubsection{Operator \texorpdfstring{$G_{\text{random}}$}~: Random Initialization of New Parameters}
+
+This group follows the common practice of randomly initializing new parameters.
+In earlier attempts, old neurons were frozen after the growth process~\citep{yang2020progressively, yao2024masked}.
+However, to ensure function preservation, a recent study introduces a mask for new neurons after expansion~\citep{yao2024masked}.
+This mask is gradually removed during ongoing training.
+We refer to this new approach as the growth operator $G_{\text{random}}$.
+
+
+\subsection{Difference of Our Operators and Base Methods}
+The operators $G_{\text{direct}}^\to$ shares a similar setting to Lemon with minor variances due to Llama achitectures. $G_{\text{learn}}$ is consistent with the methods LiGO, but with our own implementation.
+For $G_{\text{zero}}$, our approach aligns with Lemon in terms of depth, but differs from stagedTraining in width.
+Unlike stagedTraining, we do not double the width and assign zeros to the off-diagonal entries.
+Instead, our approach is more flexible; by zeroing out the submatrix in the bottom-left corner, we can extend it to any dimension.
+Our $G_{\text{random}}$ does not exhibit the ``multi-hop'' growth like MSG, instead, it grows ``one-hop'' directly to the target size.
+Our implementation of $G_{\text{direct}}^\uparrow$ ($G_{\text{stack}}$) differs from the algorithm employed in stackedBert.
+In stackedBert, a gradual growing technique is utilized, whereas our operator follows a more direct approach.
+
+\subsection{Details of \texorpdfstring{$G_{\text{direct}}$}~}\label{app:g_direct}
+
+\paragraph{Embedding} Consider $E \in \mathbb{R}^{V \times d}$, and our goal is to expand it to $E' \in \mathbb{R}^{V \times D}$, $G_{\text{direct}}$ just copy some columns:
+
+\begin{eqnarray}
+   E' &=& G_{\text{direct}}(E) \\
+   &=& ER \\
+   &=& E\begin{bmatrix}
+I & & I \\
+\coolunder{d}{& I} % \coolunder{D-d}{&}
+\end{bmatrix}
+\end{eqnarray}
+
+\quad
+
+where $R \in \mathbb{R}^{d \times D}$ is used to copy the embedding matrix $E$.
+
+\paragraph{Linear} Consider $W \in \mathbb{R}^{d_{out} \times d_{in}}$, target parameter $W' \in \mathbb{R}^{D_{out} \times D_{in}}$, where $d_{out} \leq D_{out}, d_{in} \leq D_{in}$, $G_{\text{direct}}$ is defined as:
+
+\begin{eqnarray}
+   W' &=& G_{\text{direct}}(W) \\
+   &=& LWR \\
+   &=& \begin{matrix}
+\coolleftbrace{d_{out}}{x \\ y} \\
+\vphantom{a}
+    % \coolleftbrace{D_{out}-d_{out}}{E}
+\end{matrix}\begin{bmatrix}
+   I &  \\
+    & I \\
+   I & 
+\end{bmatrix} W\begin{bmatrix}
+\alpha &  & \beta \\
+\coolunder{d_{in}}{& I} % \coolunder{D_{in}-d_{in}}{& \ } \\
+\end{bmatrix}
+\end{eqnarray}
+
+\quad
+
+where $R \in \mathbb{R}^{d_{in} \times D_{in}}$ is used for expanding the fan-in and $L \in \mathbb{R}^{D_{out} \times d_{out}}$ is used for expanding the fan-out. To satisfy function preserving, we ensure that $\alpha + \beta = I$.
+
+\paragraph{RMSNorm} For RMSNorm, a similar approach is adopted, consider parameter $\mu \in \mathbb{R}^{d}$, expanded parameter $\mu' = \frac{\sqrt{d}}{\sqrt{D}} [\mu,\ \mu _{0,D-d}] \in \mathbb{R}^D$:
+
+\begin{eqnarray}
+RMSNorm'(x') = \frac{x'}{\sqrt{\frac{1}{D}\sum_{i=1}^{D}{x'}_i^2}} \odot \mu' \\
+= [ \sqrt{\frac{\sum_{i=1}^{d}{x}_i^2}{\sum_{i=1}^{D}{x'}_i^2}}  \times RMSNorm(x),\ \zeta]
+\end{eqnarray}
+
+Therefore, using the $G_{\text{direct}}$, it is not possible to achieve function preservation for RMSNorm
+
+\paragraph{Depth ($G_{\text{stack}}$)}\label{app:stack} Consider a transformer with $l$ layers represented as $F = f_0 \circ f_1 \circ \cdots \circ f_l$. Our objective is to expand it to $L$ layers, where $L$ is a multiple of $l$. We have various stacking forms for this purpose, such as (a) direct stacking: $F' = F \circ F \circ \cdots \circ F$.
+
+\begin{algorithm}[H]
+% \LinesNumbered
+\setcounter{AlgoLine}{0}
+\KwIn{Base model $M_k^l$ with $l$ layers trained using dataset $d_k$ where $k$ is iteration steps. Growth factor $g$.}
+\KwOut{Target Model $\mathcal{M}_0^{gl}$ with $gl$ layers}
+$\mathcal{M}_0^{l}$=$M_k^l$
+
+\textbf{for} {$t\ =\ 2\ to\ g$} \textbf{do} \hspace{\fill} $\triangleright$ Model Stacking
+
+$\quad \mathcal{M}_0^{tl} = \mathcal{M}_0^{(t-1)l} \circ M_k^l$
+
+\textbf{end}
+
+\caption{Operator $G_{\text{stack}}$}
+\label{alg:stack}
+\end{algorithm}
+
+\subsection{Details of \texorpdfstring{$G_{\text{zero}}$}~}\label{app:g_zero}
+
+\paragraph{Embedding} 
+Consider an embedding matrix $E \in \mathbb{R}^{V \times d}$. The $G_{\text{zero}}$ operator expands it to $E' \in \mathbb{R}^{V \times D}$ with $O$, where $d \leq D$. Formally:
+
+\begin{equation}
+    E' = [E,\ O]
+\end{equation}
+
+Therefore, give a token $x$, the expanded embedding can be expressed as:
+
+\begin{equation}
+    Embedding'(x) = \mathbbm{1}_xE' = [Embedding(x),\ 0_{D-d}]
+\end{equation}
+
+\paragraph{Linear} Consider parameter $W \in \mathbb{R}^{d_{out} \times d_{in}}$. $G_{\text{zero}}$ expand it to $W' \in \mathbb{R}^{D_{out} \times D_{in}}$, where $d_{out} \leq D_{out}$ and $d_{in} \leq D_{in}$. Formally:
+
+\begin{equation}
+W' = 
+\begin{bmatrix}
+    W & \mathcal{A} \\
+    O & \mathcal{C}
+\end{bmatrix}
+\end{equation}
+
+where $\mathcal{A}, \mathcal{C}$ are randomly initialized new parameters. Considering the input token $x \in \mathbb{R}^{d_{in}}$ before expansion, and the input after expansion $x' \in \mathbb{R}^{D_{in}}$:
+
+\begin{equation}
+    x' = [x,\ 0_{D_{in}-d_{in}}]
+\end{equation}
+
+\begin{eqnarray}
+    Linear'(x') &=& x'W'^T \\
+    &=& [x,\ 0_{D_{in}-d_{in}}] \begin{bmatrix}
+    W^T & O \\
+    \mathcal{A}^T & \mathcal{C}^T
+\end{bmatrix} \\
+    &=& [xW^T,\ 0_{D_{out}-d_{out}}] \\
+    &=& [Linear(x),\ 0_{D_{out}-d_{out}}]
+\end{eqnarray}
+
+\paragraph{RMSNorm} Considering the parameter $\mu \in \mathbb{R}^d$, $G_{\text{zero}}$ expand it to $\mu' = [\alpha \mu,\ \xi]$ like $G_{\text{random}}$ in Appendix~\ref{pa:msg_rms}, because the input must be $x' = [x,\ 0_{D-d}] \in \mathbb{R}^D$.
+
+\paragraph{Depth} In depth, by retaining only the residual part and initializing the MHA and SwiGLU final linear projections to zero, the MHA and SwiGLU layers can achieve function preservation.
+
+
+\subsection{Details of \texorpdfstring{$G_{\text{random}}$}~}\label{app:g_random}
+
+\paragraph{Embedding} Consider an embedding matrix $E \in \mathbb{R}^{V \times d}$. The goal of $G_{\text{random}}$ is to expand it to $E' \in \mathbb{R}^{V \times D}$, where $d \leq D$. Formally:
+
+\begin{equation}
+    E' = [E,\ \mathcal{E}]
+\end{equation}
+
+where $\mathcal{E} \in \mathbb{R}^{V \times (D-d)}$ represents randomly initialized new parameters. We use a mask $c \in \mathbb{R}^{D}$ to mask out the randomly initialized parts:
+
+\begin{equation}
+    c = [1_{d},\ 0_{D-d}] \rightarrow [1_{d},\ 1_{D-d}]
+\end{equation}
+
+Therefore, for a token $x$, the masked embedding can be expressed as:
+
+\begin{equation}
+    Embedding'(x) = \mathbbm{1}_xE' \odot c = [Embedding(x),\ 0_{D-d}]
+\end{equation}
+
+\paragraph{Linear} Consider parameter $W \in \mathbb{R}^{d_{out} \times d_{in}}$. Our goal is to expand it to $W' \in \mathbb{R}^{D_{out} \times D_{in}}$, where $d_{out} \leq D_{out}$ and $d_{in} \leq D_{in}$. Formally:
+
+
+\begin{equation}
+W' = 
+\begin{bmatrix}
+    W & \mathcal{A} \\
+    \mathcal{B} & \mathcal{C}
+\end{bmatrix}
+\end{equation}
+
+where $\mathcal{A}, \mathcal{B}, \mathcal{C}$ are randomly initialized new parameters. Considering the input token $x \in \mathbb{R}^{d_{in}}$ before expansion, and the input after expansion $x' \in \mathbb{R}^{D_{in}}$:
+
+\begin{equation}
+    x' = [x,\ 0_{D_{in}-d_{in}}]
+\end{equation}
+
+\begin{eqnarray}
+    x'W'^T &=& [x,\ 0_{D_{in}-d_{in}}] \begin{bmatrix}
+    W^T & \mathcal{B}^T \\
+    \mathcal{A}^T & \mathcal{C}^T
+\end{bmatrix} \\
+    &=& [xW^T,\ x\mathcal{B}^T]
+\end{eqnarray}
+
+
+To ensure that the expanded part of $x'$ starts with zeros, we still utilize a mask:
+
+\begin{equation}
+    c = [1_{d_{out}},\ 0_{D_{out}-d_{out}}] \rightarrow [1_{d_{out}},\ 1_{D_{out}-d_{out}}]
+\end{equation}
+
+\begin{equation}
+    Linear'(x') = x'W'^T \odot c = [Linear(x),\ 0_{D_{out}-d_{out}}]
+\end{equation}
+
+\paragraph{RMSNorm}\label{pa:msg_rms} Considering the parameter $\mu \in \mathbb{R}^d$, our objective is to expand it to $\mu' = [\alpha \mu,\ \xi] \in \mathbb{R}^D$, where $\alpha$ is an undetermined coefficient and $\xi$ is a randomly initialized new parameter. Let the input be $x' = [x,\ 0_{D-d}] \in \mathbb{R}^D$, then we have:
+
+\begin{equation}
+    \sum_{i=0}^Dx'^2 = \sum_{i=0}^dx^2
+\end{equation}
+
+\begin{eqnarray}
+    RMSNorm'(x') &=&
+    \frac{x'}{\sqrt{\frac{1}{D}\sum_{i=0}^D{x'_i}^2}} \odot \mu ' \\
+    &=& 
+    \frac{[x,\ 0_{D-d}]}{\sqrt{\frac{1}{D}\sum_{i=0}^d{x_i}^2}} \odot [\alpha \mu,\ \xi] \\
+    &=& \left [ \frac{\sqrt{D}}{\sqrt{d}} \frac{x}{\sqrt{\frac{1}{d}\sum_{i=0}^d{x_i}^2}} \odot \alpha \mu,\ 0_{D-d} \right] \label{eq:msg_rms}
+\end{eqnarray}
+
+By observing equation~\ref{eq:msg_rms}, we can conclude that, to achieve function preservation, $\alpha = \frac{\sqrt{d}}{\sqrt{D}}$. Finally, we can conclude:
+
+\begin{equation}
+    RMSNorm'(x') = [RMSNorm(x),\ 0_{D-d}]
+\end{equation}
+
+\paragraph{Depth} In depth, preserving only the residual part and masking the MHA and SwiGLU layers can achieve function preservation:
+
+\begin{gather}
+    Y = X + MHA(RMSNorm(X)) \odot c \\
+    Y = X + SwiGLU(RMSNorm(X)) \odot c \\
+    c = 0_{D} \rightarrow 1_{D}
+\end{gather}
+
+\subsection{Details of \texorpdfstring{$G_{\text{learn}}$}~}\label{app:g_learn}
+
+Using $G_{\text{learn}}$ for width expansion, for the embedding layer $E \in \mathbb{R}^{V \times d}$, the parameter $B_{emb} \in \mathbb{R}^{D \times d}$ is defined as follows:
+
+\begin{eqnarray}
+E' = EB_{emb}^T
+\end{eqnarray}
+
+For Attention layer, where $W_Q, W_K, W_V,$ and $W_O$ $\in \mathbb{R}^{d \times d}$, and RMSNorm $\mu_1 \in \mathbb{R}^d$, the parameters $B_Q, B_K,$ and $B_V$ $\in \mathbb{R}^{D \times d}$, we have:
+
+\begin{eqnarray}
+\left\{\begin{matrix}
+W_Q' &=& B_QW_QB_{emb}^T \\
+W_K' &=& B_KW_KB_{emb}^T \\
+W_V' &=& B_VW_VB_{emb}^T \\
+W_O' &=& B_{emb}W_OB_V^T \\
+\mu_1' &=& B_{emb}\mu_1 \\
+\end{matrix}\right.
+\end{eqnarray}
+
+For MLP, where $W_{up}, W_{gate} \in \mathbb{R}^{d_{mlp} \times d}$, $W_{down} \in \mathbb{R}^{d \times d_{mlp}}$, RMSNorm $\mu_2 \in \mathbb{R}^d$, the parameter $B_{mlp} \in \mathbb{R}^{D_{mlp} \times d_{mlp}}$, we have:
+
+\begin{eqnarray}
+\left\{\begin{matrix}
+W_{up}' &=& B_{mlp}W_{up}B_{emb}^T \\
+W_{down}' &=& B_{emb}W_{mlp}B_{mlp}^T \\
+W_{gate}' &=& B_{mlp}W_{gate}B_{emb}^T \\
+\mu_2' &=& B_{emb}\mu_2
+\end{matrix}\right.
+\end{eqnarray}
+
+For the output head $W_{head} \in \mathbb{R}^{V \times d}$, we have:
+
+\begin{eqnarray}
+W_{head}' = W_{head}B_{emb}
+\end{eqnarray}
+
+Using $G_{\text{learn}}$ for depth expansion, consider a transformer model with $L_1$ layers, we use $G_{\text{learn}}$ to expand it to $L_2$ layers. For $l \in \{1, 2, \cdots, L_2\}$:
+
+\begin{eqnarray}
+\left\{\begin{matrix}
+{W_l^Q}' &=& \sum_{j=1}^{L_1} D_{l,j}^Q W_j^Q \\
+{W_l^K}' &=& \sum_{j=1}^{L_1} D_{l,j}^K W_j^K \\
+{W_l^V}' &=& \sum_{j=1}^{L_1} D_{l,j}^V W_j^V \\
+{W_l^O}' &=& \sum_{j=1}^{L_1} D_{l,j}^O W_j^O \\
+{\mu_l^{(ln1)}}' &=& \sum_{j=1}^{L_1} D_{l,j}^{(ln1)} \mu_j^{(ln1)}
+\end{matrix}\right.
+\end{eqnarray}
+
+where $D^{Q, K, V, O, ln1} \in \mathbb{R}^{L_2 \times L_1}$ represents learnable parameters. These parameters are used to expand the MHA vertically in depth. Similarly, for SwiGLU, we also perform expansion using a similar method. Formally, this can be written as:
+
+\begin{eqnarray}
+\left\{\begin{matrix}
+{W_l^{up}}' &=& \sum_{j=1}^{L_1} D_{l,j}^{up} W_j^{up} \\
+{W_l^{down}}' &=& \sum_{j=1}^{L_1} D_{l,j}^{down} W_j^{down} \\
+{W_l^{gate}}' &=& \sum_{j=1}^{L_1} D_{l,j}^{gate} W_j^{gate} \\
+{\mu_l^{(ln2)}}' &=& \sum_{j=1}^{L_1} D_{l,j}^{(ln2)} \mu_j^{(ln2)}
+\end{matrix}\right.
+\end{eqnarray}
+
+where $D^{up,down,gate,ln2} \in \mathbb{R}^{L_2 \times L_1}$ represents learnable parameters used for expanding SwiGLU in the depth.
+
+\section{LLMs Framework and Training Details}\label{app:llm_framework}
+
+\paragraph{Embedding} Consider a vocabulary size $V$ and embedding size $d$. Then, the embedding matrix $E \in \mathbb{R}^{V \times d}$, and the one-hot vector for input tokens $X$ is denoted as $\mathbbm{1}_X \in \mathbb{R}^{T \times V}$, where $T$ is the sequence length. Formally, it can be written as:
+
+\begin{equation}
+    Embedding(X) = \mathbbm{1}_XE
+\end{equation}
+
+for $i,v \in [V]$, where $i \neq j$, it is guaranteed that $E_i \neq E_j$.
+
+\paragraph{Multi-Head Attention}
+
+Multi-Head Attention (MHA) consists of multiple attention heads, each of which computes its own self-attention. The results of these attention heads are then concatenated and projected to obtain the following output:
+
+\begin{equation}
+\begin{matrix}
+    & Q_i, K_i, V_i = XW^Q_i, XW^K_i, XW^V_i \\
+    & H_i = softmax(\frac{Q_iK_i^T}{\sqrt{d_h}})V_i \\
+    & MHA(X) = Concat(H_1,\cdots,H_n)W^O \\
+\end{matrix}
+\end{equation}
+
+here, the input $X \in \mathbb{R}^{T \times d}$, parameters $W_i^Q \in \mathbb{R}^{d \times d_h}$, $W_i^K \in \mathbb{R}^{d \times d_h}$, $W_i^V \in \mathbb{R}^{d \times d_h}$, and $W^O \in \mathbb{R}^{d \times d}$, where $n \times d_h = d$.
+
+\paragraph{Feed Forward Network}
+The Feed Forward Network (FFN) consists of two linear layers and the activation function GeLU. Typically, the two linear layers first perform an up-projection to $d_{FFN}$ and then down-project back to the dimension $d$. Therefore, FFN is defined as:
+
+\begin{equation}
+    FFN(X) = GeLU(XW_{up})W_{down}
+\end{equation}
+
+where the input $X \in \mathbb{R}^{T \times d}$, parameter $W_{up} \in \mathbb{R}^{d \times d_{FFN}}$ and $W_{down} \in \mathbb{R}^{d_{FFN} \times d}$.
+
+\paragraph{SwiGLU}
+
+LLaMA replaces the original FFN in the Transformer Decoder with SwiGLU, resulting in improved performance. SwiGLU consists of three linear layers and the swiglu activation function. It can be defined as:
+
+\begin{equation}
+    SwiGLU(X) = (XW_{gate} \odot swiglu(XW_{up})) W_{down}
+\end{equation}
+
+where $\odot$ means the element-wise multiplication, the input $X \in \mathbb{R}^{T \times d}$, parameter $W_{up} \in \mathbb{R}^{d \times d_{FFN}}$, $W_{gate} \in \mathbb{R}^{d \times d_{FFN}}$ and $W_{down} \in \mathbb{R}^{d_{FFN} \times d}$.
+
+\paragraph{RMSNorm}
+
+Before MHA, FFN, or SwiGLU, there is a layer of RMSNorm to enhance the stability of the model. Compared to LayerNorm, RMSNorm is simpler in form. Formally, it can be written as:
+
+\begin{eqnarray}
+RMSNorm(X) = \frac{X}{\sqrt{\frac{1}{d}\sum_{i=1}^{d}X_i^2}} \odot \mu
+\end{eqnarray}
+
+where $X \in \mathbb{R}^{T \times d}$, parameter $\mu \in \mathbb{R}^d$.
+
+
+\subsection{LLMs Training with Growth Operator}\label{app:model_growth}
+
+% \begin{wrapfigure}{R}{0.54\textwidth}
+% \begin{minipage}[T]{0.54\textwidth}\vspace{-16mm}
+\begin{algorithm}[H]
+% \LinesNumbered
+\KwIn{Growth operator $G$, Loss function $\mathcal{L}$, Iterative optimizer $A$.
+Dataset $\{d_1, d_2, \cdots, d_k\}$ for base model.
+Dataset $\{D_1, D_2, \cdots, D_K\}$ for target model.}
+\KwOut{Target Model $\mathcal{M}_K$}
+\textbf{Initial Phase}: Initialize a base model $M_0$ from scratch.
+
+\textbf{for} {$t\ =\ 1\ to\ k$} \textbf{do} \hspace{\fill} $\triangleright$ Base Model Training
+
+$\quad loss = \mathcal{L}(M_{t-1}, d_t)$
+
+$\quad M_t \gets \mathcal{A}(M_{t-1}, loss)$
+
+\textbf{end}
+
+$\mathcal{M}_0 = G(M_k)$
+
+\textbf{for} {$t\ =\ 1\ to\ K$} \textbf{do} \hspace{\fill} $\triangleright$ Target Model Training
+
+$\quad loss = \mathcal{L}(\mathcal{M}_{t-1}, D_t)$
+
+$\quad \mathcal{M}_t \gets \mathcal{A}(\mathcal{M}_{t-1}, loss)$
+
+\textbf{end}
+
+\caption{LLMs Training with Growth Operator}
+\label{alg:model_growth}
+\end{algorithm}
+% \end{minipage}\vspace{-4mm}
+% \end{wrapfigure}
+
+\subsection{Details of Speedup Calculation}\label{app:speedup}
+We calculate speedup $sp$ between operator $G$ and $scratch$ model pre-training by:
+
+\begin{equation}
+    sp = \frac{FLOPs_{scratch}}{FLOPs_{G}} - 1
+\end{equation}
+
+where $FLOPs_{scratch}$ and $FLOPs_{G}$ represent the FLOPs required by the scratch model and the $G$ model, respectively, to achieve the same loss.
+
+\subsection{Details of Training Settings}\label{app:training_details}
+We use TinyLlama~\footnote{Apache-2.0 license}~\cite{zhang2024tinyllama} as our pre-training codebase. We employ FSDP (Fully Sharded DataParallel) along with FlashAttention~\cite{dao2022flashattention} 2.0, and other acceleration techniques. We use the open-source dataset Slimpajama-627B~\footnote{The license of Slimpajama-627B includes: Common Crawl Foundation Terms of Use; C4 license; GitHub was limited to MIT, BSD, or Apache licenses only; Books: the\_pile\_books3 license and pg19 license; ArXiv Terms of Use; Wikipedia License; StackExchange license on the Internet Archive}~\cite{cerebras2023slimpajama} for pre-training. The hyperparameters used for each model size are listed in Table~\ref{tab:hyperparam}. Our 7B model is trained over around 100B tokens per day on an NVIDIA Hopper cluster.
+
+\begin{table}[H]
+\caption{Hyperparameters}\label{tab:hyperparam}\vspace{2mm}
+    \centering
+    \small
+    \begin{tabular}{lcccccc}
+        \hline
+        \toprule
+         \textbf{Size} & \textbf{Context Length} & \textbf{Batch Size} & \textbf{max-LR} & \textbf{min-LR} & \textbf{Warmup Steps} & \textbf{LR Scheduler} \\
+        \hline
+        \textbf{410M} & 2048 & 2M tokens & 6e-4 & 6e-5 & 3000 & cosine \\
+        \textbf{1.1B} & 2048 & 2M tokens & 3e-4 & 3e-5 & 3000 & cosine \\
+        \textbf{3B} & 2048 & 2M tokens & 1.6e-4 & 1.6e-5 & 3000 & cosine \\
+        \textbf{7B} & 2048 & 2M tokens & 1e-4 & 1e-5 & 3000 & cosine \\
+        \hline
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Training Loss and Evaluation Results of Four Operators in both Depth and Width growth}\label{app:eval_main}
+
+We have two small (base) models, one trained with token count $d=10B$ and another trained with token count $d=50B$.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/depth_10B_loss.pdf}
+    \caption{Growing in depth from small model~(10B)}
+    \label{fig:depth_10B_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/depth_50B_loss.pdf}
+    \caption{Growing in depth from small model~(50B)}
+    \label{fig:depth_50B_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/width_10B_loss.pdf}
+    \caption{Growing in width from small model~(10B)}
+    \label{fig:width_10B_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/width_50B_loss.pdf}
+    \caption{Growing in width from small model~(50B)}
+    \label{fig:width_50B_loss}
+  \end{subfigure}
+  \caption{
+  Training Loss on Slimpajama.}
+  \label{fig:loss_six}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:depth_10B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:depth_10B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:depth_10B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:depth_10B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:depth_10B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:depth_10B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:depth_10B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:depth_10B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on growth in depth from small model~(10B) by four operators.}
+  \label{fig:depth_10B_eval_results}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:depth_50B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:depth_50B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:depth_50B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:depth_50B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:depth_50B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:depth_50B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:depth_50B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:depth_50B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on growth in depth from small model~(50B) by four operators.}
+  \label{fig:depth_50B_eval_results}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:width_10B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:width_10B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:width_10B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:width_10B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:width_10B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:width_10B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:width_10B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:width_10B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on growth in width from small model~(10B) by four operators.}
+  \label{fig:width_10B_eval_results}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:width_50B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:width_50B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:width_50B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:width_50B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:width_50B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:width_50B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:width_50B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:width_50B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on growth in width from small model~(50B) by four operators.}
+  \label{fig:width_50B_eval_results}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_10B_eval/avg_acc.pdf}
+    \caption{Growing in depth from small model (10B)}
+    \label{fig:depth_10B_avg_acc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/depth_50B_eval/avg_acc.pdf}
+    \caption{Growing in depth from small model (50B)}
+    \label{fig:depth_50B_avg_acc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_10B_eval/avg_acc.pdf}
+    \caption{Growing in width from small model (10B)}
+    \label{fig:width_10B_avg_acc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/width_50B_eval/avg_acc.pdf}
+    \caption{Growing in width from small model (50B)}
+    \label{fig:width_50B_avg_acc}
+  \end{subfigure}
+
+  \caption{Average accuracy of seven standard NLP benchmarks.}
+  \label{fig:avg_eval_results}
+\end{figure}
+
+\section{Evaluation Results of Scaling \texorpdfstring{$G_{\text{stack}}$}~}\label{app:scaling}
+
+\subsection{3B}\label{app:scaling_3B}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.49\linewidth]{eval/3B_eval/avg_acc.pdf}
+    \caption{Average accuracy of standard NLP benchmarks at 3B size.}
+    \label{fig:scaling_3B_avg}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:scaling_3B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:scaling_3B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:scaling_3B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:scaling_3B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:scaling_3B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:scaling_3B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:scaling_3B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/3B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:scaling_3B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on scratch model and $G_{\text{stack}}$ model at 3B size.}
+  \label{fig:3B_eval_results}
+\end{figure}
+
+\subsection{7B}\label{app:scaling_7B}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/hellaswag.pdf}
+    \caption{Hellaswag~\cite{zellers2019hellaswag}~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_hellaswag}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/truthfulqa_mc2.pdf}
+    \caption{TruthfulQA\cite{lin2022truthfulqa}~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_truthfulqa_mc2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/mmlu.pdf}
+    \caption{MMLU~\cite{hendrycks2021measuring}~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_mmlu}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:scaling_7B_wikitext}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/7B_eval/avg_acc.pdf}
+    \caption{Avg.~(Acc $\uparrow$)}
+    \label{fig:scaling_7B_avg}
+  \end{subfigure}
+  \caption{Evaluation results on scratch model and $G_{\text{stack}}$ model at 7B size.}
+  \label{fig:7B_eval_results}
+\end{figure}
+
+\subsection{410M}\label{app:scaling_410M}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.49\linewidth]{eval/410M_1T_eval/avg_acc.pdf}
+    \caption{Average accuracy of standard NLP benchmarks at 410M size.}
+    \label{fig:scaling_410M_avg}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/410M_1T_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:scaling_410M_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/410M_1T_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:scaling_410M_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/410M_1T_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:scaling_410M_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/410M_1T_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:scaling_410M_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/410M_1T_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:scaling_410M_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/410M_1T_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:scaling_410M_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/410M_1T_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:scaling_410M_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/410M_1T_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:scaling_410M_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on scratch model and $G_{\text{stack}}$ model at 410M size.}
+  \label{fig:410M_eval_results}
+\end{figure}
+
+\subsection{Instruction Tuning Results on 3B}
+\begin{table}[H]
+    \caption{Evaluation Results after Instruction-Tuning~(Higher better)}\label{tab:align}
+    \centering
+    \small
+    \begin{tabular}{lcc|cccccccc}
+        \hline
+        \toprule
+        \textbf{Method} & \textbf{Tokens} & \textbf{Tuning} & \textbf{lambada} & \textbf{arc-c} & \textbf{arc-e} & \textbf{logiqa} & \textbf{piqa} & \textbf{sciq} & \textbf{winogrande}& \textbf{avg} \\
+        \hline
+        \multirow{2}{*}{scratch} & \multirow{2}{*}{400B}
+        & \faTimes & 54.07 & 28.84 & 55.35 & 26.88 & 73.94 & 82.0 & 59.43 & 54.36 \\
+        & & \faCheck & 60.35 & 31.48 & 56.1 & 27.04 & 74.32 & 81.2 & 60.14 & \textbf{55.8} \\
+        \hdashline
+        \multirow{2}{*}{$G_{\text{stack}}$} & \multirow{2}{*}{290B}
+        & \faTimes & 55.04 & 32.34 & 58.08 & 28.88 & 73.88 & 79.6 & 61.8 & 55.66 \\
+        & & \faCheck & 61.34 & 34.98 & 59.97 & 29.65 & 75.14 & 80.1 & 60.22 & \textbf{57.34} \\
+        \hline
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Compare with Other Opensource LLMs}\label{app:compare}
+
+In Table~\ref{tab:compare}, we compare the harness evaluation results after training the $G_{\text{stack}}$ model and the scratch model (Baseline) for 100B tokens with Pythia-1B~\cite{biderman2023pythia} and TinyLlama-1.1B, which are trained on the same number of tokens.
+The comparative results indicate that our baseline performs normally, comparable to pythia-1B.
+Meanwhile, the $G_{\text{stack}}$ model significantly outperforms both the baseline and pythia-1B, demonstrating the acceleration effect of $G_{\text{stack}}$ on the pre-training process.
+
+\begin{table}[H]
+\caption{Compare with opensource LLMs on 1B}\label{tab:compare}\vspace{2mm}
+    \centering
+    \small
+    \begin{tabular}{lcc|cc}
+        \hline
+        \toprule
+         & \textbf{Pythia-1B} & \textbf{TinyLlama-1.1B} & \textbf{$G_{\text{stack}}$-1.1B} & \textbf{Baseline-1.1B}\\
+        \textbf{Datasets} & Pile-300B~\cite{gao2020pile} & Slimpajama-627B\& Starcoder & Slimpajama-627B & Slimpajama-627B\\
+        \textbf{Tokens} & 100B & 103B & 100B & 100B\\
+        \hline
+        \textbf{lambada} & \textbf{53.52} & - & 48.20 & 47.87\\
+        \textbf{ARC-c} & 25.59 & 24.32 & \textbf{29.18} & 27.21\\
+        \textbf{ARC-e} & 47.26 & 44.91 & \textbf{54.25} & 48.86\\
+        \textbf{piqa} & 69.31 & 67.30 & \textbf{71.98} & 69.64\\
+        \textbf{logiqa} & \textbf{29.49} & - & 28.87 & 25.96\\
+        \textbf{sciq} & 77.3 & - & \textbf{81.1} & 76.8\\
+        \textbf{winogrande} & 51.22 & 53.28 & \textbf{56.03} & 54.53\\
+        \hline
+        \textbf{Avg.} & 50.53 & - & \textbf{52.80} & 50.09\\
+        \hline
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Fitting Results for the Growth Factor \texorpdfstring{$g$}~}\label{app:s_fit}
+
+Although due to computational resource limitations, we only explore predicting ${g}$ given $N$ and $C$ on the 1.1B and 3B models, we still attempted to fit using equation:
+
+\begin{equation}\label{eq:how_much}
+    \log_{10}(g) = a\log_{10}(N) + \frac{b}{\log_{10}(C)} + c
+\end{equation}
+
+In the equation~\ref{eq:how_much}, $N$ represents the number of target parameters, $g$ represents the growth factor.
+The fitting result is as follows:
+
+\begin{equation}\label{eq:how_much_fit}
+    \log_{10}(g) = 1.01\log_{10}(N) - \frac{29.88}{\log_{10}(C)} - 7.36
+\end{equation}
+
+We also visualize the fitted curves in Figure~\ref{fig:s_fit}, but the results were mediocre due to the lack of data.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.49\linewidth]{how_much_to_stack/fit.pdf}
+    \caption{Visualization of the Equation~\ref{eq:how_much_fit}.}
+    \label{fig:s_fit}
+\end{figure}
+
+\subsection{Stacking Law Guidelines For Llama Families}\label{app:guidelines}
+
+We give an example of empirical usage of $G_{\text{stack}}$ by using the configurations of Llama2 and Llama3 families~\cite{touvron2023llama, llama3modelcard} to show the estimated optimal base model training tokens ${d}$ and growth factor ${g}$ in Table~\ref{tab:guidelines}. 
+
+\begin{table}[H]
+\caption{``Stacking Law'' Guidelines}\vspace{2mm}
+    \centering
+    \begin{tabular}{lcc|cc}
+           \hline
+           \toprule
+           Model & N & D & ${d}$ & ${g}$ \\
+           \hline 
+           Llama3-8B & 8B & 15T& 6.58B & 4 \\
+           Llama2-7B & 7B & 2T & 11.11B & 4 \\
+           Llama2-13B & 13B & 2T & 15.84B & 4 \\
+           Llama2-70B & 70B & 2T & 42.48B & 4 \\
+           \hline
+           \bottomrule
+    \end{tabular}
+    \label{tab:guidelines}
+\end{table}
+
+
+\section{Training Loss and Evaluation Results of ``growth timing'' and ``growth factor''}\label{app:when_and_how_much}
+\subsection{``Growth Timing'' \texorpdfstring{$d$}~}\label{app:when}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/when_410M_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:when_410M_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:when_410M_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of 410M.}
+  \label{fig:when_410M_main_eval}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:when_410M_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:when_410M_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:when_410M_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:when_410M_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:when_410M_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:when_410M_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:when_410M_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_410M_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:when_410M_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on 410M.}
+  \label{fig:when_410M_results}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/when_1_1B_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:when_1_1B_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:when_1_1B_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of 1.1B.}
+  \label{fig:when_1_1B_main_eval}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:when_1_1B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:when_1_1B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:when_1_1B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:when_1_1B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:when_1_1B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:when_1_1B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:when_1_1B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_1_1B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:when_1_1B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on 1.1B.}
+  \label{fig:when_1_1B_results}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/when_3B_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:when_3B_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:when_3B_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of 3B.}
+  \label{fig:when_3B_main_eval}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:when_3B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:when_3B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:when_3B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:when_3B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:when_3B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:when_3B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:when_3B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/when_3B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:when_3B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on 3B.}
+  \label{fig:when_3B_results}
+\end{figure}
+
+\subsection{``Growth Factor'' \texorpdfstring{$g$}~}\label{app:how_much}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/how_much_1_1B_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:how_much_1_1B_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:how_much_1_1B_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of 1.1B.}
+  \label{fig:how_much_1_1B_main_eval}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:how_much_1_1B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:how_much_1_1B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:how_much_1_1B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:how_much_1_1B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:how_much_1_1B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:how_much_1_1B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:how_much_1_1B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_1_1B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:how_much_1_1B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on 1.1B.}
+  \label{fig:how_much_1_1B_results}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/how_much_3B_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:how_much_3B_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:how_much_3B_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of 3B.}
+  \label{fig:how_much_3B_main_eval}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:how_much_3B_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:how_much_3B_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:how_much_3B_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:how_much_3B_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:how_much_3B_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:how_much_3B_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:how_much_3B_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/how_much_3B_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:how_much_3B_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on 3B.}
+  \label{fig:how_much_3B_results}
+\end{figure}
+
+
+\section{Discussion on ``How to stack?'' and Evaluation Results}\label{app:how_to_stack}
+
+\subsection{Training Loss and Evaluation Results of Gradual Stack }\label{app:gs}
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/gs_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:gs_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:gs_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of scratch, $G_{\text{stack}}$ and $G_{gradual}$.}
+  \label{fig:gs_mainfig}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:gs_eval_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:gs_eval_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:gs_eval_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:gs_eval_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:gs_eval_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:gs_eval_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:gs_eval_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/gs_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:gs_eval_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on scratch, $G_{\text{stack}}$ and gradual stacking in StackBert.}
+  \label{fig:gs_eval_results}
+\end{figure}
+
+
+\subsection{Ablation: \texorpdfstring{$f_2 \circ f_1 \circ f_0 \circ f_2 \circ f_1 \circ f_0$}~ or \texorpdfstring{$f_2 \circ f_2 \circ f_1 \circ f_1 \circ f_0 \circ f_0$}~ (interpolation)}\label{app:112233}
+To investigate whether the connections between layers affect the performance of stacking, we conduct a comparison of two approaches for stacking small models into larger ones.
+We explore two approaches for stacking small models into larger ones.
+The first approach involves taking the entire small model as a unit and directly stacking it, which can retain the connections between most layers.
+The second approach involves replicating and interleaving each layer in the small model, which almost break the connections.
+To measure the degree of retention of inter-layer connections after stacking, we define the connection rate $R_c$:
+
+\begin{equation}\label{eq:rc}
+    R_c = \frac{Con_r}{Con_{all}}
+\end{equation}
+
+where the $Con_r$ is number of retained connections, the $Con_{all}$ is number of all connections.
+
+For example, if we had a small model with three layers, denoted as $f_2 \circ f_1 \circ f_0$, and desired a model depth of 6, the first approach would result in $f_2 \circ f_1 \circ f_0 \circ f_2 \circ f_1 \circ f_0$, where its $R_c=80\%$.
+The second approach would result in $f_2 \circ f_2 \circ f_1 \circ f_1 \circ f_0 \circ f_0$, where its $R_c=40\%$.
+
+In our experiments, we stack a small model with 8 layers to a 24 layers target model. The growth timing $d$ is $10B$ tokens and growing factor $s$ is $3$. The $R_c$ of $G_{\text{stack}}$ is $91.3\%$ and the $R_c$ of $G_{interpolate}$ is $30.4\%$. We report the training loss and standard NLP benchmarks average accuracy in Figure~\ref{fig:112233_mainfig}.
+At the beginning of training, interpolated stacking perform as well as stacking entire small model.
+However, as the training continues, the performance of interpolated stacking deteriorates.
+
+Therefore, we can conclude that the higher the connection rate of stacking, the better the effect of stacking.
+In Appendix~\ref{app:partial}, we continue to validate this conclusion.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/112233_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:112233_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:112233_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of scratch, $G_{\text{stack}}$ and interpolation.}
+  \label{fig:112233_mainfig}
+\end{figure}
+
+We also report the details of evaluation results about 8 standard NLP benchmarks.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:112233_eval_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:112233_eval_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:112233_eval_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:112233_eval_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:112233_eval_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:112233_eval_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:112233_eval_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/112233_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:112233_eval_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on scratch, $G_{\text{stack}}$ and interpolation.}
+  \label{fig:112233_eval_results}
+\end{figure}
+
+
+\subsection{Ablation: Partial Stacking}\label{app:partial}
+
+Partial stacking has been explored in LLMs like LlamaPro~\cite{wu2024llama}, Solar~\cite{kim2023solar}. But their goal is to stack an off-the-shelf LLMs such as Llama2, while our aim is to accelerate LLM pre-training process.
+
+To explore stacking which layers of the small model can achieve the best performance, we conduct experiments on partial stacking.
+In our experiments, we stack a small model with 6 layers~($\{L_1, L_2, \cdots, L_6\}$) to a 24 layers target model.
+We set growth timing $d = 10B$ tokens and growth factor $g = 4$.
+For simplicity, we use a format such as 1-234*7-56 to denote stacking 234 layers 7 times.
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/partial_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:partial_loss}
+  \end{subfigure}
+  \hfill
+  % \begin{subfigure}[b]{0.33\textwidth}
+  %   \includegraphics[width=\linewidth]{partial_eval/wikitext.pdf}
+  %   \caption{Evaluation PPL on Wikitext}
+  %   \label{fig:divisionfactorsubfig2}
+  % \end{subfigure}
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:partial_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of scratch, $G_{\text{stack}}$ and other partial stacking.}
+  \label{fig:partial_mainfig}
+\end{figure}
+
+We report the training loss and standard NLP benchmarks average accuracy in Figure~\ref{fig:partial_mainfig}.
+By observing the loss curves in Figure~\ref{fig:partial_loss}, we can find that the eight partial stacking methods are clearly divided into three groups based on their loss.
+The first group, \{123456*4, 12-3456*5-56, 12-345*7-6, 123-456*7\}, achieves the best performance.
+The second group consisting of \{1234-56*10, 12-34*10-56, 1-234*7-56\}, performs just so-so.
+The third group, \{123*7-456\}, performs poorly, even worse than the baseline.
+
+In Table~\ref{tab:parital}, we summarize the eight partial stacking and calculate the $R_c$ of each partial stacking methods based on Equation~\ref{eq:rc}.
+
+For partial stacking, we conclude that: all $>$ middle $\approx$ back $\gg$ front. Meanwhile, when the stacked parts are the same, the larger the $R_c$, the better the performance.
+
+\begin{table}[H]
+\caption{$R_c$ and stacked parts of each partial stacking method}\label{tab:parital}\vspace{2mm}
+    \centering
+    \begin{tabular}{l|ccc}
+        \hline
+        \toprule
+        \textbf{Group} & \textbf{Method} & \textbf{Stacked parts} & $R_c$ \\
+        \hline
+        \multirow{4}{*}{\textbf{First}} & 123456*4 & all & 87.0\%\\
+        & 12-3456*5-56 & middle-back & 78.3\% \\
+        & 12-345*7-6 & middle-back & 74.0\% \\
+        & 123-456*7 & back & 74.0\% \\
+        \hdashline
+        \multirow{3}{*}{\textbf{Second}} & 1234-56*10 & back & 60.7\% \\
+        & 12-34*10-56 & middle & 60.7\% \\
+        & 1-234*7-56 & front-middle & 74.0\% \\
+        \hdashline
+        \textbf{Third} & 123*7-456 & front & 74.0\% \\
+        \hline
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Then, we report the evaluation results here.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:partial_eval_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:partial_eval_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:partial_eval_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:partial_eval_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:partial_eval_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:partial_eval_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:partial_eval_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/partial_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:partial_eval_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on scratch, $G_{\text{stack}}$ and other partial stacking.}
+  \label{fig:partial_eval_results}
+\end{figure}
+
+
+\subsection{Compare with Pythia, OLMo and Amber on 7B Size}
+
+\begin{table}[H]
+\caption{Compare with opensource 7B LLMs on 130B tokens.}\label{tab:compare_7B}\vspace{2mm}
+    \centering
+    \small
+    \begin{tabular}{lccc|c}
+        \hline
+        \toprule
+         & \textbf{Pythia-6.9B} & \textbf{OLMo-7B}~\cite{Groeneveld2023OLMo} & \textbf{Amber-7B~\cite{liu2023llm360}} & \textbf{$G_{\text{stack}}$-7B}\\
+        \textbf{Datasets} & Pile-300B~\cite{gao2020pile} & Dolma~\cite{dolma} & Amber & Slimpajama-627B\\
+        \textbf{Tokens} & 130B & 133B & 132B & 130B\\
+        \hline
+        \textbf{ARC-c} & 33.28 & 28.58 & 29.01 & \textbf{35.24} \\
+        \textbf{ARC-e} & 59.81 & 51.60 & 55.05 & \textbf{63.64} \\
+        \textbf{boolq} & 63.39 & 55.05 & 60.18 & \textbf{66.45} \\
+        \textbf{hellaswag} & 60.03 & 54.52 & 61.21 & \textbf{65.85} \\
+        \textbf{lambada} & \textbf{65.11} & 49.91 & 57.13 & 57.93 \\
+        \textbf{logiqa} & \textbf{28.88} & 28.42 & 26.73 & 26.88 \\
+        \textbf{obqa} & 37.20 & 33.60 & \textbf{37.40} & 36.40 \\
+        \textbf{piqa} & 75.03 & 74.43 & 76.01 & \textbf{76.82} \\
+        \textbf{sciq} & 82.7 & 74.4 & 82.0 & \textbf{85.9} \\
+        \textbf{winogrande} & 60.14 & 53.75 & 56.83 & \textbf{62.75} \\
+        \hline
+        \textbf{Avg.} & 56.56 & 50.43 & 54.16 & \textbf{57.79}\\
+        \textbf{Wikitext} & 13.3340 & 18.4690 & 15.6202 & \textbf{12.5635} \\
+        \hline
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Details of Function Preserving}
+\subsection{Function Preserving}\label{app:fp}
+
+Function preservation is a key concept that underlies diverse model growth approaches.
+It entails ensuring consistent output from a model, regardless of its expansion.
+Mathematically, let us define a function as $F$ and a growth operator as $G$.
+The ultimate aim is to apply the operator $G$ to the function $F$, thereby obtaining the target function denoted as $\mathcal{F}$.
+The core objective here is to maintain the model's function to generate the same output for a given input.
+Formally, 
+
+\begin{equation}
+    \forall x, \mathcal{F}(x) = F(x) \text{, where }\mathcal{F} = G(F)
+\end{equation}
+
+\subsection{Breaking Function Preserving by Adding Noise}\label{app:noise}
+For the down projection in SwiGLU and the output projection in MultiHeadAttention, we apply noise:
+
+\begin{equation}
+    W_{noise} \gets (1-\alpha)W + \alpha \epsilon \quad \text{where } \epsilon \sim \mathcal{N}(0, \frac{1}{d \times l^2})
+\end{equation}
+
+For the Embedding Layer and other Linear Layers, we apply noise:
+
+\begin{equation}
+    W_{noise} \gets (1-\alpha)W + \alpha \epsilon \quad \text{where } \epsilon \sim \mathcal{N}(0, \frac{2}{5d})
+\end{equation}
+
+\paragraph{Adding Noise on $G_{\text{direct}}$ to Break FP}
+
+\paragraph{Training Loss And Evaluation Results on Adding Noise $G_{\text{direct}}^\to$}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/noise_width_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:noise_width_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:noise_width_10B_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of scratch, $G_{\text{direct}}^\to$ and $G_{\text{direct}}^\to$ with 20\% noise.}
+  \label{fig:noise_width_mainfig}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:noise_width_eval_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:noise_width_eval_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:noise_width_eval_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:noise_width_eval_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:noise_width_eval_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:noise_width_eval_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:noise_width_eval_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_width_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:noise_width_eval_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on scratch, $G_{\text{direct}}^\to$ and $G_{\text{direct}}^\to$ with 20\% noise.}
+  \label{fig:noise_width_eval_results}
+\end{figure}
+
+\paragraph{Adding Noise on $G_{\text{stack}}$} Since adding noise actually improve the $G_{\text{direct}}$ performance, we also add noise on $G_{\text{stack}}$.
+
+We stack an 8 layers small model to 24 layers, and then add noise with $\alpha=0.2$.
+We report training loss and standard NLP benchmarks average accuracy in Figure~\ref{fig:noise_mainfig}.
+Adding noise demonstrates an advantage in Training loss.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{loss/noise_loss.pdf}
+    \caption{Training Loss}
+    \label{fig:noise_loss}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/avg_acc.pdf}
+    \caption{Average Accuracy}
+    \label{fig:noise_10B_avg}
+  \end{subfigure}
+  \caption{Training loss and standard NLP benchmarks average accuracy of scratch, $G_{\text{stack}}$ and $G_{\text{stack}}$ with 20\% noise.}
+  \label{fig:noise_mainfig}
+\end{figure}
+
+Details of the evaluation results are as follows:
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/arc_challenge.pdf}
+    \caption{ARC-c~(Acc $\uparrow$)}
+    \label{fig:noise_eval_arcc}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/arc_easy.pdf}
+    \caption{ARC-e~(Acc $\uparrow$)}
+    \label{fig:noise_eval_arce}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/lambada_openai.pdf}
+    \caption{Lambada~(Acc $\uparrow$)}
+    \label{fig:noise_eval_lambada}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/logiqa.pdf}
+    \caption{Logiqa~(Acc $\uparrow$)}
+    \label{fig:noise_eval_logiqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/piqa.pdf}
+    \caption{PIQA~(Acc $\uparrow$)}
+    \label{fig:noise_eval_piqa}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/sciq.pdf}
+    \caption{Sciq~(Acc $\uparrow$)}
+    \label{fig:noise_eval_sciq}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/winogrande.pdf}
+    \caption{Winogrande~(Acc $\uparrow$)}
+    \label{fig:noise_eval_winogrande}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+    \includegraphics[width=\linewidth]{eval/noise_eval/wikitext.pdf}
+    \caption{Wikitext~(ppl $\downarrow$)}
+    \label{fig:noise_eval_wikitext}
+  \end{subfigure}
+
+  \caption{Evaluation results on scratch, $G_{\text{stack}}$ and $G_{\text{stack}}$ with 20\% noise.}
+  \label{fig:noise_eval_results}
+\end{figure}
+
+\section{Results on Samba}\label{app:samba}
+
+We utilize the codebase from Samba\footnote{https://github.com/microsoft/Samba}, which implements a hybrid State Space Model using the Slimpajama dataset for LM. In this experiment, we follow the guidelines outlined in the main paper to guide our stacking process. With a parameter size of 410M and training on 100B tokens, we set the growth timing to 8B and the growth factor to 3. We opted for 3 instead of 4 because Samba is an interleaving of Mamba and self-attention layers. Since the target model has 12 layers, we can only stack even layers, leading us to select a 4-layer base model (Mamba-SA-Mamba-SA).
+
+Our experiments results on loss curves \ref{fig:samba} and downstream tasks \ref{tab:samba} indicate stacking also works beyond Transformer-based LLMs. Please note that in Table \ref{tab:samba}, we select stack with 47B rather than 50B to count the additional consumption required to train the base model on 8B tokens.
+
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.49\linewidth]{samba.pdf}
+    \caption{The training loss for two Samba LLMs, trained from scratch and with \textit{$G_{\text{stack}}$}. At loss=2.48, 2.45, 2.42, $G_{\text{stack}}$ accelerates by 61.7\%, 61.5\% and 58.2\% compared to scratch.}
+    \label{fig:samba}
+\end{figure}
+
+
+\begin{table}[H]
+    \caption{Evaluation Results on Samba LLMs}\label{tab:samba}
+    \centering
+    \small
+    \begin{tabular}{lc|cccccccc}
+        \hline
+        \toprule
+        \textbf{Method} & \textbf{Tokens} & \textbf{lambada} & \textbf{arc-c} & \textbf{arc-e} & \textbf{logiqa} & \textbf{piqa} & \textbf{sciq} & \textbf{avg} \\
+        \hline
+        scratch & 50B & 36.41 & 25.34 & 43.77 &\textbf{27.50} & 67.36 & 70.00 & 45.06 \\
+        \hdashline
+        $G_{\text{stack}}$ & 47B & \textbf{38.44} & \textbf{26.19} & \textbf{44.95} & 26.88 & \textbf{67.95} & \textbf{72.80} & \textbf{46.20} \\
+        \hline
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Loss Spikes}\label{app:spikes}
+
+Figure \ref{fig:spikes} illustrates the loss spikes that occur right after stacking.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.49\linewidth]{rebuttal.pdf}
+    \caption{Loss Spikes in $G_{\text{stack}}$ (Non-FP) and \textit{$G_{\text{random}}^{\uparrow}$} (FP)}
+    \label{fig:spikes}
+\end{figure}
+
+\section{Societal Impacts}\label{app:societal}
+
+As a successful exploration for efficient LLM pre-training, our work has great potential to give positive societal impact towards sustainable AI. Nevertheless, as a common drawback for LLMs, there are also chances that our LLMs might be misused intentionally or uniintentionally.
+
+
+\newpage
+\input{checklist}
+
+\end{document}
