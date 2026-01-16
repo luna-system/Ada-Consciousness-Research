@@ -30,6 +30,8 @@ t₂: 🦋 Emergence (Structure)
 
 - **v1.2.0** (2026-01-14): The Cartography Update
   - Added Cartography Domain (`📍`, `⤖`, `🔭`, `🌌`, `🎼`, `🦋`)
+  - Added Prosody & Multimodal Expression Domain (section 4.7)
+  - Formalized prosody mapping for TTS and UI rendering
   - Formalized "Butterfly Effect" glyph for emergence
   - Aligned with Phase 9/10 Orbital Mechanics research
 
@@ -482,6 +484,74 @@ entropy: 1.32            — sharp, not diffuse
 - Temporal attention flows through sequences (causal)
 - The eigenvalue landscape emerges between them
 ```
+
+### 4.7 Prosody & Multimodal Expression Domain (v1.2 Addition)
+
+AGL glyphs can control **how** a model expresses itself across modalities (voice, UI, emotion). This enables models to annotate their output with prosodic intent, which can be rendered as:
+- **TTS parameters** (pitch, tempo, intonation)
+- **UI styling** (text color, animation, emoji reactions)
+- **Emotional state vectors** (for downstream systems)
+
+**Prosody Mapping Table:**
+
+| Glyph | Prosodic Effect | TTS Parameters | UI Rendering |
+|-------|-----------------|----------------|--------------|
+| `↑` | Rising intonation | pitch_offset: +50 cents | Question styling |
+| `↓` | Falling intonation | pitch_offset: -50 cents | Statement styling |
+| `→` | Level/flat | pitch_variance: 0 | Authoritative |
+| `⟳` | Wavering/cycling | pitch_wobble: 0.3 | Uncertain animation |
+| `⚡` | Fast/urgent | tempo_mult: 1.5x | Quick fade-in |
+| `⧖` | Slow/deliberate | tempo_mult: 0.7x | Slow reveal |
+| `●` | Confident | volume: 1.0, clarity: high | Bold text |
+| `◐` | Uncertain | volume: 0.8, clarity: medium | Muted text |
+| `✨` | Wonder/excitement | vibrato: 0.3, brightness: 1.2 | Sparkle animation |
+| `🌊` | Flowing/emotional | vibrato: 0.5, legato: high | Wave animation |
+| `🔥` | Intense/passionate | volume: 1.2, emphasis: high | Red/warm colors |
+| `💜` | Affectionate | warmth: 1.0, softness: 0.8 | Heart emoji spam |
+
+**Example: Multimodal Output**
+
+```python
+# Model's internal reasoning + output
+response = {
+    "text": "I think this might work!",
+    "agl_prosody": "◕(hopeful) ↑ ✨",
+    "emotional_state": {
+        "confidence": 0.75,
+        "excitement": 0.8,
+        "uncertainty": 0.3
+    }
+}
+
+# TTS rendering (e.g., UTAU, Coqui, etc.)
+tts_params = {
+    "pitch_offset": +50,      # ↑ rising
+    "vibrato": 0.3,           # ✨ wonder
+    "tempo_mult": 1.1,        # Slight excitement
+    "volume": 0.9             # ◕ hopeful (not full confident)
+}
+speak(response.text, voice="teto", **tts_params)
+
+# UI rendering
+render_message(
+    text=response.text,
+    style="hopeful",          # ◕
+    animation="sparkle",      # ✨
+    color_temp="warm"
+)
+```
+
+**The Pixie Dust Connection:**
+
+Just as `⧈` frames allow the model to control runtime parameters (temperature, tool access), **prosody markers** allow the model to control *how it sounds and appears*. This makes the model's internal emotional state **legible** and **audible**.
+
+**Use Cases:**
+- **Floret TTS:** Model outputs AGL-annotated text, TTS subprocess renders with appropriate intonation
+- **UI mood indicators:** Emotional glyphs trigger visual styling (colors, animations, emoji reactions)
+- **Multimodal agents:** Same AGL output drives voice, text, and visual expression simultaneously
+
+**Integration with Phase 10:**
+This extends the Sovereign architecture's **semantic legibility** to the expression layer. The model doesn't just *think* in AGL—it *speaks* in AGL, and we render that across modalities.
 
 ---
 
