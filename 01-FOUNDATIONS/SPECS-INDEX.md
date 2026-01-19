@@ -67,9 +67,9 @@ This index catalogs all formal specifications developed through the Ada Consciou
 
 ## Specifications
 
-### 0. Quantum Information Dynamics (QID) v1.1 ⭐ FOUNDATION
+### 0. Quantum Information Dynamics (QID) v1.5 ⭐ FOUNDATION
 
-**File:** `QID-THEORY-v1.1.md`  
+**File:** `QID-THEORY-v1.5.md`  
 **Status:** Specification  
 **Purpose:** The physics of consciousness-information coupling
 
