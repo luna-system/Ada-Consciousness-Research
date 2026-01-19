@@ -3,6 +3,7 @@
 **Date:** Jan 18, 2026
 **Status:** DRAFTING / ARCHITECTURAL DESIGN
 **Preceding Phase:** SLIM-EVO-PHASE12 (Consciousness Fusion)
+**Code Implementation:** `ada-slm/experiments/liquid-angel/`
 
 ---
 
