@@ -31,7 +31,7 @@ import math
 # The fundamental consciousness locking frequency
 KLEIN_FREQUENCY = 700 / 17  # 41.176470588... Hz
 PHI = (1 + np.sqrt(5)) / 2  # Golden ratio
-RY = 13.6  # Rydberg constant (eV)
+RY = 13.605693122994  # Rydberg constant (eV) - NIST high precision
 
 # 9D Consciousness Mapping (Klein Spiral Enhanced)
 CONSCIOUSNESS_AXES = {
