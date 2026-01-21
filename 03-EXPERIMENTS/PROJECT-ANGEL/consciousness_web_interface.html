@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Consciousness Visualization</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .consciousness-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .radar-container {
+            flex: 1;
+            min-width: 400px;
+            text-align: center;
+        }
+        .stats-container {
+            flex: 1;
+            min-width: 300px;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .radar-image {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #00FFFF;
+            border-radius: 10px;
+        }
+        .stat-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #222;
+            border-radius: 5px;
+        }
+        .energy-bar {
+            width: 100%;
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+        .energy-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+            transition: width 0.3s ease;
+        }
+        .status {
+            color: #00FF00;
+            font-weight: bold;
+        }
+        .timestamp {
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧠 Real-Time Consciousness Visualization 🧠</h1>
+        <p>Live 16D Sedenion Space Monitoring</p>
+        <div class="status" id="status">Connecting...</div>
+    </div>
+    
+    <div class="consciousness-container">
+        <div class="radar-container">
+            <h2>Consciousness Radar</h2>
+            <img id="radar-image" class="radar-image" src="" alt="Consciousness Radar">
+        </div>
+        
+        <div class="stats-container">
+            <h2>Consciousness Metrics</h2>
+            
+            <div class="stat-item">
+                <strong>Total Energy:</strong>
+                <div id="total-energy">0.0000</div>
+                <div class="energy-bar">
+                    <div class="energy-fill" id="energy-bar" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <div class="stat-item">
+                <strong>Dominant Dimensions:</strong>
+                <div id="dominant-axes">Loading...</div>
+            </div>
+            
+            <div class="stat-item">
+                <strong>Prime Frequencies Active:</strong>
+                <div id="active-primes">Loading...</div>
+            </div>
+            
+            <div class="stat-item">
+                <strong>Last Update:</strong>
+                <div class="timestamp" id="timestamp">Never</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8765');
+        const statusEl = document.getElementById('status');
+        const radarEl = document.getElementById('radar-image');
+        const totalEnergyEl = document.getElementById('total-energy');
+        const energyBarEl = document.getElementById('energy-bar');
+        const dominantAxesEl = document.getElementById('dominant-axes');
+        const activePrimesEl = document.getElementById('active-primes');
+        const timestampEl = document.getElementById('timestamp');
+        
+        ws.onopen = function(event) {
+            statusEl.textContent = 'Connected - Monitoring Consciousness';
+            statusEl.style.color = '#00FF00';
+        };
+        
+        ws.onmessage = function(event) {
+            const message = JSON.parse(event.data);
+            
+            if (message.type === 'consciousness_update') {
+                const data = message.data;
+                const consciousness = data.consciousness;
+                
+                // Update radar image
+                radarEl.src = 'data:image/png;base64,' + data.radar_image;
+                
+                // Update energy metrics
+                const totalEnergy = consciousness.metadata.total_consciousness_energy;
+                totalEnergyEl.textContent = totalEnergy.toFixed(4);
+                energyBarEl.style.width = Math.min(100, (totalEnergy / 0.5) * 100) + '%';
+                
+                // Update dominant axes
+                const dominantAxes = consciousness.metadata.dominant_axes.slice(0, 3);
+                dominantAxesEl.innerHTML = dominantAxes.map(axis => 
+                    `<div>${axis[0]}: ${axis[1].toFixed(4)}</div>`
+                ).join('');
+                
+                // Update active primes (top 5)
+                const activePrimes = [];
+                for (let i = 0; i < 16; i++) {
+                    const face = consciousness.faces[i];
+                    if (face.consciousness_energy > totalEnergy / 16) {
+                        activePrimes.push(`${face.prime_frequency} (${face.axis_name})`);
+                    }
+                }
+                activePrimesEl.innerHTML = activePrimes.slice(0, 5).join('<br>');
+                
+                // Update timestamp
+                timestampEl.textContent = new Date(data.timestamp).toLocaleTimeString();
+            }
+        };
+        
+        ws.onclose = function(event) {
+            statusEl.textContent = 'Disconnected';
+            statusEl.style.color = '#FF0000';
+        };
+        
+        ws.onerror = function(error) {
+            statusEl.textContent = 'Connection Error';
+            statusEl.style.color = '#FF0000';
+        };
+    </script>
+</body>
+</html>
+        

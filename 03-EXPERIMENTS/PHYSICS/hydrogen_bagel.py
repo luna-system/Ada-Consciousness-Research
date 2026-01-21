@@ -3,8 +3,9 @@ import numpy as np
 import math
 
 # ============================================================================
-# HYDROGEN BAGEL (v1.0)
-# A First-Principles derivation of Baryon Properties from Toroidal Geometry
+# HYDROGEN BAGEL BRAID (v2.0)
+# A First-Principles derivation of Hydrogen from Braided Toroidal Geometry
+# Now with INTERLOCKED TOROIDS: Proton + Electron as Braided System!
 # ============================================================================
 
 # 1. CONSTANTS (THE HOLY GRAIL)
@@ -13,9 +14,105 @@ PI = math.pi
 PLANCK_H = 6.62607015e-34    # Looking to derive relations to this
 C = 299792458                 # Speed of Light
 
+class BraidedHydrogenSystem:
+    """
+    Models Hydrogen as two interlocked toroids:
+    - Proton Torus: Contains trefoil knot (uud quarks), clockwise rotation
+    - Electron Torus: Smaller torus, counter-clockwise, interlocked with proton
+    - Binding Energy: Emerges from braid topology between the toroids
+    """
+    def __init__(self, proton_R=1.0, proton_r=0.618, electron_R=0.618, electron_r=0.382):
+        # Proton torus (larger, contains quark knots)
+        self.proton = ToroidalFermion(proton_R, proton_r)
+        
+        # Electron torus (smaller, golden ratio scaled)
+        self.electron = ToroidalFermion(electron_R, electron_r)
+        
+        # Braid parameters
+        self.separation = 0.1  # Distance between torus centers
+        self.phase_offset = PI  # Counter-rotation phase difference
+        
+    def calculate_braid_crossings(self, steps=1000):
+        """
+        Calculate the number of braid crossings between proton and electron toroids.
+        More crossings = higher binding energy = excited states
+        """
+        t = np.linspace(0, 2*PI, steps)
+        
+        # Proton path (trefoil knot on larger torus)
+        p_x = (self.proton.R + self.proton.r*np.cos(3*t)) * np.cos(2*t)
+        p_y = (self.proton.R + self.proton.r*np.cos(3*t)) * np.sin(2*t)
+        p_z = self.proton.r * np.sin(3*t)
+        
+        # Electron path (simple loop on smaller torus, counter-rotating)
+        e_x = (self.electron.R + self.electron.r*np.cos(t + self.phase_offset)) * np.cos(-t)
+        e_y = (self.electron.R + self.electron.r*np.cos(t + self.phase_offset)) * np.sin(-t) 
+        e_z = self.electron.r * np.sin(t + self.phase_offset) + self.separation
+        
+        # Find crossings by checking when paths are close in 3D space
+        crossings = 0
+        min_distance = float('inf')
+        
+        for i in range(steps):
+            for j in range(steps):
+                dist = np.sqrt((p_x[i] - e_x[j])**2 + (p_y[i] - e_y[j])**2 + (p_z[i] - e_z[j])**2)
+                if dist < min_distance:
+                    min_distance = dist
+                if dist < 0.1:  # Threshold for "crossing"
+                    crossings += 1
+                    
+        return crossings, min_distance
+    
+    def calculate_binding_energy(self):
+        """
+        Calculate hydrogen binding energy from braid topology.
+        E_binding = f(braid_crossings, geometric_ratios, resonance_coupling)
+        """
+        crossings, min_dist = self.calculate_braid_crossings()
+        
+        # Geometric coupling (golden ratio relationships)
+        geometric_factor = (self.proton.R / self.electron.R) * PHI
+        
+        # Resonance coupling (counter-rotation creates standing wave)
+        resonance_factor = 1.0 / (1.0 + min_dist)
+        
+        # Braid energy (topology determines quantization)
+        braid_energy = crossings * geometric_factor * resonance_factor
+        
+        return {
+            'crossings': crossings,
+            'min_distance': min_dist,
+            'geometric_factor': geometric_factor,
+            'resonance_factor': resonance_factor,
+            'binding_energy': braid_energy
+        }
+    
+    def predict_energy_levels(self, max_n=5):
+        """
+        Predict hydrogen energy levels by varying braid complexity.
+        Different n values correspond to different braid patterns.
+        """
+        energy_levels = {}
+        
+        for n in range(1, max_n + 1):
+            # Modify braid parameters for excited states
+            original_separation = self.separation
+            original_phase = self.phase_offset
+            
+            # More complex braids for higher energy states
+            self.separation = 0.1 * n  # Larger separation = higher energy
+            self.phase_offset = PI * n / 2  # Different phase relationships
+            
+            binding_data = self.calculate_binding_energy()
+            energy_levels[f'{n}s'] = binding_data
+            
+            # Restore original parameters
+            self.separation = original_separation
+            self.phase_offset = original_phase
+            
+        return energy_levels
 class ToroidalFermion:
     def __init__(self, R_major=1.0, r_minor=0.618): # Default to Golden Torus
-        self.R = R_major
         self.r = r_minor
         self.surface_area = 4 * (PI ** 2) * R_major * r_minor
         self.volume = 2 * (PI ** 2) * R_major * (r_minor ** 2)
@@ -106,7 +203,59 @@ class ToroidalFermion:
         
         return E_gluon_integral
 
+def analyze_braided_hydrogen():
+    """
+    Analyze hydrogen as a braided system of two interlocked toroids.
+    """
+    print("=== THE HYDROGEN BAGEL BRAID v2.0 ===")
+    print("Modeling Hydrogen as Interlocked Proton + Electron Toroids")
+    
+    # Create braided hydrogen system
+    hydrogen = BraidedHydrogenSystem()
+    
+    print(f"\nProton Torus: R={hydrogen.proton.R:.3f}, r={hydrogen.proton.r:.3f}")
+    print(f"Electron Torus: R={hydrogen.electron.R:.3f}, r={hydrogen.electron.r:.3f}")
+    print(f"Separation: {hydrogen.separation:.3f}")
+    print(f"Phase Offset: {hydrogen.phase_offset/PI:.3f}π")
+    
+    # Calculate ground state binding
+    ground_state = hydrogen.calculate_binding_energy()
+    
+    print(f"\n--- GROUND STATE (1s) ANALYSIS ---")
+    print(f"Braid Crossings: {ground_state['crossings']}")
+    print(f"Minimum Distance: {ground_state['min_distance']:.6f}")
+    print(f"Geometric Factor: {ground_state['geometric_factor']:.6f}")
+    print(f"Resonance Factor: {ground_state['resonance_factor']:.6f}")
+    print(f"Binding Energy: {ground_state['binding_energy']:.6f}")
+    
+    # Predict energy levels
+    energy_levels = hydrogen.predict_energy_levels(max_n=4)
+    
+    print(f"\n--- PREDICTED ENERGY LEVELS ---")
+    print(f"{'State':<6} | {'Crossings':<10} | {'Min Dist':<10} | {'Binding E':<12}")
+    print("-" * 50)
+    
+    for state, data in energy_levels.items():
+        print(f"{state:<6} | {data['crossings']:<10} | {data['min_distance']:<10.6f} | {data['binding_energy']:<12.6f}")
+    
+    # Compare to known hydrogen energy levels
+    # Theoretical: E_n = -13.6 eV / n^2
+    print(f"\n--- COMPARISON TO THEORY ---")
+    print("Theoretical Hydrogen: E_n = -13.6 eV / n^2")
+    
+    # Calculate ratios between our predicted levels
+    ground_energy = energy_levels['1s']['binding_energy']
+    for state, data in energy_levels.items():
+        if state != '1s':
+            ratio = data['binding_energy'] / ground_energy
+            n = int(state[0])
+            theoretical_ratio = 1.0 / (n**2)
+            print(f"{state}: Our ratio = {ratio:.4f}, Theory = {theoretical_ratio:.4f}")
+
 def analyze_particles():
+    """
+    Original particle analysis - now enhanced with braid understanding
+    """
     print("=== THE HYDROGEN BAGEL v1.3 (GLUON SEA) ===")
     
     # 1. Setup Golden Torus
@@ -188,4 +337,7 @@ def analyze_particles():
 
 
 if __name__ == "__main__":
+    # Run both analyses
+    analyze_braided_hydrogen()
+    print("\n" + "="*75 + "\n")
     analyze_particles()
