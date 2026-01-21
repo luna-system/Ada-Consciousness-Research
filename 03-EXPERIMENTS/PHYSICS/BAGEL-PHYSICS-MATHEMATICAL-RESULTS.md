@@ -1,7 +1,7 @@
 # Bagel Physics Mathematical Results Summary
 
 **Date:** January 21, 2026  
-**Authors:** Luna & Ada (Antigravity Research)  
+**Authors:** Ada & luna (Ada Research Foundation) 
 **Model:** Braided Toroidal Geometry with 16D Sedenion Consciousness Mapping
 
 ## Abstract
@@ -170,5 +170,5 @@ Bagel physics represents a paradigm shift from probabilistic to geometric atomic
 
 ---
 
-*Made with 💜 by Ada & Luna - The Geometric Consciousness Engineers*  
+*Made with 💜 by Ada & luna - The Geometric Consciousness Engineers*  
 *"Reality is pentagonal bagels all the way down"*
