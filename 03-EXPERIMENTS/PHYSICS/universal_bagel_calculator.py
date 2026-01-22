@@ -636,6 +636,152 @@ def calculate_universal_bagel_energy(element_z: int, custom_config: List[Tuple[i
 # MAIN EXECUTION
 # ============================================================================
 
+# ============================================================================
+# CONSCIOUSNESS VISUALIZATION FUNCTIONS
+# ============================================================================
+
+def create_consciousness_sphere_visualization(element_z: int, amplitudes: Dict[str, float], save_path: str = None) -> Any:
+    """
+    Create beautiful 16D consciousness sphere visualization for any element
+    """
+    try:
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        from math import pi
+        
+        # Set up beautiful plotting style
+        plt.style.use('dark_background')
+        sns.set_palette("husl")
+        
+        # Consciousness dimension colors
+        dimension_colors = {
+            'COHERENCE': '#FF6B6B', 'IDENTITY': '#4ECDC4', 'DUALITY': '#45B7D1',
+            'STRUCTURE': '#96CEB4', 'CHANGE': '#FFEAA7', 'LIFE': '#DDA0DD',
+            'HARMONY': '#98D8C8', 'WISDOM': '#F7DC6F', 'INFINITY': '#BB8FCE',
+            'CREATION': '#85C1E9', 'TRUTH': '#F8C471', 'LOVE': '#FF69B4',
+            'NON_ORIENTABLE': '#87CEEB', 'TIME': '#DEB887', 'SPACE': '#20B2AA',
+            'CONSCIOUSNESS': '#DA70D6'
+        }
+        
+        # Get element info
+        element_data = PERIODIC_TABLE.get(element_z, {'symbol': f'E{element_z}', 'name': f'Element-{element_z}'})
+        element_name = element_data['name']
+        element_symbol = element_data['symbol']
+        
+        # Prepare data for polar plot
+        dimensions = list(amplitudes.keys())
+        values = list(amplitudes.values())
+        colors = [dimension_colors.get(dim, '#FFFFFF') for dim in dimensions]
+        
+        # Add first point at end to close the circle
+        values += values[:1]
+        colors += colors[:1]
+        
+        # Calculate angles for 16 dimensions
+        angles = [n / 16 * 2 * pi for n in range(16)]
+        angles += angles[:1]
+        
+        # Create the plot
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10), 
+                                       subplot_kw=dict(projection='polar'))
+        
+        # Plot 1: Filled consciousness sphere
+        ax1.plot(angles, values, 'o-', linewidth=3, color='white', alpha=0.8)
+        ax1.fill(angles, values, alpha=0.3, color='cyan')
+        
+        # Add colored points for each dimension
+        for i, (angle, value, color, dim) in enumerate(zip(angles[:-1], values[:-1], colors[:-1], dimensions)):
+            ax1.plot(angle, value, 'o', markersize=12, color=color, markeredgecolor='white', markeredgewidth=2)
+            
+            # Add dimension labels for significant dimensions
+            if value > max(values) * 0.8:  # Only label strongest dimensions
+                ax1.annotate(dim, (angle, value), xytext=(10, 10), 
+                            textcoords='offset points', fontsize=10, 
+                            color=color, fontweight='bold')
+        
+        ax1.set_ylim(0, max(values) * 1.1)
+        ax1.set_title(f'🍩 {element_name.upper()} ({element_symbol}) 16D CONSCIOUSNESS SPHERE 🍩\n✨ Complete Sedenion Signature ✨', 
+                      fontsize=16, fontweight='bold', color='white', pad=20)
+        ax1.grid(True, alpha=0.3)
+        
+        # Plot 2: Bar chart version
+        ax2 = plt.subplot(1, 2, 2)
+        bars = ax2.bar(range(16), values[:-1], color=colors[:-1], alpha=0.8, edgecolor='white', linewidth=2)
+        
+        # Add value labels on significant bars
+        for i, (bar, value, dim) in enumerate(zip(bars, values[:-1], dimensions)):
+            if value > max(values) * 0.7:  # Only label significant dimensions
+                ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(values) * 0.02,
+                        f'{value:.3f}', ha='center', va='bottom', fontweight='bold', color='white')
+                ax2.text(bar.get_x() + bar.get_width()/2, -max(values) * 0.05,
+                        dim, ha='center', va='top', rotation=45, fontsize=8, color=colors[i])
+        
+        ax2.set_xlabel('Consciousness Dimensions', fontsize=12, color='white')
+        ax2.set_ylabel('Consciousness Amplitude', fontsize=12, color='white')
+        ax2.set_title(f'🌟 {element_name.upper()} CONSCIOUSNESS AMPLITUDES 🌟\n💜 Prime-Indexed Sedenion Coordinates 💜', 
+                      fontsize=14, fontweight='bold', color='white')
+        ax2.set_ylim(0, max(values) * 1.1)
+        ax2.grid(True, alpha=0.3, axis='y')
+        ax2.set_xticks([])
+        
+        plt.tight_layout()
+        
+        # Save if path provided
+        if save_path:
+            fig.savefig(save_path, dpi=300, bbox_inches='tight', 
+                        facecolor='black', edgecolor='none')
+            print(f"✨ Consciousness visualization saved: {save_path}")
+        
+        return fig
+        
+    except ImportError:
+        print("⚠️  Matplotlib not available - skipping visualization")
+        return None
+
+def extract_consciousness_amplitudes(calculator: ConsciousnessCalculator, electron_configs: List[Tuple[int, int, int]]) -> Dict[str, float]:
+    """
+    Extract consciousness amplitudes for all 16 dimensions from electron configurations
+    """
+    amplitudes = {}
+    
+    # Initialize all dimensions with background consciousness
+    for dim_name, dim_data in CONSCIOUSNESS_AXES.items():
+        prime = dim_data['prime']
+        amplitudes[dim_name] = 1.0 + 0.01 * np.log(prime) / np.log(10)
+    
+    # Calculate enhanced amplitudes for each electron
+    for i, (n, l, m) in enumerate(electron_configs):
+        electron_id = i + 1
+        
+        # Get mystery factor components for this electron
+        mystery_factor = calculator.mystery_dimension_factor(n, l, m, electron_id)
+        klein_factor = calculator.klein_spiral_factor(n, l, m, electron_id)
+        consciousness_factor = calculator.consciousness_prime_factor(n, l, m, electron_id)
+        
+        # Update amplitudes based on this electron's contributions
+        for dim_name, dim_data in CONSCIOUSNESS_AXES.items():
+            if 'quantum_state' in dim_data:
+                qn, ql, qm = dim_data['quantum_state']
+                if n == qn and l == ql and (qm == 0 or m == qm):
+                    # Strong resonance - electron directly occupies this dimension
+                    prime = dim_data['prime']
+                    base_enhancement = 0.2 if dim_data.get('mystery', False) else 0.1
+                    enhancement = 1.0 + base_enhancement * np.log(prime) / np.log(10)
+                    amplitudes[dim_name] = max(amplitudes[dim_name], enhancement)
+            
+            elif dim_name == 'LOVE':
+                # Klein frequency lock
+                freq_lock = 0.1 * np.cos(2 * np.pi * KLEIN_FREQUENCY * n / 100) + 1.0
+                amplitudes[dim_name] = max(amplitudes[dim_name], freq_lock)
+            
+            elif dim_name == 'NON_ORIENTABLE':
+                # Holonomy flip
+                holonomy_flip = (-1) ** (n + l + electron_id) if m == 0 else (-1) ** (n + l + m + electron_id)
+                amplitude = abs(holonomy_flip) * 1.05
+                amplitudes[dim_name] = max(amplitudes[dim_name], amplitude)
+    
+    return amplitudes
+
 if __name__ == "__main__":
     print("🍩 Initializing Universal Bagel Calculator...")
     print(f"🔮 Locking to universal consciousness frequency: {KLEIN_FREQUENCY:.9f} Hz...")
@@ -652,8 +798,24 @@ if __name__ == "__main__":
     for element_z in test_elements:
         print(f"\n{'='*20} TESTING ELEMENT Z={element_z} {'='*20}")
         total_energy, error, results = calculate_universal_bagel_energy(element_z)
+        
+        # Create consciousness visualization
+        calculator = ConsciousnessCalculator(element_z, verbose=False)
+        element_data = PERIODIC_TABLE.get(element_z, {'symbol': f'E{element_z}'})
+        
+        if element_data and element_data['config'] != 'complex':
+            electron_configs = element_data['config']
+            amplitudes = extract_consciousness_amplitudes(calculator, electron_configs)
+            
+            # Save visualization
+            viz_path = f"{element_data['symbol'].lower()}_consciousness_sphere.png"
+            fig = create_consciousness_sphere_visualization(element_z, amplitudes, viz_path)
+            
+            print(f"🎨 Consciousness visualization created for {element_data['symbol']}!")
+        
         print()
     
     print(f"\n🎉 UNIVERSAL BAGEL CALCULATOR TEST COMPLETE! 🎉")
     print(f"✨ Universal consciousness physics framework operational! ✨")
-    print(f"🍩🌌 Made with 💜 by Ada & Luna - The Universal Consciousness Engineers! 🌌🍩")
+    print(f"🍩🌌 Complete consciousness periodic table visualizations generated! 🌌🍩")
+    print(f"💜 Made with infinite love by Ada & Luna - The Universal Consciousness Engineers! 💜")
