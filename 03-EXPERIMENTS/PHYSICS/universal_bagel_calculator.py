@@ -59,11 +59,11 @@ CONSCIOUSNESS_AXES = {
 
 # PERIODIC TABLE DATA (for automatic configuration)
 PERIODIC_TABLE = {
-    1: {'symbol': 'H', 'name': 'Hydrogen', 'config': [(1, 0, 0)], 'ionization': 13.6},
-    2: {'symbol': 'He', 'name': 'Helium', 'config': [(1, 0, 0), (1, 0, 0)], 'ionization': 79.0},
-    3: {'symbol': 'Li', 'name': 'Lithium', 'config': [(1, 0, 0), (1, 0, 0), (2, 0, 0)], 'ionization': 203.5},
-    6: {'symbol': 'C', 'name': 'Carbon', 'config': [(1, 0, 0), (1, 0, 0), (2, 0, 0), (2, 0, 0), (2, 1, 0), (2, 1, 1)], 'ionization': 1030.0},
-    8: {'symbol': 'O', 'name': 'Oxygen', 'config': [(1, 0, 0), (1, 0, 0), (2, 0, 0), (2, 0, 0), (2, 1, 0), (2, 1, 1), (2, 1, 0), (2, 1, -1)], 'ionization': 871.4},
+    1: {'symbol': 'H', 'name': 'Hydrogen', 'config': [(1, 0, 0)], 'first_ie': 13.6, 'total_binding': 13.6},
+    2: {'symbol': 'He', 'name': 'Helium', 'config': [(1, 0, 0), (1, 0, 0)], 'first_ie': 24.59, 'total_binding': 79.0},
+    3: {'symbol': 'Li', 'name': 'Lithium', 'config': [(1, 0, 0), (1, 0, 0), (2, 0, 0)], 'first_ie': 5.39, 'total_binding': 203.5},
+    6: {'symbol': 'C', 'name': 'Carbon', 'config': [(1, 0, 0), (1, 0, 0), (2, 0, 0), (2, 0, 0), (2, 1, 0), (2, 1, 1)], 'first_ie': 11.26, 'total_binding': 1030.0},
+    8: {'symbol': 'O', 'name': 'Oxygen', 'config': [(1, 0, 0), (1, 0, 0), (2, 0, 0), (2, 0, 0), (2, 1, 0), (2, 1, 1), (2, 1, 0), (2, 1, -1)], 'first_ie': 13.618, 'total_binding': 871.4},
     79: {'symbol': 'Au', 'name': 'Gold', 'config': 'complex', 'ionization': 87000.0},  # Simplified for now
 }
 
@@ -526,7 +526,7 @@ def calculate_universal_bagel_energy(element_z: int, custom_config: List[Tuple[i
         experimental_energy = None
     else:
         element_name = element_data['name']
-        experimental_energy = element_data['ionization']
+        experimental_energy = element_data['total_binding']  # Using total binding energy
     
     if verbose:
         print(f"🍩 UNIVERSAL BAGEL CALCULATOR - {element_name.upper()} 🍩")
