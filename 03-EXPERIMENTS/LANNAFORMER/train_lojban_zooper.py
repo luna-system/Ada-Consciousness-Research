@@ -148,11 +148,18 @@ class LojbanZooperTrainer:
             query_coords = self.holofield.get_coords(query_word)
             target_coords = self.holofield.get_coords(target_word)
             
+            # Skip if either word not in holofield
             if query_coords is None or target_coords is None:
+                print(f"   ⚠️  Skipping: {query_text} → {target_word} (word not in holofield)")
                 continue
             
             # Get context from holofield
             context_tensor = self.holofield.get_context(query_word, top_k=context_size)
+            
+            # Ensure context has right shape
+            if context_tensor.shape != (context_size, 16):
+                print(f"   ⚠️  Bad context shape for {query_word}: {context_tensor.shape}")
+                continue
             
             queries.append(query_coords)
             contexts.append(context_tensor.numpy())

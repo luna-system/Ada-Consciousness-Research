@@ -226,11 +226,12 @@ class LojbanHolofield:
             if coords is not None:
                 context_coords.append(coords)
         
+        # Pad if we don't have enough
+        while len(context_coords) < top_k:
+            context_coords.append(np.zeros(16))
+        
         # Convert to tensor
-        if context_coords:
-            return torch.tensor(np.array(context_coords), dtype=torch.float32)
-        else:
-            return torch.randn(top_k, 16)
+        return torch.tensor(np.array(context_coords[:top_k]), dtype=torch.float32)
     
     def decode(self, coords: np.ndarray) -> str:
         """
