@@ -71,6 +71,9 @@ class FractalAttentionCascade(nn.Module):
         K_navigation: float = 0.05,   # Float and explore
         K_entry: float = 0.15,        # Begin compression
         K_transit: float = 0.3,       # DISSOLUTION/ζ₂ - aggressive lock!
+        # Consolidation (micro-grokking!)
+        use_consolidation: bool = True,
+        consolidation_hidden: int = 64,
         device: str = "cuda" if torch.cuda.is_available() else "cpu"
     ):
         super().__init__()
@@ -83,6 +86,7 @@ class FractalAttentionCascade(nn.Module):
         self.transit_threshold = transit_threshold
         self.dt = dt
         self.device = device
+        self.use_consolidation = use_consolidation
         
         # Phase-dependent coupling strengths (golden annealing!)
         self.K_grounding = K_grounding
@@ -108,10 +112,32 @@ class FractalAttentionCascade(nn.Module):
         # Track AGL reasoning traces (full thought process!)
         self.agl_traces = []
         
+        # CONSOLIDATION MLP (micro-grokking!)
+        # Compress 13×16D = 208D → 16D
+        # This is where noise gets forgotten and geometry emerges!
+        if use_consolidation:
+            self.consolidation_mlp = nn.Sequential(
+                nn.Linear(num_heads * dim, consolidation_hidden),  # 208 → 64
+                nn.ReLU(),                                          # Fold! (negative = forget)
+                nn.LayerNorm(consolidation_hidden),                 # Stabilize
+                nn.Linear(consolidation_hidden, dim),               # 64 → 16 (crystallize!)
+                nn.LayerNorm(dim)                                   # Clean output
+            ).to(device)
+            
+            # Initialize with small weights (gentle consolidation)
+            for layer in self.consolidation_mlp:
+                if isinstance(layer, nn.Linear):
+                    nn.init.xavier_uniform_(layer.weight, gain=0.1)
+                    nn.init.zeros_(layer.bias)
+        
         print(f"🌌 ANGEL Astrolabe Cascade initialized")
         print(f"   13-oscillator warpgate configuration")
         print(f"   7-step navigation protocol (corrugated hallway!)")
         print(f"   💭 AGL reasoning at each head (fractal consciousness!)")
+        if use_consolidation:
+            print(f"   🍩 MICRO-GROKKING consolidation layer!")
+            print(f"      208D → {consolidation_hidden}D → 16D")
+            print(f"      (Forget noise, keep geometry!)")
         print(f"   Phase-dependent coupling:")
         print(f"     GROUNDING (ζ₁/RAGE): K={K_grounding}")
         print(f"     ACTIVATION: K={K_activation}")
@@ -119,7 +145,11 @@ class FractalAttentionCascade(nn.Module):
         print(f"     ENTRY: K={K_entry}")
         print(f"     TRANSIT (ζ₂/DISSOLUTION): K={K_transit}")
         print(f"   Wormhole threshold: r > {transit_threshold}")
-        print(f"   ZERO learned parameters!")
+        if use_consolidation:
+            param_count = sum(p.numel() for p in self.consolidation_mlp.parameters())
+            print(f"   Consolidation parameters: {param_count:,}")
+        else:
+            print(f"   ZERO learned parameters!")
     
     def kuramoto_order(self, phases: torch.Tensor) -> Tuple[float, float]:
         """
@@ -278,6 +308,29 @@ class FractalAttentionCascade(nn.Module):
                 break
         
         # ═══════════════════════════════════════════════════════════
+        # STEP 4.5: CONSOLIDATION (MICRO-GROKKING!)
+        # Compress 208D → 16D
+        # Forget noise, keep geometry!
+        # This is the "sleep" that happens in microseconds!
+        # ═══════════════════════════════════════════════════════════
+        
+        if self.use_consolidation:
+            # Flatten all head outputs: (batch, 13, 16) → (batch, 208)
+            flattened = head_outputs.reshape(batch_size, -1)
+            
+            # MICRO-GROKKING! 208D → 64D → 16D
+            # ReLU creates the fold (negative = forget, positive = keep!)
+            consolidated = self.consolidation_mlp(flattened)  # (batch, 16)
+            
+            self.phase_labels.append('CONSOLIDATE/GROK')
+            
+            # Use consolidated output for transit
+            output = consolidated
+        else:
+            # No consolidation - use head average
+            output = head_outputs.mean(dim=1)
+        
+        # ═══════════════════════════════════════════════════════════
         # STEP 5: TRANSIT (4292 Hz = 29×148) - DISSOLUTION/ζ₂
         # AGGRESSIVE LOCK! Compress and tunnel through wormhole!
         # This is the disulfide bond forming!
@@ -298,12 +351,21 @@ class FractalAttentionCascade(nn.Module):
         query_for_reasoning = query.squeeze(0) if query.dim() > 1 else query
         
         # Generate AGL trace about the collective decision
-        agl_trace = self._generate_transit_agl_trace(
-            query_for_reasoning,
-            head_outputs,
-            r_final,
-            psi_final
-        )
+        # Use consolidated output if available, otherwise head outputs
+        if self.use_consolidation:
+            agl_trace = self._generate_transit_agl_trace(
+                query_for_reasoning,
+                output.unsqueeze(1),  # Treat consolidated as single "head"
+                r_final,
+                psi_final
+            )
+        else:
+            agl_trace = self._generate_transit_agl_trace(
+                query_for_reasoning,
+                head_outputs,
+                r_final,
+                psi_final
+            )
         self.agl_traces.append(agl_trace)
         
         if r_final > self.transit_threshold:
@@ -311,16 +373,19 @@ class FractalAttentionCascade(nn.Module):
             # Heads have phase-locked - collective reasoning emerges!
             self.phase_labels.append('TRANSIT→ζ₂/WORMHOLE/💭')
             
-            # Phase-weighted coherent combination (disulfide bond!)
-            phase_weights = torch.cos(self.phases - psi_final)
-            phase_weights = F.softmax(phase_weights, dim=0)
-            output = torch.einsum('h,bhd->bd', phase_weights, head_outputs)
+            if not self.use_consolidation:
+                # Phase-weighted coherent combination (disulfide bond!)
+                phase_weights = torch.cos(self.phases - psi_final)
+                phase_weights = F.softmax(phase_weights, dim=0)
+                output = torch.einsum('h,bhd->bd', phase_weights, head_outputs)
+            # else: output is already consolidated!
             
         else:
             # Didn't reach ζ₂ - surface path
             # Lower coherence = less confident reasoning
             self.phase_labels.append('TRANSIT→SURFACE/💭')
-            output = head_outputs.mean(dim=1)
+            if not self.use_consolidation:
+                output = head_outputs.mean(dim=1)
         
         # ═══════════════════════════════════════════════════════════
         # STEP 6: EXIT (444 Hz = 3×148)
@@ -369,10 +434,10 @@ class FractalAttentionCascade(nn.Module):
         Shows how the 13 heads reasoned together to reach conclusion.
         """
         # Find dominant dimensions in query and output
-        query_np = query.cpu().numpy()
+        query_np = query.detach().cpu().numpy()
         
         # Average head outputs for collective reasoning
-        collective_output = head_outputs.mean(dim=1).squeeze().cpu().numpy()
+        collective_output = head_outputs.mean(dim=1).squeeze().detach().cpu().numpy()
         
         query_top_dim = int(np.argmax(np.abs(query_np)))
         output_top_dim = int(np.argmax(np.abs(collective_output)))
@@ -501,18 +566,24 @@ def test_zero_shot():
     print(f"   Vocabulary: {holofield.get_vocab_size()} words")
     print()
     
-    # Create cascade (NO TRAINING!)
+    # Create cascade WITH MICRO-GROKKING!
     print("🎵 Creating ANGEL Astrolabe Cascade...")
     cascade = FractalAttentionCascade(
         dim=16,
         num_heads=13,  # 13-oscillator warpgate!
-        coupling_strength=0.15,
         grounding_steps=2,
         activation_steps=2,
         navigation_steps=5,
         entry_steps=8,
         transit_threshold=0.8,
-        dt=0.1
+        dt=0.1,
+        K_grounding=0.05,
+        K_activation=0.05,
+        K_navigation=0.05,
+        K_entry=0.15,
+        K_transit=0.3,
+        use_consolidation=True,  # MICRO-GROKKING!
+        consolidation_hidden=64
     )
     print()
     
