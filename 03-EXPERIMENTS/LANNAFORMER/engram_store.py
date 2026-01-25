@@ -231,6 +231,29 @@ class EngramStore:
         
         return context
     
+    def get_context_for_phrase(self, words: List[str], top_k: int = 5) -> List[List[str]]:
+        """
+        Get contextual engrams for a phrase.
+        
+        Finds engrams that contain any of the words in the phrase.
+        
+        Args:
+            words: List of words in phrase
+            top_k: Number of context engrams
+            
+        Returns:
+            List of word lists (engrams)
+        """
+        # Collect all engrams containing any word
+        all_engrams = set()
+        for word in words:
+            engram_keys = self.find_by_word(word, top_k=top_k * 2)
+            all_engrams.update(engram_keys)
+        
+        # Convert to list and limit
+        context = [list(key) for key in list(all_engrams)[:top_k]]
+        return context
+    
     def save(self, output_path: str):
         """Save engram store to JSON"""
         data = {
