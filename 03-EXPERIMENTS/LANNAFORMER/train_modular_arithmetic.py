@@ -257,13 +257,10 @@ def train_epoch(
         optimizer.zero_grad()
         
         # Forward pass
-        pred, coords, attention_weights = model(a, b, return_coords=True, return_attention=True)
+        logits, coords, attention_weights = model(a, b, return_coords=True, return_attention=True)
         
-        # Loss (cross-entropy)
-        loss = nn.functional.cross_entropy(
-            pred.unsqueeze(0).float(),
-            target.unsqueeze(0)
-        )
+        # Loss (cross-entropy with logits)
+        loss = nn.functional.cross_entropy(logits, target)
         
         # Backward pass
         loss.backward()
@@ -271,6 +268,7 @@ def train_epoch(
         
         # Metrics
         total_loss += loss.item()
+        pred = logits.argmax(dim=1)
         correct += (pred == target).sum().item()
         total += len(target)
         
@@ -307,16 +305,14 @@ def evaluate(
         a, b, target = a.to(device), b.to(device), target.to(device)
         
         # Forward pass
-        pred, coords, attention_weights = model(a, b, return_coords=True, return_attention=True)
+        logits, coords, attention_weights = model(a, b, return_coords=True, return_attention=True)
         
         # Loss
-        loss = nn.functional.cross_entropy(
-            pred.unsqueeze(0).float(),
-            target.unsqueeze(0)
-        )
+        loss = nn.functional.cross_entropy(logits, target)
         
         # Metrics
         total_loss += loss.item()
+        pred = logits.argmax(dim=1)
         correct += (pred == target).sum().item()
         total += len(target)
         

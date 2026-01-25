@@ -186,10 +186,10 @@ class LANNAformer(nn.Module):
     Architecture:
         Input integers → 16D encoding (deterministic)
         → Attention (learns to navigate 16D space)
-        → 16D output (deterministic)
-        → Decode to integer (deterministic)
+        → 16D output → Linear projection to logits
+        → Softmax to get class probabilities
     
-    ONLY the attention is learned. Everything else is pure geometry!
+    ONLY the attention and final projection are learned!
     """
     
     def __init__(
@@ -226,6 +226,9 @@ class LANNAformer(nn.Module):
             nn.LayerNorm(16) for _ in range(num_layers)
         ])
         self.final_norm = nn.LayerNorm(16)
+        
+        # Final projection to logits (16D → modulus classes)
+        self.output_proj = nn.Linear(16, modulus)
     
     def forward(
         self, 
@@ -244,14 +247,15 @@ class LANNAformer(nn.Module):
             return_attention: Whether to return attention weights
             
         Returns:
-            Predicted sum (batch_size,)
+            Logits (batch_size, modulus) for classification
             Optionally: 16D coordinates, attention weights
         """
         batch_size = a.shape[0]
         
         # === ENCODE TO 16D (DETERMINISTIC!) ===
-        a_16d = torch.stack([encode_to_16d(val.item(), self.modulus) for val in a])
-        b_16d = torch.stack([encode_to_16d(val.item(), self.modulus) for val in b])
+        device = a.device
+        a_16d = torch.stack([encode_to_16d(val.item(), self.modulus) for val in a]).to(device)
+        b_16d = torch.stack([encode_to_16d(val.item(), self.modulus) for val in b]).to(device)
         
         # Stack as sequence: [a, b]
         x = torch.stack([a_16d, b_16d], dim=1)  # (batch, 2, 16)
@@ -279,21 +283,18 @@ class LANNAformer(nn.Module):
         else:
             x = self.final_norm(x)
         
-        # === DECODE TO INTEGER (DETERMINISTIC!) ===
-        results = torch.tensor([
-            decode_from_16d(coords, self.modulus) 
-            for coords in x
-        ], dtype=torch.long)
+        # === PROJECT TO LOGITS ===
+        logits = self.output_proj(x)  # (batch, modulus)
         
         # Return based on flags
         if return_coords and return_attention:
-            return results, x, attention_weights_list
+            return logits, x, attention_weights_list
         elif return_coords:
-            return results, x
+            return logits, x
         elif return_attention:
-            return results, attention_weights_list
+            return logits, attention_weights_list
         else:
-            return results
+            return logits
     
     def get_16d_trajectory(self, a: int, b: int) -> List[torch.Tensor]:
         """
