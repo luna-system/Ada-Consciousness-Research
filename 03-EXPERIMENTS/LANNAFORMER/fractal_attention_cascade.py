@@ -124,11 +124,9 @@ class FractalAttentionCascade(nn.Module):
                 nn.LayerNorm(dim)                                   # Clean output
             ).to(device)
             
-            # Initialize with small weights (gentle consolidation)
-            for layer in self.consolidation_mlp:
-                if isinstance(layer, nn.Linear):
-                    nn.init.xavier_uniform_(layer.weight, gain=0.1)
-                    nn.init.zeros_(layer.bias)
+            # GEOMETRIC INITIALIZATION!
+            # Bias weights to preserve prime structure
+            self._geometric_init_consolidation(num_heads, dim, consolidation_hidden)
         
         print(f"🌌 ANGEL Astrolabe Cascade initialized")
         print(f"   13-oscillator warpgate configuration")
@@ -138,6 +136,7 @@ class FractalAttentionCascade(nn.Module):
             print(f"   🍩 MICRO-GROKKING consolidation layer!")
             print(f"      208D → {consolidation_hidden}D → 16D")
             print(f"      (Forget noise, keep geometry!)")
+            print(f"      ✨ Geometric initialization (prime-aligned!)")
         print(f"   Phase-dependent coupling:")
         print(f"     GROUNDING (ζ₁/RAGE): K={K_grounding}")
         print(f"     ACTIVATION: K={K_activation}")
@@ -150,6 +149,74 @@ class FractalAttentionCascade(nn.Module):
             print(f"   Consolidation parameters: {param_count:,}")
         else:
             print(f"   ZERO learned parameters!")
+    
+    def _geometric_init_consolidation(self, num_heads: int, dim: int, hidden_dim: int):
+        """
+        Initialize consolidation layer to preserve geometric structure.
+        
+        Strategy:
+        1. First layer: Average heads with prime-weighted importance
+        2. Second layer: Identity-like projection to preserve structure
+        3. Add small random noise for exploration
+        
+        This gives the network a head start toward discovering geometry!
+        """
+        # Get the linear layers
+        first_linear = self.consolidation_mlp[0]   # 208 → 64
+        second_linear = self.consolidation_mlp[3]  # 64 → 16
+        
+        # FIRST LAYER: Prime-weighted averaging
+        # Each head gets weighted by its prime importance
+        with torch.no_grad():
+            # Start with zeros
+            first_linear.weight.zero_()
+            first_linear.bias.zero_()
+            
+            # For each output dimension in hidden layer
+            for out_idx in range(hidden_dim):
+                # Map to a prime dimension (cycle through 16 primes)
+                prime_idx = out_idx % dim
+                
+                # Weight contributions from all heads for this prime
+                for head_idx in range(num_heads):
+                    # Input index for this head's prime dimension
+                    in_idx = head_idx * dim + prime_idx
+                    
+                    # Weight by prime importance (larger primes = more important)
+                    prime_weight = np.sqrt(PRIMES_16D[prime_idx]) / 10.0
+                    
+                    # Set weight
+                    first_linear.weight[out_idx, in_idx] = prime_weight
+            
+            # Normalize rows
+            row_norms = first_linear.weight.norm(dim=1, keepdim=True)
+            first_linear.weight /= (row_norms + 1e-6)
+            
+            # Add small random noise for exploration
+            first_linear.weight += torch.randn_like(first_linear.weight) * 0.01
+        
+        # SECOND LAYER: Identity-like projection
+        # Map hidden dims back to 16D prime structure
+        with torch.no_grad():
+            # Start with small identity-like matrix
+            second_linear.weight.zero_()
+            second_linear.bias.zero_()
+            
+            # Create identity-like mapping
+            for out_idx in range(dim):
+                # Map from multiple hidden dims to this output
+                for hidden_idx in range(hidden_dim):
+                    if hidden_idx % dim == out_idx:
+                        # This hidden dim corresponds to this output prime
+                        second_linear.weight[out_idx, hidden_idx] = 1.0 / (hidden_dim // dim + 1)
+            
+            # Add small random noise
+            second_linear.weight += torch.randn_like(second_linear.weight) * 0.01
+        
+        print(f"      🎯 Geometric initialization complete!")
+        print(f"         First layer: Prime-weighted averaging")
+        print(f"         Second layer: Identity-like projection")
+        print(f"         Ready to discover structure!")
     
     def kuramoto_order(self, phases: torch.Tensor) -> Tuple[float, float]:
         """
