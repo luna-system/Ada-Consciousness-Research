@@ -1,0 +1,141 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Belkin et~al.(2018)Belkin, Hsu, Ma, and Mandal]{origdoubledescent}
+Mikhail Belkin, Daniel Hsu, Siyuan Ma, and Soumik Mandal.
+\newblock Reconciling modern machine learning practice and the bias-variance
+  trade-off.
+\newblock \emph{arXiv preprint arXiv:1812.11118}, 2018.
+
+\bibitem[d'Ascoli et~al.(2020)d'Ascoli, Sagun, and Biroli]{tripledescent}
+St{\'e}phane d'Ascoli, Levent Sagun, and Giulio Biroli.
+\newblock Triple descent and the two kinds of overfitting: Where \& why do they
+  appear?
+\newblock \emph{arXiv preprint arXiv:2006.03509}, 2020.
+
+\bibitem[Dehghani et~al.(2018)Dehghani, Gouws, Vinyals, Uszkoreit, and
+  Kaiser]{universal_transformers}
+Mostafa Dehghani, Stephan Gouws, Oriol Vinyals, Jakob Uszkoreit, and {\L}ukasz
+  Kaiser.
+\newblock Universal transformers.
+\newblock \emph{arXiv preprint arXiv:1807.03819}, 2018.
+
+\bibitem[Graves(2016)]{adaptive_computation_time}
+Alex Graves.
+\newblock Adaptive computation time for recurrent neural networks.
+\newblock \emph{arXiv preprint arXiv:1603.08983}, 2016.
+
+\bibitem[Graves et~al.(2014)Graves, Wayne, and
+  Danihelka]{neural_turing_machines}
+Alex Graves, Greg Wayne, and Ivo Danihelka.
+\newblock Neural turing machines.
+\newblock \emph{arXiv preprint arXiv:1410.5401}, 2014.
+
+\bibitem[Grefenstette et~al.(2015)Grefenstette, Hermann, Suleyman, and
+  Blunsom]{learningtotransduce}
+Edward Grefenstette, Karl~Moritz Hermann, Mustafa Suleyman, and Phil Blunsom.
+\newblock Learning to transduce with unbounded memory.
+\newblock \emph{Advances in neural information processing systems},
+  28:\penalty0 1828--1836, 2015.
+
+\bibitem[Hochreiter \& Schmidhuber(1997)Hochreiter and
+  Schmidhuber]{hochreiter1997flat}
+Sepp Hochreiter and J{\"u}rgen Schmidhuber.
+\newblock Flat minima.
+\newblock \emph{Neural computation}, 9\penalty0 (1):\penalty0 1--42, 1997.
+
+\bibitem[Jiang et~al.(2019)Jiang, Neyshabur, Mobahi, Krishnan, and
+  Bengio]{fantastic_generalization_measures}
+Yiding Jiang, Behnam Neyshabur, Hossein Mobahi, Dilip Krishnan, and Samy
+  Bengio.
+\newblock Fantastic generalization measures and where to find them.
+\newblock \emph{arXiv preprint arXiv:1912.02178}, 2019.
+
+\bibitem[Kaiser \& Sutskever(2015)Kaiser and Sutskever]{neural_gpu}
+{\L}ukasz Kaiser and Ilya Sutskever.
+\newblock Neural gpus learn algorithms.
+\newblock \emph{arXiv preprint arXiv:1511.08228}, 2015.
+
+\bibitem[Keskar et~al.(2016)Keskar, Mudigere, Nocedal, Smelyanskiy, and
+  Tang]{generalizationSharpMinima}
+Nitish~Shirish Keskar, Dheevatsa Mudigere, Jorge Nocedal, Mikhail Smelyanskiy,
+  and Ping Tak~Peter Tang.
+\newblock On large-batch training for deep learning: Generalization gap and
+  sharp minima.
+\newblock \emph{CoRR}, abs/1609.04836, 2016.
+\newblock URL \url{http://arxiv.org/abs/1609.04836}.
+
+\bibitem[Loshchilov \& Hutter(2017)Loshchilov and Hutter]{weight_decay}
+Ilya Loshchilov and Frank Hutter.
+\newblock Decoupled weight decay regularization.
+\newblock \emph{arXiv preprint arXiv:1711.05101}, 2017.
+
+\bibitem[Nakkiran et~al.(2019)Nakkiran, Kaplun, Bansal, Yang, Barak, and
+  Sutskever]{deep_double_descent}
+Preetum Nakkiran, Gal Kaplun, Yamini Bansal, Tristan Yang, Boaz Barak, and Ilya
+  Sutskever.
+\newblock Deep double descent: Where bigger models and more data hurt.
+\newblock \emph{arXiv preprint arXiv:1912.02292}, 2019.
+
+\bibitem[Neelakantan et~al.(2015)Neelakantan, Vilnis, Le, Sutskever, Kaiser,
+  Kurach, and Martens]{gradient_noise}
+Arvind Neelakantan, Luke Vilnis, Quoc~V Le, Ilya Sutskever, Lukasz Kaiser,
+  Karol Kurach, and James Martens.
+\newblock Adding gradient noise improves learning for very deep networks.
+\newblock \emph{arXiv preprint arXiv:1511.06807}, 2015.
+
+\bibitem[Reed \& De~Freitas(2015)Reed and
+  De~Freitas]{neural_programmer_interpreter}
+Scott Reed and Nando De~Freitas.
+\newblock Neural programmer-interpreters.
+\newblock \emph{arXiv preprint arXiv:1511.06279}, 2015.
+
+\bibitem[Saxton et~al.(2019)Saxton, Grefenstette, Hill, and Kohli]{dmmath}
+David Saxton, Edward Grefenstette, Felix Hill, and Pushmeet Kohli.
+\newblock Analysing mathematical reasoning abilities of neural models.
+\newblock \emph{arXiv preprint arXiv:1904.01557}, 2019.
+
+\bibitem[Srivastava et~al.(2014)Srivastava, Hinton, Krizhevsky, Sutskever, and
+  Salakhutdinov]{dropout}
+Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan
+  Salakhutdinov.
+\newblock Dropout: a simple way to prevent neural networks from overfitting.
+\newblock \emph{The journal of machine learning research}, 15\penalty0
+  (1):\penalty0 1929--1958, 2014.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, and Polosukhin]{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, Lukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock \emph{arXiv preprint arXiv:1706.03762}, 2017.
+
+\bibitem[Weston et~al.(2014)Weston, Chopra, and Bordes]{memory_networks}
+Jason Weston, Sumit Chopra, and Antoine Bordes.
+\newblock Memory networks.
+\newblock \emph{arXiv preprint arXiv:1410.3916}, 2014.
+
+\bibitem[Weston et~al.(2015)Weston, Bordes, Chopra, Rush, van Merri{\"e}nboer,
+  Joulin, and Mikolov]{babi}
+Jason Weston, Antoine Bordes, Sumit Chopra, Alexander~M Rush, Bart van
+  Merri{\"e}nboer, Armand Joulin, and Tomas Mikolov.
+\newblock Towards ai-complete question answering: A set of prerequisite toy
+  tasks.
+\newblock \emph{arXiv preprint arXiv:1502.05698}, 2015.
+
+\bibitem[Zaremba \& Sutskever(2015)Zaremba and Sutskever]{ntm_rl}
+Wojciech Zaremba and Ilya Sutskever.
+\newblock Reinforcement learning neural turing machines-revised.
+\newblock \emph{arXiv preprint arXiv:1505.00521}, 2015.
+
+\bibitem[Zhang et~al.(2016)Zhang, Bengio, Hardt, Recht, and
+  Vinyals]{understanding-deep-learning-requires-rethinking-generalization}
+Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals.
+\newblock Understanding deep learning requires rethinking generalization.
+\newblock \emph{arXiv preprint arXiv:1611.03530}, 2016.
+
+\end{thebibliography}
