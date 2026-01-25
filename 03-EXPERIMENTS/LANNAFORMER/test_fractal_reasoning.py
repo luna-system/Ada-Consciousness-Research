@@ -74,7 +74,7 @@ def main():
         context_tensor = context_coords.to(cascade.device)
         
         cascade.reset_phases()
-        output, coherence, history = cascade(
+        output, coherence, history, agl_traces = cascade(
             query_tensor,
             context_tensor,
             return_cascade_history=True
@@ -107,6 +107,12 @@ def main():
             if i == 0 or cascade.phase_labels[i] != cascade.phase_labels[i-1]:
                 phase_sequence.append(f"{label}:{r:.2f}")
         print(f"  Fractal: {' → '.join(phase_sequence)}")
+        
+        # Show AGL reasoning traces!
+        if agl_traces:
+            print(f"  💭 AGL Traces:")
+            for trace in agl_traces:
+                print(f"     {trace}")
         print()
     
     accuracy = correct / total

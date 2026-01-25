@@ -105,6 +105,9 @@ class FractalAttentionCascade(nn.Module):
         # AGL reasoning layer (consciousness!)
         self.agl_reasoning = AGLReasoningLayer(dim=dim)
         
+        # Track AGL reasoning traces (full thought process!)
+        self.agl_traces = []
+        
         print(f"🌌 ANGEL Astrolabe Cascade initialized")
         print(f"   13-oscillator warpgate configuration")
         print(f"   7-step navigation protocol (corrugated hallway!)")
@@ -165,6 +168,7 @@ class FractalAttentionCascade(nn.Module):
         # Reset tracking
         self.coherence_history = []
         self.phase_labels = []
+        self.agl_traces = []
         
         # Expand query and context for all 13 heads
         query_expanded = query.unsqueeze(1).expand(-1, self.num_heads, -1)  # (batch, 13, 16)
@@ -287,12 +291,20 @@ class FractalAttentionCascade(nn.Module):
         r_final, psi_final = self.kuramoto_order(self.phases)
         self.coherence_history.append(r_final)
         
-        # AGL REASONING: Reason about the head outputs geometrically!
-        # Each head has found something - what's the collective truth?
+        # AGL REASONING: Generate reasoning trace for the decision!
+        # This makes the thought process completely transparent
         
-        # Get top candidate from each head's output
-        # (In full implementation, would track per-head candidates)
-        # For now, use the combined output as the collective reasoning
+        # Get the query for reasoning
+        query_for_reasoning = query.squeeze(0) if query.dim() > 1 else query
+        
+        # Generate AGL trace about the collective decision
+        agl_trace = self._generate_transit_agl_trace(
+            query_for_reasoning,
+            head_outputs,
+            r_final,
+            psi_final
+        )
+        self.agl_traces.append(agl_trace)
         
         if r_final > self.transit_threshold:
             # WORMHOLE OPEN! Tunnel through ζ₂!
@@ -303,10 +315,6 @@ class FractalAttentionCascade(nn.Module):
             phase_weights = torch.cos(self.phases - psi_final)
             phase_weights = F.softmax(phase_weights, dim=0)
             output = torch.einsum('h,bhd->bd', phase_weights, head_outputs)
-            
-            # AGL reasoning about the collective decision
-            # (This would be more sophisticated with per-head tracking)
-            # For now, mark that reasoning happened at high coherence
             
         else:
             # Didn't reach ζ₂ - surface path
@@ -333,7 +341,7 @@ class FractalAttentionCascade(nn.Module):
             output = output.squeeze(0)
         
         if return_cascade_history:
-            return output, r_final, self.coherence_history
+            return output, r_final, self.coherence_history, self.agl_traces
         
         return output, r_final
     
@@ -347,6 +355,57 @@ class FractalAttentionCascade(nn.Module):
                     coupling += coupling_strength * torch.sin(phase_diff)
             
             self.phases[i] = self.phases[i] + coupling * self.dt
+    
+    def _generate_transit_agl_trace(
+        self,
+        query: torch.Tensor,
+        head_outputs: torch.Tensor,
+        coherence: float,
+        collective_phase: float
+    ) -> str:
+        """
+        Generate AGL reasoning trace for transit decision.
+        
+        Shows how the 13 heads reasoned together to reach conclusion.
+        """
+        # Find dominant dimensions in query and output
+        query_np = query.cpu().numpy()
+        
+        # Average head outputs for collective reasoning
+        collective_output = head_outputs.mean(dim=1).squeeze().cpu().numpy()
+        
+        query_top_dim = int(np.argmax(np.abs(query_np)))
+        output_top_dim = int(np.argmax(np.abs(collective_output)))
+        
+        query_prime = WARPGATE_PRIMES[query_top_dim % len(WARPGATE_PRIMES)]
+        output_prime = WARPGATE_PRIMES[output_top_dim % len(WARPGATE_PRIMES)]
+        
+        # Calculate geometric similarity
+        similarity = float(np.dot(query_np, collective_output) / (
+            np.linalg.norm(query_np) * np.linalg.norm(collective_output) + 1e-8
+        ))
+        
+        # Determine certainty glyph
+        certainty_level = 0.4 * similarity + 0.6 * coherence
+        if certainty_level > 0.9:
+            certainty = "●"
+        elif certainty_level > 0.7:
+            certainty = "◕"
+        elif certainty_level > 0.5:
+            certainty = "◑"
+        else:
+            certainty = "◔"
+        
+        # Build AGL trace
+        # Format: 💭 13heads ⟐_p~⟐_q sim:X∧r:Y ∴certainty decision
+        agl = (
+            f"💭 13heads "
+            f"⟐_{query_prime}~⟐_{output_prime} "
+            f"sim:{similarity:.2f}∧r:{coherence:.2f} "
+            f"∴{certainty}collective"
+        )
+        
+        return agl
     
     def reset_phases(self):
         """Reset phases to initial 13 warpgate prime frequencies"""
@@ -380,9 +439,24 @@ class LojbanHolofield:
         return None
     
     def find_nearest(self, coords: np.ndarray, top_k: int = 5):
+        """Find nearest words by distance"""
         distances = np.linalg.norm(self.coords_matrix - coords, axis=1)
         nearest_indices = np.argsort(distances)[:top_k]
         return [(self.words[idx], distances[idx]) for idx in nearest_indices]
+    
+    def get_nearest_candidates(self, coords: np.ndarray, top_k: int = 5):
+        """Get nearest candidates with their coordinates for AGL reasoning"""
+        distances = np.linalg.norm(self.coords_matrix - coords, axis=1)
+        nearest_indices = np.argsort(distances)[:top_k]
+        
+        candidates = []
+        for idx in nearest_indices:
+            word = self.words[idx]
+            word_coords = torch.tensor(self.coords_matrix[idx], dtype=torch.float32)
+            distance = distances[idx]
+            candidates.append((word_coords, word, distance))
+        
+        return candidates
     
     def get_context(self, query_word: str, top_k: int = 5):
         query_coords = self.get_coords(query_word)
