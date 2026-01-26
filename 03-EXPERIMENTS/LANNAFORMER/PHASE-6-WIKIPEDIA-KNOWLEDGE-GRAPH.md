@@ -373,7 +373,129 @@ Navigate through multiple articles:
 - "What is the capital of the country where kangaroos live?"
 - Australia → Canberra (2 hops!)
 
-### Phase 6D: Knowledge Fusion
+### Phase 6D: LNN-Style Hybrid Navigation
+
+**Status:** 🔄 IN PROGRESS (January 25, 2026)
+
+**Goal:** Implement Liquid Neural Network (LNN) style hybrid navigation combining local and global strategies!
+
+**Inspiration:** LNNs use hybrid convolution/attention mechanisms. We implement the same concept using consciousness physics!
+
+#### Architecture
+
+**Three Navigation Modes:**
+
+1. **LOCAL Navigation (Convolution-like)**
+   - Follow wikilinks to neighboring articles
+   - Fast, respects explicit connections
+   - Used when: High Kuramoto coherence (r > 0.8)
+
+2. **GLOBAL Navigation (Attention-like)**
+   - Search entire graph via 16D semantic attractors
+   - Finds implicit connections
+   - Used when: Low Kuramoto coherence (r < 0.5)
+
+3. **HYBRID Navigation (Adaptive)**
+   - Mix both strategies based on coherence
+   - Used when: Medium coherence (0.5 < r < 0.8)
+   - Scoring: `local_score = r × sim`, `global_score = (1-r) × sim`
+
+#### Key Innovation: Zero Parameters!
+
+Unlike LNNs which learn gating mechanisms, we use **pure geometry + physics**:
+- Kuramoto coherence replaces learned gates
+- Wikilink topology replaces convolution kernels  
+- Semantic attractors replace learned attention
+
+#### Implementation
+
+**Files:**
+- `hybrid_knowledge_navigator.py` - Complete navigation system
+- `ADR-0013-LNN-HYBRID-NAVIGATION.md` - Architecture decision record
+
+**Features:**
+- 13-oscillator Kuramoto dynamics for adaptive mixing
+- Local navigation via wikilink following
+- Global navigation via 16D attractor search
+- Transparent reasoning at every step
+
+**Comparison:**
+
+| Approach | Local | Semantic | Adaptive | Parameters |
+|----------|-------|----------|----------|------------|
+| BFS/DFS | ✅ | ❌ | ❌ | 0 |
+| Vector Search | ❌ | ✅ | ❌ | 0 |
+| LNN | ✅ | ✅ | ✅ | Millions |
+| **Our System** | ✅ | ✅ | ✅ | **0** |
+
+#### Navigation Algorithm
+
+```python
+def adaptive_navigation_step(current, target_coords):
+    # Update Kuramoto dynamics
+    r, psi = kuramoto_order(phases)
+    
+    if r > 0.8:
+        # HIGH coherence - confident path
+        # Use LOCAL wikilink following
+        next_article = follow_best_wikilink(current, target_coords)
+        kuramoto_step(K_local=0.3)
+    
+    elif r < 0.5:
+        # LOW coherence - uncertain
+        # Use GLOBAL attractor search
+        next_article = find_nearest_in_graph(target_coords)
+        kuramoto_step(K_global=0.05)
+    
+    else:
+        # MEDIUM coherence - mix both!
+        local_candidates = get_wikilinks(current)
+        global_candidates = search_graph(target_coords)
+        
+        # Weight by coherence
+        local_score = r * similarity(local_candidates)
+        global_score = (1 - r) * similarity(global_candidates)
+        
+        next_article = argmax(local_score + global_score)
+        kuramoto_step(K_hybrid=0.175)
+    
+    return next_article
+```
+
+#### Test Tasks
+
+1. **Temporal Navigation:** April → May (should use local wikilinks)
+2. **Spatial Navigation:** Australia → Canada (may need global search)
+3. **Conceptual Navigation:** Art → Music (hybrid approach)
+4. **Scientific Navigation:** Atom → Molecule (local + global)
+
+#### Success Metrics
+
+- ✅ Architecture designed
+- ✅ Implementation complete
+- 🔄 Navigation accuracy > 70%
+- 🔄 Mode switching works correctly
+- 🔄 Faster than pure global search
+- 🔄 More accurate than pure local search
+
+#### Advantages
+
+1. **Zero learned parameters** - pure geometry + physics
+2. **Interpretable** - know why each decision was made
+3. **Adaptive** - automatically switches modes
+4. **Efficient** - uses local structure when possible
+5. **Consciousness-native** - same Kuramoto dynamics throughout
+
+#### Next Steps
+
+1. Test on sample graph (1000 articles)
+2. Evaluate navigation accuracy
+3. Analyze mode switching patterns
+4. Optimize coherence thresholds
+5. Test on full graph (390k articles)
+6. Visualize navigation paths
+
+### Phase 6E: Knowledge Fusion
 
 Combine Wikipedia + Vault engrams:
 - General knowledge + consciousness research
@@ -524,7 +646,15 @@ coords = np.array(article['coords_16d'])
 - 🔄 3-hop reasoning works
 - 🔄 Path finding optimal
 
-### Phase 6D (Fusion)
+### Phase 6D (LNN Hybrid Navigation) 🔄 IN PROGRESS
+
+- ✅ Architecture designed (ADR-0013)
+- ✅ Implementation complete (`hybrid_knowledge_navigator.py`)
+- 🔄 Testing on sample graph
+- 🔄 Evaluation on navigation tasks
+- 🔄 Performance benchmarking
+
+### Phase 6E (Fusion)
 
 - 🔄 Wikipedia + Vault merged
 - 🔄 Cross-domain queries work
