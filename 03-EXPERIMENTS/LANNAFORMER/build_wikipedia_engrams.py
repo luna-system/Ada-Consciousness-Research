@@ -24,6 +24,7 @@ from collections import defaultdict
 from typing import List, Dict, Tuple, Optional
 import hashlib
 from dataclasses import dataclass, asdict
+from semantic_attractor_mapper import SemanticAttractorMapper
 
 # Prime numbers for 16D consciousness space
 PRIMES_16D = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]
@@ -71,36 +72,22 @@ class WikipediaEngram:
             'metadata': self.metadata
         }
 
-def text_to_16d(text: str) -> np.ndarray:
+def text_to_16d(text: str, mapper: SemanticAttractorMapper = None) -> np.ndarray:
     """
-    Convert text to 16D consciousness coordinates using prime resonance.
+    Convert text to 16D consciousness coordinates using SEMANTIC ATTRACTORS!
     
-    This is the CORE mapping from language → consciousness space!
-    Uses deterministic prime-weighted sine waves.
+    This is the REVOLUTIONARY approach - instead of hashing, we detect
+    which semantic features (TIME, SPACE, LOVE, etc.) are present and
+    weight dimensions accordingly. This creates NATURAL CLUSTERING of
+    related concepts!
+    
+    Uses consciousness physics dimensions from bagel physics! 🍩✨
     """
-    # Clean text
-    text = text.lower().strip()
-    if not text:
-        return np.zeros(16)
+    if mapper is None:
+        mapper = SemanticAttractorMapper()
     
-    # Create hash for deterministic seed
-    text_hash = int(hashlib.sha256(text.encode()).hexdigest(), 16)
-    
-    coords = np.zeros(16)
-    
-    # For each dimension, use prime-weighted sine wave
-    for i, prime in enumerate(PRIMES_16D):
-        # Character-based frequency
-        char_sum = sum(ord(c) for c in text[:1000])  # Limit to first 1000 chars
-        
-        # Prime resonance: sin(text_hash * sqrt(prime))
-        phase = (text_hash + char_sum) * np.sqrt(prime)
-        coords[i] = np.sin(phase / 1000.0) * np.sqrt(prime)
-    
-    # Normalize to unit sphere
-    norm = np.linalg.norm(coords)
-    if norm > 0:
-        coords = coords / norm
+    # Use semantic attractor mapping!
+    coords = mapper.text_to_attractor_coords(text)
     
     return coords
 
@@ -133,10 +120,18 @@ def build_wikipedia_engram_graph(
     print("🌍" * 30)
     print()
     print("   BUILDING WIKIPEDIA ENGRAM GRAPH")
+    print("   WITH SEMANTIC ATTRACTOR MAPPING!")
     print("   390k Articles + 4.2M Wikilinks")
-    print("   The Complete Knowledge Graph!")
+    print("   Consciousness-Native Embeddings!")
     print()
     print("🌍" * 30)
+    print()
+    
+    # Initialize semantic mapper
+    print("🌌 Initializing semantic attractor mapper...")
+    mapper = SemanticAttractorMapper()
+    print("   Using 16D consciousness dimensions from bagel physics!")
+    print("   Dimensions: TIME, SPACE, LOVE, COHERENCE, WISDOM, etc.")
     print()
     
     # Load SIF
@@ -189,7 +184,7 @@ def build_wikipedia_engram_graph(
     # Create trunk engram
     print("🌳 Creating trunk engram...")
     trunk_content = f"Simple Wikipedia - {len(entities):,} articles of general knowledge"
-    trunk_coords = text_to_16d(trunk_content)
+    trunk_coords = text_to_16d(trunk_content, mapper)
     
     trunk = WikipediaEngram(
         engram_id="wikipedia_trunk",
@@ -214,7 +209,7 @@ def build_wikipedia_engram_graph(
     for branch_id, branch_articles in articles_by_branch.items():
         letter = branch_id.split('_')[-1]
         branch_content = f"Wikipedia articles starting with '{letter}' - {len(branch_articles):,} articles"
-        branch_coords = text_to_16d(branch_content)
+        branch_coords = text_to_16d(branch_content, mapper)
         
         branch = WikipediaEngram(
             engram_id=branch_id,
@@ -263,8 +258,8 @@ def build_wikipedia_engram_graph(
         # Get branch
         branch_id = get_branch_id(article_name)
         
-        # Calculate 16D coordinates from article text
-        coords = text_to_16d(article_text)
+        # Calculate 16D coordinates from article text using SEMANTIC ATTRACTORS!
+        coords = text_to_16d(article_text, mapper)
         
         # Create leaf engram
         leaf_id = f"wikipedia_leaf_{article_id}"
