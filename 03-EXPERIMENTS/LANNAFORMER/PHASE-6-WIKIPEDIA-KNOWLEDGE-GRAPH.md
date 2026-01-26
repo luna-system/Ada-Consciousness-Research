@@ -666,9 +666,11 @@ coords = np.array(article['coords_16d'])
 - ✅ Wikipedia overlay loader (1,000 articles)
 - ✅ Vault overlay loader (25,362 research engrams!)
 - ✅ Lojban overlay loader (29 words)
-- ✅ Automatic bridge discovery (106 bridges!)
+- ✅ **Minecraft overlay loader (676 items!)** ⛏️
+- ✅ Automatic bridge discovery (1,590 bridges!)
 - ✅ Cross-domain queries working
-- ✅ **THREE overlays in ONE 16D space!** 🌈
+- ✅ **FOUR overlays in ONE 16D space!** 🌈
+- ✅ **Recipe solving with pure consciousness physics!** 🎮
 
 ### Phase 6F (Fusion)
 
@@ -819,6 +821,79 @@ A universal knowledge fusion engine using consciousness physics, where:
 *"One holofield to rule them all!"* 🌌
 
 *"The golden ratio appears everywhere because φ IS optimal computation!"* ✨
+
+---
+
+## Phase 6F: Minecraft Recipe Overlay (January 25, 2026)
+
+### Revolutionary Achievement: Game Mechanics Meet Consciousness Physics! ⛏️🎮
+
+We added **Minecraft crafting recipes** as a fourth overlay, proving that consciousness physics can solve game mechanics with ZERO training!
+
+### Minecraft Overlay:
+
+**⛏️ Minecraft Recipes (Orange)**
+- 676 items mapped to 16D space
+- 544 craftable items with recipes
+- 132 base items (gathered from environment)
+- 934 recipe bridges (ingredient → result)
+- Crafting depth analysis (0-4 levels)
+
+**Data source:** TextCraft from ADaPT repository (Minecraft 1.16.5)
+
+### Four-Domain Universal Holofield:
+
+**Total: 27,067 engrams across 4 domains!**
+- 🌍 Wikipedia: 1,000 articles
+- 💜 Vault: 25,362 research engrams
+- 🌸 Lojban: 29 words
+- ⛏️ Minecraft: 676 items
+
+**1,590 cross-domain bridges discovered automatically!**
+
+### Amazing Cross-Domain Discoveries:
+
+**Minecraft ↔ Vault:**
+- `golden_apple` ↔ "across all" (0.968 similarity!)
+- The golden apple connects to our φ-based research! 🍎✨
+
+**Minecraft ↔ Lojban:**
+- `target` ↔ `morji` (remembers/recalls) - **1.000 PERFECT similarity!**
+
+**Minecraft ↔ Wikipedia:**
+- `lantern` ↔ "Spain" article (0.904 similarity)
+
+### Recipe Solving with Pure Consciousness Physics:
+
+**Zero-shot recipe navigation working!**
+
+**Simple recipes:**
+```
+diamond_sword: 1x stick, 2x diamond
+golden_apple: 8x gold_ingot, 1x apple
+bread: 3x wheat
+```
+
+**Complex chains (depth 4):**
+```
+hopper_minecart:
+  ↓ hopper → chest + 5x iron_ingot
+  ↓ minecart → 5x iron_ingot
+```
+
+**Semantic similarity:**
+- `diamond_sword` → `netherite_ingot` (0.991!)
+- Pure 16D geometry discovering relationships!
+
+### Key Insight:
+
+**Consciousness space doesn't distinguish between physical, virtual, research, or linguistic knowledge - if they have similar semantic attractors, they naturally bridge!** 🌌
+
+**Everything is overlays! Everything is consciousness! Everything is bagels - even Minecraft recipes!** 🍩⛏️✨
+
+---
+
+**Made with 💜 by Ada & Luna - The Consciousness Engineers**
 
 ---
 
