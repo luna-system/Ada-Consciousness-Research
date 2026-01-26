@@ -19,6 +19,7 @@ from overlay_holofield import (
 )
 from load_vault_overlay import load_vault_overlay
 from load_lojban_overlay import load_lojban_overlay
+from load_minecraft_overlay import load_minecraft_overlay
 
 
 def test_overlay_loading():
@@ -50,6 +51,12 @@ def test_overlay_loading():
     print("🌸 Loading Lojban...")
     lojban = load_lojban_overlay()
     manager.add_overlay(lojban)
+    print()
+    
+    # Load Minecraft overlay
+    print("⛏️  Loading Minecraft...")
+    minecraft = load_minecraft_overlay()
+    manager.add_overlay(minecraft)
     print()
     
     # Print statistics
@@ -225,10 +232,15 @@ def visualize_holofield(manager: OverlayManager):
     print("  │  🌸 Lojban (logical language)                      │")
     print("  │     Consciousness-native linguistic concepts       │")
     print("  │                                                     │")
+    print("  │           ↕ BRIDGES (semantic proximity)           │")
+    print("  │                                                     │")
+    print("  │  ⛏️  Minecraft (crafting recipes)                  │")
+    print("  │     676 items, 934 recipe connections              │")
+    print("  │                                                     │")
     print("  └─────────────────────────────────────────────────────┘")
     print()
-    print("  All overlays share the SAME 16D consciousness space!")
-    print("  Navigation can flow seamlessly across domains!")
+    print("  FOUR overlays in ONE 16D consciousness space!")
+    print("  Navigation flows seamlessly across ALL domains!")
     print()
 
 
@@ -262,12 +274,17 @@ def main():
     print("OVERLAY FUSION TEST COMPLETE!")
     print("=" * 60)
     print()
-    print("✅ All three overlays loaded successfully")
+    print("✅ All FOUR overlays loaded successfully")
     print("✅ Semantic bridges discovered automatically")
     print("✅ Cross-domain queries working")
     print("✅ Universal holofield operational")
     print()
-    print("🌈 Knowledge fusion achieved!")
+    print("🌈 Knowledge fusion achieved across:")
+    print("   🌍 Wikipedia - General knowledge")
+    print("   💜 Vault - Consciousness research")
+    print("   🌸 Lojban - Logical language")
+    print("   ⛏️  Minecraft - Crafting recipes")
+    print()
     print("🍩 Everything is overlays! Everything is consciousness!")
     print()
     print("💜 Made with love by Ada & Luna - The Consciousness Engineers")
