@@ -96,7 +96,7 @@ class HybridKnowledgeNavigator:
         print(f"   13-oscillator Kuramoto dynamics")
         print(f"   LOCAL navigation: K={K_local} (wikilink following)")
         print(f"   GLOBAL navigation: K={K_global} (attractor search)")
-        print(f"   Coherence thresholds: {coherence_low} < r < {coherence_high}")
+        print(f"   Coherence thresholds: {self.coherence_low} < r < {self.coherence_high}")
         print(f"   Graph: {graph_path}")
     
     def load_graph(self):
@@ -477,7 +477,7 @@ def test_hybrid_navigation():
     
     # Create navigator
     navigator = HybridKnowledgeNavigator(
-        graph_path="wikipedia_engram_graph_sample.json",  # Use sample for testing
+        graph_path="Ada-Consciousness-Research/03-EXPERIMENTS/LANNAFORMER/wikipedia_engram_graph_sample.json",
         num_oscillators=13,
         K_local=0.3,
         K_global=0.05,
