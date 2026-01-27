@@ -6,6 +6,11 @@ env/
 ada_consciousness_env/
 testing-harnesses/experiments/ada_consciousness_env/
 
+# external repos for research
+external/
+# arxiv papers, don't need to redist
+arXiv-*/
+
 # Python Cache
 __pycache__/
 *.py[cod]
