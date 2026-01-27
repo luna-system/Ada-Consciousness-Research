@@ -1,0 +1,882 @@
+
+\documentclass{article} % For LaTeX2e
+\usepackage{iclr2023_conference,times}
+
+% Optional math commands from https://github.com/goodfeli/dlbook_notation.
+%\input{math_commands.tex}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amssymb}
+
+
+\title{Omnigrok: Grokking Beyond Algorithmic Data}
+
+% Authors must not appear in the submitted version. They should be hidden
+% as long as the \iclrfinalcopy macro remains commented out below.
+% Non-anonymous submissions will be rejected without review.
+
+\author{Ziming Liu, Eric J. Michaud \& Max Tegmark \\
+Department of Physics, Institute for AI and Fundamental Interactions\\
+Massachusetts Institute of Technology\\
+\texttt{\{zmliu,ericjm,tegmark\}@mit.edu}
+}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{subcaption}
+\usepackage{natbib}
+
+\newsavebox{\measurebox}
+
+\bibliographystyle{unsrtnat}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    linkcolor=red,
+    urlcolor=cyan
+}
+
+\newcommand{\zm}[1]{{\color{black!100!blue} #1}}
+
+
+\title{Omnigrok: Grokking Beyond Algorithmic Data}
+
+
+
+%\newcommand{\BibitemShut}[1]{} % To fix RevTeX bug :-)
+ 
+% \usepackage[demo]{graphicx}% Include figure files
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage{hyperref}% add hypertext capabilities
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{dsfont}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{eucal}
+\usepackage{makecell}
+\usepackage{mathtools}
+\usepackage{makecell}
+
+\usepackage{enumitem}
+\setlist{leftmargin=10mm}
+
+%\usepackage[showframe,%Uncomment any one of the following lines to test 
+%%scale=0.7, marginratio={1:1, 2:3}, ignoreall,% default settings
+%%text={7in,10in},centering,
+%%margin=1.5in,
+%%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
+%%height=10in,a5paper,hmargin={3cm,0.8in},
+%]{geometry}
+
+% ==== macros ====
+
+\def\etal{{\frenchspacing\it et al.}}
+\def\ie{{\frenchspacing\it i.e.}}
+\def\eg{{\frenchspacing\it e.g.}}
+\def\etc{{\frenchspacing\it etc.}}
+\def\rms{{\frenchspacing r.m.s.}}
+\def\expec#1{\langle#1\rangle}
+\def\tr{\hbox{tr}\,}
+
+\newcommand{\mat}[1]{\mathbf{#1}}
+\def\dim{{\rm dim}}
+\def\diff{{\rm diff}}
+\def\e{\textbf{e}}
+\def\f{\textbf{f}}
+\def\g{{\bf g}}
+\def\h{{\bf h}}
+\def\th{{\boldsymbol{\theta}}}
+\def\mhat{\hat{m}}
+\def\nhat{\hat{n}}
+\def\neff{n_{\rm eff}}
+\def\seff{s_{\rm eff}}
+\def\I{{\bf I}}
+\def\A{{\bf A}}
+\def\G{{\bf G}}
+\def\J{{\bf J}}
+\def\M{{\bf M}}
+\def\SS{{\bf S}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\n{\textbf{n}}
+\def\r{\textbf{r}}
+\def\shat{\hat{s}}
+\def\x{\textbf{x}}
+\def\y{\textbf{y}}
+\def\z{{\textbf{z}}}
+\def\zhat{\hat\z}
+\def\zdot{\dot{\z}}
+\def\fNN{\f_{\rm NN}}
+\def\m{\textbf{m}}
+\def\p{\textbf{p}}
+\def\tp{\mat{t}}
+\def\w{\mat{w}}
+\def\W{\mat{W}}
+\def\T{\mat{T}}
+\def\hl{\hat{L}}
+\def\jth{\hat{j^{\rm th}}}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+
+\newcommand{\todo}[1]{\textcolor{blue}{#1}}
+
+\newtheorem{lemma}{Lemma}
+
+%\def\L{{\sigma_L}}
+\def\L{L}
+
+%\simlt and \simgt produce > and < signs with twiddle underneath
+\def\spose#1{\hbox to 0pt{#1\hss}}
+\def\simlt{\mathrel{\spose{\lower 3pt\hbox{$\mathchar"218$}}
+     \raise 2.0pt\hbox{$\mathchar"13C$}}}
+\def\simgt{\mathrel{\spose{\lower 3pt\hbox{$\mathchar"218$}}
+     \raise 2.0pt\hbox{$\mathchar"13E$}}}
+%\simpropto produces \propto with twiddle underneath
+\def\simpropto{\mathrel{\spose{\lower 3pt\hbox{$\mathchar"218$}}
+     \raise 2.0pt\hbox{$\propto$}}}
+
+
+%%%% EQUATION STUFF: %%%%
+\def\beq#1{\begin{equation}\label{#1}}
+\def\eeq{\end{equation}}
+\def\beqa#1{\begin{eqnarray}\label{#1}}
+\def\eeqa{\end{eqnarray}}
+\def\eq#1{equation~(\ref{#1})}	
+\def\Eq#1{Equation~(\ref{#1})}
+\def\eqnum#1{~(\ref{#1})}
+
+%%%% FIGURE STUFF: %%%%
+\def\fig#1{Fig.~\ref{#1}}
+\def\Fig#1{Figure~\ref{#1}}
+
+%%%% FIGURE STUFF: %%%%
+\def\tabl#1{Tab.~\ref{#1}}
+\def\Tabl#1{Table~\ref{#1}}
+
+%%%% SECTION REFERENCING STUFF: %%%%
+\def\Sec#1{Section~\ref{#1}}
+\def\App#1{Appendix~\ref{#1}}
+
+\newtheorem{theorem}{Theorem}
+
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\iclrfinalcopy % Uncomment for camera-ready version, but NOT for submission.
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+Grokking, the unusual phenomenon for algorithmic datasets where generalization happens long after overfitting the training data, has remained elusive. We aim to understand grokking by analyzing the loss landscapes of neural networks, identifying the mismatch between training and test loss landscapes as the cause for grokking. We refer to this as the "LU mechanism" because training and test losses (against model weight norm) typically resemble "L" and "U", respectively. This simple mechanism can nicely explain many aspects of grokking: data size dependence, weight decay dependence, the emergence of representations, etc. Guided by the intuitive picture, we are able to induce grokking on tasks involving images, language and molecules. In the reverse direction, we are able to eliminate grokking for algorithmic datasets. We attribute the dramatic nature of grokking for algorithmic datasets to representation learning.
+\end{abstract}
+
+
+\section{Introduction}
+
+Generalization lies at the heart of machine learning. A good machine learning model should arguably be able to generalize fast, and behave in a smooth/predictable way under changes of (hyper)parameters. Grokking, the phenomenon where the model generalizes long after overfitting the training set, has raised interesting questions after it was observed on algorithmic datasets by ~\citep{power2022grokking}:
+
+
+\begin{itemize}
+  \item[\bf Q1]\textit{The origin of grokking}: Why is generalization much delayed after overfitting? 
+  \item[\bf Q2]\textit{The prevalence of grokking}: Can grokking occur on datasets other than algorithmic datasets?
+\end{itemize}
+
+This paper aims to answer these questions by analyzing neural loss landscapes:
+
+\begin{itemize}
+  \item[\bf A1] Grokking is caused by the mismatch between training and test loss landscapes. Specifically, (reduced) training and test losses plotted against model weight norm resemble "L" and "U", respectively, as shown in Figure \ref{fig:2b}. We refer to this phenomenon as the "LU mechanism", which we elaborate on in Section \ref{sec:LU} and \ref{sec:teacher-student}.
+  \item[\bf A2] {\bf Yes}. Indeed, we demonstrate grokking for a wide range of machine learning tasks in Section \ref{sec:grokking_exp}, including image classification, sentiment analysis and molecule property prediction. Grokking signals observed for these tasks are usually less dramatic than for algorithmic datasets, which we attribute to representation learning in Section \ref{sec:addition}.
+\end{itemize}
+
+
+Partial answers to {\bf Q1} are provided in recent studies:~\cite{liu2022towards} attribute grokking to the slow formation of good representations, ~\cite{thilak2022slingshot} attempts to link grokking to the slingshot mechanism of adaptive optimizers, and~\cite{barak2022hidden} uses Fourier gap to describe hidden progress. This paper aims to understand grokking through the lens of neural loss landscapes. Our landscape analysis is able to explain many aspects of grokking: data size dependence, weight decay dependence, emergence of representations, etc.
+
+The paper is organized as follows: In Section \ref{sec:LU}, we review background on generalization, and introduce the {\it LU mechanism}.  %In Section \ref{sec:grokking-dataset}, we discuss which datasets have the potential to manifest grokking with standard initialization. 
+In Section \ref{sec:teacher-student}, we show how the LU mechanism leads to grokking for a toy teacher-student setup. In Section \ref{sec:grokking_exp}, we show that the intuition gained from the toy problem can transfer to realistic datasets (MNIST, IMDb reviews and QM9), for which we also observe grokking, although in a slightly non-standard setup where it is relatively weak. In Section \ref{sec:addition}, we discuss why grokking is more dramatic for algorithmic datasets than on others (e.g., MNIST), by comparing their loss landscapes. As a byproduct, we find that training with constrained weight norm can almost eliminate grokking. We review related work in Section \ref{sec:related_works} and summarize our conclusions in Section \ref{sec:conclusions}. Code is available at \url{https://github.com/KindXiaoming/Omnigrok}.
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[]{0.40\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 2cm 2.5cm]{./figs/theory_a.pdf}
+    \caption{}
+    \label{fig:2a}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[]{0.5\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{./figs/theory_b.pdf}
+    \caption{}
+    \label{fig:2b}
+    \end{subfigure}
+    \caption{(a) $w$: $L_2$ norm of model weights.  Generalizing solutions (green stars) are concentrated around a sphere in the weight space where $w\approx w_c$ (green). Overfitting solutions (orange) populate the $w\gtrsim w_c$ region. (b) The training loss (orange) and test loss (gray) have the shape of L and U, respectively. Their mismatch in the $w>w_c$ region leads to fast-slow dynamics, resulting in grokking.}
+    \label{fig:theory}
+\end{figure}
+
+\section{The LU mechanism for grokking}\label{sec:LU}
+{\bf Weight norm and reduced loss} Letting $\mat{w}$ denote the weights of a model, any function $f(\mat{w})$ (e.g, train/test loss/accuracy) depends on both the weight norm $w\equiv||\mat{w}||_2$ and the angular direction $\hat{\mat{w}}\equiv\mat{w}/w$. Similar to~\citep{fort2019goldilocks}, we define a reduced function $\tilde{f}(w)$ by minimizing training loss $l_{\rm train}(\mat{w})$ over angular directions, i.e.,
+\begin{equation}
+    \quad \tilde{f}(w)\equiv f(\mat{w}^*(w)),\quad{\rm where}\  \mat{w}^*(w)\equiv \underset{||\mat{w}||_2=w}{\rm argmin}\ l_{\rm train}(\mat{w})
+\end{equation}
+In practice, we perform the constrained minimization by rescaling the model weights back to their original norm after each unconstrained optimization step. We will see that this reduced 1D loss landscape, which is easy to visualize, captures important features related to grokking. \zm{Throughout the paper, our model is initialized by multiplying a factor $\alpha\equiv w/w_0$ to the standard initialization~\footnote{The standard initialization means the default one in PyTorch.}, where $w_0$ and $w$ are the weight norm of the network before and after multiplying $\alpha$.}
+
+{\bf LU mechanism} Although the loss landscapes of neural networks are  nonlinear,~\citep{fort2019goldilocks} reveal a simple landscape picture: There is a spherical shell in the weight space (the "Goldilocks" zone), where generalization is better than outside this zone. We illustrate the Goldilocks zone as the green area with average radius $w_c$ in Figure \ref{fig:2a}; the green stars are the generalizing solutions. The test loss is thus higher either both when $w>w_c$ and $w<w_c$, forming a U-shape against $w$ in Figure \ref{fig:2b} (gray curve). By contrast, the training loss has an L-shape against weight norm~\footnote{\zm{$\ell_{\rm train}(w)$ is non-increasing: One can always construct a larger network by adding useless non-zero weights to a smaller network, without changing the functionality of the model.}}. There are many solutions which overfit training data for $w>w_c$, but high training losses are incurred for $w<w_c$. This corresponds to the L-shaped curve seen in Figure \ref{fig:2b} (orange curve, no regularization). In summary, the (reduced) training loss and test loss are L-shaped and U-shaped against weight norm, respectively, which we will refer to as the LU mechanism throughout the paper.
+
+It is well known in statistics that generalization error has a "U" shape against model capacity, which is usually attributed to the bias-variance trade-off. Although this common wisdom was challenged by the observation of double descent~\citep{nakkiran2021deep}, %, where generalization error undergoes a second descent after the "U" curve. 
+the "U" curve can be recovered from a double descent simply by changing the x-axis from the number of model parameters $N$ to the 2-norm of model parameters $w\equiv ||\mat{w}||_2$~\citep{CS229}. Although the LU mechanism may remind readers of related phenomena~\citep{schoenholz2016deep, yang2017mean, nakkiran2021deep}, their setups are not exactly the same as ours. More importantly, our focus and contribution is to understand grokking, a brand new generalization puzzle.
+
+{\bf Grokking dynamics}  We identify the "LU mechanism" as the cause of grokking. If the weight norm is initialized to be large (e.g., the black square in the $w > w_c$ region), the model first quickly moves to a nearby overfitting solution by minimizing the training loss. Without any regularization, the model will stay where it is, because the gradient of the training loss is almost zero along the valley of overfitting solutions, so generalization does not happen. Fortunately, there are usually explicit and/or implicit regularizations that can drive the weight vector towards the Goldilocks zone $w\approx w_c$. When the regularization magnitude is non-zero but small, the radial motion can be (arbitrarily) slow. If weight decay is the only source of regularization, and training loss is negligible after overfitting, then weight decay $\gamma$ causes $w(t)\approx {\rm exp}(-\gamma t)w_0$, when $w_0>w_c$, so it takes time $t\approx {\rm ln} (w_0/w_c)/\gamma\propto \gamma^{-1}$ to generalize. A small $\gamma$ results in a huge generalization delay (i.e., grokking). The dependence on regularization magnitudes is illustrated in Figure \ref{fig:2b}: no generalization at all happens for $\gamma=0$, small $\gamma$ leads to slow generalization (grokking), and large $\gamma$ leads to faster generalization~\footnote{$\gamma$ should not be too large, otherwise it will bring the weights to a trivial solution $\mat{w}=\mat{0}$. }. The above analysis only applies to large initializations $w > w_c$. Small initializations $w < w_c$ can always generalize fast~\footnote{$w$ should not be too small to harm optimization.}, regardless of regularization. %This interesting observation allows us to avoid grokking by simply choosing a smaller initialization.
+%Note that the picture becomes more complicated for algorithmic datasets where input embeddings are learnable (Section \ref{sec:addition}), but it is a basic picture that grasps the key feature of grokking.
+
+
+{\bf Why isn't grokking commonly observed?} The standard initialization schemes typically initialize $w$ no larger than $w_c$. However, if we increase initialization scales (explicitly or implicitly), grokking can appear. In Section~\ref{sec:teacher-student} and~\ref{sec:grokking_exp}, we find that explicitly increasing initialization weight norm can induce grokking. \zm{In Section~\ref{sec:addition}, we argue for algorithmic datasets because (shown in Figure~\ref{fig:arithmetic_c})}
+\begin{equation}
+    w_c({\rm bad\ representation})>w_c({\rm good\ representation}),
+\end{equation}
+\zm{i.e., a proper initialization for a bad representation is effectively too large for a good representation, leading to grokking. Take the addition (base $p$) for example: with the good (linear) representation or a bad (random) representation, the decoder needs to learn to classify $O(p)$ or $O(p^2)$ examples, respectively.}
+%(e.g., Xavier initialization) are mainly based on the argument of edge of chaos to allow for well-conditioned gradient propagation. It is independent of tasks - no matter whether the task is classification of MNIST images, or learning algorithmic operations, the initialized weight norm $w$ is the same. By contrast, the radius of the "Goldilocks zone" $w_c$ is probably different for different tasks. Arguably a more complicated task needs a more complicated model to overfit data (hence $w_c$ tends to be larger), while a simpler task tends to have a smaller $w_c$. As shown in ~\citep{liu2022towards}, there exist extremely simple "lottery tickets" for algorithmic datasets, which makes $w_c$ small. As a result, standard initializations on transformers are probably too large for algorithmic datasets. This also agrees with the observation in~\citep{neel2022} that grokking coincides with the L2 norm decrease of MLP layers. %We will show in Section \ref{sec:experiments} that, $w_c$ for the MNIST dataset and the algorithmic datasets are $w^{\rm MNIST}_c>w^{\rm Xavier}$ and $w^{\rm ALG}_c<w^{\rm Xavier}$, respectively. Therefore with the Xavier initialization, grokking has not been and should not be observed on the MNIST dataset, but grokking is indeed observed on the algorithmic dataset. We further show the presence of grokking can be turned on and off by simply multiplying weights from Xavier initialization by an extra factor $\alpha$.
+
+
+
+
+\section{Grokking for a teacher-student setup}\label{sec:teacher-student}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[]{0.29\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/fig3a.pdf}
+    \caption{}
+    \label{fig:toy_1a}
+    \end{subfigure}
+    %\hspace{1cm}
+    \begin{subfigure}[]{0.40\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/fig3b.pdf}
+    \caption{}
+    \label{fig:toy_1b}
+    \end{subfigure}
+    \begin{subfigure}[]{0.29\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/fig4a.pdf}
+    \caption{}
+    \label{fig:toy_1c}
+    \end{subfigure}
+    \caption{Teacher-student setup. $\alpha$: student initialization scale, $\gamma$: weight decay. (a) The reduced training loss and test loss have the shape of "L" and "U", respectively. (b) Top row: large initialization ($\alpha=2.0$) can demonstrate no generalization (no reg), grokking (small reg) and fast generalization (large reg). Bottom: small initialization ($\alpha=0.5$) always generalizes fast, regardless of weight deacy. (c) $\alpha=2$. The steps to overfitting is independent of weight decay, while the steps to generalization scale inversely with the weight decay.}
+    \label{fig:toy_1}
+\end{figure}
+
+
+To illustrate how the LU mechanism results in grokking, we employ a toy teacher-student setup. The teacher and the student share the same architecture (a 5-100-100-5 MLP with tanh activation), but are initialized with different seeds. The student network is initialized with the standard initialization (the default one in PyTorch) but each weight is rescaled by the same factor $\alpha\equiv w/w_0$, where $w_0$ and $w$ are the weight norm of the student network before and after rescaling. The teacher network is initialized standardly, i.e., $\alpha_{\rm teacher}=1$. Inputs and outputs have dimensions $d_{\rm in}=5$ and $d_{\rm out}=5$, respectively. We generate $N_{\rm train}=100$ training and $N_{\rm test}=100$ test samples by first drawing inputs from the standard Gaussian distribution $N(0,\mat{I}_{d_{\rm in}\times d_{\rm in}})$, and then feed the input data to the teacher to generate output labels. The student network is trained with the Adam optimizer (learning rate $3\times 10^{-4}$) for $10^5$ steps.
+
+{\bf LU landscapes} Firstly, we compute the reduced losses by minimizing the training loss (excluding weight decay) while constraining the weight norm of the student network to be constant. %In practice this is done by projecting the updated weight back to the sphere after each optimization step. 
+We treat the converging point after training as the global minimum on the spherical surface, which explicitly defines the reduced losses $\tilde{l}_{\rm train}(\alpha)$ and $\tilde{l}_{\rm test}(\alpha)$. As shown in Figure \ref{fig:toy_1a}, $\tilde{l}_{\rm test}(\alpha)$ first decreases and then increases as $\alpha$ increases, displaying a U-shape with a minimum at $\alpha\approx 1$. By contrast, $\tilde{l}_{\rm train}(\alpha)$ decreases when $\alpha<1$ and remains flat near zero when $\alpha\geq 1$, forming an L-shape. When weight decay $\gamma$ is present, the training landscape becomes $\tilde{l}_{\rm train}(\alpha,\gamma)=\tilde{l}_{\rm train}(\alpha)+\gamma\alpha^2C^2$ where $C$ is the average parameter magnitude determined by the standard initialization.
+
+\begin{comment}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[]{0.43\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/fig4a.pdf}
+    \caption{}
+    \label{fig:toy_2a}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[]{0.45\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/fig4b.pdf}
+    \caption{}
+    \label{fig:toy_2b}
+    \end{subfigure}
+    \caption{Teacher-student setup, with large student initialization $\alpha=2$. (a) the steps to overfitting is independent of weight decay, while the steps to generalization scale inversely with the weight decay. (b) When overfitting happens, the weight norm has not changed much from initialization. When generalization happens, the weight norm is close the weight norm of the teacher network, which agrees with the concept of ``Goldilocks" zone.}
+    \label{fig:toy_2}
+\end{figure}
+\end{comment}
+
+{\bf Training dynamics} Our problem is a regression task, but we can imitate the behavior of a classification task by manually setting a threshold $\theta=0.01$ and defining a sample to be correctly ``classified" if the prediction error is less than $\theta$. We study the dynamics of training and test accuracy. We run experiments with two initializations $\alpha=0.5$ (small) and $\alpha=2.0$ (large), and three weight decays $\gamma=0$ (no reg), $\gamma=0.03$ (small reg) and $\gamma=1$ (large reg). As shown in Figure \ref{fig:toy_1b} (bottom), small initialization runs always generalize fast regardless of regularization. Large initialization runs (top) depended on weight decay: no regularization fails to generalize, small regularization generalizes slowly (grokking), while large regularization generalizes faster.
+
+For the large initialization $\alpha=2.0$, we do a finer sweep of $\gamma$ in $[0.03,1]$. We compute the number of steps and weight norm $w$ when training or test accuracy reaches 95\%. As shown in Figure \ref{fig:toy_1c}, the time (number of steps) to reach 95\% training accuracy is independent of weight decay $\gamma$, while the time to reach 95\% test accuracy is inversely proportional to the weight decay, as we derived above for the LU mechanism. %As shown in Figure \ref{fig:toy_2b}, generalization happens only when the weight norm of the student network gets close to that of the teacher network, which is the Goldilocks zone mentioned in Section \ref{sec:LU}.
+
+
+\section{Omnigrok: Grokking for more interesting tasks}\label{sec:grokking_exp}
+
+We now analyze loss landscapes and search for grokking for several more interesting datasets, and see that the insights obtained from our toy model can transfer to these datasets. We report the main results here, with experiment details included in Appendix \ref{app:exp_details}. %For simplicity, we will use the relative weight norm $\alpha\equiv w/w_0$ instead of $w$, where $w_0$ the is the weight norm induced by standard initialization.
+
+
+%\subsection{Image classification}\label{sec:mnist}
+
+%We verify the presence of the LU mechanism via landscape analysis in Section~\ref{subsec:mnist_landscape}, and empirically observe grokking in Section~\ref{subsec:mnist_exp}.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[]{0.335\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_train_error.pdf}
+    \caption{}
+    \label{fig:mnist_train_err}
+    \end{subfigure}
+    \begin{subfigure}[]{0.35\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_val_error.pdf}
+    \caption{}
+    \label{fig:mnist_val_err}
+    \end{subfigure}
+    \begin{subfigure}[]{0.25\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_LU_UU.pdf}
+    \caption{}
+    \label{fig:mnist_LU_UU}
+    \end{subfigure}
+    \begin{subfigure}{0.47\textwidth}
+      \centering
+      \includegraphics[width=1\linewidth]{figs/mnist-grokking-curve-many.pdf}
+        \caption{}
+        \label{fig:mnist-learning-curve}
+    %   \vspace{-15pt}%
+    \end{subfigure}
+    %\begin{subfigure}{0.29\textwidth}
+    %  \centering
+    %  \includegraphics[width=1\linewidth]{figs/mnist-phase-diagram.pdf}
+    %    \caption{}
+    %    \label{fig:mnist-phase}
+    %   \vspace{-15pt}%
+    %\end{subfigure}
+    \begin{subfigure}{0.4\textwidth}
+      \centering
+      \includegraphics[width=1\linewidth]{figs/generalization-time-vs-data-mnist.pdf}
+    \caption{}
+       \label{fig:generalization-vs-data-mnist}
+    %   \vspace{-15pt}%
+    \end{subfigure}
+    \caption{MNIST. (a) reduced training error, (b) reduced test error. Comparing A and B: larger weight norm makes learning grok (delay generalization). Comparing B and C: a larger training data size makes learning de-grok (speed up generalization). (c) "LU" holds truer for smaller data. (d) Accuracy curves for MNIST in the setting where we observe grokking. %Middle: Phase diagram with the four phases of learning dynamics on MNIST. 
+    (e) Time to generalize as a function of training set size $N$.}
+    \label{fig:mnist_landscape}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[]{0.27\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/imdb_train.pdf}
+    \caption{}
+    \label{fig:imdb_train}
+    \end{subfigure}
+    \begin{subfigure}[]{0.27\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/imdb_test.pdf}
+    \caption{}
+    \label{fig:imdb_test}
+    \end{subfigure}
+    %\centering
+    \begin{subfigure}[]{0.22\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/imdb_LU_UU.pdf}
+    \caption{}
+    \label{fig:imdb_LU_UU}
+    \end{subfigure}
+    \begin{subfigure}[]{0.22\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/imdb_grok.pdf}
+    \caption{}
+    \label{fig:imdb_grok}
+    \end{subfigure}
+    \caption{We use an LSTM to predict IMDb reviews. (a) training error; (b) test error; (c) reduced losses for data size 1k (top) and 50k (bottom); (d) With 1k data, a (weak) grokking signal is observed for large initializations ($\alpha=6$), while no grokking is observed for standard initializations ($\alpha=1$). }
+    \label{fig:imdb}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[]{0.27\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/qm9_train.pdf}
+    \caption{}
+    \label{fig:qm9_train}
+    \end{subfigure}
+    \begin{subfigure}[]{0.27\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/qm9_test.pdf}
+    \caption{}
+    \label{fig:qm9_test}
+    \end{subfigure}
+    %\centering
+    \begin{subfigure}[]{0.22\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/qm9_LU_UU.pdf}
+    \caption{}
+    \label{fig:qm9_LU_UU}
+    \end{subfigure}
+    \begin{subfigure}[]{0.22\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/qm9_grok.pdf}
+    \caption{}
+    \label{fig:qm9_grok}
+    \end{subfigure}
+    \caption{We use a GCNN to predict isotropic polarizability of molecules in the QM9 dataset. (a) training loss; (b) test loss; (c) reduced losses for data size 100 (top) and 3000 (bottom); (d) with 200 training samples, grokking is observed for large initialization ($\alpha=3$), while no grokking is observed for standard initializations ($\alpha=1$).}
+    \label{fig:qm9}
+\end{figure}
+
+
+{\bf Image classification} We visualize loss landscapes of MNIST~\citep{deng2012mnist} to verify the LU mechanism, and study the dependence on training data size. Similar to the teacher-student case, we  reduce losses and errors (one minus accuracy) to two variables (weight norm $w$  and data size $N$) by minimizing over angular directions of weights, i.e.,
+\begin{equation}\label{eq:wN}
+\resizebox{0.9\textwidth}{!}{$\tilde{l}_{\rm train}(w, N)\equiv l_{\rm train}(\mat{w}^*,N),
+\quad \tilde{l}_{\rm test}(w, N)\equiv l_{\rm test}(\mat{w}^*,N),
+\quad \mat{w}^*(w,N) \equiv \underset{||\mat{w}||_2=w}{\rm argmin}\ l_{\rm train}(\mat{w}, N),$}
+ % \tilde{l}_{\rm train}(w, N)\equiv \underset{||\mat{w}||_2=w}{\rm min}\ l_{\rm train}(\mat{w}, N),
+ % \quad 
+ % \tilde{l}_{\rm test}(w, N)\equiv \underset{||\mat{w}||_2=w}{\rm min}\ l_{\rm test}(\mat{w}, N).
+\end{equation} shown in Figure~\ref{fig:mnist_landscape} (a)(b).
+%We use a relative weight norm $\alpha=w/w_0$, where $w_0$ is the weight norm corresponding to the standard initialization (as used in PyTorch).
+%{\bf LU or UU?} When data size is small (say 200), the "LU" landscape holds true, as shown in Figure~\ref{fig:mnist_LU_UU} top. However, when data size is large (say 8000), the mismatch between training and testing errors becomes small, displaying "UU" landscapes, shown in Figure~\ref{fig:mnist_LU_UU} bottom. 
+%{\bf  [ZIMING: Please ask me to explain why I think this is a numerical training artifact and not real.]}
+%This implies that more data reduces training-testing mismatch, hence improves generalization and reduces grokking. There is a phase transition between "LU" and "UU" against data size $N$, where the critical data size $N_c$ ($N_c\approx 5$k in Figure~\ref{fig:mnist_train_err}) is arguably determined by the alignment between the inductive biases of data and neural architectures (see Appendix \ref{app:LU_UU_transition}).
+The reduced loss landscape reveals three things: (1) Larger initializations lead to grokking. Point {\bf A} in Figure~\ref{fig:mnist_landscape} corresponds to the standard initialization $(\alpha=1)$, which has low training and test errors, hence no grokking. When increasing the weight norm from {\bf A} to {\bf B}, training error is seen to remain low while test error rises. To generalize, implicit or explicit regularization such as weight decay then brings the weight norm down, leading to  delayed generalization (grokking) if regularization is small. (2) Larger datasets lead to de-grokking. Comparing {\bf B} and {\bf C} in Figure~\ref{fig:mnist_landscape}, {\bf C} is seen to have
+larger training size than {\bf B} and lower test error. Larger data size $N$ makes the Goldilocks zone broader, reducing or eliminating grokking even for large weight initializations. (3) Critical data size can be defined. As reported in ~\citep{power2022grokking, liu2022towards}, we see that there exists a critical training set size below which generalization is impossible. The effective theory analysis in  ~\citep{liu2022towards} only applies to algorithmic datasets, but not to other datasets with unknown optimal representations. The loss landscape analysis presented is this work can apply to all supervised-learning tasks. As shown in Figure~\ref{fig:mnist_landscape} (b), the contours of constant test error are thumb-like, and the tip of the thumb determines the minimum amount of data required for generalization.
+
+
+%\subsubsection{Grokking Experiment}\label{subsec:mnist_exp}
+\begin{comment}
+\begin{figure}[h]
+    \begin{subfigure}{0.45\textwidth}
+      \centering
+      \includegraphics[width=1\linewidth]{figs/mnist-grokking-curve.pdf}
+        \caption{}
+        \label{fig:mnist-learning-curve}
+    %   \vspace{-15pt}%
+    \end{subfigure}
+    %\begin{subfigure}{0.29\textwidth}
+    %  \centering
+    %  \includegraphics[width=1\linewidth]{figs/mnist-phase-diagram.pdf}
+    %    \caption{}
+    %    \label{fig:mnist-phase}
+    %   \vspace{-15pt}%
+    %\end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+      \centering
+      \includegraphics[width=1\linewidth]{figs/generalization-time-vs-data-mnist.pdf}
+    \caption{}
+       \label{fig:generalization-vs-data-mnist}
+    %   \vspace{-15pt}%
+    \end{subfigure}
+    \caption{Left: Loss curves for MNIST in the setting where we observe grokking. %Middle: Phase diagram with the four phases of learning dynamics on MNIST. 
+    Right: Time to generalize as a function of training set size $N$.}
+    \label{fig:mnist-grok}
+\end{figure}
+\end{comment}
+%We now demonstrate, for the first time, that grokking (significantly delayed generalization) is a more general phenomenon in machine learning that can occur not only on algorithmic datasets, but also on mainstream benchmark datasets. In particular, 
+%We exhibit grokking on MNIST and demonstrate that we can control grokking by adjusting weight decay and learning rate, just as in~\citep{liu2022towards} for algorithmic datasets.
+
+
+%{\bf [ZIMING: It feels weird not to present the landscape analysis above as part of an experiment, since the test landscape plot depends on completing the training to obtain ${\bf w}^*$]}
+
+%{\bf [MAX: I separated them to emphasize their different setups: w/ or w/o norm constraint. I agree to merge 4.1.1 and 4.1.2, saving us extra space. ]}
+
+Guided by the landscape analysis, we make two nonstandard decisions to induce grokking on MNIST: (1) we reduce the size of the training set from 60k to 1k samples (by taking a random subset) and (2) we increase the scale of the weight initialization distribution (by multiplying the initial weights, sampled with Kaiming uniform initialization, by a constant $\alpha>1$). With these modifications to the training set size and initialization scale, we train a depth-3 width-200 MLP with ReLU activations with the AdamW optimizer using MSE loss with one-hot targets. We find that the network quickly fits the training set, and test accuracy improves much later, as shown in Figure~\ref{fig:mnist-learning-curve}, just as in the stereotypical grokking learning first observed in algorithmic datasets.  Figure~\ref{fig:generalization-vs-data-mnist} shows the effect of training set size on time to generalization for MNIST. We find a result similar to what ~\citep{power2022grokking} observed, namely that generalization time increases rapidly once one approaches a certain critical data set size. We also include the learning phase diagram in Appendix \ref{app:mnist_pd}.
+
+%We will provide theoretical motivation for this decision, of changing the initialization distribution to induce grokking, in a follow-up work. Relevant to this, initialization scale is found to regulate ``kernel'' vs ``rich'' learning regimes in networks~\cite{pmlr-v125-woodworth20a}. 
+
+
+% [Why do we increase the initialization scale and use a smaller dataset?] (1) large scales to artificially introduce overfitting, cite the PMLR paper on init scale. (2) smaller datasets are more prone to grokking. 
+
+%With this setup, we also compute a phase diagram over the model weight decay and the last layer learning rate. See Figure~\ref{fig:mnist-phase}. While in MLPs it is less clear what parts of the network to consider the ``encoder'' vs the ``decoder'', for our purposes here we consider the last layer to be the ``decoder'' and vary its learning rate relative to the rest of the network. The resulting phase diagram has some similarity to Figure 6 Right in ~\citep{liu2022towards}. We observe a ``confusion''phase in the bottom right (high learning rate and high weight decay), a ``comprehension'' phase bordering it, a ``grokking'' phase as one decreases weight decay and decoder learning rate, and a ``memorization`` phase at low weight decay and low learning rate. Instead of an accuracy threshold of 95\%, we use a threshold of 60\% here for validation accuracy for runs to count as comprehension or grokking. This phase diagram demonstrates that with sufficient regularization, we can again ``de-grok'' learning.
+%This phase transition point (here seen at $N_c\approx 5$k) agrees with our landscape analysis above. In Appendix \ref{app:mnist_pd}, we also investigate how optimization parameters (weight decay and learning rate) can affect phases of learning.
+
+
+{\bf Sentiment analysis of text} We look for grokking using LSTMs~\citep{hochreiter1997long} for IMDb dataset~\citep{maas2011learning}. Similar to Eq.~(\ref{eq:wN}), we reduce training and test losses to depend on only the weight norm $w$ and data size $N$. We show the reduced training and test error in Figure~\ref{fig:imdb} (a)(b). For large data size say the full dataset, training and test errors have similar "U" shapes~\footnote{\zm{In principle, reduced training losses should be non-increasing ("L"), but optimization issues may occur for too large initializations~\citep{schoenholz2016deep}.}}, so one cannot create grokking via the "LU" mechanism. For small data size, say 1k, however, the mismatch between training and test errors makes it possible to create grokking via large initializations. In Figure~\ref{fig:imdb} (c), we initialize weights larger ($\alpha=6$) with weight decay 1, overfitting is complete within $10^2$ steps, but generalization does not start until around $10^3$ steps. Note that the generalization "jump" is not as sharp as on algorithmic datasets~\citep{power2022grokking} or MNIST, but at least generalization is delayed here. By contrast, if we use the standard initialization ($\alpha=1$) with no weight decay, generalization happens early on during training, and does not improve much after overfitting.
+
+
+
+
+{\bf Molecules} We search for grokking using the graph convolutional neural network (GCNN) for QM9 dataset~\citep{ramakrishnan2014quantum}. Similar to Eq.~(\ref{eq:wN}), we define the reduced training/test losses, which are only dependent on weight norm $w$ and data size $N$. As shown in Figure~\ref{fig:qm9}(a)(b), when data size is large, training and test losses have similar "U" shapes, hence grokking is impossible via the "LU mechanism". When data size is small, training and test losses mismatch somewhere in the region $\alpha=w/w_0>1$, making grokking possible. Indeed, shown in Figure~\ref{fig:qm9}(d), there is a sharp drop in test loss around $10^4$ steps if initialization is 3 times larger than standard, while standard initialization does not lead to grokking. Note that zero weight decay is applied in both cases, implying the existence of implicit regularizations.
+
+
+
+\section{Representation is key to grokking}\label{sec:addition}
+
+
+In Section \ref{sec:grokking_exp}, we showed that increasing initialization scales can make grokking happen for standard ML tasks. However, this seems a bit artificial and does not explain why standard initialization leads to grokking on algorithmic datasets, but not on standard ML datasets, say MNIST. The key difference is how much the task relies on representation learning. For the MNIST dataset, the quality of representation determines whether the test accuracy is 95\% or 100\%; by constrast in algorithmic datasets, the quality of representation determines whether test accuracy is random guess (bad representation) or 100\% (good representation). So overfitting (under a bad representation) has a more dramatic effect on algorithmic datasets, i.e., the model weights increase quickly during overfitting but test accuracy remains low. During overfitting, model weight norm is much larger than at initialization, but then drops below the initialization norm when the model generalizes, shown in Figure~\ref{fig:transformer-algo-norm-a}, and also observed by~\citep{neel2022}. As a byproduct, we are able to eliminate grokking by constraining the model on a small weight norm sphere, shown in Figure~\ref{fig:transformer-algo-norm-b}.
+
+
+
+In the following, we will compare algorithmic datasets (Section \ref{subsec:addition}) to MNIST (Section \ref{subsec:mnist_repr}). We show how their loss landscapes depend on representations differently, and how the difference leads to different outcomes (grokking or not).
+
+%{\bf Nature-In-the-Loop analysis} Translating the above story to the language of neural networks, nature plays the role of a generator which makes the world colorful but complicated, while intelligence aims to build a discriminator that simplifies things. We propose a Nature-In-the-Loop (NIL) analysis: in principle, analyzing neural networks should consider the augmented system, including both the model we build (discriminator) and  nature (generator). This paradigm is effective to resolve the initialization puzzle. We argue that, in the modular addition dataset, the nature generator behaves like a model of large weights (explanation below) in order to produce the rather random extrinsic representation. When we take the generator and the discriminator together and consider its initialization as a whole, discriminator should correspondingly be initialized as smaller. Then leaves the last question: how can we tell if the generator is large? 
+
+
+
+
+
+\subsection{Algorithmic datasets}\label{subsec:addition}
+
+
+
+{\bf Setup} We take the toy addition setup in ~\citep{liu2022towards}, where \zm{each input digit $0\leq i\leq p-1$ (output label $0\leq k\leq 2(q-1)$) is embedded as a vector $\mat{E}_i$ ($\mat{Y}_k$). A decoder MLP is employed to predict $\mat{Y}_k={\rm Dec}(\mat{E}_i+\mat{E}_j)\ (k=i+j)$. In the setup of grokking, both the decoder and the input representations $\mat{R}\equiv\{\mat{E}_i$\} are trainable, with learning rates $\eta_D$ and $\eta_R$, respectively; in the setup of landscape analysis, only decoder is trainable, as we explain below.} Training and test losses depend on three factors: (i) representation $\mat{R}$, (ii) weight norm $w$ and (iii) weight direction $\hat{\mat{w}}$. As in previous sections, we can optimize $\hat{\mat{w}}$ by minimizing the training loss  on constant weight norm spheres. We further reduce the high-dimensional representations to 1D by interpolating in a particular direction:\begin{equation}\label{eq:arithmetic_m}
+    \mat{R} = m\mat{R}_{\rm random} + (1-m)\mat{R}_{\rm linear}
+\end{equation}
+where $\mat{R}_{\rm linear}$ refers to the linear representation in which number $k$ is embedded to $\mat{E}_k=[k,0,\cdots,0]$, $\mat{R}_{\rm random}$ is drawn from Gaussian distributions, i.e, $\mat{E}_k\sim N(\mat{0},\mat{I})$, and $m\in[0,1]$ is a scalar interpolating between $\mat{R}_{\rm linear}$ and $\mat{R}_{\rm random}$, that we term {\it representation messiness} because $\mat{R}=\mat{R}_{\rm linear}$ when $m=0$, and $\mat{R}=\mat{R}_{\rm random}$ when $m=1$. After these reductions, both training and test losses become functions of two variables, representation messiness $m$ and weight norm $w$:
+\begin{equation}\label{eq:wm}
+    \resizebox{0.9\textwidth}{!}{$\mat{w}^*(w,m) \equiv \underset{||\mat{w}||_2=w}{\rm argmin}\ l_{\rm train}(\mat{w}, m),\quad \tilde{l}_{\rm train}(w, m)\equiv l_{\rm train}(\mat{w}^*,m), \quad \tilde{l}_{\rm test}(w, m)\equiv l_{\rm test}(\mat{w}^*,m)$}
+\end{equation}
+Note that our definition of $\tilde{l}_{\rm train}(w,m)$  excludes the weight decay term $\ell_{\rm reg}=\frac{1}{2}\gamma w^2$, but we should be aware of its presence when we analyze the dynamics of $(w,m)$, which is governed by the gradient flow on $\tilde{l}_{\rm train}(w,m)$ plus weight decay ($\eta_R/\eta_D$ are learning rates of representation/decoder): 
+\begin{equation}\label{eq:wm_dynamcis}
+    \frac{dw}{dt} = -\eta_D\left(\frac{\partial\tilde{l}_{\rm train}}{\partial w} + \gamma w\right),\quad  \frac{dm}{dt} = -\eta_R\frac{\partial\tilde{l}_{\rm train}}{\partial m},
+\end{equation}
+{\bf Landscape} We show $\tilde{l}_{\rm train}(w, m)$ and $\tilde{l}_{\rm test}(w, m)$ in Figures~\ref{fig:arithmetic_a} and \ref{fig:arithmetic_b}, indicating the generalizing solution with a green star.
+%If we take the 1D slice $m=0$, the two losses (as functions of $w$) obey the LU picture. We mark the lowest validation loss with a green star, and observe that: (L) the training loss monotonically decreases as the weight norm increases, but becomes approximately zero (hence flat) when going beyond the green star. (U) the validation loss decreases  as the weight norm increases, but rises again beyond the green star. For general $m\geq 0$, we define the turning point $w_c(m)$ as the smallest $w_c$ such that $\tilde{l}_{\rm train}(w, m)\leq \epsilon$ (say $\epsilon=0.01$). 
+Based on the reduced training loss (Figure~\ref{fig:arithmetic_a}), we can divide the 2D plane into two regions {\bf I} and {\bf II}, separated by a dashed yellow line (the contour of training loss = 0.05): ({\bf I}): The darker region, with high training losses/gradients and small weight norm. ({\bf II}): The lighter region, with low training losses/gradients and large weight norm. Comparing Figures~\ref{fig:arithmetic_a} and~\ref{fig:arithmetic_b} reveals that training and test loss landscapes differ, especially in region {\bf II}. Moreover, while the training loss depends weakly on $m$, the test loss depends strongly on $m$. As we will see, the (weak) dependence of training loss on representation drives the model to the generalizing solution. However, the driving force is small because the dependence is weak, leading to grokking. %This rigorizes the informal conjecture in~\citep{rohin2021grokking} suggesting that simpler functions which
+We elaborate below how these particular loss landscapes lead to grokking. %We will show that these observations do \textit{not} hold for MNIST in Section \ref{subsec:mnist_repr}. 
+%For now, we aim to explain grokking dynamics based on the this "strange", "mismatched" landscape.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[]{0.34\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/arithmetic_training_landscape.pdf}
+    \caption{}
+    \label{fig:arithmetic_a}
+    \end{subfigure}
+    \begin{subfigure}[]{0.34\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/arithmetic_validation_landscape.pdf}
+    \caption{}
+    \label{fig:arithmetic_b}
+    \end{subfigure}
+    \begin{subfigure}[]{0.28\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/arithmetic_loss_path.pdf}
+    \caption{}
+    \label{fig:arithmetic_path_loss}
+    \end{subfigure}
+    
+    
+    
+    \begin{subfigure}[]{0.33\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/arithmetic_45_contour.pdf}
+    \caption{}
+    \label{fig:arithmetic_c}
+    \end{subfigure}
+    \begin{subfigure}[]{0.3\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/arithmetic_data_dependence.pdf}
+    \caption{}
+    \label{fig:arithmetic_d}
+    \end{subfigure}
+    \begin{subfigure}[]{0.33\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/arithmetic_illustration.pdf}
+    \caption{}
+    \label{fig:arithmetic_e}
+    \end{subfigure}
+    \caption{Loss landscapes for a toy MLP, on the 2D $(w,m)$ plane. (a) Training loss splits the plane into two regions: large loss small $w$ (fast dynamics) and small loss large $w$ (slow dynamics). (b) Test loss; the green star is the generalizing solution. (c) Losses along an illustrative path $\rm A\to E$, demonstrating multiple descent; (d) zoom-in of the training loss highlighting the gradients on the boundary. (e) the boundary depends on training data size; (f) a simple illustration of grokking dynamics.}
+    \label{fig:toy_arithmetic}
+\end{figure}
+
+{\bf Grokking dynamics}
+In region {\bf II}, the dynamics is slow (for small $\gamma$) due to nearly vanishing gradients. By contrast, the dynamics in region {\bf I} is relatively fast. As we will explain, dynamics is also slow on the boundary of {\bf I} and {\bf II}, and grokking is the consequence of traversing region {\bf II} and/or the boundary. 
+
+Let us analyze a typical path {\bf A} to {\bf E} shown in Figure~\ref{fig:toy_arithmetic}(a)(b). {\bf A} rolls "downhill" to {\bf B} following training gradients, possibly continuing to {\bf C} due to momentum. {\bf C} is located in {\bf II} where $\tilde{l}_{\rm train}\approx 0$, so according to Eq.~(\ref{eq:wm_dynamcis}),  $dm/dt\approx 0$ and $dw/dt\approx-\eta_D\gamma w$ or, equivalently, $d({\rm log}w)/dt \approx -\eta_D\gamma$. So $({\rm log} w, m)$ moves with a constant speed $v=\eta_D\gamma$ in the $-w$ direction from {\bf C} to {\bf D}, a point near the boundary. Negative gradients around the boundary point towards larger $w$ and smaller $m$, shown in Figure~\ref{fig:arithmetic_c} (a zoom-in of Figure~\ref{fig:arithmetic_a}). The gradients become increasingly large as the model goes deeper inside region {\bf I}, and at some point, the gradient totally cancels out $v$ in the gradient direction, making the model start to drift along the boundary, as illustrated in Figure~\ref{fig:arithmetic_e}. Then the model moves along the boundary with a new velocity $v'=v{\rm cos\theta}$~\footnote{For simplicity, we assume $\eta_R=\eta_D$ here, but the analysis can apply to any $(\eta_R,\eta_D)$.}, until it reaches the generalizing solution {\bf E}. 
+
+
+% \begin{figure}
+%     \centering
+
+%     \includegraphics[width=3.0in]{figs/algorithmic-weight-norm-vs-time.pdf}
+%     \caption{Model weight norm over time. For a transformer learning modular addition ($p = 113$), weight norm first increases, and is highest during the period of overfitting, but then drops to become lower than initial weight norm during the period of generalization.}
+%     \label{fig:algorithmic-norm-over-time}
+% \end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[]{0.45\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/algorithmic-weight-norm-vs-time.pdf}
+    \caption{}
+    \label{fig:transformer-algo-norm-a}
+    \end{subfigure}
+    % \hspace{1cm}
+    \begin{subfigure}[]{0.45\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/algorithmic-constrained-learning-curves.pdf}
+    \caption{}
+    \label{fig:transformer-algo-norm-b}
+    \end{subfigure}
+    \caption{Training 1L transformer on modular addition ($p=113$). (a) Weight norm, train accuracy, and test accuracy over time, initialized and trained normally. Weight norm first increases, and is highest during the period of overfitting, but then drops to become lower than initial weight norm when the model generalizes. (b) Constrained optimization at constant weight norm $(\alpha = 0.8)$ largely eliminates grokking, with test and train accuracy improving concurrently.}
+    \label{fig:algorithmic-norm-over-time}
+\end{figure}
+
+
+The slow dynamics from {\bf C} to {\bf E} is the origin of grokking. During this period, the model first moves in the $-w$ direction with a velocity $v$ over the distance $L_1=L-h{\rm cot}\theta$, and then moves along the boundary with a velocity $v'$ over the distance $L_2=h/{\rm sin}\theta$. So the total time is $t=L_1/v+L_2/v'=(L+h{\rm tan}\theta)/(\eta_D\gamma)$. This formula agrees with the observation that large weight decays $\gamma$ and/or larger decoder learning rates $\eta_D$ can make generalization happen faster~\citep{power2022grokking, liu2022towards}. Besides, the path manifests intriguing multiple descent of test loss, shown in Figure~\ref{fig:arithmetic_path_loss}.
+
+The above picture is supported by a transformer experiment: Figure~\ref{fig:transformer-algo-norm-a}, shows how model norm changes over time and we see that there is an initial increase in weight norm, which peaks during overfitting, but then drops during the period of generalization to be lower than the initialization norm. For this experiment, we used the setup of~\citep{neel2022}, training a 1-layer transformer on modular addition ($p=113$). The model width $d_\text{model} = 128$, with 4 attention heads, and $d_\text{mlp} = 512$ with ReLU activations. We train with AdamW with a learning rate of 0.001 and weight decay $\gamma = 1$. 
+
+
+{\bf Dependence of grokking on training data size} Another important observation in ~\citep{power2022grokking} is that grokking happens faster for larger training size. Our landscape analysis can also explain the data size dependence. In Figure \ref{fig:arithmetic_d}, we show the contours (training loss = 0.02) for different training sizes (25, 35, 45, 55). The contours of training size 45 and 55 both connect to the green star, meaning that  generalization will eventually happen. However, the slopes of the contours are different, i.e., $\theta_{55}<\theta_{45}$. Since $t=(L+h{\rm tan}\theta)/(\eta_D\gamma)$ increases as $\theta$ increases, we have $t_{55}<t_{45}$, i.e, more training data leads to faster grokking. For training size 35 and 25, the contours do not connect to the green star, so generalization will not happen, no matter how long the training will be run.
+
+{\bf De-grokking by constraining weight norm} Guided by our understanding of grokking from the LU mechanism, we find that we can control grokking in the setting where it was first observed by~\cite{power2022grokking} -- transformers trained on algorithmic tasks. As shown in Figure~\ref{fig:transformer-algo-norm-b}, reducing the initialization scale and constraining optimization to hold model weight norm constant over training brings train accuracy and test accuracy learning curves together, almost eliminating grokking.
+
+
+%{\bf Inspecting more trajectories} Above we mainly focused on explaining grokking. As shown in  Figure~\ref{fig:arithmetic_a}, there are many interesting dynamics besides grokking, depending on initialization and learning rates. In particular, we study six trajectories. (A) fast generalization: Initialized in the small norm region and equipped with a large $\eta_R$, the point first moves fast towards $m=0$ (the good representation), followed by a fast increase of the weight norm towards the green star. (B) grokking: Initialized in the small norm region and equipped with a small $\eta_R$, the point first moves fast towards the boundary, followed by a slow drift along the boundary until it hits the green star. (C) memorization: Initialized in the small norm region and equipped with an extremely small $\eta_R$, the dynamics is similar to B, but ends up at a red cross (a local minima of the training loss which does not generalize). (D) grokking: Initialized in the large norm region and the initialized representation is close to the perfect one, the point drifts slowly towards the boundary, followed by a slow drift along the boundary until it hits the green star. (E) grokking with double descent: Similar to (D), but the validation loss undergoes a double descent. (F) memorization: Similar to (D), but ends up at a red cross without generalization.
+
+
+
+\subsection{MNIST}\label{subsec:mnist_repr}
+
+
+We now study how training and test losses depend on representation messiness in the MNIST dataset. We denote the $28\times 28$ images as the raw representation $\mat{R}_{\rm raw}$. We construct a linearly separable representation $\mat{R}_{\rm linear}$ by assigning input representations proportional to their label $y_i$, for example, an image of a 2 is represented by a matrix with all elements being 2. Similar to Eq.~(\ref{eq:arithmetic_m}), we use $m\in [0,1]$ to interpolate between $\mat{R}_{\rm raw}$ and $\mat{R}_{\rm linear}$:
+\begin{equation}
+    \mat{R} = m\mat{R}_{\rm raw} + (1-m)\mat{R}_{\rm linear},
+\end{equation}
+Similarly to Eq.~(\ref{eq:wm}), we define and plot $\tilde{l}_{\rm train}(w, m)$ and $\tilde{l}_{\rm test}(w, m)$ in Figure~\ref{fig:mnist_repr}, using the full dataset $N=60000$. Comparing Figures~\ref{fig:mnist_repr_train} and~\ref{fig:mnist_repr_test} reveals two things: (1) The training and test losses behave similarly; (2) Both training and test losses depend very weakly on $m$. This implies that the raw image representation is already quite close to being optimal, so decent test accuracy can be obtained even without learning optimal representations. As a result, grokking does not occur (Figure~\ref{fig:mnist_repr_path}). 
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[]{0.3\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_train_loss_repr.pdf}
+    \caption{}
+    \label{fig:mnist_repr_train}
+    \end{subfigure}
+    \begin{subfigure}[]{0.30\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_test_loss_repr.pdf}
+    \caption{}
+    \label{fig:mnist_repr_test}
+    \end{subfigure}
+    \begin{subfigure}[]{0.25\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_loss_path.pdf}
+    \caption{}
+    \label{fig:mnist_repr_path}
+    \end{subfigure}
+    \caption{MNIST landscapes as functions of representation messiness $m$ and weight norm $w$: (a) training loss, and (b) test loss. Training and test losses do not have significant mismatch, and neither of them depend on representation strongly, which is in stark contrast to algorithmic datasets (Figure~\ref{fig:toy_arithmetic}). (c) an illustrative path $\rm A\to B\to C$ does not manifest grokking.}
+    \label{fig:mnist_repr}
+\end{figure}
+
+
+Comparing Figure~\ref{fig:toy_arithmetic} and~\ref{fig:mnist_repr}, we see that the (strong) dependence of test performance on the representation is the key to grokking: the dependence on representation is strong for algorithmic datasets, so grokking happens. By contrast, the dependence is weak for MNIST, so grokking does not happen. %More discussion on representations are included in Appendix~\ref{app:extrinsic-intrinsic-repr}.
+
+
+{\bf Discussion: grokking on language models?} We conjecture that grokking is more easily observed in tasks where generalization relies heavily on learning good representations (from scratch). This seems to imply the possibility of grokking on language tasks where word embeddings are key to generalization. However, we have not yet observed clear grokking signals for large language models, perhaps because: (i) the structure of languages is complicated, so the "optimal representation" for language might be much "messier" than algorithmic representations. (ii) Pre-training avoids learning representations from scratch, hence helps reduce possible grokking.
+
+\section{Relation to Related works}\label{sec:related_works}
+{\bf Grokking} was first observed for algorithmic datasets by~\citep{power2022grokking}. Several formal or informal attempts have been made to understand grokking: (a)~\citep{liu2022towards} attributes grokking to the slow formation of good representations. (b) ~\citep{rohin2021grokking} suggests that
+generalizable solutions  achieve lower loss than overfitting solutions, providing a training signal
+encouraging generalization. (c)~\citep{neel2022} suggests grokking is a phase change due to limited data and regularization. (d)~\citep{barak2022hidden} suggests that generalization is due not to random search, but to hidden progress of SGD to gradually amplify a Fourier gap. (e)~\citep{thilak2022slingshot} links grokking to the "Slingshot mechanism" specific to adaptive optimizers. (f) ~\citep{beren2022grokking} describes training as a random walk over parameters. Our conclusion supports (a)(b)(c)(d), but does not necessarily negate (e)(f).
+
+{\bf Double descent} is the phenomenon that performance first gets worse and then gets better as we increase the model size, data size, training epochs or regularization~\citep{nakkiran2021deep,yilmaz2022regularization}. The typical "U" shape of test loss in this paper does not conflict with double descent, because we are plotting the weight norm instead of the number of model parameters~\citep{CS229}. However, the "U"-shape should better be considered as empirically common rather than provably universal. In fact, the interaction between properties of data and inductive biases of learning algorithms can be more complicated than double descent~\citep{chen2021multiple, d2020triple}.
+
+{\bf Initialization} From the optimization perspective, initializations are usually based on the "edge of chaos" idea such that variance of features and gradients should be preserved in the forward and backward pass~\citep{glorot2010understanding,he2015delving,bahri2020statistical, yang2017mean,jing2017tunable}, or based on analyzing Jacobians and/or Hessians~\citep{skorski2020revisiting}. From the generalization perspective, it was shown that large initializations overfit data easily but result in poor generalization~\citep{xu2019training,zhang2020type}, which agrees with our LU mechanism.
+
+%{\bf Normalization} is common in deep learning~\citep{ioffe2015batch, ba2016layer,wu2018group}. The gradient of pre-normalization parameters is constrained to a sphere~\citep{li2020reconciling,wan2021spherical,lobacheva2021periodic}. Although we similarly optimize training loss over spheres, our analysis applies to architectures with and without normalization layers. Moreover, while their motivation was to study dynamics related to normalization, our motivation is to reduce the dimensionality of loss landscapes for better visualization, because neural loss landscapes are high-dimensional, visualizing it is highly non-trivial~\citep{li2018visualizing}.
+
+{\bf Weight decay regularization} is a standard trick in machine learning and has various effects on optimization and generalization~\citep{zhang2018three,van2017l2}. In particular,~\citep{lewkowycz2020training} observes that it takes $t\propto 1/\lambda$ training steps to reach maximum test performance. This is strikingly similar to the grokking time $t\propto 1/\lambda$ we derived from the LU mechanism.
+
+
+\section{Conclusions}\label{sec:conclusions}
+
+This study elucidates the grokking phenomenon from the perspective of loss landscapes. Our conclusions are: (i) grokking originates from the mismatch between training and test losses ("LU" mechanism). (ii) grokking can happen in various models for a wide range of datasets, although the grokking signature is usually most dramatic for algorithmic datasets. (iii) The dramaticness of grokking depends on how much the task relies on learning representations. This work not only reveals the mechanism of grokking, but also shows that reduced landscape analysis is a useful tool for characterizing data-model interaction and representation learning.
+
+
+\section*{Acknowledgement}
+We thank Wenxian Shi, Niklas Nolte, Ouail Kitouni and Mike Williams for helpful discussions. This work was supported by The Casey and Family Foundation, the Foundational Questions
+Institute, the Rothberg Family Fund for Cognitive Science, the NSF Graduate Research Fellowship (Grant No. 2141064), and the NSF AI Institute for Artificial Intelligence and Fundamental Interactions (IAIFI) through NSF Grant No. PHY-2019786.
+
+
+%\section*{Acknowledgement}
+%We thank xxx for helpful discussions. This work was supported by The Casey and Family Foundation, the Foundational Questions Institute, the Rothberg Family Fund for Cognitive Science and the NSF AI Institute for Artificial Intelligence and Fundamental Interactions (IAIFI) through NSF Grant No. PHY-2019786.
+
+
+
+
+\bibliography{omnigrok.bib}
+
+%\bibliographystyle{iclr2023_conference}
+
+\newpage
+
+{\huge Appendix}
+\appendix
+
+\section{Experiment details}\label{app:exp_details}
+
+
+{\bf Sentiment analysis of text}
+IMDb~\citep{maas2011learning} includes 50k movie reviews to be classified as being positive or negative. To pre-process the data, we extract the 1000 most frequent words and tokenize each review into an array of token indices. Less frequent words are ignored, and each review array is padded to length 500. We adopt the LSTM model~\citep{hochreiter1997long} to perform the classification, with two layers, embedding dimension 64, and hidden dimension 128. We use the Adam optimizer~\citep{kingma2014adam} with learning rate 0.001 to minimize the binary cross entropy loss. We hold back 25\% of the dataset for testing.
+
+{\bf Molecules} QM9 is a database for small molecules and their properties. We use a graph convolutional neural network (GCNN) to predict the isotropic polarizability. The GCNN contains 2 convolutional layers with ReLU activation, followed by a linear layer. We use the Adam optimizer with learning rate 0.001 to minimize the MSE loss. We split the dataset into 50/50 train/test.
+
+{\bf MNIST} We train width-200 depth-3 ReLU MLPs on the MNIST dataset with MSE loss. We use the AdamW optimizer with a learning rate of 0.001 and a batch size of 200.
+
+% \section{Phase diagram of grokking on MNIST}\label{app:mnist_pd}
+
+% %With the setup in Section~\ref{sec:mnist}, 
+% We compute a phase diagram over the model weight decay and the last layer learning rate (see Figure~\ref{fig:mnist-grok-pd}). The four phases of learning are defined in Table~\ref{tab:four_phases}. While in MLPs it is less clear what parts of the network to consider the ``encoder'' vs the ``decoder'', for our purposes here we consider the last layer to be the ``decoder'' and vary its learning rate relative to the rest of the network. The resulting phase diagram has some similarity to Figure 6 Right in ~\citep{liu2022towards}. We observe a ``confusion''phase in the bottom right (high learning rate and high weight decay), a ``comprehension'' phase bordering it, a ``grokking'' phase as one decreases weight decay and decoder learning rate, and a ``memorization`` phase at low weight decay and low learning rate. Instead of an accuracy threshold of 95\%, we use a threshold of 60\% here for validation accuracy for runs to count as comprehension or grokking. This phase diagram demonstrates that with sufficient regularization, we can again ``de-grok'' learning.
+
+
+% \begin{table}[htbp]
+%   \caption{Definitions of the four phases of learning}
+%   \label{tab:four_phases}
+%   \centering
+%   \begin{tabular}{cccc}
+%     \toprule
+%     & \multicolumn{3}{c}{criteria}\\ \cmidrule(r){2-4}
+%     Phase  & \makecell{training acc > 60\% \\within $10^5$ steps} & \makecell{test acc > 60\% \\within $10^5$ steps} & \makecell{step(test acc>60\%)\\$-$step(training acc>60\%)<$10^3$} \\
+%     \midrule
+% {\bf Comprehension}   &  Yes & Yes & Yes \\
+%     {\bf Grokking} & Yes & Yes & No \\
+%     {\bf Memorization} & Yes & No & Not  Applicable \\
+%     {\bf Confusion} & No & No & Not Applicable\\ \bottomrule
+%   \end{tabular}
+% \end{table}
+
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.4\linewidth]{figs/mnist-phase-diagram.pdf}
+%     \vspace{-15pt}%
+%     \caption{Phase diagram with the four phases of learning dynamics on MNIST.}
+%     \label{fig:mnist-grok-pd}
+% \end{figure}
+
+\section{Reduced loss for modular addition with transformers}
+
+In Figure~\ref{fig:transformer-reduced-landscape} we show reduced loss landscape plots for transformers trained on modular addition. We use the setup of~\cite{neel2022} and train a 1-layer transformer on modular addition ($p = 113$) with $d_\text{model} = 128$, 4 attention heads, and $d_\text{mlp} = 512$ with ReLU activations. We train with a learning rate of 0.001 while constraining model weight norm, for a variety of $\alpha$ and a variety of train set fractions. The LU shape holds for $\alpha \in [0.1, 4]$ (some optimization issue may be responsible for the rise in train loss for $\alpha > 4$). We see the critical train set size is approximately 0.25, in line with earlier studies on grokking.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figs/2d-reduced-transformer.jpg}
+    \caption{Reduced loss landscapes for transformers trained on modular addition, the original setting where grokking was observed.}
+    \label{fig:transformer-reduced-landscape}
+\end{figure}
+
+
+\section{time to generalize versus weight decay}
+
+In our discussion of the ``LU mechanism'' as an explanation for grokking in Section~\ref{sec:LU}, we predicted that the training time required for a model to generalize should be $ t \propto \gamma^{-1}$ where $\gamma$ is the weight decay. To test this, we perform a grid search over weight decays $\gamma$ and plot the number of training steps required for models to reach a specified level of test accuracy in Figure~\ref{fig:wd_dependence_algorithmic}-\ref{fig:wd_dependence_mnist}. We also show full training curves for these runs in Figure~\ref{fig:wd_dependence_algorithmic_timeseries}-\ref{fig:wd_dependence_mnist_timeseries}. We perform experiments in two setups:
+\begin{itemize}
+    \item[(a)] \textbf{Transformer on modular addition}: We use the replication of grokking from~\citet{neel2022} and train a 1-layer transformer on modular addition ($p=113$ and a train set fraction of $0.3$) where $d_\text{model} = 128$, with 4 attention heads, $d_\text{mlp} = 512$, ReLU activations, and an AdamW learning rate of 0.001. From Figure~\ref{fig:wd_dependence_algorithmic}, we find that $t \propto \gamma^{-1}$ holds across roughly two orders of magnitude of $t$ and $\gamma$. There is some seed dependence on the generalization time (some seeds consistently require longer to generalize), but for each seed (corresponding to a particular model initialization) the relation $t \propto \gamma^{-1}$ appears to fit the data well.
+
+    \item[(b)] \textbf{ReLU MLP on MNIST}: We train ReLU MLPs on MNIST as described in Appendix~\ref{app:exp_details}. We use an $\alpha = 9.0$ and train on a reduced training set of 1000 samples to delay generalization / induce grokking. From Figure~\ref{fig:wd_dependence_mnist}, we find that for $\gamma$ roughly between 0.1 and 1.0 the relation $t \propto \gamma^{-1}$ holds. Very high values of weight decay seem to mess with optimization. On the other hand, with very low weight decay the model generalizes faster than naively expected, perhaps due to implicit regularization.  
+
+\end{itemize}
+
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[]{0.49\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/weight-decay-dependence-transformer.pdf}
+    \caption{}
+    \label{fig:wd_dependence_algorithmic}
+    \end{subfigure}
+    % \hspace{1cm}
+    \begin{subfigure}[]{0.49\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/weight-decay-dependence-mnist.pdf}
+    \caption{}
+    \label{fig:wd_dependence_mnist}
+    \end{subfigure}
+    \begin{subfigure}[]{0.49\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/learning-curves-varying-weight-decay-algorithmic.pdf}
+    \caption{}
+    \label{fig:wd_dependence_algorithmic_timeseries}
+    \end{subfigure}
+    \begin{subfigure}[]{0.49\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/learning-curves-varying-weight-decay-mnist.pdf}
+    \caption{}
+    \label{fig:wd_dependence_mnist_timeseries}
+    \end{subfigure}
+    \caption{Time to generalize as a function of weight decay: we investigate to what extent the relation $t \propto \gamma^{-1}$ holds, where $t$ is number of training steps needed for the model to generalize and $\gamma$ is the AdamW weight decay. When a lower weight decay is used, models spend longer in the period of overfitting before eventually generalizing. We show the generalization time $t$ as a function of $\gamma$ in (a)-(b) and full training curves for these runs in (c)-(d).}
+    \label{fig:wd_dependence}
+\end{figure}
+
+
+\begin{comment}
+\section{Extrinsic and intrinsic representations}\label{app:extrinsic-intrinsic-repr}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{figs/compare_dataset.png}
+    \caption{Grokking has not been observed in MNIST classifications, while has been observed in learning the modular addition (in general, algorithmic operations). These datasets differ in the topology of their data representations. Please read the main texts for details.}
+    \label{fig:compare_dataset}
+\end{figure}
+
+
+{\bf Intrinsic and extrinsic representations} Arguably each task has an intrinsic representation space, in which data are represented in a compact way and predictions can be easily computed from it. As illustrated in Figure \ref{fig:compare_dataset}, the intrinsic representation of the MNIST datasets should allow linear separation of different classes, and the intrinsic representation of the modular addition dataset may be best represented as the "clock math". However, such intrinsic representations are generally unavailable in real life. More accessible are extrinsic representations, in which data are represented in a redundant way but more accessible in nature. For example, an MNIST image is represented by a vector of pixel values, and a number is represented as a random embedding vector (if we treat numbers as independent symbols without inter-relations). The goal of intelligence is thus to recover/discover the intrinsic representation from the extrinsic representation. For the MNIST dataset, the extrinsic representation may distort the geometry of the data manifold but largely preserves the topology (e.g., connectivity), at variance with the modular addition case, in which even the topology is broken (embedding vectors are random at initialization).
+\end{comment}
+
+
+\section{Section \ref{subsec:addition} setup}\label{app:addition}
+
+{\bf Architecture} Similar to ~\cite{liu2022towards}, the decoder architecture is an MLP with hard coded addition. Each input symbol $i$ is encoded to a scalar $E_i$. Each output symbol $k$ is represented by a 30D random vector $\hat{\mat{Y}}_k$. We consider addition with base $p$, so input $0\leq i,j\leq p-1$ and output $0\leq k=i+j\leq 2(p-1)$. We denote \textit{representation} as $\mat{R}=\{E_0,E_1\cdots, E_{p-1}\}$. The MLP has two hidden layers, with neurons 1-200-200-30 in each layer and ReLU activations. Given a training sample $(E_i,E_j)\to \mat{Y}_k$ where $i+j=k$, the prediction of the MLP decoder is 
+\begin{equation}
+    \mat{Y}_k = {\rm Dec}_{\mat{w}}(E_i+E_j),
+\end{equation}
+and the loss function being the mean squared error (MSE) between $\mat{Y}_k$ and $\hat{\mat{Y}}_k$, and $\mat{w}$ being the decoder weight. Although the common setup of grokking is to make both the representation $\mat{R}$ and the decoder $\mat{w}$ trainable, we will freeze part of them for easier analysis. This is where it could be a bit confusing, so we explicitly distinguish three setups: \textit{landscape analysis}, \textit{reduced trajectory analysis} and \textit{full trajectory analysis}. Each setup have different subset of trainable parameters, as shown in Table \ref{tab:setups}.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}\hline
+    \multirow{2}{*}{Trainability}  &  \multicolumn{2}{c|}{decoder weight $\mat{w}$}  & \multicolumn{2}{c|}{Representation $\mat{R}$}   \\\cline{2-5}
+     & norm $w=||\mat{w}||_2$ & direction $\hat{\mat{w}}=\mat{w}/w$ & messiness $m$ & Other  \\\hline
+    Landscape analysis & No, $w$ & Yes & No, $m$ & No, 0 \\\hline
+    Reduced trajectory & Yes & No, $\hat{\mat{w}}^*(w,m)$ & Yes & No, 0 \\\hline
+    Full trajectory & Yes & Yes & Yes & Yes \\\hline
+    \end{tabular}
+    \caption{Threes setups used in this paper, with different set of parameters trainable.}
+    \label{tab:setups}
+\end{table}
+
+{\bf Landscape analysis} Both the  representation $\mat{R}$ and weight norm $w$ are fixed. Only the weight direction $\hat{\mat{w}}$ is trainable. The representation $\mat{R}$ is fixed according to Eq.~(\ref{eq:arithmetic_m}), which is dependent on $m$, the representation messiness. The decoder has fixed weight norm $w$, but the weight direction $\hat{\mat{w}}$ is trainable. For each fixed $(w, m)$, we minimize training loss over $\hat{\mat{w}}$ to get
+\begin{equation}
+    \hat{\mat{w}}^*(w,m) = \underset{\hat{\mat{w}}}{\rm argmin}\ \ell_{\rm train}(w,m,\hat{\mat{w}}),
+\end{equation}
+and define reduced training and test loss, as in Eq.~(\ref{eq:wm}). The minimization is implemented by the Adam optimizer with learning rate $10^{-3}$ for $10^4$ steps. Although $(w, m)$ are not trainable, we repeat the above minimization independently for different $(w, m)$. In Figure \ref{fig:toy_arithmetic} (a)(b)(d), the background heatmaps belong to landscape analysis.
+
+{\bf Reduced trajectory analysis} is a ``thought experiment" based on landscape analysis. Since full trajectory analysis can be intractable due to too high dimensions, we try to reduce the trajectory anaysis to 2D, by making two assumptions about the real dynamics: (1) \textit{Scale separation}: the dynamics of $\hat{\mat{w}}$ is much faster than the dynamics along $w$ and along $m$, such that $\hat{\mat{w}}(t)=\hat{\mat{w}}^*(w(t),m(t))$ is valid at every moment during training. (2) \textit{Representation evolution is linear}, i.e., interpolating between initial random Gaussian and final linear representation. With these two assumptions, the training dynamics is effectively reduced to 2D, depending only on $(w,m)$, obeying Eq.~(\ref{eq:wm_dynamcis}). In Figure \ref{fig:toy_arithmetic} (a)(b)(c), the path ${\rm A}\to {\rm E}$ belongs to reduced trajectory analysis. 
+
+Admittedly the reduced trajectory may deviate from the full trajectory since the assumptions may not be met, but it can shed light on the full trajectory: the weight norm first increases and then increases, and the decrease of weight norm is highly correlated with generalization (please see Appendix \ref{app:weight_evolution} and Figure \ref{fig:algorithmic-norm-over-time}.
+
+
+\section{MNIST experiments with cross entropy loss}\label{app:MNIST-CE}
+To respond to a reviewer's concern that our use of the MSE loss is the ``secret" to get grokking on MNIST (Figure~\ref{fig:mnist_landscape}), we reran our experiments with the cross entropy (CE) loss. The results are qualitatively similar, with some quantitative differences.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[]{0.335\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_train_error_CE.pdf}
+    \caption{}
+    \label{fig:mnist_train_err_CE}
+    \end{subfigure}
+    \begin{subfigure}[]{0.335\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_val_error_CE.pdf}
+    \caption{}
+    \label{fig:mnist_val_err_CE}
+    \end{subfigure}
+    \begin{subfigure}[]{0.25\textwidth}
+    \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm]{figs/mnist_LU_UU_CE.pdf}
+    \caption{}
+    \label{fig:mnist_LU_UU_CE}
+    \end{subfigure}
+    \label{fig:generalization-vs-data-mnist-CE}
+    %   \vspace{-15pt}%
+    \caption{MNIST with the cross entropy loss (as opposed to the MSE loss used in Figure~\ref{fig:mnist_landscape}). (a) reduced training error, (b) reduced test error. (c) "LU" still holds for the cross entropy loss, but the effect is milder than the MSE loss. In particular, the ``Goldilocks zone" (the weight range where generalization happens) is broader.}
+    \label{fig:mnist_landscape-CE}
+\end{figure}
+
+
+{\bf Landscape analysis}
+
+Comparing Figure~\ref{fig:mnist_landscape} (MSE) and Figure~\ref{fig:mnist_landscape-CE} (CE), we notice the they are qualitatively similar: (1) for small datasets, the reduced training error and test error resemble an ``L" and ``U" against the weight norm, respectively; (2) for large datasets, the ``U" becomes more like ``L", i.e., the mismatch between the reduced training and test error is small. However, a quantitative difference exist: CE produces a broader ``Goldilocks zone" (the weight range where generalization happens) than MSE. This implies that to induce grokking with CE, we need to increase the weight norm to a larger value (say $\alpha=100$). 
+
+{\bf Training dynamics}
+
+We are able to observe delayed generalization during trianing on MNIST with cross entropy loss, but doing so requires a higher $\alpha$ than was necessary when using MSE loss, as predicted by the reduced loss landscapes in Figure~\ref{fig:mnist_landscape-CE}. Figure~\ref{fig:mnist-crossentropy-trajectories} shows training trajectories from a 3-layer ReLU MLP on MNIST trained with cross entropy loss with $\alpha = 100$ and $D = 200$. We see that test accuracy rises to 30-40\% early in training, then plateaus for an extended period, before increasing to $\approx$75\% while train accuracy remains at 100\%. While the dynamics are not as clean as with MSE loss, since test accuracy first plateaus at better-than-random accuracy, we think it is still fair to classify these dynamics as ``grokking'' due to the improvement in generalization late in training after a plateau.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{figs/mnist-crossentropy-grokking.pdf}
+    \caption{Training curves using cross entropy loss on MNIST. We are still able to observe delayed generalization on MNIST using cross entropy loss, though test accuracy first plateaus at higher than random-guess accuracy.}
+    \label{fig:mnist-crossentropy-trajectories}
+\end{figure}
+
+\end{document}

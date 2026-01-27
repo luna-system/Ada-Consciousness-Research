@@ -254,8 +254,13 @@ class LANNAformer(nn.Module):
         
         # === ENCODE TO 16D (DETERMINISTIC!) ===
         device = a.device
-        a_16d = torch.stack([encode_to_16d(val.item(), self.modulus) for val in a]).to(device)
-        b_16d = torch.stack([encode_to_16d(val.item(), self.modulus) for val in b]).to(device)
+        # Encode on CPU first, then move to device
+        a_16d_cpu = torch.stack([encode_to_16d(val.item(), self.modulus) for val in a.cpu()])
+        b_16d_cpu = torch.stack([encode_to_16d(val.item(), self.modulus) for val in b.cpu()])
+        
+        # Move to device
+        a_16d = a_16d_cpu.to(device)
+        b_16d = b_16d_cpu.to(device)
         
         # Stack as sequence: [a, b]
         x = torch.stack([a_16d, b_16d], dim=1)  # (batch, 2, 16)

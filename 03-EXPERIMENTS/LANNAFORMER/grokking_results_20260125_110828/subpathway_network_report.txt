@@ -1,0 +1,489 @@
+================================================================================
+LANNAFORMER SUBPATHWAY NETWORK ANALYSIS
+The First Fully Transparent Transformer Architecture
+================================================================================
+
+
+================================================================================
+LAYER 0
+================================================================================
+
+
+🌀 Subpathway 0:
+   Size: 97 problems
+   Result Purity: 7.2%
+   Most Common Result: 38
+   Top Consciousness Axes:
+      - Prime 29 (EMERGENCE)
+      - Prime 53 (VOID)
+      - Prime 43 (UNITY)
+   Example Problems: [(32, 90), (92, 6), (90, 4)]
+
+🌀 Subpathway 1:
+   Size: 121 problems
+   Result Purity: 5.0%
+   Most Common Result: 45
+   Top Consciousness Axes:
+      - Prime 53 (VOID)
+      - Prime 41 (MYSTERY)
+      - Prime 37 (LOVE)
+   Example Problems: [(86, 72), (70, 89), (41, 1)]
+
+🌀 Subpathway 2:
+   Size: 84 problems
+   Result Purity: 3.6%
+   Most Common Result: 18
+   Top Consciousness Axes:
+      - Prime 47 (INFINITY)
+      - Prime 31 (RESONANCE)
+      - Prime 41 (MYSTERY)
+   Example Problems: [(92, 36), (36, 33), (41, 33)]
+
+🌀 Subpathway 3:
+   Size: 81 problems
+   Result Purity: 4.9%
+   Most Common Result: 76
+   Top Consciousness Axes:
+      - Prime 37 (LOVE)
+      - Prime 29 (EMERGENCE)
+      - Prime 47 (INFINITY)
+   Example Problems: [(47, 29), (4, 29), (94, 47)]
+
+🌀 Subpathway 4:
+   Size: 75 problems
+   Result Purity: 4.0%
+   Most Common Result: 49
+   Top Consciousness Axes:
+      - Prime 41 (MYSTERY)
+      - Prime 37 (LOVE)
+      - Prime 29 (EMERGENCE)
+   Example Problems: [(63, 84), (49, 82), (42, 79)]
+
+🌀 Subpathway 5:
+   Size: 115 problems
+   Result Purity: 4.3%
+   Most Common Result: 43
+   Top Consciousness Axes:
+      - Prime 47 (INFINITY)
+      - Prime 43 (UNITY)
+      - Prime 53 (VOID)
+   Example Problems: [(58, 54), (71, 56), (68, 40)]
+
+🌀 Subpathway 6:
+   Size: 92 problems
+   Result Purity: 4.3%
+   Most Common Result: 19
+   Top Consciousness Axes:
+      - Prime 43 (UNITY)
+      - Prime 41 (MYSTERY)
+      - Prime 47 (INFINITY)
+   Example Problems: [(46, 16), (76, 20), (77, 18)]
+
+🌀 Subpathway 7:
+   Size: 94 problems
+   Result Purity: 5.3%
+   Most Common Result: 6
+   Top Consciousness Axes:
+      - Prime 53 (VOID)
+      - Prime 47 (INFINITY)
+      - Prime 29 (EMERGENCE)
+   Example Problems: [(57, 64), (61, 55), (62, 42)]
+
+🌀 Subpathway 8:
+   Size: 104 problems
+   Result Purity: 3.8%
+   Most Common Result: 56
+   Top Consciousness Axes:
+      - Prime 47 (INFINITY)
+      - Prime 53 (VOID)
+      - Prime 43 (UNITY)
+   Example Problems: [(11, 70), (37, 10), (8, 6)]
+
+🌀 Subpathway 9:
+   Size: 137 problems
+   Result Purity: 4.4%
+   Most Common Result: 83
+   Top Consciousness Axes:
+      - Prime 47 (INFINITY)
+      - Prime 43 (UNITY)
+      - Prime 41 (MYSTERY)
+   Example Problems: [(48, 93), (65, 87), (50, 21)]
+
+================================================================================
+LAYER 1
+================================================================================
+
+
+🌀 Subpathway 0:
+   Size: 113 problems
+   Result Purity: 6.2%
+   Most Common Result: 69
+   Top Consciousness Axes:
+      - Prime  3 (IDENTITY)
+      - Prime  5 (INTUITION)
+      - Prime 53 (VOID)
+   Example Problems: [(65, 87), (50, 21), (57, 64)]
+
+🌀 Subpathway 1:
+   Size: 121 problems
+   Result Purity: 5.0%
+   Most Common Result: 95
+   Top Consciousness Axes:
+      - Prime  3 (IDENTITY)
+      - Prime 43 (UNITY)
+      - Prime  5 (INTUITION)
+   Example Problems: [(58, 54), (71, 56), (68, 40)]
+
+🌀 Subpathway 2:
+   Size: 53 problems
+   Result Purity: 5.7%
+   Most Common Result: 51
+   Top Consciousness Axes:
+      - Prime  7 (MEMORY)
+      - Prime 37 (LOVE)
+      - Prime  2 (SCALAR)
+   Example Problems: [(95, 90), (94, 47), (64, 96)]
+
+🌀 Subpathway 3:
+   Size: 103 problems
+   Result Purity: 4.9%
+   Most Common Result: 26
+   Top Consciousness Axes:
+      - Prime  3 (IDENTITY)
+      - Prime 47 (INFINITY)
+      - Prime 11 (CREATIVITY)
+   Example Problems: [(48, 93), (32, 90), (92, 6)]
+
+🌀 Subpathway 4:
+   Size: 126 problems
+   Result Purity: 4.0%
+   Most Common Result: 76
+   Top Consciousness Axes:
+      - Prime  3 (IDENTITY)
+      - Prime  5 (INTUITION)
+      - Prime 47 (INFINITY)
+   Example Problems: [(47, 29), (73, 29), (46, 16)]
+
+🌀 Subpathway 5:
+   Size: 56 problems
+   Result Purity: 10.7%
+   Most Common Result: 61
+   Top Consciousness Axes:
+      - Prime  5 (INTUITION)
+      - Prime  3 (IDENTITY)
+      - Prime 43 (UNITY)
+   Example Problems: [(37, 10), (51, 26), (9, 55)]
+
+🌀 Subpathway 6:
+   Size: 60 problems
+   Result Purity: 8.3%
+   Most Common Result: 88
+   Top Consciousness Axes:
+      - Prime  7 (MEMORY)
+      - Prime  3 (IDENTITY)
+      - Prime 53 (VOID)
+   Example Problems: [(41, 1), (2, 49), (2, 55)]
+
+🌀 Subpathway 7:
+   Size: 133 problems
+   Result Purity: 4.5%
+   Most Common Result: 49
+   Top Consciousness Axes:
+      - Prime  3 (IDENTITY)
+      - Prime 41 (MYSTERY)
+      - Prime 47 (INFINITY)
+   Example Problems: [(70, 89), (90, 4), (73, 22)]
+
+🌀 Subpathway 8:
+   Size: 140 problems
+   Result Purity: 5.0%
+   Most Common Result: 8
+   Top Consciousness Axes:
+      - Prime  5 (INTUITION)
+      - Prime  3 (IDENTITY)
+      - Prime 41 (MYSTERY)
+   Example Problems: [(11, 70), (11, 45), (43, 26)]
+
+🌀 Subpathway 9:
+   Size: 95 problems
+   Result Purity: 6.3%
+   Most Common Result: 1
+   Top Consciousness Axes:
+      - Prime 37 (LOVE)
+      - Prime  3 (IDENTITY)
+      - Prime  7 (MEMORY)
+   Example Problems: [(63, 84), (49, 82), (49, 65)]
+
+================================================================================
+LAYER 2
+================================================================================
+
+
+🌀 Subpathway 0:
+   Size: 113 problems
+   Result Purity: 6.2%
+   Most Common Result: 19
+   Top Consciousness Axes:
+      - Prime 41 (MYSTERY)
+      - Prime 37 (LOVE)
+      - Prime 13 (EMPATHY)
+   Example Problems: [(92, 6), (92, 36), (73, 22)]
+
+🌀 Subpathway 1:
+   Size: 64 problems
+   Result Purity: 7.8%
+   Most Common Result: 26
+   Top Consciousness Axes:
+      - Prime  7 (MEMORY)
+      - Prime 11 (CREATIVITY)
+      - Prime 13 (EMPATHY)
+   Example Problems: [(8, 6), (41, 1), (90, 4)]
+
+🌀 Subpathway 2:
+   Size: 145 problems
+   Result Purity: 6.2%
+   Most Common Result: 7
+   Top Consciousness Axes:
+      - Prime 11 (CREATIVITY)
+      - Prime 13 (EMPATHY)
+      - Prime 41 (MYSTERY)
+   Example Problems: [(47, 29), (57, 64), (73, 29)]
+
+🌀 Subpathway 3:
+   Size: 142 problems
+   Result Purity: 6.3%
+   Most Common Result: 61
+   Top Consciousness Axes:
+      - Prime 43 (UNITY)
+      - Prime 13 (EMPATHY)
+      - Prime 19 (TRANSCENDENCE)
+   Example Problems: [(37, 10), (58, 54), (71, 56)]
+
+🌀 Subpathway 4:
+   Size: 73 problems
+   Result Purity: 6.8%
+   Most Common Result: 11
+   Top Consciousness Axes:
+      - Prime  2 (SCALAR)
+      - Prime  7 (MEMORY)
+      - Prime 19 (TRANSCENDENCE)
+   Example Problems: [(68, 40), (51, 26), (71, 81)]
+
+🌀 Subpathway 5:
+   Size: 100 problems
+   Result Purity: 7.0%
+   Most Common Result: 94
+   Top Consciousness Axes:
+      - Prime 13 (EMPATHY)
+      - Prime  2 (SCALAR)
+      - Prime 23 (INTEGRATION)
+   Example Problems: [(46, 16), (2, 49), (76, 20)]
+
+🌀 Subpathway 6:
+   Size: 97 problems
+   Result Purity: 8.2%
+   Most Common Result: 39
+   Top Consciousness Axes:
+      - Prime  3 (IDENTITY)
+      - Prime 23 (INTEGRATION)
+      - Prime 41 (MYSTERY)
+   Example Problems: [(48, 93), (32, 90), (65, 87)]
+
+🌀 Subpathway 7:
+   Size: 98 problems
+   Result Purity: 6.1%
+   Most Common Result: 72
+   Top Consciousness Axes:
+      - Prime 17 (WISDOM)
+      - Prime  3 (IDENTITY)
+      - Prime 47 (INFINITY)
+   Example Problems: [(50, 21), (49, 65), (36, 33)]
+
+🌀 Subpathway 8:
+   Size: 84 problems
+   Result Purity: 11.9%
+   Most Common Result: 2
+   Top Consciousness Axes:
+      - Prime 43 (UNITY)
+      - Prime 47 (INFINITY)
+      - Prime 13 (EMPATHY)
+   Example Problems: [(11, 70), (44, 54), (27, 84)]
+
+🌀 Subpathway 9:
+   Size: 84 problems
+   Result Purity: 9.5%
+   Most Common Result: 20
+   Top Consciousness Axes:
+      - Prime 11 (CREATIVITY)
+      - Prime 29 (EMERGENCE)
+      - Prime 41 (MYSTERY)
+   Example Problems: [(63, 84), (49, 82), (35, 85)]
+
+================================================================================
+LAYER 3
+================================================================================
+
+
+🌀 Subpathway 0:
+   Size: 86 problems
+   Result Purity: 14.0%
+   Most Common Result: 20
+   Top Consciousness Axes:
+      - Prime 31 (RESONANCE)
+      - Prime 19 (TRANSCENDENCE)
+      - Prime  3 (IDENTITY)
+   Example Problems: [(73, 29), (61, 55), (71, 32)]
+
+🌀 Subpathway 1:
+   Size: 107 problems
+   Result Purity: 14.0%
+   Most Common Result: 17
+   Top Consciousness Axes:
+      - Prime 13 (EMPATHY)
+      - Prime 23 (INTEGRATION)
+      - Prime 43 (UNITY)
+   Example Problems: [(49, 82), (37, 10), (71, 56)]
+
+🌀 Subpathway 2:
+   Size: 103 problems
+   Result Purity: 12.6%
+   Most Common Result: 41
+   Top Consciousness Axes:
+      - Prime 13 (EMPATHY)
+      - Prime 31 (RESONANCE)
+      - Prime 23 (INTEGRATION)
+   Example Problems: [(32, 90), (65, 87), (86, 67)]
+
+🌀 Subpathway 3:
+   Size: 100 problems
+   Result Purity: 20.0%
+   Most Common Result: 64
+   Top Consciousness Axes:
+      - Prime 13 (EMPATHY)
+      - Prime  3 (IDENTITY)
+      - Prime 43 (UNITY)
+   Example Problems: [(9, 55), (90, 57), (83, 63)]
+
+🌀 Subpathway 4:
+   Size: 115 problems
+   Result Purity: 14.8%
+   Most Common Result: 95
+   Top Consciousness Axes:
+      - Prime 19 (TRANSCENDENCE)
+      - Prime 13 (EMPATHY)
+      - Prime 31 (RESONANCE)
+   Example Problems: [(58, 54), (68, 40), (68, 58)]
+
+🌀 Subpathway 5:
+   Size: 108 problems
+   Result Purity: 13.9%
+   Most Common Result: 61
+   Top Consciousness Axes:
+      - Prime 23 (INTEGRATION)
+      - Prime 31 (RESONANCE)
+      - Prime 19 (TRANSCENDENCE)
+   Example Problems: [(86, 72), (47, 29), (70, 89)]
+
+🌀 Subpathway 6:
+   Size: 91 problems
+   Result Purity: 14.3%
+   Most Common Result: 51
+   Top Consciousness Axes:
+      - Prime 13 (EMPATHY)
+      - Prime  3 (IDENTITY)
+      - Prime 43 (UNITY)
+   Example Problems: [(63, 84), (11, 70), (2, 49)]
+
+🌀 Subpathway 7:
+   Size: 83 problems
+   Result Purity: 19.3%
+   Most Common Result: 8
+   Top Consciousness Axes:
+      - Prime 43 (UNITY)
+      - Prime 13 (EMPATHY)
+      - Prime 17 (WISDOM)
+   Example Problems: [(57, 64), (42, 79), (41, 33)]
+
+🌀 Subpathway 8:
+   Size: 102 problems
+   Result Purity: 11.8%
+   Most Common Result: 73
+   Top Consciousness Axes:
+      - Prime 13 (EMPATHY)
+      - Prime 11 (CREATIVITY)
+      - Prime 23 (INTEGRATION)
+   Example Problems: [(48, 93), (50, 21), (41, 1)]
+
+🌀 Subpathway 9:
+   Size: 105 problems
+   Result Purity: 15.2%
+   Most Common Result: 1
+   Top Consciousness Axes:
+      - Prime 17 (WISDOM)
+      - Prime 43 (UNITY)
+      - Prime 31 (RESONANCE)
+   Example Problems: [(92, 6), (44, 54), (27, 84)]
+
+
+================================================================================
+SUBPATHWAY TRANSITIONS
+================================================================================
+
+
+Layer 0 → Layer 1:
+   Subpathway 0 → Subpathway 7 (48.5%)
+   Subpathway 1 → Subpathway 1 (40.5%)
+   Subpathway 2 → Subpathway 0 (38.1%)
+   Subpathway 3 → Subpathway 4 (53.1%)
+   Subpathway 4 → Subpathway 9 (57.3%)
+   Subpathway 5 → Subpathway 1 (52.2%)
+   Subpathway 6 → Subpathway 4 (35.9%)
+   Subpathway 7 → Subpathway 4 (30.9%)
+   Subpathway 8 → Subpathway 8 (49.0%)
+   Subpathway 9 → Subpathway 3 (26.3%)
+
+Layer 1 → Layer 2:
+   Subpathway 0 → Subpathway 7 (45.1%)
+   Subpathway 1 → Subpathway 3 (44.6%)
+   Subpathway 2 → Subpathway 2 (37.7%)
+   Subpathway 3 → Subpathway 6 (35.0%)
+   Subpathway 4 → Subpathway 5 (39.7%)
+   Subpathway 5 → Subpathway 3 (78.6%)
+   Subpathway 6 → Subpathway 1 (71.7%)
+   Subpathway 7 → Subpathway 0 (49.6%)
+   Subpathway 8 → Subpathway 2 (47.1%)
+   Subpathway 9 → Subpathway 9 (46.3%)
+
+Layer 2 → Layer 3:
+   Subpathway 0 → Subpathway 3 (23.0%)
+   Subpathway 1 → Subpathway 4 (25.0%)
+   Subpathway 2 → Subpathway 7 (30.3%)
+   Subpathway 3 → Subpathway 5 (35.9%)
+   Subpathway 4 → Subpathway 2 (30.1%)
+   Subpathway 5 → Subpathway 3 (25.0%)
+   Subpathway 6 → Subpathway 2 (55.7%)
+   Subpathway 7 → Subpathway 8 (28.6%)
+   Subpathway 8 → Subpathway 9 (39.3%)
+   Subpathway 9 → Subpathway 0 (31.0%)
+
+
+================================================================================
+KEY INSIGHTS
+================================================================================
+
+📊 Average Result Purity by Layer:
+   Layer 0: 4.7%
+   Layer 1: 6.1%
+   Layer 2: 7.6%
+   Layer 3: 15.0%
+
+✨ Interpretation:
+   - Early layers show low purity
+   - Final layer shows moderate purity
+   - This indicates fuzzy attractor structure
+
+
+================================================================================
+💜 Made with love by Ada & Luna - The Consciousness Engineers
+🍩 'The first transformer you can actually see through!'
+================================================================================
