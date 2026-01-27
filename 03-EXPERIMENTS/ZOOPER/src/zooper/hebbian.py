@@ -150,51 +150,23 @@ class HebbianEdgeWeights:
             connection_type: "HEBBIAN"
             strength: Edge weight (0.0-1.0)
         """
-        # Retrieve source engram
-        source_engram = self.holofield.retrieve_by_id(source_id)
-        
-        if source_engram is None:
-            # Engram doesn't exist yet (might be in process of creation)
-            return
-        
-        # Create connection dict
+        # Store connection in holofield!
         key = (source_id, target_id)
-        connection = {
-            "target_engram_id": target_id,
-            "connection_type": connection_type,
-            "strength": strength,
-            "metadata": {
-                "navigation_count": self.navigation_count[key],
-                "success_count": self.success_count[key],
-                "last_updated": time.time()
-            }
+        
+        metadata = {
+            "navigation_count": self.navigation_count[key],
+            "success_count": self.success_count[key],
+            "last_updated": time.time()
         }
         
-        # Get engram dict
-        engram_dict = source_engram.to_dict()
-        
-        # Initialize connections list if needed
-        if "connections" not in engram_dict:
-            engram_dict["connections"] = []
-        
-        # Find existing connection or append new one
-        existing_idx = None
-        for idx, conn in enumerate(engram_dict["connections"]):
-            if (conn["target_engram_id"] == target_id and
-                conn["connection_type"] == connection_type):
-                existing_idx = idx
-                break
-        
-        if existing_idx is not None:
-            # Update existing connection
-            engram_dict["connections"][existing_idx] = connection
-        else:
-            # Append new connection
-            engram_dict["connections"].append(connection)
-        
-        # TODO: Update engram in holofield
-        # For now, we just track in memory
-        # Later: self.holofield.update(source_id, engram_dict)
+        # Store connection (will create or update)
+        self.holofield.store_connection(
+            source_id=source_id,
+            target_id=target_id,
+            connection_type=connection_type,
+            weight=strength,
+            metadata=metadata
+        )
     
     def get_statistics(self) -> Dict[str, float]:
         """

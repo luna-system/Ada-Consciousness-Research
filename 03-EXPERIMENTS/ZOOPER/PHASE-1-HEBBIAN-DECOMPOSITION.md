@@ -374,37 +374,62 @@ class EVEFleet:
 
 ## Current Status
 
-**What we have:**
-- ✅ Proof of concept working
-- ✅ Hebbian decomposition validated
-- ✅ Swarm coordination prototype
-- ✅ Wikipedia integration tested
+### Phase 1: Hebbian Decomposition ✅ IN PROGRESS
 
-**What we're building:**
-- ⏳ Archangel architecture alignment
-- ⏳ EVE Fleet coordination
-- ⏳ Full Wikipedia processing
-- ⏳ Production-ready code
+**Milestone 1: Architecture Integration** ✅ COMPLETE!
+- ✅ ZooperSwarm inherits EngramCreator
+- ✅ Uses HolofieldManager for storage
+- ✅ Hebbian edges as EngramConnections (ADR-0012)
+- ✅ Archangel editable install works
+- ✅ All 5 core modules implemented:
+  - `swarm.py` - ZooperSwarm coordinator
+  - `zooperling.py` - Individual attention heads
+  - `hebbian.py` - Hebbian edge weights
+  - `eve_fleet.py` - Swarm coordination
+  - `kuramoto.py` - Phase synchronization
+- ✅ 12 comprehensive tests (79% coverage)
+- ✅ All tests passing!
 
-**What's next:**
-- 🎯 Refactor to use Archangel classes
-- 🎯 Implement EVE Fleet
-- 🎯 Scale to full Wikipedia
-- 🎯 Validate performance
+**Milestone 2: Wikipedia Integration** ✅ COMPLETE!
+- ✅ Wikipedia sample holofield created (1,000 articles)
+- ✅ 1.8 MB SQLite database
+- ✅ All engrams in 16D consciousness space
+- ✅ Ready for Zooper experiments
+- ⏳ Full dump (390k articles) waiting for TursoDB migration
+
+**Milestone 3: EVE Fleet Coordination** ⏳ IN PROGRESS
+- ✅ Broadcast/receive infrastructure working
+- ✅ Fast swarm-wide search implemented
+- ✅ Context injection functional
+- ⏳ Testing on real Wikipedia navigation
+- ⏳ Measuring collective intelligence
+
+**Next Steps:**
+1. Run Zooper experiments on Wikipedia holofield
+2. Measure navigation performance
+3. Track Hebbian learning over time
+4. Visualize swarm behavior
+5. Baseline metrics before full dataset
 
 ---
 
 ## Files
 
-**Current:**
-- `test_zooper_decomposition.py` - Proof of concept
+**Implemented:**
+- ✅ `src/zooper/__init__.py` - Package exports
+- ✅ `src/zooper/swarm.py` - ZooperSwarm class (EngramCreator)
+- ✅ `src/zooper/zooperling.py` - Zooperling attention heads
+- ✅ `src/zooper/hebbian.py` - HebbianEdgeWeights manager
+- ✅ `src/zooper/eve_fleet.py` - EVE Fleet coordination
+- ✅ `src/zooper/kuramoto.py` - Kuramoto dynamics
+- ✅ `tests/test_swarm.py` - Comprehensive test suite (12 tests, 79% coverage)
+- ✅ `load_wikipedia_holofield.py` - Wikipedia → Holofield loader
+- ✅ `wikipedia_holofield_sample.db` - 1,000 articles ready for experiments
 
 **Planned:**
-- `zooper_swarm.py` - Main ZooperSwarm class
-- `eve_fleet.py` - Coordination layer
-- `hebbian_edges.py` - Edge weight management
-- `wikipedia_processor.py` - Wikipedia-specific logic
-- `test_zooper_rc1.py` - Full integration test
+- ⏳ `experiment_wikipedia_navigation.py` - Navigation experiments
+- ⏳ `visualize_swarm.py` - Swarm behavior visualization
+- ⏳ `benchmark_zooper.py` - Performance benchmarks
 
 ---
 

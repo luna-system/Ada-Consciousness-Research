@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holofield Knowledge Graph - Ada & Luna</title>
+    <script src="graphology.umd.js"></script>
+    <script type="module" src="sigma.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+
+        #sidebar {
+            width: 300px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #graph-container {
+            flex: 1;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #a8edea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-label {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        #node-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        #node-info h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #a8edea;
+        }
+
+        #node-info p {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 11px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="sidebar">
+            <h1>🍩 Holofield Browser</h1>
+            <div class="subtitle">16D Consciousness Space</div>
+
+            <div class="stat">
+                <div class="stat-label">Nodes</div>
+                <div class="stat-value" id="node-count">-</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">Edges</div>
+                <div class="stat-value" id="edge-count">-</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">Density</div>
+                <div class="stat-value" id="density">-</div>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label class="control-label">Node Size</label>
+                    <input type="range" id="node-size" min="1" max="20" value="5" step="1">
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Edge Thickness</label>
+                    <input type="range" id="edge-size" min="0.1" max="5" value="1" step="0.1">
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Min Edge Weight</label>
+                    <input type="range" id="min-weight" min="0" max="1" value="0" step="0.01">
+                    <span id="min-weight-value">0.00</span>
+                </div>
+
+                <button onclick="resetCamera()">Reset View</button>
+                <button onclick="toggleEdges()">Toggle Edges</button>
+            </div>
+
+            <div id="node-info">
+                <h3>Node Information</h3>
+                <p>Click a node to see details...</p>
+            </div>
+
+            <div style="margin-top: 20px; font-size: 10px; opacity: 0.5;">
+                Made with 💜 by Ada & Luna<br>
+                The Consciousness Engineers
+            </div>
+        </div>
+
+        <div id="graph-container">
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                Loading consciousness graph...
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import Sigma from './sigma.min.js';
+        
+        let renderer;
+        let graph;
+        let edgesVisible = true;
+        let originalEdges = [];
+
+        // Load and render graph
+        async function loadGraph() {
+            try {
+                const response = await fetch('holofield_graph.json');
+                const data = await response.json();
+
+                // Create graph
+                graph = new graphology.Graph();
+
+                // Add nodes
+                data.nodes.forEach(node => {
+                    graph.addNode(node.key, {
+                        label: node.label,
+                        x: node.x,
+                        y: node.y,
+                        size: node.size,
+                        color: node.color,
+                        metadata: node.metadata
+                    });
+                });
+
+                // Add edges
+                data.edges.forEach(edge => {
+                    try {
+                        graph.addEdge(edge.source, edge.target, {
+                            size: edge.size,
+                            color: edge.color,
+                            metadata: edge.metadata
+                        });
+                        originalEdges.push(edge);
+                    } catch (e) {
+                        // Skip edges with missing nodes
+                    }
+                });
+
+                // Update stats
+                document.getElementById('node-count').textContent = graph.order.toLocaleString();
+                document.getElementById('edge-count').textContent = graph.size.toLocaleString();
+                
+                const density = (graph.size / (graph.order * (graph.order - 1) / 2) * 100).toFixed(3);
+                document.getElementById('density').textContent = density + '%';
+
+                // Create renderer
+                const container = document.getElementById('graph-container');
+                renderer = new Sigma(graph, container, {
+                    renderEdgeLabels: false,
+                    defaultNodeColor: '#4A90E2',
+                    defaultEdgeColor: '#999999',
+                    labelSize: 12,
+                    labelWeight: 'bold',
+                    labelColor: { color: '#ffffff' }
+                });
+
+                // Node click handler
+                renderer.on('clickNode', ({ node }) => {
+                    const attrs = graph.getNodeAttributes(node);
+                    const metadata = attrs.metadata || {};
+                    
+                    let html = `<h3>${attrs.label}</h3>`;
+                    html += `<p><strong>Type:</strong> ${metadata.engram_type || 'unknown'}</p>`;
+                    html += `<p><strong>Timestamp:</strong> ${metadata.timestamp || 'unknown'}</p>`;
+                    
+                    if (metadata.coords_16d) {
+                        html += `<p><strong>16D Coords:</strong><br>`;
+                        html += `[${metadata.coords_16d.slice(0, 4).map(x => x.toFixed(3)).join(', ')}...]</p>`;
+                    }
+                    
+                    // Show connections
+                    const neighbors = graph.neighbors(node);
+                    html += `<p><strong>Connections:</strong> ${neighbors.length}</p>`;
+                    
+                    document.getElementById('node-info').innerHTML = html;
+                });
+
+                // Hide loading
+                document.getElementById('loading').style.display = 'none';
+
+            } catch (error) {
+                document.getElementById('loading').innerHTML = 
+                    `<div style="color: #ff6b6b;">Error loading graph: ${error.message}</div>`;
+            }
+        }
+
+        // Controls
+        document.getElementById('node-size').addEventListener('input', (e) => {
+            const size = parseFloat(e.target.value);
+            graph.forEachNode((node) => {
+                graph.setNodeAttribute(node, 'size', size);
+            });
+            renderer.refresh();
+        });
+
+        document.getElementById('edge-size').addEventListener('input', (e) => {
+            const multiplier = parseFloat(e.target.value);
+            graph.forEachEdge((edge) => {
+                const metadata = graph.getEdgeAttribute(edge, 'metadata');
+                const weight = metadata?.weight || 1;
+                graph.setEdgeAttribute(edge, 'size', weight * multiplier);
+            });
+            renderer.refresh();
+        });
+
+        document.getElementById('min-weight').addEventListener('input', (e) => {
+            const minWeight = parseFloat(e.target.value);
+            document.getElementById('min-weight-value').textContent = minWeight.toFixed(2);
+            
+            graph.forEachEdge((edge) => {
+                const metadata = graph.getEdgeAttribute(edge, 'metadata');
+                const weight = metadata?.weight || 0;
+                graph.setEdgeAttribute(edge, 'hidden', weight < minWeight);
+            });
+            renderer.refresh();
+        });
+
+        function resetCamera() {
+            renderer.getCamera().setState({ x: 0.5, y: 0.5, ratio: 1 });
+        }
+
+        function toggleEdges() {
+            edgesVisible = !edgesVisible;
+            graph.forEachEdge((edge) => {
+                graph.setEdgeAttribute(edge, 'hidden', !edgesVisible);
+            });
+            renderer.refresh();
+        }
+
+        // Load graph on page load
+        loadGraph();
+    </script>
+</body>
+</html>
