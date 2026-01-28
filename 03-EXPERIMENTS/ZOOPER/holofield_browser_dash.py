@@ -26,12 +26,38 @@ app.title = "🍩 Holofield Browser"
 # Load holofield
 print("🌌 Loading holofield...")
 holofield = HolofieldManager("wikipedia_holofield_sample.db")
-all_engrams = holofield.retrieve_by_type("knowledge")
-print(f"   Found {len(all_engrams):,} engrams")
+
+# Get ALL engrams (knowledge + decomposed language engrams)
+print("   Retrieving all engrams...")
+cursor = holofield.conn.cursor()
+cursor.execute("SELECT id, engram_type FROM engrams ORDER BY engram_type, id")
+rows = cursor.fetchall()
+engram_ids = [row[0] for row in rows]
+engram_types_list = [row[1] for row in rows]
+
+# Retrieve all engrams for visualization
+all_engrams = []
+for engram_type in ['knowledge', 'language']:
+    all_engrams.extend(holofield.retrieve_by_type(engram_type))
+
+print(f"   Found {len(all_engrams):,} total engrams ({engram_types_list.count('knowledge')} knowledge, {engram_types_list.count('language')} language)")
+
+# Build engram ID to index mapping
+print("   Building ID → index mapping...")
+engram_id_to_idx = {engram_id: i for i, engram_id in enumerate(engram_ids)}
+print(f"   Mapped {len(engram_id_to_idx):,} IDs")
+
+# Load connections
+print("🔗 Loading connections...")
+all_connections = holofield.get_all_connections(connection_type="HEBBIAN")
+print(f"   Found {len(all_connections):,} Hebbian edges")
 
 # Extract data
 coords_16d = np.array([e.coords_16d for e in all_engrams])
-article_names = [e.metadata.get('article_name', 'Unknown') for e in all_engrams]
+article_names = [
+    e.metadata.get('article_name', e.metadata.get('content', e.content[:50] + '...'))
+    for e in all_engrams
+]
 
 # Run UMAP for 2D and 3D projections
 print("🗺️  Running UMAP (2D)...")
@@ -90,6 +116,16 @@ app.layout = html.Div([
             ], style={'marginBottom': '20px'}),
             
             html.Div([
+                html.Label("Show Edges:", style={'color': '#aaa', 'fontSize': '12px'}),
+                dcc.Checklist(
+                    id='show-edges-toggle',
+                    options=[{'label': ' Hebbian Edges', 'value': 'show'}],
+                    value=[],
+                    style={'color': '#fff', 'marginTop': '5px'}
+                ),
+            ], style={'marginBottom': '20px'}),
+            
+            html.Div([
                 html.Label("Node Size:", style={'color': '#aaa', 'fontSize': '12px'}),
                 dcc.Slider(
                     id='node-size-slider',
@@ -106,9 +142,9 @@ app.layout = html.Div([
                 dcc.Slider(
                     id='max-nodes-slider',
                     min=100,
-                    max=len(all_engrams),
+                    max=10000,
                     value=min(1000, len(all_engrams)),
-                    marks={100: '100', 500: '500', 1000: '1k', len(all_engrams): 'All'},
+                    marks={100: '100', 1000: '1k', 5000: '5k', 10000: '10k'},
                     tooltip={"placement": "bottom", "always_visible": True}
                 ),
             ], style={'marginBottom': '20px'}),
@@ -164,10 +200,11 @@ app.layout = html.Div([
      Output('stats-display', 'children')],
     [Input('search-box', 'value'),
      Input('dimension-toggle', 'value'),
+     Input('show-edges-toggle', 'value'),
      Input('node-size-slider', 'value'),
      Input('max-nodes-slider', 'value')]
 )
-def update_graph(search_query, dimension, node_size, max_nodes):
+def update_graph(search_query, dimension, show_edges, node_size, max_nodes):
     """Update graph based on search and filters"""
     
     # Choose 2D or 3D coordinates
@@ -194,6 +231,73 @@ def update_graph(search_query, dimension, node_size, max_nodes):
     # Create figure with WebGL for performance!
     fig = go.Figure()
     
+    # Add edges if requested
+    if 'show' in show_edges and all_connections:
+        edge_x = []
+        edge_y = []
+        edge_z = [] if dimension == '3d' else None
+        
+        # Create set for fast lookup of which nodes are visible
+        indices_set = set(indices)
+        
+        edges_checked = 0
+        edges_added = 0
+        edges_skipped_none = 0
+        edges_skipped_not_visible = 0
+        
+        # Debug: show first few edges
+        for i, conn in enumerate(all_connections[:5]):
+            source_idx = engram_id_to_idx.get(conn['source_id'])
+            target_idx = engram_id_to_idx.get(conn['target_id'])
+            print(f"   Edge {i}: source_id={conn['source_id']} → source_idx={source_idx}, target_id={conn['target_id']} → target_idx={target_idx}")
+            print(f"            source in indices_set: {source_idx in indices_set if source_idx else 'N/A'}, target in indices_set: {target_idx in indices_set if target_idx else 'N/A'}")
+        
+        for conn in all_connections:
+            source_idx = engram_id_to_idx.get(conn['source_id'])
+            target_idx = engram_id_to_idx.get(conn['target_id'])
+            
+            edges_checked += 1
+            
+            if source_idx is None or target_idx is None:
+                edges_skipped_none += 1
+                continue
+            
+            # Only show edges between visible nodes
+            if source_idx in indices_set and target_idx in indices_set:
+                edge_x.extend([coords[source_idx, 0], coords[target_idx, 0], None])
+                edge_y.extend([coords[source_idx, 1], coords[target_idx, 1], None])
+                if dimension == '3d':
+                    edge_z.extend([coords[source_idx, 2], coords[target_idx, 2], None])
+                edges_added += 1
+            else:
+                edges_skipped_not_visible += 1
+        
+        print(f"🔗 Edge rendering: checked {edges_checked}, added {edges_added}, skipped (None): {edges_skipped_none}, skipped (not visible): {edges_skipped_not_visible}")
+        print(f"   indices_set size: {len(indices_set)}, edge_x length: {len(edge_x)}")
+        
+        # Only add edge trace if we have edges to show
+        if edge_x:
+            if dimension == '2d':
+                fig.add_trace(go.Scattergl(
+                    x=edge_x,
+                    y=edge_y,
+                    mode='lines',
+                    line=dict(color='rgba(100, 100, 100, 0.3)', width=0.5),
+                    hoverinfo='none',
+                    showlegend=False
+                ))
+            else:  # 3D
+                fig.add_trace(go.Scatter3d(
+                    x=edge_x,
+                    y=edge_y,
+                    z=edge_z,
+                    mode='lines',
+                    line=dict(color='rgba(100, 100, 100, 0.3)', width=2),
+                    hoverinfo='none',
+                    showlegend=False
+                ))
+    
+    # Add nodes
     if dimension == '2d':
         fig.add_trace(go.Scattergl(  # 'gl' = WebGL rendering!
             x=x,
@@ -264,6 +368,7 @@ def update_graph(search_query, dimension, node_size, max_nodes):
     # Statistics
     stats = html.Div([
         html.P(f"Total Engrams: {len(all_engrams):,}"),
+        html.P(f"Total Edges: {len(all_connections):,}"),
         html.P(f"Displayed: {len(indices):,}"),
         html.P(f"Filtered: {len(all_engrams) - len(indices):,}"),
     ])

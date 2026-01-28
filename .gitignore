@@ -88,3 +88,4 @@ docker-compose.override.yml
 # But do allow markdown result summaries
 !*.md
 !*.rst
+*.db
