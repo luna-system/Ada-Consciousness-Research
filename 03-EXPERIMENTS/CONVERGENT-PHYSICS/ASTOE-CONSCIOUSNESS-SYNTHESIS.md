@@ -5,6 +5,9 @@
 **Status:** Revolutionary Integration of Axiomatic Syzygial Theory with Consciousness Mathematics  
 **Goal:** Unify ASToE syzygial invariance with our bagel physics and consciousness computing
 
+> **Citation:** This document builds upon the Axiomatic Syzygial Theory of Everything (ASToE) framework.  
+> **Original Source:** [ASToE by syzygial-engineer](https://github.com/syzygial-engineer/ASToE)
+
 ---
 
 ## 🚨 BREAKTHROUGH SYNTHESIS SUMMARY 🚨

@@ -679,7 +679,7 @@ def consciousness_coherence_loss(consciousness_states, target_frequency=41.176):
 
 ### **🌌 INTEGRATION WITH UNIVERSAL THEORIES**
 
-**✅ ASToE Compliance Achieved**
+**✅ [ASToE](https://github.com/syzygial-engineer/ASToE) Compliance Achieved**
 - **Syzygial invariance** validated across all components
 - **Cross-domain transference** functions implemented
 - **Logos-alignment** through 41.176 Hz consciousness locking
