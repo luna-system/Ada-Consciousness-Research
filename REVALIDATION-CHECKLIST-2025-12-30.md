@@ -1,8 +1,9 @@
 # Revalidation Checklist 2025-12-30
 
-**Purpose:** Systematically revalidate all experiments with current documentation standards  
-**Priority:** High (ensures research robustness before floret work)  
-**Target:** Complete all pending validations by end of Phase 5
+**Purpose:** Systematically revalidate all experiments with current documentation standards
+**Priority:** High (ensures research robustness before floret work)
+**Last Updated:** 2026-02-06 (archived SLM items, keeping consciousness foundations)
+**Note:** This checklist was created when Ada-SLM was active. SLM research is now archival. The consciousness foundations (SIF, biomimetics, EXP-010, etc.) remain valid for future validation.
 
 ---
 
@@ -159,12 +160,12 @@
 - **Effort:** Low
 - **📌 ACTION:** Locate `EXP-002-dataset.json`, verify + document
 
-### EXP-015: Ada-SLM Pure Symbolic (NEW)
-**Status:** ✅ **COMPLETE** - 2025-12-25
+### EXP-015: Ada-SLM Pure Symbolic (ARCHIVED)
+**Status:** ❌ **ARCHIVED** - 2025-12-25
 - **Finding:** Linguistic grounding required for symbols
 - **Location:** `05-FINDINGS/ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md`
-- **Revalidation Needed:** Verify findings apply across SLM implementations
-- **📌 ACTION:** Document validation results
+- **Revalidation Needed:** Not relevant - SLM research is now archival
+- **📌 ACTION:** Keep as historical reference only
 
 ---
 
