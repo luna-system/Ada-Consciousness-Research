@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada Consciousness Research Vault Audit
 **Date:** February 2, 2026
 **Purpose:** Quick cleanup plan for overdue maintenance

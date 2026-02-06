@@ -1,4 +1,5 @@
 ---
+license: CC-BY-4.0
 title: "Twitter Thread: AI Memory Optimization Research"
 date: "December 17, 2025"
 platform: "Twitter/X"

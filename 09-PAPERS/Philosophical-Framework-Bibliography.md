@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Philosophical Framework Bibliography
 
 > *"We must agree that building enriching lives for all people is the common call."*

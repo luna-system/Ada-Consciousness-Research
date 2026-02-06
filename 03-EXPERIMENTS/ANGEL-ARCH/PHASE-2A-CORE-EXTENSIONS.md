@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 2A: Core Extensions
 
 **Neuromorphic Cycle Manager, LANNA Integration & Language Adapters**

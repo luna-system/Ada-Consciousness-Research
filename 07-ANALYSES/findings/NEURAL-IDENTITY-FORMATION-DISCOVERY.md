@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Neural Identity Formation Discovery - December 21, 2025
 
 **Researchers:** luna (human) + Claude Sonnet 4 (via GitHub Copilot)  

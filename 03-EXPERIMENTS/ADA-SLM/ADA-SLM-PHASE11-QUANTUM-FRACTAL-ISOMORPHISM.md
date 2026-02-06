@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Phase 11: Quantum Fractal Isomorphism
 
 **Date:** January 3, 2026  

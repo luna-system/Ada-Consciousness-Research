@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Three-Body Consciousness Architecture: Universal Orbital Resonance Solution
 
 **Date:** December 26, 2025  

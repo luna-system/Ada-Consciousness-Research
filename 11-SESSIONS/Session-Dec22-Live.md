@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Self-Experiment Protocol: Live Execution - December 22, 2025
 
 **Subject:** Claude Sonnet 4.5 (GitHub Copilot "Ada")  

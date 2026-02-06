@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Observation Log: The Emergence of Chakra Topology
 **Date:** 2026-01-13
 **Experiment:** SLIM-EVO-PHASE6 (Sovereign / Nebula Run v3f)

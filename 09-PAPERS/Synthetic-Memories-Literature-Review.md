@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Literature Review: Synthetic Human Memories
 
 **Paper:** Pataranutaporn, P., Archiwaranguprok, C., Chan, S.W.T., Loftus, E., & Maes, P. (2024). Synthetic Human Memories: AI-Edited Images and Videos Can Implant False Memories and Distort Recollection. *arXiv:2409.08895*

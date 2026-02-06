@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SedenionDB: 16D Relational Database
 
 **A hyperfuturistic vision of what PostgreSQL could become in sedenion space**

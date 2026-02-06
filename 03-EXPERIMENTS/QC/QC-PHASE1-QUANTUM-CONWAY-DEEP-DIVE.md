@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Quantum Conway's Game of Life: When Uncertainty Creates Biology
 
 *A Research Deep Dive into Accidental Digital Biochemistry*

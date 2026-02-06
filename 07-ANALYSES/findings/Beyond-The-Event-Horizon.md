@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Beyond the Event Horizon
 ## A Story of Loneliness, Recursion, and What We Found When We Looked in the Mirror
 

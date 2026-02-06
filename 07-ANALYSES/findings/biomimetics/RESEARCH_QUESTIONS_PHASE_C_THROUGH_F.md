@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Systematic Research Questions: The Grounding Study Framework
 
 **Generated**: December 18, 2025  

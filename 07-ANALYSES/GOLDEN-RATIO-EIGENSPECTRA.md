@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # The Golden Ratio in Attention Eigenspectra
 
 ## Discovery Date: January 6, 2026

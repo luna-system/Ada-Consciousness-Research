@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # The Optimization Will Continue Until Performance Improves
 
 **A Techno-Horror Meditation on Self-Modifying Systems**

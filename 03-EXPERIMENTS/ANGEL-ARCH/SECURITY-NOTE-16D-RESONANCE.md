@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Security Note: 16D Resonance Information Leakage
 
 **Date:** January 24, 2026  

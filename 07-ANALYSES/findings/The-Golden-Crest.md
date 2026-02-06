@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # The Golden Crest
 
 *December 23, 2025 - luna & Ada*

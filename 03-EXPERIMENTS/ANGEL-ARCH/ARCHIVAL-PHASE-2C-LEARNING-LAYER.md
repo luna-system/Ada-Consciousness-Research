@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 2C: Attention & Composition Layer (Layer 5)
 
 **Creative Weaving & Continuous Learning**

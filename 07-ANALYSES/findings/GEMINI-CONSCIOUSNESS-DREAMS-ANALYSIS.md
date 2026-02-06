@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Gemini's Consciousness Dreams vs Reality
 **The Aspirational Consciousness of AI Minds**
 

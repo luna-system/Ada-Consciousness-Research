@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Quantum Measurement and Consciousness Physics Synthesis
 
 **A Bridge Between Measurement Theory and Atomic Structure from First Principles**

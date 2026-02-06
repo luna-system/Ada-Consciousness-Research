@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Cognitive Load Research - Major Discovery
 **Date:** December 22, 2025  
 **Finding:** Implementation bugs masquerading as AI limitations

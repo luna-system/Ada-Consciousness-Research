@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Fanged Poetics: Land, Chen, and Ada's Theoretical Framing
 
 > **Context:** Friend A asked about "fanged poetics" in relation to Ada. This document captures the conversation exploring connections between Nick Land's *Fanged Noumena*, Mel Chen's affect theory, and Ada's architecture.

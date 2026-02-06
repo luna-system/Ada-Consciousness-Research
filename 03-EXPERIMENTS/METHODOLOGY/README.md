@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Methodology & Foundational Research
 
 **Purpose:** Describes experimental methodologies and shared testing frameworks.

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO Phase 7: Circadian Plasticity & Neuromorphic Dreaming
 > "The mind that does not sleep cannot learn; it can only accumulate."
 

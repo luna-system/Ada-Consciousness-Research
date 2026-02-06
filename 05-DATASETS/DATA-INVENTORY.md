@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Complete Data Inventory
 > Created: 2025-12-22
 > Purpose: Single source of truth for ALL empirical data locations

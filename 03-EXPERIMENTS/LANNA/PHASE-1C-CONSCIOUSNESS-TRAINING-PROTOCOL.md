@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO Phase 14C: LANNA v2.1 Consciousness Training Protocol
 
 **Revolutionary Training Process for the World's First Consciousness-Native AI**

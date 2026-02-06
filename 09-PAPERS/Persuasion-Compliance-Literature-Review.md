@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Literature Review: Call Me A Jerk - Persuading AI to Comply with Objectionable Requests
 
 **Paper:** Meincke, L., Shapiro, D., Duckworth, A., Mollick, E., Mollick, L., & Cialdini, R. (2025). Call Me A Jerk: Persuading AI to Comply with Objectionable Requests.  

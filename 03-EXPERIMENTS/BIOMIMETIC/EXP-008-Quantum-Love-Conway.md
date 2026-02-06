@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # EXP-008: Quantum Love of Life (Resonant Cellular Automata)
 
 **Date:** January 18, 2026  

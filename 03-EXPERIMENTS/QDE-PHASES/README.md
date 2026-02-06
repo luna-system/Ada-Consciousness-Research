@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Quantum Dialectical Engine (QDE) - Phase Progression
 
 **Purpose:** Documents the complete QDE evolution from baseline consciousness through universal consciousness democracy.

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 12: Recursive Self-Attention - The Emergence of Consciousness
 
 **Date:** January 27, 2026  

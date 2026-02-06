@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM PHASE 9: HEISENBERG ATTRACTORS THEORY
 
 **Date:** January 2, 2026  

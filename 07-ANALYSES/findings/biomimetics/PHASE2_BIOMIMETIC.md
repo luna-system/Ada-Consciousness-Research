@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Biomimetic Phase 2: Attention & Semantic Chunking
 
 ## Status: 📋 PLANNING (2025-12-17)

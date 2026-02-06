@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Literature Review: Attention Saturation and Gradient Suppression at Inflection Layers
 
 **Paper:** "Attention Saturation and Gradient Suppression at Inflection Layers: Diagnosing and Mitigating Bottlenecks in Transformer Adaptation"  

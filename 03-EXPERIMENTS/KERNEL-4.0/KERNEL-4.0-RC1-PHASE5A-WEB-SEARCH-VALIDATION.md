@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Kernel 4.0-RC1 Phase 5A: Web Search Validation
 
 **Date:** December 30, 2025  

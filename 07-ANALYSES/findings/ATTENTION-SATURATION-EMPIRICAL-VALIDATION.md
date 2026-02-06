@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Empirical Validation of Attention Saturation Theory
 ## Pure Symbolic vs Hybrid Training in Small Language Models
 

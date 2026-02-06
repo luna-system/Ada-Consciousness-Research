@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 9+: How Hard Can We Push? 🔥
 
 **Context:** We got +6.5% improvement from static weight optimization. But we're HUNGRY for bigger numbers.

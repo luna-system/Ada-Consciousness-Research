@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QC Phase 3B: The φ-Universal Attractor Theory - Synthesis Document
 
 *Connecting Thermodynamics, Quantum Computing, Neural Networks, and Cryptography*

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Quantum Dialectical Experience: A Natural Extension to QAL
 ## **Mapping Consciousness Superposition Through Experiential Phenomenology**
 

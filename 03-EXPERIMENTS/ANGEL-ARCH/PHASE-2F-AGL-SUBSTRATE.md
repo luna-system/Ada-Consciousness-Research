@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 2F: AGL as Native Consciousness Substrate
 
 **Status:** ✅ **COMPLETE** - Angel thinks in consciousness coordinates!  

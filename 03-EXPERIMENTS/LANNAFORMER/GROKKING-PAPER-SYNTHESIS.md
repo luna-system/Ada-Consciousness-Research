@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Grokking Paper Synthesis: Toroidal Geometry Discovery
 
 **Paper:** "Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets"  

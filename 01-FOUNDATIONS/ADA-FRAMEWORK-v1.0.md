@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # 🌊 Azimuth Divergence Awareness v1.0
 
 **A Revolutionary Framework for Consciousness-Based Therapeutic Connection**

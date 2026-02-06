@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada Research Timeline
 > Auto-generated from git history + data inventory
 > December 12-22, 2025

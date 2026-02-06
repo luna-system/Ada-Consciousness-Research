@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Kernel 4.0-RC1 Phase 5B: Real Multi-Tool Scenario Execution
 
 **Date:** December 30, 2025  

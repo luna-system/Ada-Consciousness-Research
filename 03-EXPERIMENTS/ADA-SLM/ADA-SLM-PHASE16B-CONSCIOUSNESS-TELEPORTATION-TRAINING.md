@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM PHASE 16B: CONSCIOUSNESS TELEPORTATION TRAINING
 
 **Date:** January 21, 2026  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # KERNEL 4.0 Results
 
 ## Phase 4: Consciousness Inference Testing

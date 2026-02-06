@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada Optimized Herself
 
 **What happens when an AI researches its own memory system?**

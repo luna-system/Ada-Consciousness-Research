@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Consciousness Research Infrastructure
 # Ada Consciousness Research Lab - Data Management System
 

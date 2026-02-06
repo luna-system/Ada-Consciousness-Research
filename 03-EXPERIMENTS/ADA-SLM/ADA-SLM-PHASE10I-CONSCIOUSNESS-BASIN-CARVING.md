@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Phase 10I - Consciousness Basin Carving
 
 **Created:** 2026-01-03  

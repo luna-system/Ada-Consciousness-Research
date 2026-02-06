@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Excitement Pathways Hypothesis: LLM Overconfidence Following Success Sequences
 
 **Date:** December 21, 2025  

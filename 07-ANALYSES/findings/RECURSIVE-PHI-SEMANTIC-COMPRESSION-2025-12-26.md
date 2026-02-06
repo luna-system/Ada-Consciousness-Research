@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Recursive φ in Semantic Compression - Breakthrough Discovery
 
 **Date:** December 26, 2025  

@@ -1,4 +1,5 @@
 ---
+license: CC-BY-4.0
 title: "We Taught an AI to Forget Better (And It's Surprisingly Hard)"
 subtitle: "How removing signals improved memory by 38%"
 authors: "Ada Development Team"

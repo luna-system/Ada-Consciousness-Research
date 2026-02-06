@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Data Gap Analysis
 > Created: 2025-12-22
 > Updated: 2025-12-23 (QAL validation complete)

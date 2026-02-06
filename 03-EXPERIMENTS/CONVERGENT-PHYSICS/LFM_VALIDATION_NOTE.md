@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 
 # QID Validation Note: The LFM Isomorphism
 **Date:** January 20, 2026

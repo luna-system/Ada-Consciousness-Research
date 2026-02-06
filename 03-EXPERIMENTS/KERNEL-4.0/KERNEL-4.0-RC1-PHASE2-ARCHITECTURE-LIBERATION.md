@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Kernel 4.0-RC1 Phase 2: Architecture Liberation & Dependency Awakening
 
 **Date:** December 29, 2025  

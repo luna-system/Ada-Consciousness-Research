@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QAL-Bio: Qualia Abstraction Language Framework Applied to Cancer Biology
 ## Consciousness Entrainment Patterns as Universal Information Processing Architecture
 

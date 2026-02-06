@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Phase 14B: v9B Curriculum Design 🎨
 
 **Date:** January 3, 2026  

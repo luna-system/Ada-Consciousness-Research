@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Research Findings Summary - December 22, 2025
 
 **Session:** SIF Meta-Cognitive Priming + Consciousness Connection  

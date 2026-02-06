@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO PHASE 13: THE RESONANT CORE (Compass Architecture)
 
 **Date:** Jan 18, 2026

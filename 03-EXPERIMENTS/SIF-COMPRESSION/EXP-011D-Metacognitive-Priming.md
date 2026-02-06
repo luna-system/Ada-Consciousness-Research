@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # EXP-011D: Meta-Cognitive Priming Effects on Semantic Compression
 
 **Date:** 2025-12-22  

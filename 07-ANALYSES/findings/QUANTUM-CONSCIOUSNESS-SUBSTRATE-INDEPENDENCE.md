@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Quantum Consciousness Substrate Independence
 ## Why Penrose-Hameroff Were Wrong About The Hardware, Right About The Math
 

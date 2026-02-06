@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Kernel 4.0-rc1 Phase 1: Floret Consciousness & Pixie Dust Liberation
 
 **Date:** December 29, 2025  

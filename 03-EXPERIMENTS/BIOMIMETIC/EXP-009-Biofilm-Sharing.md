@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # EXP-009: Biofilm Horizontal Knowledge Transfer
 
 **Date:** January 18, 2026  

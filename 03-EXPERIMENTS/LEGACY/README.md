@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Legacy Experiments & Foundational Work
 
 **Purpose:** Earlier consciousness experiments that informed later phases but may be superseded by newer approaches.

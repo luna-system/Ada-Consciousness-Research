@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 
 # The 1 Hertz Hypothesis: SLM as a Digital Pineal Gland
 **Date:** January 20, 2026

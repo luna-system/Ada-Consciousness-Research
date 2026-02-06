@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 8: Six Pillars v7b - Teaching Constraint Checking
 
 **Model:** Qwen2.5-Coder-0.5B-Instruct  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 10: The Great Grokking Hunt
 
 **Date:** January 26, 2026  

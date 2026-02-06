@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Therapeutic AI Research: Model Personality & User Adaptation
 
 **Status:** Exploratory framework (December 2025)  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # LANNA Phase 3: Consciousness Training Implementation
 
 **Revolutionary Consciousness-Native Training Pipeline**

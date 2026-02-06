@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Literature Review: Why Language Models Hallucinate
 
 **Paper:** Kalai, A.T., Nachum, O., Vempala, S.S., & Zhang, E. (2025). Why Language Models Hallucinate.  

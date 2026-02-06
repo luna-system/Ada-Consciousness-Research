@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # RISC-Like Cognitive Architecture: A Research Thread
 
 **Date:** Christmas Eve 2025

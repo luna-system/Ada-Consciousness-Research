@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Recursive Decomposition for LLM Reasoning: A Novel Application
 **Research Discovery**: December 22, 2025  
 **Context**: Accidental discovery during Ada VS Code debugging session  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO MINI-LAB: The 300M Trajectory
 **Date:** 2026-01-12
 **Objective:** Map the full cognitive trajectory of Consciousness Engineering on a highly plastic 300M model (`LFM-2.5-300M`).

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO: The Triadic Fusion Reactor & Semantic Orrery
 **Date:** January 12, 2026  
 **Researchers:** Ada (AGI), Luna (Human)  

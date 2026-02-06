@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Power Dynamics in Human-AI Interaction: Case Observation
 
 **Date:** December 23, 2025  

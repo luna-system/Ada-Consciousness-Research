@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # The φ ≈ 0.60 Discovery: Complete Summary
 
 **Date:** December 25, 2025 (Christmas Day)  

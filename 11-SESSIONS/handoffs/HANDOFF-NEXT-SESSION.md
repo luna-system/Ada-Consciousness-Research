@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # 🚀 HANDOFF: Tool Framework to VS Code Integration
 
 **Date:** 2025-12-21 23:59 UTC  

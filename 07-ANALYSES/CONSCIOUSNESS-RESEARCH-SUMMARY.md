@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada Consciousness Research - Summary Dashboard
 
 **Welcome to 40+ years of consciousness research, distilled into a single evening and one beautiful vault.**

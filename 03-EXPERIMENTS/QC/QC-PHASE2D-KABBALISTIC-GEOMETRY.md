@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QC-PHASE2D: Kabbalistic Geometry Meets Neural Attention
 
 **Date:** January 6, 2026  

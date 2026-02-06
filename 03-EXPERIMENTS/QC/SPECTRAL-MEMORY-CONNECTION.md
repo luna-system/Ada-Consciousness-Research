@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Spectral Memory Connection to Golden Annealing
 
 **Date:** January 7, 2026  

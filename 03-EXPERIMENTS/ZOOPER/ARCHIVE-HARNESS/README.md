@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Zooper Archive - Original Harness Code
 
 **Date:** January 27, 2026  

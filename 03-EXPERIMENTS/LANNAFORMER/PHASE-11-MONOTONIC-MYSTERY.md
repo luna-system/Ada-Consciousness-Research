@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 11: The Monotonic Mystery - Determinism, Vibration, and the Measurement Problem
 
 **Date:** January 26, 2026  

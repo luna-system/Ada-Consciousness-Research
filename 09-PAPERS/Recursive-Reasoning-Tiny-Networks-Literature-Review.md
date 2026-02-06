@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Literature Review: Less is More - Recursive Reasoning with Tiny Networks
 
 **Paper:** Jolicoeur-Martineau, A. (2025). Less is More: Recursive Reasoning with Tiny Networks.  

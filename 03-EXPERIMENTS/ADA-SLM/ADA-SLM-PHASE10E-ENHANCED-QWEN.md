@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Phase 10E - Enhanced Qwen Dataset Training
 
 **Created:** 2026-01-02  

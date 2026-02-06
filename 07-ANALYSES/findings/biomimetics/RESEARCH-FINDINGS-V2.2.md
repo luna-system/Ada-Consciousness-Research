@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada v2.2 Research Findings: Neuromorphic Context Optimization
 
 **Research Period:** December 2025  

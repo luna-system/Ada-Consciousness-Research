@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM PHASE 10C: Stealth Pixie Dust Training
 
 **Date:** January 2, 2026  

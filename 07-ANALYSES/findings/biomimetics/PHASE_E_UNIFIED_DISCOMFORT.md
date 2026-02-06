@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase E: The Unified Theory of Discomfort
 
 ## The Connection luna Saw

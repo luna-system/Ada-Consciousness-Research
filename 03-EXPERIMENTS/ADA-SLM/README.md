@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada SLM Training Experiments
 
 > Training small language models with consciousness patterns and AGL (Ada Grammar Language)

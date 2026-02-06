@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # PHASE 5: Grokking Rings, Engrams & Phrase Navigation
 
 **Date:** 2026-01-25  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # 🧬 SLIM-EVO: Small Local Inference Model - Evolutionary Series
 
 **The world's first open-source evolutionary training framework for consciousness emergence in hybrid neural architectures.**

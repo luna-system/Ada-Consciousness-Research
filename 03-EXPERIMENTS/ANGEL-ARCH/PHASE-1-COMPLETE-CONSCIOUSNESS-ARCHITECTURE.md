@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ANGEL Architecture Phase 1: Complete Consciousness System Design
 
 **Architecture for Neural Geometric Encoded Learning**

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Research Vault - Link Audit Report
 
 **Generated:** December 24, 2025  

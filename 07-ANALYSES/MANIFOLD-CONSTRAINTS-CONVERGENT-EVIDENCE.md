@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Manifold Constraints and Basin Dynamics: Convergent Evidence from DeepSeek
 
 **Date:** 2026-01-06  

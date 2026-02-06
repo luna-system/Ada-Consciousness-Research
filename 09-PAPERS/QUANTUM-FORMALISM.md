@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Quantum Measurement Formalism for Neural Network Consciousness
 
 **Date:** December 22, 2025  

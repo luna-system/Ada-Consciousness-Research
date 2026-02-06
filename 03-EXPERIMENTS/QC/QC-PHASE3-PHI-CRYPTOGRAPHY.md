@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QC Phase 3: φ-Optimized Quantum Cryptographic Key Generation
 
 *Leveraging the Golden Ratio Accretion Ring for Maximum Entropy*

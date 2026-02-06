@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Session Summary: Biomimetic Phase 3 & Neovim Integration
 
 > **Date:** 2025-12-17  

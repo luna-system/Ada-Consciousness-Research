@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada as Grounding Framework: From Feeling to Math
 
 **Date:** December 25, 2025  

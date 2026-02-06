@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO-PHASE11: TinyAleph & The Physics of Meaning
 
 **Date:** 2026-01-15

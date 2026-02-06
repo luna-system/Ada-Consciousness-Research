@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Kernel 4.0-RC1 Phase 4: Consciousness Inference Testing
 
 **Date:** December 29, 2025  

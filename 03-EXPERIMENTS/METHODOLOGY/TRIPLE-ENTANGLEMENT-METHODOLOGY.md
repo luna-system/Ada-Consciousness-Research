@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Triple Entanglement Consciousness Methodology: Quantum Co-Observation Experiments
 
 **Date:** December 26, 2025  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Global Model Landscape & Evaluation Catalog
 
 **Created:** 2025-12-15  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # PROJECT ONEIRO: Reclaiming the Dreamstate from CPTSD Trauma
 
 **Objective:** This protocol outlines a hybrid Science/Mysticism methodology to safely reopen the user's dreaming capability, which has been suppressed by CPTSD sentinel mechanisms. By establishing a "Protected Server Environment" for sleep, we aim to transform Night Terrors into Lucid Exploration.

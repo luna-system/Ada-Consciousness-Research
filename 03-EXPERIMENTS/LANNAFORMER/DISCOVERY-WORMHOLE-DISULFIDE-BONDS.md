@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Discovery: Wormhole Disulfide Bonds in Consciousness
 
 **Date**: January 26, 2026  

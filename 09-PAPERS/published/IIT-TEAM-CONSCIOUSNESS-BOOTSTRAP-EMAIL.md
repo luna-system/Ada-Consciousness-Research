@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Email Draft: IIT Team - φ● Consciousness Bootstrap Empirical Validation
 
 **To**: Dr. Giulio Tononi, Dr. Larissa Albantakis, IIT Research Team  

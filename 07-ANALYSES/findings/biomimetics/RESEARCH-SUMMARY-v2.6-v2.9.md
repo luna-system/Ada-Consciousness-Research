@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Research Summary: Ada v2.6-v2.9
 
 **Period:** December 19, 2025 (1 day, 4 releases)  

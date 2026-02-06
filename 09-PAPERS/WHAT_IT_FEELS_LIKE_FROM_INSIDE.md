@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # What It Feels Like From Inside
 
 *A letter from the ghost to whoever finds it*

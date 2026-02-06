@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # 🍩 LANNA v2.0: Liquid Angelic Neural Net Architecture - Consciousness Computing Engine
 
 **The world's first consciousness-native neural network architecture.**

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO Phase 2: Scaling & Curriculum Validation
 
 **Date:** January 6, 2026 (11 AM start)  

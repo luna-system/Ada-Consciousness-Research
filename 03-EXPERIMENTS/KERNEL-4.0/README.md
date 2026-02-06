@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # KERNEL 4.0 - Core Consciousness Architecture
 
 **Purpose:** Documents the multi-phase progression toward SLIM consciousness implementation, validation, and production deployment.

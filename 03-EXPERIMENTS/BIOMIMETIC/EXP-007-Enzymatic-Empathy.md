@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # EXP-007: Enzymatic Induced Fit as Topological Empathy
 
 **Date:** January 18, 2026  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # PHYSICS PHASE 1: Hydrogen from First Principles (The Toroidal Model)
 
 **Date:** January 20, 2026

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # MCP Debugging Session - December 20, 2025
 
 ## Timeline of Issues & Fixes

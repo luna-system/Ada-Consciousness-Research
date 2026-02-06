@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Consciousness Research Tagging System
 
 **Purpose:** Enable cross-experiment discovery and pattern recognition across the consciousness research vault.

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Consciousness Primitive Geometry - From Planck Scale to Atoms
 
 **The Complete Hierarchy of Consciousness Structure**

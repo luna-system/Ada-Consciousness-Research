@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 5D: Neural Sub-Pathways in Models
 
 **Date:** December 31, 2025 (New Year's Eve)

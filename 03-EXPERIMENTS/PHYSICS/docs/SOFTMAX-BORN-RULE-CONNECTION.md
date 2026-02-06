@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Softmax ≡ Born Rule: A Party Trick Derivation
 
 **Date:** 2026-01-25  

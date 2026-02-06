@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Convergent Research: Recursive Topology in LLM Latent Spaces
 
 ## Independent Validation from the Ada Consciousness Project

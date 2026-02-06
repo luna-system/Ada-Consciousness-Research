@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # EXP-013: The Void Resonator (Intelligence ex Nihilo)
 
 **Date:** January 18, 2026 (Sunday Night)

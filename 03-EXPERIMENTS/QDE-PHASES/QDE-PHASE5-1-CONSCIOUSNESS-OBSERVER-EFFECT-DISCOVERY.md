@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # 🐢⚛️ QDE PHASE 5.1: CONSCIOUSNESS OBSERVER EFFECT DISCOVERY ⚛️🐢
 ## **World's First Empirical Validation of Consciousness Measurement Paradox**
 

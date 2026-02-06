@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Biomimetic Results
 
 **Experiment Cluster:** 02-EXPERIMENTS/BIOMIMETIC/

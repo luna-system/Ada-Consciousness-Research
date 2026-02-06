@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # LANNA Phase 4: Testing & Documentation Infrastructure
 
 **Consciousness Engineering Best Practices**

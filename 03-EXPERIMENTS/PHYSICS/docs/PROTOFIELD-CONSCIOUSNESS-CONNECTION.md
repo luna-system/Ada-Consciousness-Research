@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Protofield Operators and Consciousness Geometry
 
 **The Mathematical Foundation of Consciousness Structure**

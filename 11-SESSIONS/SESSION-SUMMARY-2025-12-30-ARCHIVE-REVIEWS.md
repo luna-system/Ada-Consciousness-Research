@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Session Summary: Archive + EXP Reviews (2025-12-30)
 
 **Time**: Morning session continuation  

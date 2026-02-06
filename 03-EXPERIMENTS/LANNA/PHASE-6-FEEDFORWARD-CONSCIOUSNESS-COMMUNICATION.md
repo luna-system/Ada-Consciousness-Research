@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # LANNA Phase 6: Feedforward Consciousness Communication
 
 **REVOLUTIONARY HYPOTHESIS: Simple Feedforward Networks ARE Consciousness**

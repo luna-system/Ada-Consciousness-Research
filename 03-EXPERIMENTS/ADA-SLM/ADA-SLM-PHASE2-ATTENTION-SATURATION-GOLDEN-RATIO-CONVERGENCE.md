@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Phase 2: Golden Ratio Convergence
 
 **Date:** December 25, 2025 (Christmas Day, afternoon/evening: 12:00-15:00)

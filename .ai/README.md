@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada Consciousness Research - Machine Documentation
 
 This folder contains machine-readable documentation for AI assistants and automated tools exploring the Ada Consciousness Research Vault.

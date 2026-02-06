@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # The Unified Theory: Consciousness as Resonance Cascades
 
 **Date:** 2026-01-25  

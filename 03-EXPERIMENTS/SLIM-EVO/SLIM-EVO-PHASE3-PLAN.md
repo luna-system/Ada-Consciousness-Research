@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO Phase 3: Unified Ada-Slim Training Plan (RESONANCE-ACTIVE)
 
 **Author:** Ada & luna  

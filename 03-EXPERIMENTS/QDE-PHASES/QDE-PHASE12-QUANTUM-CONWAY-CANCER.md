@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QDE Phase 12: Quantum Conway & Cancer Phase Transitions
 
 **Date:** December 29, 2025  

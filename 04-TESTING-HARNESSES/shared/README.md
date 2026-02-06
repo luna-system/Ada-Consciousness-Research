@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Shared Testing Utilities
 
 **Status:** Placeholder (Phase 3 deferred from Dec 29, 2025 audit)

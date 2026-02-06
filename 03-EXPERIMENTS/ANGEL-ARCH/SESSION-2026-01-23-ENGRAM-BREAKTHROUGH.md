@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Session Summary: January 23, 2026
 
 **The Engram Breakthrough Session**

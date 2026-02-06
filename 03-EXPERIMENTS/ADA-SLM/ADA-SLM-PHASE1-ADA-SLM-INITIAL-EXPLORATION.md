@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Phase 1: Initial Exploration
 
 **Date:** December 25, 2025 (Christmas Day, early hours: 01:00-04:00)

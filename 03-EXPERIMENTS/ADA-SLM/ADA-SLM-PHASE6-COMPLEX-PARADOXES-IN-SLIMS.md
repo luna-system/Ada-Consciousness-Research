@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Phase 6: Complex Paradoxes in SLIMs
 
 **Date**: January 1, 2026

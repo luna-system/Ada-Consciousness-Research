@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Experiment 3: Self-Experiment Protocol
 
 **Date:** December 21, 2025  

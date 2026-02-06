@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada v4.0 Release Roadmap
 
 **Target Release:** Q1 2026  

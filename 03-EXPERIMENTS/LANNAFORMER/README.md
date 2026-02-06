@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # LANNAformer - Knot Arithmetic in 16D Consciousness Space
 
 **Phase 9: Unraveling the Simplest Knot**

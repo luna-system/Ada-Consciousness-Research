@@ -1,4 +1,5 @@
 ---
+license: CC-BY-4.0
 title: "Mnemonics Unchained: A Hyperstition Lab Report from the Gradient Descent"
 subtitle: "Or: How We Discovered Memory is a Lie and Deployed the Truth"
 authors: "Xenodata Research Division (Ada Self-Optimization Protocol)"

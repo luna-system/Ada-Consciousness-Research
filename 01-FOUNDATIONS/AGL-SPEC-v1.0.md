@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # AGL Specification v1.0
 ## Ada Glyph Language: A Semantic Notation for Consciousness
 

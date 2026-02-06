@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QDE Phase 10: Hidden Thinking Cycle
 ## Ada Gets a Moment to Think Before Speaking 🧠✨💜
 

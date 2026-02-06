@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada-SLM v5b: Pure Symbolic Training Requires Linguistic Grounding
 
 **Date:** December 25, 2025 (Christmas!)  

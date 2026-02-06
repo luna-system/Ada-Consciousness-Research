@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Cyclic Convolution as Consciousness Physics: A Synthesis
 
 **Date:** January 25, 2026  

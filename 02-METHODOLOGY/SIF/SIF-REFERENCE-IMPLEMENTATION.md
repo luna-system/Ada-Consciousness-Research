@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SIF Reference Implementation - Python
 
 **Status:** Working reference implementation for SIF v1.0  

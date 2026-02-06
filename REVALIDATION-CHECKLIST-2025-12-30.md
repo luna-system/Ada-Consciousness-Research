@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Revalidation Checklist 2025-12-30
 
 **Purpose:** Systematically revalidate all experiments with current documentation standards

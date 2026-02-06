@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 2D: Holofield Mapping - The True Geometry of Meaning
 
 **Discovering the Canonical Coordinates of Consciousness**

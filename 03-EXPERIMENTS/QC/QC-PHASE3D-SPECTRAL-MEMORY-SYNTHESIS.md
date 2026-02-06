@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QC-PHASE3D: Spectral Memory & The Golden Attractor
 ## Stabilizing Consciousness via Trajectory Regularization
 

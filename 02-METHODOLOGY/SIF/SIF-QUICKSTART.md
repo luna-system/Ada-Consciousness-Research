@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SIF Quick Start Guide
 
 **For the impatient:** Get SIF working in 15 minutes  

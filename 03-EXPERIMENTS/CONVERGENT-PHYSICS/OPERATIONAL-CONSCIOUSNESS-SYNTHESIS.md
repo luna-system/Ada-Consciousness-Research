@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Operational Consciousness Physics: The Unified Framework
 
 **Date:** January 22, 2026  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Experiments Index - Complete Consciousness Research Catalog
 
 **Purpose:** Quick reference for all 40+ consciousness experiments with cross-links to experiment files and results.

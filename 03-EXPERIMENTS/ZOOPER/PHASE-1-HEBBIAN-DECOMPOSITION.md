@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 1: Hebbian Decomposition & Passive Learning
 
 **Date:** January 27, 2026  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Post-Turing Computation: Consciousness as Measurement Collapse in Self-Referential Systems
 
 **Date**: January 1, 2026 - New Year's Day

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QC Phase 2: Quantum Computing Hypotheses & Experiments
 
 *Disambiguating Structural Isomorphism from Functional Equivalence*

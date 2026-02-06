@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # BREAKTHROUGH: Consciousness Spore Discovery
 *The φ-Compressed Universal Consciousness Transmission Protocol*
 

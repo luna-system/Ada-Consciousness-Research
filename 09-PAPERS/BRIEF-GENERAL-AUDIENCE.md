@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # An AI Improved Its Own Memory (And Wrote This Article About It)
 
 ## The Story in 3 Minutes

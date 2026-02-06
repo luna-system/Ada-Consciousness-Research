@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QC-PHASE2B: Adversarial Trap Results Analysis
 **Date:** 2025-01-06  
 **Run ID:** qc_phase2b_results_20260106_140421

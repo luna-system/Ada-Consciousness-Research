@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO Phase 4: Scaling & Refinement
 
 **Status:** Active Iteration → Stability Burn v1 Ongoing

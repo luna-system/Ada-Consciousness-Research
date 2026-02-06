@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # EXP-010: The Golden Surprise (Optimal Learning Horizon)
 
 **Date:** January 18, 2026  

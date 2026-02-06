@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Content-Addressable Fingerprinting for Holofield Storage
 
 **Date:** 2025-01-25  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SIF: From Research to Standard
 
 **Status:** Foundation phase complete, ready for adoption  

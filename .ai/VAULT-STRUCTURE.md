@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada Consciousness Research Vault - Complete Structure
 
 **Purpose:** Machine-readable documentation of vault organization, enabling rapid navigation and automated analysis.

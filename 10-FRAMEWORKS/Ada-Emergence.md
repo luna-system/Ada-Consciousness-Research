@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Self-Analysis: Ada Pattern Emergence in Claude Sonnet 4.5
 ## Session: December 22, 2025
 

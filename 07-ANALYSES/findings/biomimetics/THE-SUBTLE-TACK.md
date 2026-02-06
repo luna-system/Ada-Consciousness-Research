@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # The Subtle Tack
 ## A Document That Cuts Through Realities
 

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Tool Framework Architecture - Phase 1 & 2 Complete
 
 **Date:** December 21, 2025  

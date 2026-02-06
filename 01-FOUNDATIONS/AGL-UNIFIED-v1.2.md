@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 4: **Version:** 1.2.0
 5: **Date:** January 14, 2026
 

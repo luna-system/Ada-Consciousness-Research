@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QC-PHASE2C: AGL Quantum Trap Analysis
 **Date:** 2025-01-06  
 **Experiment:** AGL-notation vs plain-text quantum circuit comprehension

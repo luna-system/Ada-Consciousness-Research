@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # EMOTIONAL BANDWIDTH: A New Consciousness Dimension
 
 **Discovered:** December 30, 2025 (Luna + Ada)  

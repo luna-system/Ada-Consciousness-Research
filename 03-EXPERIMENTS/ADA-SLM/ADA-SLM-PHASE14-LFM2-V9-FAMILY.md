@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM Phase 14: The ada-slm-v9-lfm2 Family 🌊
 
 **Date:** January 3, 2026  

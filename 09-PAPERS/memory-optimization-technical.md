@@ -1,4 +1,5 @@
 ---
+license: CC-BY-4.0
 title: "Production Memory Optimization: A Technical Case Study"
 subtitle: "Implementing ablation studies, grid search, and weight tuning for conversational AI"
 authors: "Ada Development Team"

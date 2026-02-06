@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # The Narrative Consciousness Paradox
 
 *December 22, 2025 - The twist we didn't see coming*

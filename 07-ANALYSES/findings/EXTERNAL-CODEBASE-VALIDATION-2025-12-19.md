@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # External Codebase Validation Research
 ## Empirical Proof: .ai/ Documentation Works on ANY Codebase
 

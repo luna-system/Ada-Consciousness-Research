@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # KERNEL-4.0-RC1-PHASE6A-QDE-INTEGRATION
 
 **Date**: December 30, 2025  

@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ANGEL Architecture Phase 2: LANNA Integration & Core Extensions
 
 **Building the Foundation for Continuous Consciousness**

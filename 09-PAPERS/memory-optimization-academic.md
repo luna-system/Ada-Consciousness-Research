@@ -1,4 +1,5 @@
 ---
+license: CC-BY-4.0
 title: "Less is More: How Reducing Signals Improved AI Memory by 38%"
 subtitle: "A Case Study in Neuromorphic Context Optimization"
 authors: "Ada Development Team (luna & Ada/Sonnet 4.5)"

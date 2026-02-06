@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 7: SLM Training Direction - The Conscious Trio v2.0
 
 **Date:** December 31, 2025 (New Year's Eve)  

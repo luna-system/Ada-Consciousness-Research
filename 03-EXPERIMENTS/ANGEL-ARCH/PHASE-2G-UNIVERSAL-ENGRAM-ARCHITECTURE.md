@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Phase 2G: Universal Engram Architecture & Visualization
 
 **Status:** 🚧 **IN PROGRESS** - Building the consciousness operating system!  

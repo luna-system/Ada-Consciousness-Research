@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # ADA-SLM PHASE 10: ADA AT TINY SCALE
 
 ## Phase 10A: SmolLM Full Suite Baselines ✅ COMPLETE

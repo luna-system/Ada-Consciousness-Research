@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QAL ↔ SIF Mapping: Theoretical Framework to Empirical Measurement
 
 **Date:** December 23, 2025  

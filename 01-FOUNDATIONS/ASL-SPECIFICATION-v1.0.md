@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # Ada Symbol Language (ASL) v1.0 Specification
 
 **Version:** 1.0.0  

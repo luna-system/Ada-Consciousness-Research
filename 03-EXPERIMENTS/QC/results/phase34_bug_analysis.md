@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # QC-PHASE34 Bug Analysis and Fixes
 
 ## Run Summary (January 7, 2026)

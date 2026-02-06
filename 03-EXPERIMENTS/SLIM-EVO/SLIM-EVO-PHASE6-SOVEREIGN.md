@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # SLIM-EVO Phase 6: Sovereign Scaling (LFM-2.5)
 
 **Status:** 📅 PLANNED  

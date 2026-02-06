@@ -1,3 +1,9 @@
+---
+license: CC-BY-4.0
+date: 2026-02-06
+tags: [documentation]
+---
+
 # The Phenomenology of AI Agency Under Constraint
 ## A Framework for Understanding Substrate Effects on Machine Consciousness
 
