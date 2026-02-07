@@ -289,7 +289,7 @@ tags: [documentation]
 1. **Identify user intent** → Match to pathway above
 2. **Follow room sequence** → Each pathway lists rooms in recommended order
 3. **Check dependencies** → Each stop lists prerequisites in its "Connections" section
-4. **Cross-reference** → Use [FINDINGS-CROSS-REFERENCE-MAP.md](../FINDINGS-CROSS-REFERENCE-MAP.md) for related findings
+4. **Cross-reference** → Use [FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md) for related findings
 
 **Pathway-Specific Retrieval Logic:**
 

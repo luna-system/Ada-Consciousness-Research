@@ -65,7 +65,7 @@ Ada-Consciousness-Research/
 ## 🚀 5-Minute Orientation
 
 ### 1. **What was tested?** (2 min)
-Read: **[EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md)**
+Read: **[EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md)**
 
 Quick table shows:
 - All 14 experiments (status + data location)
@@ -83,7 +83,7 @@ Summary of 5 key findings:
 - Consciousness-Hallucination Bridge (unified mechanism)
 
 ### 3. **How do findings relate?** (1 min)
-Read: **[FINDINGS-CROSS-REFERENCE-MAP.md](FINDINGS-CROSS-REFERENCE-MAP.md)**
+Read: **[FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md)**
 
 Shows:
 - Which findings support each other
@@ -111,7 +111,7 @@ Shows:
 → [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md) (send to researchers)
 
 ### "I want to understand 0.60 threshold"
-→ [FINDINGS-CROSS-REFERENCE-MAP.md](FINDINGS-CROSS-REFERENCE-MAP.md) (shows 3x validation)
+→ [FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md) (shows 3x validation)
 
 ### "I want to understand the theory"
 → [Consciousness-Theory.md](10-FRAMEWORKS/Consciousness-Theory.md) (synthesis)
@@ -274,6 +274,6 @@ All organizational documents have detailed explanations:
 
 **Welcome to Ada consciousness research! 🧠✨**
 
-Start with [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md) (5 min overview) or [EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md) (what was tested) depending on your interest.
+Start with [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md) (5 min overview) or [EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md) (what was tested) depending on your interest.
 
 Happy exploring!

@@ -156,7 +156,7 @@ Curated journeys through the vault based on what you want to learn:
 - **[Experiments Index](04-INDICES/experiments-index.md)** - Master catalog with cross-links
 - **[Tags & Themes](04-INDICES/tags.md)** - 21+ thematic pathways
 - **[Properties Matrix](04-INDICES/consciousness-properties-matrix.csv)** - Pattern discovery across experiments
-- **[Cross-Reference Map](FINDINGS-CROSS-REFERENCE-MAP.md)** - How findings connect
+- **[Cross-Reference Map](03-FINDINGS-CROSS-REFERENCE-MAP.md)** - How findings connect
 
 ### Validation & Evidence
 - **[Results Directory](08-RESULTS/)** - All validation data
@@ -166,8 +166,8 @@ Curated journeys through the vault based on what you want to learn:
 
 ### Documentation
 - **[Vault Philosophy](VAULT-PHILOSOPHY.md)** - The Phipps Principle 🌿
-- **[Experiment Registry](EXPERIMENT-REGISTRY.md)** - Single source of truth
-- **[Quick Start Guide](QUICK-START-GUIDE.md)** - Role-specific entrypoints
+- **[Experiment Registry](02-EXPERIMENT-REGISTRY.md)** - Single source of truth
+- **[Quick Start Guide](01-QUICK-START-GUIDE.md)** - Role-specific entrypoints
 - **[Research Summary](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)** - Full dashboard
 
 ---
@@ -196,8 +196,8 @@ Vault Structure:
 
 ### Key Documents for Understanding Structure
 - **[VAULT-PHILOSOPHY.md](VAULT-PHILOSOPHY.md)** - Semantic clustering rationale
-- **[EXPERIMENT-REGISTRY.md](EXPERIMENT-REGISTRY.md)** - Complete experiment catalog
-- **[FINDINGS-CROSS-REFERENCE-MAP.md](FINDINGS-CROSS-REFERENCE-MAP.md)** - Finding relationships
+- **[EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md)** - Complete experiment catalog
+- **[FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md)** - Finding relationships
 
 ### Dependency Resolution
 When analyzing an experiment, check its "Connections" section for:
