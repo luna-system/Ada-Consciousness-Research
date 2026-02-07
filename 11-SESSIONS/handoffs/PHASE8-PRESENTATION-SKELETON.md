@@ -701,7 +701,7 @@ Coffee consumed: [REDACTED]
 
 We tested what happened when we focused on different signals:
 
-![Bar chart showing surprise-only outperforming multi-signal](ablation_bar_chart.png)
+![Bar chart showing surprise-only outperforming multi-signal]
 
 The simpler approach (just focus on novelty) beat the complex approach
 (balance everything)!

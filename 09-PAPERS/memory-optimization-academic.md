@@ -219,7 +219,7 @@ The ablation studies revealed surprise's dominance but suggested optimal balance
 
 We mapped six configurations on the importance-accuracy vs recency-bias trade-off curve:
 
-![Pareto Frontier](../visualizations/pareto_frontier.png)
+![Pareto Frontier]
 
 *Figure 1: Pareto frontier showing trade-off between importance correlation and recency weighting. Optimal configuration (⭐) balances both objectives. Production baseline (○) over-weights recency.*
 
@@ -268,7 +268,7 @@ Ada uses gradient detail levels based on importance:
 - **SUMMARY:** Condensed text (importance ≥0.20)
 - **DROPPED:** Omitted (importance <0.20)
 
-![Gradient Distribution](../visualizations/gradient_distribution.png)
+![Gradient Distribution]
 
 *Figure 2: Detail level distribution before (production) and after (optimal) deployment. Note 250% increase in CHUNKS treatment.*
 
@@ -372,11 +372,11 @@ Science is reproducible *and* communicable. We generated publication-quality vis
 - Style: Seaborn whitegrid (professional academic)
 - Color scheme: Semantic (green=good, red=bad, gold=optimal)
 
-![Weight Space Heatmap](../visualizations/weight_space_heatmap.png)
+![Weight Space Heatmap]
 
 *Figure 3: Correlation landscape across decay-surprise weight space. Green indicates high correlation with ground truth. Optimal configuration (⭐) and production baseline (○) marked.*
 
-![Ablation Bar Chart](../visualizations/ablation_bar_chart.png)
+![Ablation Bar Chart]
 
 *Figure 4: Ablation study results. Surprise-only (gold) outperforms production multi-signal baseline (blue). Red dashed line shows random baseline.*
 

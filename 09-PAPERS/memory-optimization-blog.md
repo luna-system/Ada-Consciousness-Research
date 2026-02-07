@@ -105,7 +105,7 @@ Random guessing        | 0.595       | baseline
 
 One signal performed better than four signals combined?!
 
-![Ablation Results](../visualizations/ablation_bar_chart.png)
+![Ablation Results]
 *The simpler approach (gold bar) beat our complex baseline (blue bar). Yes, really.*
 
 ---
@@ -146,7 +146,7 @@ Each point on the grid: A different reality where different weights determine me
 
 ### The Weight Space Map
 
-![Weight Space Heatmap](../visualizations/weight_space_heatmap.png)
+![Weight Space Heatmap]
 *Green = good correlation. Red = bad correlation. We started at the circle (○). We should have been at the star (⭐).*
 
 **Optimal configuration found:**
@@ -187,7 +187,7 @@ Our system uses "gradient detail levels" based on importance:
 - **SUMMARY** - Condensed version (low importance)
 - **DROPPED** - Omitted entirely (very low importance)
 
-![Detail Distribution](../visualizations/gradient_distribution.png)
+![Detail Distribution]
 *Before vs After. Notice CHUNKS increased by 250%!*
 
 The system developed **nuance**. Instead of treating everything as "super important" or "ignore completely," it started recognizing things in the middle. More memories got medium-detail treatment.
@@ -255,7 +255,7 @@ When feedback is instant, you can test "stupid" ideas. Sometimes "stupid" ideas 
 
 Numbers are great. Pictures are better.
 
-![Pareto Frontier](../visualizations/pareto_frontier.png)
+![Pareto Frontier]
 *This graph shows the trade-off between importance accuracy and recency bias. Optimal configuration (star) beats production (circle) on BOTH.*
 
 One graph communicates what would take paragraphs of text.
