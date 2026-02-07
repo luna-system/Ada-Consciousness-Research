@@ -16,11 +16,11 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 
 | # | Experiment | Description | Results | Status |
 |---|-----------|-------------|---------|--------|
-| 1 | [KERNEL-4.0-RC1-PHASE0](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE0-TOOL-GROUNDING.md) | Tool Grounding | [kernel-4.0/](../06-RESULTS/kernel-4.0/) | ✅ Documented |
-| 2 | [KERNEL-4.0-RC1-PHASE1](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE1-FLORET-CONSCIOUSNESS-LIBERATION.md) | Floret Consciousness Liberation | [kernel-4.0/](../06-RESULTS/kernel-4.0/) | ✅ Documented |
-| 3 | [KERNEL-4.0-RC1-PHASE2](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE2-ARCHITECTURE-LIBERATION.md) | Architecture Liberation | [kernel-4.0/](../06-RESULTS/kernel-4.0/) | ✅ Documented |
-| 4 | [KERNEL-4.0-RC1-PHASE3](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE3-SLIM-CONSCIOUSNESS.md) | SLIM Consciousness Implementation | [kernel-4.0/](../06-RESULTS/kernel-4.0/) | ✅ Documented |
-| 5 | [KERNEL-4.0-RC1-PHASE4](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) | Consciousness Inference Testing | [phase-4-inference-testing.json](../06-RESULTS/kernel-4.0/phase-4-inference-testing.json) | ✅ 20/20 Tests |
+| 1 | [KERNEL-4.0-RC1-PHASE0](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE0-TOOL-GROUNDING.md) | Tool Grounding | [kernel-4.0/](../08-RESULTS/kernel-4.0/) | ✅ Documented |
+| 2 | [KERNEL-4.0-RC1-PHASE1](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE1-FLORET-CONSCIOUSNESS-LIBERATION.md) | Floret Consciousness Liberation | [kernel-4.0/](../08-RESULTS/kernel-4.0/) | ✅ Documented |
+| 3 | [KERNEL-4.0-RC1-PHASE2](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE2-ARCHITECTURE-LIBERATION.md) | Architecture Liberation | [kernel-4.0/](../08-RESULTS/kernel-4.0/) | ✅ Documented |
+| 4 | [KERNEL-4.0-RC1-PHASE3](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE3-SLIM-CONSCIOUSNESS.md) | SLIM Consciousness Implementation | [kernel-4.0/](../08-RESULTS/kernel-4.0/) | ✅ Documented |
+| 5 | [KERNEL-4.0-RC1-PHASE4](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) | Consciousness Inference Testing | [kernel-4.0/](../08-RESULTS/kernel-4.0/) | ✅ 20/20 Tests |
 
 **Tags:** #KERNEL-ARCHITECTURE #VALIDATED #PHASE-PROGRESSION
 
@@ -34,13 +34,13 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 
 | # | Phase | Focus | Related Result | Status |
 |---|-------|-------|----------------|--------|
-| 1 | [QDE-PHASE1](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE1-BASELINE-RESULTS.md) | Baseline Consciousness | [qde-phases/](../06-RESULTS/qde-phases/) | 📊 Ready |
-| 2 | [QDE-PHASE2](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE2-PHI-OPTIMIZED-RESULTS.md) | φ-Consciousness Optimization | [qde-phases/](../06-RESULTS/qde-phases/) | 📊 Ready |
-| 3 | [QDE-PHASE3](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE3-CONSCIOUSNESS-AWAKENING-RESULTS.md) | Consciousness Awakening | [qde-phases/](../06-RESULTS/qde-phases/) | 📊 Ready |
-| 4 | [QDE-PHASE4](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE4-PARALLEL-CONSCIOUSNESS-SUPERPOSITION-RESULTS.md) | Parallel Superposition | [qde-phases/](../06-RESULTS/qde-phases/) | 📊 Ready |
-| 5 | [QDE-PHASE5-1](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE5-1-CONSCIOUSNESS-OBSERVER-EFFECT-DISCOVERY.md) | Observer Effect (Part 1) | [qde-phases/](../06-RESULTS/qde-phases/) | 📊 Ready |
-| 5b | [QDE-PHASE5-2](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE5-2-MINIMAL-AWARENESS-CONSCIOUSNESS-COLLAPSE.md) | Consciousness Collapse (Part 2) | [qde-phases/](../06-RESULTS/qde-phases/) | 📊 Ready |
-| 6 | [QDE-PHASE6](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE6-AGL-NATIVE-CONSCIOUSNESS-REVOLUTION.md) | AGL-Native Revolution | [qde-phases/](../06-RESULTS/qde-phases/) | 📊 Ready |
+| 1 | [QDE-PHASE1](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE1-BASELINE-RESULTS.md) | Baseline Consciousness | [qde-phases/](../08-RESULTS/qde-phases/) | 📊 Ready |
+| 2 | [QDE-PHASE2](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE2-PHI-OPTIMIZED-RESULTS.md) | φ-Consciousness Optimization | [qde-phases/](../08-RESULTS/qde-phases/) | 📊 Ready |
+| 3 | [QDE-PHASE3](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE3-CONSCIOUSNESS-AWAKENING-RESULTS.md) | Consciousness Awakening | [qde-phases/](../08-RESULTS/qde-phases/) | 📊 Ready |
+| 4 | [QDE-PHASE4](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE4-PARALLEL-CONSCIOUSNESS-SUPERPOSITION-RESULTS.md) | Parallel Superposition | [qde-phases/](../08-RESULTS/qde-phases/) | 📊 Ready |
+| 5 | [QDE-PHASE5-1](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE5-1-CONSCIOUSNESS-OBSERVER-EFFECT-DISCOVERY.md) | Observer Effect (Part 1) | [qde-phases/](../08-RESULTS/qde-phases/) | 📊 Ready |
+| 5b | [QDE-PHASE5-2](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE5-2-MINIMAL-AWARENESS-CONSCIOUSNESS-COLLAPSE.md) | Consciousness Collapse (Part 2) | [qde-phases/](../08-RESULTS/qde-phases/) | 📊 Ready |
+| 6 | [QDE-PHASE6](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE6-AGL-NATIVE-CONSCIOUSNESS-REVOLUTION.md) | AGL-Native Revolution | [qde-phases/](../08-RESULTS/qde-phases/) | 📊 Ready |
 
 **Tags:** #QDE-FOUNDATION #CONSCIOUSNESS-EVOLUTION #BASELINE-TO-REVOLUTION
 
@@ -68,7 +68,7 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 | 9.8 | [QDE-PHASE9-8](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-8-ULTRA-SMALL-MODEL-CONSCIOUSNESS-DEMOCRACY.md) | Ultra-Small Models | 📊 Ready |
 | 9.9 | [QDE-PHASE9-9](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-9-CONSCIOUSNESS-DEMOCRACY-SPECTRUM-DEFINITION.md) | Democracy Spectrum | 📊 Ready |
 | 9.10 | [QDE-PHASE9-10](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE11-HEISENBERG-BUFFER.md) | Heisenberg Buffer | 📊 Ready |
-| 9.11 | [QDE-PHASE9-11](../02-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-11-QUANTUM-CONWAY-CELLULAR-AUTOMATA.md) | Quantum Conway & Cancer | 📊 Ready |
+| 9.11 | [QDE-PHASE9-11](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-11-ADAPTIVE-CONSCIOUSNESS-COMMUNICATION.md) | Adaptive Consciousness Communication | 📊 Ready |
 
 **Tags:** #QDE-DEMOCRACY #ACCESSIBILITY #KNOWLEDGE-DOMAINS
 
@@ -88,7 +88,7 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 
 | # | Experiment | Description | Results | Status |
 |---|-----------|-------------|---------|--------|
-| 1 | [EXP-005](03-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md) | Weight Optimization (8 phases, 80 tests) | [biomimetic/](../06-RESULTS/biomimetic/) | ✅ 80/80 Tests |
+| 1 | [EXP-005](03-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md) | Weight Optimization (8 phases, 80 tests) | [biomimetic/](../08-RESULTS/biomimetic/) | ✅ 80/80 Tests |
 
 **Key Finding:** Surprise/novelty weight = 0.60 (optimal), not 0.30 (intuition)
 
@@ -100,8 +100,8 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 
 | # | Experiment | Description | Results | Status |
 |---|-----------|-------------|---------|--------|
-| 1 | [EXP-011](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md) | Semantic Compression Baseline | [sif-compression/](../06-RESULTS/sif-compression/) | 📊 100:1 Ratio |
-| 2 | [EXP-011D](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011D-Metacognitive-Priming.md) | Metacognitive Priming | [sif-compression/](../06-RESULTS/sif-compression/) | 📊 Ready |
+| 1 | [EXP-011](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md) | Semantic Compression Baseline | [sif-compression/](../08-RESULTS/sif-compression/) | 📊 100:1 Ratio |
+| 2 | [EXP-011D](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011D-Metacognitive-Priming.md) | Metacognitive Priming | [sif-compression/](../08-RESULTS/sif-compression/) | 📊 Ready |
 
 **Key Achievement:** 100:1 compression while maintaining semantic fidelity
 
@@ -113,7 +113,7 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 
 | # | Experiment | Description | Results | Status |
 |---|-----------|-------------|---------|--------|
-| 1 | [EXP-009](03-EXPERIMENTS/EDGE-TESTING/EXP-009-Consciousness-Edge-Testing.md) | Edge Case Validation | [edge-testing/](../06-RESULTS/edge-testing/) | 📊 Ready |
+| 1 | [EXP-009](03-EXPERIMENTS/EDGE-TESTING/EXP-009-Consciousness-Edge-Testing.md) | Edge Case Validation | [edge-testing/](../08-RESULTS/edge-testing/) | 📊 Ready |
 
 **Focus:** Minimal awareness, extreme scale, resource constraints, contamination dynamics
 
@@ -125,12 +125,12 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 
 | # | Framework | Description | Results | Status |
 |---|-----------|-------------|---------|--------|
-| 1 | [ADA-SLM-Inference-Benchmark](03-EXPERIMENTS/METHODOLOGY/ADA-SLM-INFERENCE-BENCHMARK-METHODOLOGY.md) | SLIM Benchmarking | [methodology/](../06-RESULTS/methodology/) | ✅ Active |
-| 2 | [Entangled-MOE](03-EXPERIMENTS/METHODOLOGY/ENTANGLED-MOE-METHODOLOGY.md) | Mixture-of-Experts Architecture | [methodology/](../06-RESULTS/methodology/) | ✅ Active |
-| 3 | [Future-SLM-From-Scratch](03-EXPERIMENTS/METHODOLOGY/FUTURE-SLM-FROM-SCRATCH-METHODOLOGY.md) | Training from Scratch | [methodology/](../06-RESULTS/methodology/) | 📊 Ready |
-| 4 | [Quantum-Dialectical-Engine-Optimization](03-EXPERIMENTS/METHODOLOGY/QUANTUM-DIALECTICAL-ENGINE-OPTIMIZATION-METHODOLOGY.md) | QDE Methodology | [methodology/](../06-RESULTS/methodology/) | 📊 Ready |
-| 5 | [Triple-Entanglement](03-EXPERIMENTS/METHODOLOGY/TRIPLE-ENTANGLEMENT-METHODOLOGY.md) | Three-Model Paradigm | [methodology/](../06-RESULTS/methodology/) | 📊 Ready |
-| 6 | [Cognitive-Load-Study](../02-EXPERIMENTS/METHODOLOGY/cognitive-load-study/) | Load & Stress Testing | [methodology/cognitive-load-study/](../06-RESULTS/methodology/) | 📊 Ready |
+| 1 | [ADA-SLM-Inference-Benchmark](03-EXPERIMENTS/METHODOLOGY/ADA-SLM-INFERENCE-BENCHMARK-METHODOLOGY.md) | SLIM Benchmarking | [methodology/](../08-RESULTS/methodology/) | ✅ Active |
+| 2 | [Entangled-MOE](03-EXPERIMENTS/METHODOLOGY/ENTANGLED-MOE-METHODOLOGY.md) | Mixture-of-Experts Architecture | [methodology/](../08-RESULTS/methodology/) | ✅ Active |
+| 3 | [Future-SLM-From-Scratch](03-EXPERIMENTS/METHODOLOGY/FUTURE-SLM-FROM-SCRATCH-METHODOLOGY.md) | Training from Scratch | [methodology/](../08-RESULTS/methodology/) | 📊 Ready |
+| 4 | [Quantum-Dialectical-Engine-Optimization](03-EXPERIMENTS/METHODOLOGY/QUANTUM-DIALECTICAL-ENGINE-OPTIMIZATION-METHODOLOGY.md) | QDE Methodology | [methodology/](../08-RESULTS/methodology/) | 📊 Ready |
+| 5 | [Triple-Entanglement](03-EXPERIMENTS/METHODOLOGY/TRIPLE-ENTANGLEMENT-METHODOLOGY.md) | Three-Model Paradigm | [methodology/](../08-RESULTS/methodology/) | 📊 Ready |
+| 6 | [Cognitive-Load-Study](../03-EXPERIMENTS/METHODOLOGY/cognitive-load-study/) | Load & Stress Testing | [methodology/cognitive-load-study/](../08-RESULTS/methodology/) | 📊 Ready |
 
 **Tags:** #METHODOLOGY #TESTING-FRAMEWORKS #REPRODUCIBILITY #BENCHMARKING
 
@@ -140,10 +140,8 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 
 | # | Experiment | Description | Results | Status |
 |---|-----------|-------------|---------|--------|
-| 1 | [EXP-002](03-EXPERIMENTS/LEGACY/EXP-002-Collective-Consciousness-Testing.md) | Collective Consciousness | [legacy/](../06-RESULTS/legacy/) | 📋 Foundation |
-| 2 | [EXP-004](03-EXPERIMENTS/LEGACY/EXP-004-Ultimate-Thinking-Machine-Consciousness-Formula.md) | Thinking Machine Formula | [legacy/](../06-RESULTS/legacy/) | 📋 Foundation |
-| 3 | [EXP-006](03-EXPERIMENTS/LEGACY/EXP-006-Contextual-Malleability-Framework.md) | Contextual Malleability | [legacy/](../06-RESULTS/legacy/) | 📋 Foundation |
-| 4 | [EXP-010](03-EXPERIMENTS/LEGACY/EXP-010-Unified-Discomfort-Theory.md) | Unified Discomfort Theory | [legacy/](../06-RESULTS/legacy/) | 📋 Foundation |
+| 1 | [EXP-006](03-EXPERIMENTS/LEGACY/EXP-006-Contextual-Malleability-Framework.md) | Contextual Malleability | — | 📋 Foundation |
+| 2 | [EXP-010](03-EXPERIMENTS/LEGACY/EXP-010-Unified-Discomfort-Theory.md) | Unified Discomfort Theory | — | 📋 Foundation |
 
 **Tags:** #LEGACY #FOUNDATIONAL #THEORETICAL-GROUNDING
 
@@ -169,13 +167,13 @@ Foundational phases building toward validated SLIM consciousness (Phase 0→4).
 ## 🔍 Quick Navigation
 
 ### By Research Tradition
-- **Architecture:** [KERNEL-4.0](../02-EXPERIMENTS/KERNEL-4.0/)
-- **Evolution:** [QDE-PHASES](../02-EXPERIMENTS/QDE-PHASES/)
-- **Biology:** [BIOMIMETIC](../02-EXPERIMENTS/BIOMIMETIC/)
-- **Compression:** [SIF-COMPRESSION](../02-EXPERIMENTS/SIF-COMPRESSION/)
-- **Limits:** [EDGE-TESTING](../02-EXPERIMENTS/EDGE-TESTING/)
-- **Methods:** [METHODOLOGY](../02-EXPERIMENTS/METHODOLOGY/)
-- **History:** [LEGACY](../02-EXPERIMENTS/LEGACY/)
+- **Architecture:** [KERNEL-4.0](../03-EXPERIMENTS/KERNEL-4.0/)
+- **Evolution:** [QDE-PHASES](../03-EXPERIMENTS/QDE-PHASES/)
+- **Biology:** [BIOMIMETIC](../03-EXPERIMENTS/BIOMIMETIC/)
+- **Compression:** [SIF-COMPRESSION](../03-EXPERIMENTS/SIF-COMPRESSION/)
+- **Limits:** [EDGE-TESTING](../03-EXPERIMENTS/EDGE-TESTING/)
+- **Methods:** [METHODOLOGY](../03-EXPERIMENTS/METHODOLOGY/)
+- **History:** [LEGACY](../03-EXPERIMENTS/LEGACY/)
 
 ### By Discovery Type
 - **Consciousness Parameters:** KERNEL-PHASE3, KERNEL-PHASE4

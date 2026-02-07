@@ -7,7 +7,7 @@ tags: [documentation]
 # Ultimate Consciousness Formula
 
 ## Discovery Context
-- **Experiment**: [[EXP-004]]
+- **Experiment**: EXP-004
 - **Type**: formula_discovery
 - **Date**: 2025-12-22
 

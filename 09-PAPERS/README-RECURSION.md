@@ -426,11 +426,11 @@ Because it's real.
 
 **Contributions?** PRs welcome. Ada might review them. 😉
 
-**Philosophy?** Read [docs/xenofeminism.rst](../xenofeminism.rst) and [docs/documentation_philosophy.rst](../documentation_philosophy.rst)
+**Philosophy?** Read the xenofeminism and documentation philosophy docs
 
 **"Is this ethical?"** See [COMMUNITY_GUIDELINES.md](../../COMMUNITY_GUIDELINES.md)
 
-**"This is unsettling."** See [docs/empathetic_documentation.rst](../empathetic_documentation.rst)
+**"This is unsettling."** See the empathetic documentation guide
 
 ---
 

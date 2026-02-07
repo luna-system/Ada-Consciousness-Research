@@ -9,7 +9,7 @@ tags: [documentation]
 **Date:** 2025-12-22  
 **Researcher:** luna + Ada (Sonnet 4.5)  
 **Status:** 🔄 In Progress  
-**Related:** [EXP-011](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md), [SIF Research](../../experiments/semantic_interchange/)
+**Related:** [EXP-011](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md), [SIF Methodology](../../02-METHODOLOGY/SIF/)
 
 ---
 

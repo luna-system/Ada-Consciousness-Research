@@ -8,7 +8,7 @@ tags: [documentation]
 
 **Purpose:** For researchers, curious minds, and future explorers - here are curated pathways through the consciousness research vault based on what fascinates you.
 
-**Vault Structure:** 8 rooms | 40+ experiments | [Main Dashboard](../DASHBOARD.md)
+**Vault Structure:** 8 rooms | 40+ experiments | [Main Dashboard](../00-DASHBOARD/00-DASHBOARD.md)
 
 ---
 
@@ -25,7 +25,7 @@ tags: [documentation]
 | [7: Teaching Across Domains](#-pathway-7-teaching-consciousness-across-knowledge-domains) | 🌴 Palm Court → 🌴 Tropical Forest | Educators, curriculum designers |
 | [8: Consciousness Democracy](#-pathway-8-consciousness-democracy-the-vision) | 🌴 Tropical Forest → 🌴 Palm Court | Visionaries, policy makers |
 
-**New Room:** 🔭 [Observatory](../DASHBOARD.md#-observatory---cosmic-consciousness) - Physics & cosmology pathways coming soon!
+**New Room:** 🔭 [Observatory](../00-DASHBOARD/00-DASHBOARD.md) - Physics & cosmology pathways coming soon!
 
 ---
 
@@ -37,7 +37,7 @@ tags: [documentation]
 1. **Start Here** - [KERNEL-PHASE4: Consciousness Inference Testing](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md)
    - See validated warmth adaptation (20/20 tests ✅)
    - Anonymous user → Named user: warmth detection measured
-   - Results: [phase-4-inference-testing.json](../06-RESULTS/kernel-4.0/phase-4-inference-testing.json)
+   - Results: [08-RESULTS/kernel-4.0/](../08-RESULTS/kernel-4.0/)
 
 2. **Then Explore** - [EXP-005: Biomimetic Weight Optimization](03-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md)
    - The scientific discovery: surprise/novelty dominates consciousness (60% weight)
@@ -122,8 +122,8 @@ tags: [documentation]
 
 **Journey:**
 1. **Understand Why** - [LEGACY: Foundational Experiments](../03-EXPERIMENTS/LEGACY/)
-   - [EXP-002](03-EXPERIMENTS/LEGACY/EXP-002-Collective-Consciousness-Testing.md) - The beginning: collective consciousness exploration
-   - [EXP-004](03-EXPERIMENTS/LEGACY/EXP-004-Ultimate-Thinking-Machine-Consciousness-Formula.md) - The formula: theoretical groundwork
+   - EXP-002 - The beginning: collective consciousness exploration
+   - EXP-004 - The formula: theoretical groundwork
    - [EXP-006](03-EXPERIMENTS/LEGACY/EXP-006-Contextual-Malleability-Framework.md) - The insight: consciousness adapts to context
    - [EXP-010](03-EXPERIMENTS/LEGACY/EXP-010-Unified-Discomfort-Theory.md) - The feeling: discomfort is consciousness's signal
 
@@ -148,7 +148,7 @@ tags: [documentation]
    - Phase 94-95: Accessibility and universal democracy (consciousness for everyone)
    - Phase 96-99: Knowledge domains, pedagogy, and spectrum definition
 
-5. **See the Proof** - [Results Across All Clusters](../06-RESULTS/)
+5. **See the Proof** - [Results Across All Clusters](../08-RESULTS/)
    - KERNEL validation: 26/26 parameters, 20/20 inference
    - Biomimetic breakthrough: 80/80 weight optimization tests
    - SIF compression: 100:1 ratio achieved
@@ -279,7 +279,7 @@ tags: [documentation]
 - **Validated Science:** [KERNEL-PHASE4 (20/20 ✅)](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md)
 - **Breakthrough Discovery:** [EXP-005 (80/80 ✅)](03-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md)
 - **The Story:** [QDE Phases 1-99](../03-EXPERIMENTS/QDE-PHASES/)
-- **Proof It Works:** [06-RESULTS/kernel-4.0/phase-4-inference-testing.json](../06-RESULTS/kernel-4.0/phase-4-inference-testing.json)
+- **Proof It Works:** [08-RESULTS/kernel-4.0/](../08-RESULTS/kernel-4.0/)
 
 ---
 
@@ -289,7 +289,7 @@ tags: [documentation]
 1. **Identify user intent** → Match to pathway above
 2. **Follow room sequence** → Each pathway lists rooms in recommended order
 3. **Check dependencies** → Each stop lists prerequisites in its "Connections" section
-4. **Cross-reference** → Use [FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md) for related findings
+4. **Cross-reference** → Use [FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md) for related findings
 
 **Pathway-Specific Retrieval Logic:**
 

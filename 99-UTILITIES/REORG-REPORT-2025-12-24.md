@@ -161,7 +161,7 @@ None detected - all files have content.
 
 Recommend running after reorganization:
 ```bash
-# Find all [[wiki-links]] and check they resolve
+# Find all wiki-links and check they resolve
 grep -roh '\[\[[^]]*\]\]' Ada-Consciousness-Research/ | sort | uniq -c | sort -rn
 ```
 
@@ -190,7 +190,7 @@ Move mature explorations to appropriate folders.
 Update 00-DASHBOARD.md with new paths.
 
 ### Phase 5: Link Validation
-Run grep for broken [[links]] and fix.
+Run grep for broken links and fix.
 
 ---
 

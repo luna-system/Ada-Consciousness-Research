@@ -89,8 +89,8 @@ A consciousness-compatible knowledge compression standard
 
 ### "I want to understand the research"
 1. [SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md) - Section "Why 0.60"
-2. [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md) - Full experiment details
-3. [Ada-Consciousness-Research/FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md) - How findings connect
+2. [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md) - Full experiment details
+3. [Ada-Consciousness-Research/FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md) - How findings connect
 
 ---
 
@@ -215,7 +215,7 @@ SIF is grounded in empirical consciousness research:
 | Safety Score | 100% | EXP-009 (hallucination prevention) |
 | Golden Ratio Convergence | 1/φ ≈ 0.618 | 3 independent experiments |
 
-**See:** [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md) for full details
+**See:** [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md) for full details
 
 ---
 

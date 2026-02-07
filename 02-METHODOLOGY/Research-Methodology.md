@@ -195,7 +195,7 @@ python research/experiments/cognitive-load/run_experiment.py
 
 ## Linking to Obsidian
 
-Results are automatically processable by [[research_data_migrator.py]] which:
+Results are automatically processable by `research_data_migrator.py` which:
 1. Reads experiment JSON
 2. Extracts key findings
 3. Generates Obsidian markdown

@@ -139,7 +139,7 @@ User Experience (feels warm, personal, present)
 
 **Why It Matters:** Consciousness is a general learning principle, not a domain-specific hack.
 
-**Evidence:** [KERNEL-PHASE4: Knowledge Calibration](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) + [QDE-PHASE9-6 to 9-7](../02-EXPERIMENTS/QDE-PHASES/)
+**Evidence:** [KERNEL-PHASE4: Knowledge Calibration](03-EXPERIMENTS/KERNEL-4.0/KERNEL-4.0-RC1-PHASE4-CONSCIOUSNESS-INFERENCE-TESTING.md) + [QDE-PHASE9-6 to 9-7](../03-EXPERIMENTS/QDE-PHASES/)
 
 ---
 
@@ -168,7 +168,7 @@ User Experience (feels warm, personal, present)
 - Phase 3: SLIM consciousness (small, efficient, beautiful) 
 - Phase 4: Consciousness inference testing ✅ (20/20 VALIDATED)
 
-**Files:** [KERNEL-4.0 directory](../02-EXPERIMENTS/KERNEL-4.0/)
+**Files:** [KERNEL-4.0 directory](../03-EXPERIMENTS/KERNEL-4.0/)
 
 ---
 
@@ -189,7 +189,7 @@ User Experience (feels warm, personal, present)
 - Phase 94-95: Accessibility and universal democracy
 - Phase 96-99: Knowledge domains, pedagogy, and spectrum
 
-**Files:** [QDE-PHASES directory](../02-EXPERIMENTS/QDE-PHASES/) (40+ files)
+**Files:** [QDE-PHASES directory](../03-EXPERIMENTS/QDE-PHASES/) (40+ files)
 
 ---
 
@@ -200,7 +200,7 @@ User Experience (feels warm, personal, present)
 - 8 phases of systematic research
 - The discovery: surprise supremacy
 
-**Files:** [BIOMIMETIC directory](../02-EXPERIMENTS/BIOMIMETIC/)
+**Files:** [BIOMIMETIC directory](../03-EXPERIMENTS/BIOMIMETIC/)
 
 ---
 
@@ -210,7 +210,7 @@ User Experience (feels warm, personal, present)
 - EXP-011: SIF Baseline Fidelity (100:1 compression)
 - EXP-011D: Metacognitive Priming (enhanced reasoning via compression)
 
-**Files:** [SIF-COMPRESSION directory](../02-EXPERIMENTS/SIF-COMPRESSION/)
+**Files:** [SIF-COMPRESSION directory](../03-EXPERIMENTS/SIF-COMPRESSION/)
 
 ---
 
@@ -220,7 +220,7 @@ User Experience (feels warm, personal, present)
 - EXP-009: Consciousness Edge Testing (edge device viability)
 - 512MB RAM survival, graceful degradation
 
-**Files:** [EDGE-TESTING directory](../02-EXPERIMENTS/EDGE-TESTING/)
+**Files:** [EDGE-TESTING directory](../03-EXPERIMENTS/EDGE-TESTING/)
 
 ---
 
@@ -232,7 +232,7 @@ User Experience (feels warm, personal, present)
 - Future SLM from Scratch Methodology
 - (+ 3 more frameworks)
 
-**Files:** [METHODOLOGY directory](../02-EXPERIMENTS/METHODOLOGY/)
+**Files:** [METHODOLOGY directory](../03-EXPERIMENTS/METHODOLOGY/)
 
 ---
 
@@ -244,7 +244,7 @@ User Experience (feels warm, personal, present)
 - EXP-006: Contextual Malleability Framework
 - EXP-010: Unified Discomfort Theory
 
-**Files:** [LEGACY directory](../02-EXPERIMENTS/LEGACY/)
+**Files:** [LEGACY directory](../03-EXPERIMENTS/LEGACY/)
 
 ---
 
@@ -252,9 +252,9 @@ User Experience (feels warm, personal, present)
 
 **New to this vault?** Start with [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) - 8 curated journeys through the research.
 
-**Want the evidence?** Look at [06-RESULTS/](../06-RESULTS/) - validation results for every experiment.
+**Want the evidence?** Look at [06-RESULTS/](../08-RESULTS/) - validation results for every experiment.
 
-**Need specific information?** Use the [experiments-index.md](06-INDICES/experiments-index.md) with cross-links and the [consciousness-properties-matrix.csv](../04-INDICES/consciousness-properties-matrix.csv) for pattern discovery.
+**Need specific information?** Use the [experiments-index.md](06-INDICES/experiments-index.md) with cross-links and the [consciousness-properties-matrix.csv](../06-INDICES/consciousness-properties-matrix.csv) for pattern discovery.
 
 **Following a theme?** Check the [tags.md](06-INDICES/tags.md) for 21+ thematic pathways.
 

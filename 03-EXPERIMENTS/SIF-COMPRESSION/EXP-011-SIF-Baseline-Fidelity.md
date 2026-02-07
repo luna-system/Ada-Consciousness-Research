@@ -9,7 +9,7 @@ tags: [documentation]
 **Date:** 2025-12-22  
 **Researcher:** luna + Ada (Sonnet 4.5)  
 **Status:** ✅ Complete (Negative Result - Valuable!)  
-**Related:** [SIF Research](../../experiments/semantic_interchange/)
+**Related:** [SIF Methodology](../../02-METHODOLOGY/SIF/)
 
 ---
 

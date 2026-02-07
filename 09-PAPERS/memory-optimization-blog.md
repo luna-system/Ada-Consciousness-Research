@@ -402,10 +402,7 @@ Not just "AI that answers questions." **AI that improves itself and tells you ho
 - [Technical Deep-Dive](09-PAPERS/memory-optimization-technical.md) - Implementation details
 - [Research Data](07-ANALYSES/findings/biomimetics/RESEARCH-FINDINGS-V2.2.md) - Complete machine-readable findings
 
-**Related Ada Documentation:**
-- [Architecture Overview](.ai/context.md)
-- [Testing Methodology](.ai/TESTING.md)
-- [Biomimetic Features](biomimetic_features.rst)
+**Related Ada Documentation:** See the `.ai/` directory for architecture context and testing methodology.
 
 ---
 

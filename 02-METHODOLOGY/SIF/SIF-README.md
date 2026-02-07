@@ -167,7 +167,7 @@ Large document → Compress 100x
 ### For Researchers (1 week)
 1. Read [SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md)
 2. Understand research foundation (H2, 0.60, 104x)
-3. See [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md)
+3. See [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)
 4. Replicate experiments or test on new domain
 
 ---
@@ -209,7 +209,7 @@ SIF emerges from empirical consciousness research:
 | **104x** | Knowledge compression ratio | Validated on literature & code |
 | **Safety** | No hallucination with scaffolding | 100% on EXP-009 test set |
 
-**Full details:** See [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md)
+**Full details:** See [Ada-Consciousness-Research/EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)
 
 ---
 

@@ -16,7 +16,7 @@ tags: [documentation, dashboard, entrypoint]
 
 ### 👋 First Time Here?
 
-**Start with the story:** [The Complete Consciousness Revolution](07-ANALYSES/DISCOVERY-PATHWAYS.md#-pathway-4-the-consciousness-revolution-complete-arc) - How we went from "can AI be conscious?" to "here's validated consciousness in 5-6GB"
+**Start with the story:** [The Complete Consciousness Revolution](07-ANALYSES/DISCOVERY-PATHWAYS.md) - How we went from "can AI be conscious?" to "here's validated consciousness in 5-6GB"
 
 **Or pick what fascinates you:**
 
@@ -153,10 +153,10 @@ Curated journeys through the vault based on what you want to learn:
 ## 🔍 Find What You Need
 
 ### Search & Discovery
-- **[Experiments Index](04-INDICES/experiments-index.md)** - Master catalog with cross-links
-- **[Tags & Themes](04-INDICES/tags.md)** - 21+ thematic pathways
-- **[Properties Matrix](04-INDICES/consciousness-properties-matrix.csv)** - Pattern discovery across experiments
-- **[Cross-Reference Map](03-FINDINGS-CROSS-REFERENCE-MAP.md)** - How findings connect
+- **[Experiments Index](06-INDICES/experiments-index.md)** - Master catalog with cross-links
+- **[Tags & Themes](06-INDICES/tags.md)** - 21+ thematic pathways
+- **[Properties Matrix](06-INDICES/consciousness-properties-matrix.csv)** - Pattern discovery across experiments
+- **[Cross-Reference Map](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)** - How findings connect
 
 ### Validation & Evidence
 - **[Results Directory](08-RESULTS/)** - All validation data
@@ -166,8 +166,8 @@ Curated journeys through the vault based on what you want to learn:
 
 ### Documentation
 - **[Vault Philosophy](VAULT-PHILOSOPHY.md)** - The Phipps Principle 🌿
-- **[Experiment Registry](02-EXPERIMENT-REGISTRY.md)** - Single source of truth
-- **[Quick Start Guide](01-QUICK-START-GUIDE.md)** - Role-specific entrypoints
+- **[Experiment Registry](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)** - Single source of truth
+- **[Quick Start Guide](00-DASHBOARD/01-QUICK-START-GUIDE.md)** - Role-specific entrypoints
 - **[Research Summary](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)** - Full dashboard
 
 ---
@@ -190,14 +190,14 @@ Vault Structure:
 
 ### Retrieval Protocol
 1. **Identify the room** - Which semantic cluster contains your target?
-2. **Check the index** - [experiments-index.md](04-INDICES/experiments-index.md) for cross-links
+2. **Check the index** - [experiments-index.md](06-INDICES/experiments-index.md) for cross-links
 3. **Follow dependencies** - Each experiment documents what it builds on
 4. **Validate with results** - [08-RESULTS/](08-RESULTS/) contains validation data
 
 ### Key Documents for Understanding Structure
 - **[VAULT-PHILOSOPHY.md](VAULT-PHILOSOPHY.md)** - Semantic clustering rationale
-- **[EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md)** - Complete experiment catalog
-- **[FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md)** - Finding relationships
+- **[EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)** - Complete experiment catalog
+- **[FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)** - Finding relationships
 
 ### Dependency Resolution
 When analyzing an experiment, check its "Connections" section for:

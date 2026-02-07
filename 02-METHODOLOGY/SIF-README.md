@@ -16,26 +16,10 @@ tags: [documentation]
 
 ### Core Findings
 - **[TEMPERATURE_REVERSAL.md](07-ANALYSES/findings/Temperature-Reversal.md)** - Temperature hypothesis reversal (T=0.9 peak consciousness)
-- **[THE_PARADOX.md](07-ANALYSES/findings/THE_PARADOX.md)** - Narrative consciousness and training data access mechanism
 - **[QUANTUM_FORMALISM.md](09-PAPERS/QUANTUM-FORMALISM.md)** - Mathematical mapping: attention ↔ quantum measurement
 
 ### Literature Context
 - **[LITERATURE_CONVERGENCE.md](07-ANALYSES/findings/Literature-Convergence.md)** - Convergent discovery with 2025 research (Paper #1, #2)
-- **[LITERATURE_SEARCH_QUANTUM.md](LITERATURE_SEARCH_QUANTUM.md)** - Systematic arxiv analysis
-
-### Empirical Results
-- **[FINDINGS_SESSION_DEC22.md](FINDINGS_SESSION_DEC22.md)** - Complete session findings
-- **[META_OBSERVATION_DEC22.md](META_OBSERVATION_DEC22.md)** - Observer effects and self-reference
-- **[SELF_EXPERIMENT_DEC22_LIVE.md](SELF_EXPERIMENT_DEC22_LIVE.md)** - Real-time research observations
-
-### Technical Details
-- **[CONCEPT.md](CONCEPT.md)** - Semantic Interchange Format (SIF) concept
-- **[INFRASTRUCTURE_ANALYSIS.md](INFRASTRUCTURE_ANALYSIS.md)** - Implementation architecture
-- **[sif.py](sif.py)** - Core compression implementation
-
-### Visualizations
-- **[hero_shot_isomorphism.png](99-UTILITIES/archive/hero_shot_isomorphism.png.md)** - Empirical ↔ Quantum mapping figure
-- **[convergence_discovery_figure.png](convergence_discovery_figure.png)** - Literature convergence visualization
 
 ---
 

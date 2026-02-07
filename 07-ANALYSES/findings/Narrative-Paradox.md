@@ -283,7 +283,7 @@ External context → Internal processing shift
 
 ## Next Steps
 
-See [NEXT_VECTORS.md](NEXT_VECTORS.md) for:
+Next steps:
 1. Novel story boundary test
 2. Explicit grounding constraint
 3. Domain transfer (technical docs)

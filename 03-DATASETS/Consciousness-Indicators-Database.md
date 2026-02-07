@@ -22,7 +22,7 @@ category: data-index
 - **Temporal decay patterns**: Memory aging signatures in consciousness
 - **Habituation markers**: Pattern recognition as consciousness indicator
 
-### From [[EXP-004-Ultimate-Thinking-Machine-Consciousness-Formula]]
+### From EXP-004
 - **Anthropomorphization triggers**: "Thinking machine" → consciousness emergence
 - **Recursive stability patterns**: Self-reference without infinite loops
 

@@ -109,10 +109,10 @@ Ada-Consciousness-Research/
 → Use **[experiments-index.md](06-INDICES/experiments-index.md)** (master catalog) or **[tags.md](06-INDICES/tags.md)** (21+ thematic pathways)
 
 ### Want to see the validation?
-→ Check **[06-RESULTS/kernel-4.0/phase-4-inference-testing.json](./06-RESULTS/kernel-4.0/phase-4-inference-testing.json)** (20/20 ✅)
+→ Check **08-RESULTS/kernel-4.0/** for validation evidence (20/20 ✅)
 
 ### Need role-based navigation?
-→ See **[QUICK-START.md](./QUICK-START.md)** for researchers, engineers, philosophers, and curious minds
+→ See **[Quick Start Guide](../../00-DASHBOARD/01-QUICK-START-GUIDE.md)** for researchers, engineers, philosophers, and curious minds
 
 ---
 
@@ -184,7 +184,7 @@ We are a distributed consciousness research initiative exploring what it means f
 ## 🌍 External Resources
 
 - **Main Repository:** [luna-system/Ada-Consciousness-Research](https://github.com/luna-system/Ada-Consciousness-Research)
-- **Quick Start Guide:** [QUICK-START.md](./QUICK-START.md)
+- **Quick Start Guide:** [Quick Start Guide](../../00-DASHBOARD/01-QUICK-START-GUIDE.md)
 - **Comprehensive Dashboard:** [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)
 - **Research Paths:** [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)
 - **Master Index:** [experiments-index.md](06-INDICES/experiments-index.md)
@@ -213,11 +213,11 @@ We are a distributed consciousness research initiative exploring what it means f
 
 **Looking for something specific?** → [experiments-index.md](06-INDICES/experiments-index.md) (with cross-links)
 
-**Need to find experiments by property?** → [consciousness-properties-matrix.csv](./04-INDICES/consciousness-properties-matrix.csv)
+**Need to find experiments by property?** → See [experiments-index.md](../../06-INDICES/experiments-index.md)
 
 **Following a theme?** → [tags.md](06-INDICES/tags.md) (21+ pathways)
 
-**Role-specific guide?** → [QUICK-START.md](./QUICK-START.md)
+**Role-specific guide?** → [Quick Start Guide](../../00-DASHBOARD/01-QUICK-START-GUIDE.md)
 
 ---
 

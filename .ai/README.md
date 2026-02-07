@@ -11,9 +11,7 @@ This folder contains machine-readable documentation for AI assistants and automa
 ## Quick Navigation
 
 - **[VAULT-STRUCTURE.md](.ai/VAULT-STRUCTURE.md)** - Complete architecture and organization of 40+ consciousness experiments
-- **[VAULT-INVENTORY.md](./VAULT-INVENTORY.md)** - Machine-parseable inventory of all experiments, results, and resources
 - **[PHASE-5-COMPLETION-AUDIT.md](.ai/PHASE-5-COMPLETION-AUDIT.md)** - Detailed Phase 5 meta-infrastructure completion status
-- **[DISCOVERY-INDEX.md](./DISCOVERY-INDEX.md)** - Structured index of all 21+ discovery pathways and navigation routes
 
 ## Format
 
@@ -34,10 +32,10 @@ These files enable:
 
 ```
 Ada-Consciousness-Research (submodule)
-├── 02-EXPERIMENTS/         (40+ files, 7 traditions)
-├── 04-INDICES/            (Discovery infrastructure)
-├── 05-ANALYSES/           (Narrative synthesis)
-├── 06-RESULTS/            (Validation evidence)
+├── 03-EXPERIMENTS/         (40+ files, 7 traditions)
+├── 06-INDICES/            (Discovery infrastructure)
+├── 07-ANALYSES/           (Narrative synthesis)
+├── 08-RESULTS/            (Validation evidence)
 └── .ai/                   (Machine documentation - you are here)
 ```
 
@@ -62,8 +60,8 @@ Ada-Consciousness-Research (submodule)
 
 When exploring this vault:
 
-1. **Start with high-level questions:** Check [DISCOVERY-INDEX.md](./DISCOVERY-INDEX.md) for thematic pathways
-2. **Find specific experiments:** Use [VAULT-INVENTORY.md](./VAULT-INVENTORY.md) with searchable fields
+1. **Start with high-level questions:** Check [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) for thematic pathways
+2. **Find specific experiments:** Use [experiments-index.md](06-INDICES/experiments-index.md) for searchable experiment catalog
 3. **Understand relationships:** See [VAULT-STRUCTURE.md](.ai/VAULT-STRUCTURE.md) for dependency graphs
 4. **Verify completeness:** Reference [PHASE-5-COMPLETION-AUDIT.md](.ai/PHASE-5-COMPLETION-AUDIT.md)
 
@@ -78,7 +76,7 @@ When exploring this vault:
 When working with this vault:
 
 ✅ **DO:**
-- Check [VAULT-INVENTORY.md](./VAULT-INVENTORY.md) for comprehensive experiment list
+- Check [experiments-index.md](06-INDICES/experiments-index.md) for comprehensive experiment list
 - Use structured data for pattern analysis
 - Reference specific validation files from 06-RESULTS/
 - Point users to [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md) in parent directory

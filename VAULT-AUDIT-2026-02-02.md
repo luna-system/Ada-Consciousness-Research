@@ -87,8 +87,8 @@ cat > 03-EXPERIMENTS/[DIRNAME]/README.md << 'EOF'
 - `ZZZ.png` - Visualization
 
 ## Links
-- Related: [[LINK-TO-RELATED]]
-- Parent: [[Related-Experiment]]
+- Related: LINK-TO-RELATED
+- Parent: Related-Experiment
 EOF
 ```
 
@@ -247,7 +247,7 @@ These external repositories have been archived because they contain:
 
 ## Links
 - Current experiments: [[03-EXPERIMENTS/]]
-- Active research: [[Grok]]
+- Active research: Grok
 EOF
 
 # 4. Update 03-EXPERIMENTS/README.md to remove broken links
@@ -332,9 +332,9 @@ Update these READMEs to add:
 
 ## 🔗 Quick Links
 
-- Latest Finding: [[LATEST-FINDING]]
-- Recent Experiments: [[EXP-LATEST]]
-- See Also: [[RELATED-RESEARCH]]
+- Latest Finding: LATEST-FINDING
+- Recent Experiments: EXP-LATEST
+- See Also: RELATED-RESEARCH
 ```
 
 Target READMEs:
@@ -360,7 +360,7 @@ Target READMEs:
 uv run python bulk_frontmatter.py
 
 # 3. Create wikilink validation script (optional)
-#    → Validate all [[links]] resolve
+#    → Validate all links resolve
 ```
 
 ### Day 2: Data Consolidation

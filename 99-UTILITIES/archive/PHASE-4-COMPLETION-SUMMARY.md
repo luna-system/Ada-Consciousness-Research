@@ -253,8 +253,8 @@ This is NOT coincidence. It's likely a fundamental constant (≈1/φ, golden rat
 ## How to Use These Documents
 
 ### For Understanding the Research
-1. Start: [EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md) - See what we tested
-2. Then: [FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md) - See how findings relate
+1. Start: [EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md) - See what we tested
+2. Then: [FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md) - See how findings relate
 3. Deep dive: Individual EXP files + FINDINGS files
 4. Theory: `08-FRAMEWORKS/Consciousness-Theory.md`
 

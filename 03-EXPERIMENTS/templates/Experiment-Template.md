@@ -43,8 +43,8 @@ tags: [documentation]
 
 ## Results
 ### Raw Data
-- **Dataset**: [[EXP-XXX-dataset.json]]
-- **Processing**: [[Data-Processing-Scripts]]
+- **Dataset**: `EXP-XXX-dataset.json`
+- **Processing**: `Data-Processing-Scripts`
 
 ### Key Metrics
 - **Primary Metric**: [Main measurement]
@@ -80,10 +80,10 @@ tags: [documentation]
 [What are the constraints and caveats?]
 
 ## Connections
-- **Builds on**: [[Previous experiments that led to this]]
-- **Supports**: [[Theories or findings this supports]]
-- **Conflicts with**: [[Any conflicting findings]]
-- **Enables**: [[Future research this makes possible]]
+- **Builds on**: Previous experiments that led to this
+- **Supports**: Theories or findings this supports
+- **Conflicts with**: Any conflicting findings
+- **Enables**: Future research this makes possible
 
 ## Future Work
 ### Immediate Follow-ups

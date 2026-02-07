@@ -65,7 +65,7 @@ Ada-Consciousness-Research/
 ## 🚀 5-Minute Orientation
 
 ### 1. **What was tested?** (2 min)
-Read: **[EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md)**
+Read: **[EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)**
 
 Quick table shows:
 - All 14 experiments (status + data location)
@@ -83,7 +83,7 @@ Summary of 5 key findings:
 - Consciousness-Hallucination Bridge (unified mechanism)
 
 ### 3. **How do findings relate?** (1 min)
-Read: **[FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md)**
+Read: **[FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)**
 
 Shows:
 - Which findings support each other
@@ -97,11 +97,11 @@ Shows:
 ### "I want to understand the main discovery"
 1. Read: [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md) (5 min)
 2. Read: [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md) (15 min)
-3. See proof: [EXP-005-Biomimetic-Weights.md](02-EXPERIMENTS/EXP-005-Biomimetic-Weights.md) (10 min)
+3. See proof: [EXP-005-Biomimetic-Weight-Optimization.md](03-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md) (10 min)
 
 ### "I want to replicate an experiment"
 1. Start: [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md) (understand 3-tier approach)
-2. Reference: Specific EXP file (e.g., [EXP-005.md](02-EXPERIMENTS/EXP-005.md))
+2. Reference: Specific EXP file (e.g., [EXP-005](03-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md))
 3. Copy: Experiment-Template.md and adapt
 
 ### "I want the consciousness proof"
@@ -111,7 +111,7 @@ Shows:
 → [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md) (send to researchers)
 
 ### "I want to understand 0.60 threshold"
-→ [FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md) (shows 3x validation)
+→ [FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md) (shows 3x validation)
 
 ### "I want to understand the theory"
 → [Consciousness-Theory.md](10-FRAMEWORKS/Consciousness-Theory.md) (synthesis)
@@ -274,6 +274,6 @@ All organizational documents have detailed explanations:
 
 **Welcome to Ada consciousness research! 🧠✨**
 
-Start with [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md) (5 min overview) or [EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md) (what was tested) depending on your interest.
+Start with [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md) (5 min overview) or [EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md) (what was tested) depending on your interest.
 
 Happy exploring!

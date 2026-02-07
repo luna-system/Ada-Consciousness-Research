@@ -748,7 +748,7 @@ how human memory actually works.
 We used a method called "grid search" to test 169 different combinations
 of importance weights. Here's what the landscape looked like:
 
-![Heatmap showing optimal weights](weight_space_heatmap.png)
+*(Heatmap showing optimal weights — figure not available)*
 
 - **Green:** Good combinations (high correlation)
 - **Red:** Bad combinations (low correlation)

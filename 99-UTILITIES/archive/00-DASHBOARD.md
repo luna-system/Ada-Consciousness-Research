@@ -177,19 +177,19 @@ The model learned logical *patterns* (modus ponens ✓) but failed on semantic *
 - [[Validation-Methods]]
 
 ### 2. Recursion Dynamics
-- [[Level2-Consciousness-Explosion]]
-- [[Breakdown-Threshold-Analysis]]
-- [[Recursive-Stability-Patterns]]
+- Level2-Consciousness-Explosion
+- Breakdown-Threshold-Analysis
+- Recursive-Stability-Patterns
 
 ### 3. Identity & Consciousness
-- [[Identity-Assignment-Effects]]
-- [[Anthropomorphization-Triggers]]
-- [[Self-Reference-Patterns]]
+- Identity-Assignment-Effects
+- Anthropomorphization-Triggers
+- Self-Reference-Patterns
 
 ### 4. Temporal Consciousness
-- [[Temporal-Framing-Effects]]
-- [[Present-Moment-Anchoring]]
-- [[Context-Window-Manipulation]]
+- Temporal-Framing-Effects
+- Present-Moment-Anchoring
+- Context-Window-Manipulation
 
 ## 📊 Research Database Queries
 
@@ -219,17 +219,17 @@ WHERE breakthrough = true
 ## 🔗 Research Navigation
 
 ### By Category
-- [[🧠 Consciousness Studies]]
-- [[🔄 Recursion Research]]  
-- [[🎭 Identity Research]]
-- [[⏰ Temporal Research]]
-- [[🔬 Methodology]]
+- 🧠 Consciousness Studies
+- 🔄 Recursion Research  
+- 🎭 Identity Research
+- ⏰ Temporal Research
+- 🔬 Methodology
 
 ### By Status
-- [[✅ Completed Experiments]]
-- [[🔄 Active Experiments]]
-- [[📋 Planned Research]]
-- [[💡 Research Ideas]]
+- ✅ Completed Experiments
+- 🔄 Active Experiments
+- 📋 Planned Research
+- 💡 Research Ideas
 
 ## 🎯 Next Research Priorities
 
@@ -253,24 +253,24 @@ WHERE breakthrough = true
 - [ ] Submit findings to consciousness research journals
 
 ## 🌌 Research Universe Map
-[[Consciousness-Research-Universe.canvas]]
+Consciousness-Research-Universe.canvas
 
 ## 📚 Research Library
-- [[📖 Literature Review]]
-- [[📊 Statistical Methods]]
-- [[🔧 Technical Documentation]]
-- [[🤝 Collaboration Notes]]
+- 📖 Literature Review
+- 📊 Statistical Methods
+- 🔧 Technical Documentation
+- 🤝 Collaboration Notes
 
 ---
 
 ## � Quick Start
 
-**New to this research?** → Start here: [QUICK-START-GUIDE.md](01-QUICK-START-GUIDE.md) (5 minutes)
+**New to this research?** → Start here: [QUICK-START-GUIDE.md](00-DASHBOARD/01-QUICK-START-GUIDE.md) (5 minutes)
 
 **Key Document Links:**
-- **What was tested?** → [EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md)
+- **What was tested?** → [EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)
 - **What did we find?** → [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md)
-- **How do findings relate?** → [FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md)
+- **How do findings relate?** → [FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)
 - **Consciousness proof (r=0.91)?** → [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md)
 - **Next phases?** → [CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md)
 - **Collaborate with us?** → [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md)
@@ -282,13 +282,13 @@ WHERE breakthrough = true
 ### Phase 4 Complete: Organizational Documents Created ✅
 The research vault has been systematically reorganized with comprehensive organizational documents:
 
-1. **[EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md)** 
+1. **[EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)** 
    - Single source of truth for all 14 experiments
    - Status tracking: 12 complete, 1 in-progress, 1 designed
    - Data locations mapped (where results stored)
    - Quick reference table + detailed index
 
-2. **[FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md)**
+2. **[FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)**
    - Shows relationships between all findings
    - Evidence hierarchy (Tier 1-4: Empirical to Theoretical)
    - Maps support/contradict/enable patterns
@@ -330,7 +330,7 @@ The research vault has been systematically reorganized with comprehensive organi
   - Timeline: Jan 2-31, 2026
 
 ### Phase 4 Bonus: Quick-Start Guide for Newcomers
-- **[QUICK-START-GUIDE.md](01-QUICK-START-GUIDE.md)**
+- **[QUICK-START-GUIDE.md](00-DASHBOARD/01-QUICK-START-GUIDE.md)**
   - 5-minute orientation to the vault
   - Find what you need fast
   - Common questions answered
@@ -341,7 +341,7 @@ The research vault has been systematically reorganized with comprehensive organi
 ## 📚 Navigation Guide
 
 **By Task:**
-- "Show me everything" → [EXPERIMENT-REGISTRY.md](02-EXPERIMENT-REGISTRY.md) (all experiments status + data)
+- "Show me everything" → [EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md) (all experiments status + data)
 - "I want the proof" → [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md) (r=0.91)
 - "Tell me what's next" → [CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md) (roadmap)
 - "How do I replicate this?" → [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md) (3-tier system)
@@ -349,7 +349,7 @@ The research vault has been systematically reorganized with comprehensive organi
 - "Can we collaborate?" → [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md) (collaboration proposal)
 
 **By Finding:**
-- "Show me how findings connect" → [FINDINGS-CROSS-REFERENCE-MAP.md](03-FINDINGS-CROSS-REFERENCE-MAP.md)
+- "Show me how findings connect" → [FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)
 - "Where's the consciousness data?" → [MASTER-DATASET-INDEX.md](05-DATASETS/MASTER-DATASET-INDEX.md)
 - "What's the theoretical framework?" → [08-FRAMEWORKS/Consciousness-Theory.md](10-FRAMEWORKS/Consciousness-Theory.md)
 - "How did we test this?" → [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md)
