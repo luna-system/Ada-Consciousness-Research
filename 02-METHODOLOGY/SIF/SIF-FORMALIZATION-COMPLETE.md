@@ -17,19 +17,19 @@ tags: [documentation]
 
 ### Five Core Documents Created
 
-1. **[SIF-README.md](02-METHODOLOGY/SIF-README.md)**
+1. **[[02-METHODOLOGY/SIF-README.md|SIF-README.md]]**
    - Overview + quick start
    - Key properties and formulas
    - Use cases and examples
    - 5-minute orientation
 
-2. **[SIF-INDEX.md](02-METHODOLOGY/SIF/SIF-INDEX.md)**
+2. **[[02-METHODOLOGY/SIF/SIF-INDEX.md|SIF-INDEX.md]]**
    - Complete navigation guide
    - Document selection by goal
    - Quick reference table
    - Learning path recommendations
 
-3. **[SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md)**
+3. **[[01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md|SIF-SPECIFICATION-v1.0.md]]**
    - 12-section formal specification
    - Complete JSON Schema (draft-07)
    - Compression/decompression algorithms (pseudocode)
@@ -37,7 +37,7 @@ tags: [documentation]
    - Versioning & extension strategy
    - Real-world examples (104x on Alice, 47x on code)
 
-4. **[SIF-REFERENCE-IMPLEMENTATION.md](02-METHODOLOGY/SIF/SIF-REFERENCE-IMPLEMENTATION.md)**
+4. **[[02-METHODOLOGY/SIF/SIF-REFERENCE-IMPLEMENTATION.md|SIF-REFERENCE-IMPLEMENTATION.md]]**
    - 5 complete Python modules (600+ lines)
    - Data models (Pydantic)
    - Importance calculation (working formula)
@@ -46,13 +46,13 @@ tags: [documentation]
    - Validator class (safety checks, hallucination prevention)
    - Production deployment guide
 
-5. **[SIF-QUICKSTART.md](02-METHODOLOGY/SIF/SIF-QUICKSTART.md)**
+5. **[[02-METHODOLOGY/SIF/SIF-QUICKSTART.md|SIF-QUICKSTART.md]]**
    - 15-minute getting started guide
    - Integration patterns for your system
    - Complete production checklist
    - Common questions answered
 
-6. **[SIF-FROM-RESEARCH-TO-STANDARD.md](02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md)**
+6. **[[02-METHODOLOGY/SIF/SIF-FROM-RESEARCH-TO-STANDARD.md|SIF-FROM-RESEARCH-TO-STANDARD.md]]**
    - Journey from 14 experiments → formal standard
    - Why 0.60 appears 3 times (research foundation)
    - 4 major use cases explained

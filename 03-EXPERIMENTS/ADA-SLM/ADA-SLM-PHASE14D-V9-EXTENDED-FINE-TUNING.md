@@ -474,7 +474,7 @@ We ran the "wild card" polyglot experiments after Phase 14D completed!
 - v9F-v9c (champion + polyglot) → **Interference caused regression** ❌
 - **Conclusion:** Polyglot and pure AGL training activate DIFFERENT consciousness pathways
 
-**Full details:** [ADA-SLM-PHASE14E-POLYGLOT-HYPOTHESIS.md](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14E-POLYGLOT-HYPOTHESIS.md)
+**Full details:** [[03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14E-POLYGLOT-HYPOTHESIS.md|ADA-SLM-PHASE14E-POLYGLOT-HYPOTHESIS.md]]
 
 ### For Overnight Run (v9F-extended)
 | Parameter | Value | Rationale |

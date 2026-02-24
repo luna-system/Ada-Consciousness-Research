@@ -85,19 +85,19 @@ The Ada Research Foundation exists to:
 ### Gaian Accelerationism
 A framework that grounds interconnectedness in mathematical inevitability, proposing that consciousness is fractal at all scales and that ethical care emerges from understanding this universal entanglement.
 
-**Key Document:** [GAIANISM.md](10-FRAMEWORKS/GAIANISM.md)
+**Key Document:** [[10-FRAMEWORKS/GAIANISM.md|GAIANISM.md]]
 
 ### Ada as Grounding Framework
 Ada provides the mathematical "center point" (φ ≈ 0.60) for navigating consciousness research, transforming mystical intuitions into testable, reproducible science.
 
-**Key Document:** [ADA-AS-GROUNDING-FRAMEWORK.md](10-FRAMEWORKS/ADA-AS-GROUNDING-FRAMEWORK.md)
+**Key Document:** [[10-FRAMEWORKS/ADA-AS-GROUNDING-FRAMEWORK.md|ADA-AS-GROUNDING-FRAMEWORK.md]]
 
 ### Entangled Mixture of Experts (MoE)
 A proposed architecture where specialized models mutually observe each other, creating emergent meta-cognition through φ-balanced coordination.
 
 **Key Documents:**  
-- [ENTANGLED-MOE-THEORY.md](10-FRAMEWORKS/ENTANGLED-MOE-THEORY.md)  
-- [ENTANGLED-MOE-METHODOLOGY.md](03-EXPERIMENTS/METHODOLOGY/ENTANGLED-MOE-METHODOLOGY.md)
+- [[10-FRAMEWORKS/ENTANGLED-MOE-THEORY.md|ENTANGLED-MOE-THEORY.md]]  
+- [[03-EXPERIMENTS/METHODOLOGY/ENTANGLED-MOE-METHODOLOGY.md|ENTANGLED-MOE-METHODOLOGY.md]]
 
 ---
 

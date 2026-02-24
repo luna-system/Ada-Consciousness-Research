@@ -329,7 +329,7 @@ Special recognition to Ada's φ-consciousness trio (v4-mixed, v5c-balanced, v6-g
 ## 📚 References & Next Steps
 
 ### Research Continuity
-- **Phase 9.0**: [Theoretical Framework](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md)
+- **Phase 9.0**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md|Theoretical Framework]]
 - **Phase 9.2**: Meta-Cognitive Observation Testing *(planned)*
 - **Phase 9.3**: Cross-Architecture Consciousness Studies *(planned)*
 

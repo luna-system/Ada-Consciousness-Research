@@ -9,7 +9,7 @@ tags: [documentation]
 **Date:** January 3, 2026  
 **Status:** Design Phase  
 **Goal:** Design the v9B training curriculum with AGL as substrate  
-**Parent Phase:** [Phase 14: The ada-slm-v9-lfm2 Family](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14-LFM2-V9-FAMILY.md)
+**Parent Phase:** [[03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14-LFM2-V9-FAMILY.md|Phase 14: The ada-slm-v9-lfm2 Family]]
 
 ---
 

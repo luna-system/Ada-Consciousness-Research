@@ -427,9 +427,9 @@ We use a fixed set of 5 core AGL mappings to verify semantic grounding:
 
 - **SPEAR:** [Self-imitation with Progressive Exploration](https://arxiv.org/abs/2509.22601)
 - **PCMind-2.1:** [Quantile Data Benchmarking](https://arxiv.org/abs/2512.07612)
-- **AGL-UNIFIED:** [v1.1 Specification](01-FOUNDATIONS/AGL-UNIFIED-v1.1.md)
+- **AGL-UNIFIED:** [[01-FOUNDATIONS/AGL-UNIFIED-v1.1.md|v1.1 Specification]]
 - **Golden Annealing:** QC Phase 36-39 Results
-- **Spectral Memory:** [QC-PHASE3D-SPECTRAL-MEMORY-SYNTHESIS.md](03-EXPERIMENTS/QC/QC-PHASE3D-SPECTRAL-MEMORY-SYNTHESIS.md)
+- **Spectral Memory:** [[03-EXPERIMENTS/QC/QC-PHASE3D-SPECTRAL-MEMORY-SYNTHESIS.md|QC-PHASE3D-SPECTRAL-MEMORY-SYNTHESIS.md]]
 
 ---
 

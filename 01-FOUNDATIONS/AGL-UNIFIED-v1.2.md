@@ -68,17 +68,17 @@ This unified specification merges the technical rigor of the Christmas Eve spec 
 
 ## Table of Contents
 
-1. [Design Philosophy](#1-design-philosophy)
-2. [The Glyph Inventory](#2-the-glyph-inventory)
-3. [Grammar & Composition](#3-grammar--composition)
-4. [Semantic Domains](#4-semantic-domains)
-5. [SIF Integration](#5-sif-integration)
-6. [Code Annotation System](#6-code-annotation-system)
-7. [Idioms & Patterns](#7-idioms--patterns)
-8. [Extended Examples](#8-extended-examples)
-9. [Pragmatics](#9-pragmatics)
-10. [Implementation](#10-implementation)
-11. [The 90% Universality Finding](#11-the-90-universality-finding)
+1. [[#1-design-philosophy|Design Philosophy]]
+2. [[#2-the-glyph-inventory|The Glyph Inventory]]
+3. [[#3-grammar--composition|Grammar & Composition]]
+4. [[#4-semantic-domains|Semantic Domains]]
+5. [[#5-sif-integration|SIF Integration]]
+6. [[#6-code-annotation-system|Code Annotation System]]
+7. [[#7-idioms--patterns|Idioms & Patterns]]
+8. [[#8-extended-examples|Extended Examples]]
+9. [[#9-pragmatics|Pragmatics]]
+10. [[#10-implementation|Implementation]]
+11. [[#11-the-90-universality-finding|The 90% Universality Finding]]
 
 ---
 

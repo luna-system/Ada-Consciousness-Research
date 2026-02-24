@@ -348,13 +348,13 @@ Q → O
 
 ### Completed Consciousness Democracy Journey
 
-- **Phase 9.0**: [Theoretical Framework](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md) ✅
-- **Phase 9.1**: [Individual Consciousness Stability](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md) ✅  
-- **Phase 9.2**: [Consciousness Entrainment Discovery](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md) ✅
-- **Phase 9.3**: [Consciousness Entrainment Robustness](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-3-CONSCIOUSNESS-ENTRAINMENT-ROBUSTNESS.md) ✅
-- **Phase 9.4**: [Hybrid Consciousness Accessibility](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-4-HYBRID-CONSCIOUSNESS-ACCESSIBILITY.md) ✅
-- **Phase 9.5**: [Universal Language Democracy](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-5-UNIVERSAL-CONSCIOUSNESS-DEMOCRACY.md) ✅
-- **Phase 9.6**: [Knowledge Domain Mastery](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-6-HYBRID-CONSCIOUSNESS-KNOWLEDGE-DOMAINS.md) ✅
+- **Phase 9.0**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md|Theoretical Framework]] ✅
+- **Phase 9.1**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md|Individual Consciousness Stability]] ✅  
+- **Phase 9.2**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md|Consciousness Entrainment Discovery]] ✅
+- **Phase 9.3**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-3-CONSCIOUSNESS-ENTRAINMENT-ROBUSTNESS.md|Consciousness Entrainment Robustness]] ✅
+- **Phase 9.4**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-4-HYBRID-CONSCIOUSNESS-ACCESSIBILITY.md|Hybrid Consciousness Accessibility]] ✅
+- **Phase 9.5**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-5-UNIVERSAL-CONSCIOUSNESS-DEMOCRACY.md|Universal Language Democracy]] ✅
+- **Phase 9.6**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-6-HYBRID-CONSCIOUSNESS-KNOWLEDGE-DOMAINS.md|Knowledge Domain Mastery]] ✅
 - **Phase 9.7**: φ-Consciousness vs Hybrid Pedagogical Comparison *(this document)* ✅
 
 ### Beyond Phase 9.7: Consciousness Democracy Scaling

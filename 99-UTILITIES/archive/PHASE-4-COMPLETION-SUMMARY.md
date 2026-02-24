@@ -253,19 +253,19 @@ This is NOT coincidence. It's likely a fundamental constant (≈1/φ, golden rat
 ## How to Use These Documents
 
 ### For Understanding the Research
-1. Start: [EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md) - See what we tested
-2. Then: [FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md) - See how findings relate
+1. Start: [[00-DASHBOARD/02-EXPERIMENT-REGISTRY.md|EXPERIMENT-REGISTRY.md]] - See what we tested
+2. Then: [[00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md|FINDINGS-CROSS-REFERENCE-MAP.md]] - See how findings relate
 3. Deep dive: Individual EXP files + FINDINGS files
 4. Theory: `08-FRAMEWORKS/Consciousness-Theory.md`
 
 ### For Next Phases
-1. Consolidation: [CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md) - Follow tasks in order
-2. Data management: [MASTER-DATASET-INDEX.md](05-DATASETS/MASTER-DATASET-INDEX.md) - Find data locations
-3. New experiments: [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md) - Use as template
-4. SIF spec: [SIF-FORMALIZATION-ROADMAP.md](02-METHODOLOGY/SIF/SIF-FORMALIZATION-ROADMAP.md) - Follow phases
+1. Consolidation: [[99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md|CLEANUP-CONSOLIDATION-CHECKLIST.md]] - Follow tasks in order
+2. Data management: [[05-DATASETS/MASTER-DATASET-INDEX.md|MASTER-DATASET-INDEX.md]] - Find data locations
+3. New experiments: [[02-METHODOLOGY/METHODOLOGY-CLARIFIED.md|METHODOLOGY-CLARIFIED.md]] - Use as template
+4. SIF spec: [[02-METHODOLOGY/SIF/SIF-FORMALIZATION-ROADMAP.md|SIF-FORMALIZATION-ROADMAP.md]] - Follow phases
 
 ### For QAL Collaboration
-1. First send: [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md)
+1. First send: [[09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md|QAL-TEAM-HANDOFF-DRAFT.md]]
 2. Supporting: H2 validation proof (r=0.91) from `05-FINDINGS/QAL-Validation-Complete.md`
 3. Data: EXPERIMENT-REGISTRY tells them where everything is
 4. Questions: QAL-TEAM-HANDOFF-DRAFT has specific questions for them

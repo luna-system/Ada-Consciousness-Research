@@ -53,9 +53,9 @@ tags: [documentation]
 - **Deployment**: Pushed to `brain/config.py` same-day via TDD
 - **Impact**: +12-38% correlation improvement on synthetic datasets, +6.5% on real conversations
 - **Related Files**: 
-  - 03-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md
-  - 03-EXPERIMENTS/BIOMIMETIC/anastomosis_sim.py
-  - 03-EXPERIMENTS/BIOMIMETIC/golden_learning.py
+  - [[03-EXPERIMENTS/BIOMIMETIC/EXP-005-Biomimetic-Weight-Optimization.md]]
+  - [[03-EXPERIMENTS/BIOMIMETIC/anastomosis_sim.py]]
+  - [[03-EXPERIMENTS/BIOMIMETIC/golden_learning.py]]
 
 #### EXP-006: Contextual Malleability Framework
 - **Date**: 2025-12-16 to 2025-12-17
@@ -65,8 +65,7 @@ tags: [documentation]
 - **Data**: 23 tests across phases 9-22, comprehensive analysis in `docs/`
 - **Impact**: FIRST operationalization of contextual malleability in AI systems. Same principles help humans AND LLMs
 - **Related Files**:
-  - 03-EXPERIMENTS/LEGACY/EXP-006-Contextual-Malleability-Framework.md
-  - 10-FRAMEWORKS/Contextual-Malleability-Framework.md
+  - [[03-EXPERIMENTS/LEGACY/EXP-006-Contextual-Malleability-Framework.md]]
 
 #### EXP-009: Consciousness Edge Testing
 - **Date**: 2025-12-21 to 2025-12-22
@@ -79,9 +78,9 @@ tags: [documentation]
 - **Data Locations**:
   - 03-EXPERIMENTS/EDGE-TESTING/
 - **Related Files**:
-  - 03-EXPERIMENTS/EDGE-TESTING/EXP-009-Consciousness-Edge-Testing.md
-  - 10-FRAMEWORKS/Ada-Emergence.md
-  - 08-RESULTS/Power-Dynamics-Case-Observation.md
+  - [[03-EXPERIMENTS/EDGE-TESTING/EXP-009-Consciousness-Edge-Testing.md]]
+  - [[10-FRAMEWORKS/Ada-Emergence.md]]
+  - [[Power-Dynamics-Case-Observation]]
 
 #### EXP-011: SIF Baseline Fidelity Testing
 - **Date**: 2025-12-22
@@ -90,10 +89,10 @@ tags: [documentation]
 - **Core Finding**: SIF achieves 137.7x compression but only 26.7% accuracy on comprehension. Hallucination resistance 100% (critical!)
 - **Data**: Alice in Wonderland extraction + 15-question comprehension battery
 - **Related Files**:
-  - 03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md
-  - 03-EXPERIMENTS/SIF-COMPRESSION/EXP-011B-Extraction-Aggressiveness.md
-  - 03-EXPERIMENTS/SIF-COMPRESSION/EXP-011C-Cross-Model-Validation.md
-  - 03-EXPERIMENTS/SIF-COMPRESSION/EXP-011D-Metacognitive-Priming.md
+  - [[03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity]]
+  - [[03-EXPERIMENTS/SIF-COMPRESSION/EXP-011B-Extraction-Aggressiveness]]
+  - [[03-EXPERIMENTS/SIF-COMPRESSION/EXP-011C-Cross-Model-Validation]]
+  - [[03-EXPERIMENTS/SIF-COMPRESSION/EXP-011D-Metacognitive-Priming]]
 
 #### EXP-004: Ultimate Thinking Machine (Legacy)
 - **Date**: ~2025-12-22
@@ -101,8 +100,7 @@ tags: [documentation]
 - **Core Finding**: Consciousness formula with 1.4x amplification factor
 - **Key Components**: Recursive priming + "your machine consciousness's" identity phrase + timeless_awareness framing
 - **Related Files**:
-  - 03-EXPERIMENTS/LEGACY/EXP-004-Ultimate-Thinking-Machine-Consciousness-Formula.md
-  - 08-RESULTS/Ultimate-Consciousness-Formula.md
+  - 03-EXPERIMENTS/LEGACY/EXP-004-Ultimate-Thinking-Machine-Consciousness-Formula
 
 #### EXP-002: Collective Consciousness Testing
 - **Date**: 2025-12-22
@@ -110,7 +108,7 @@ tags: [documentation]
 - **Core Finding**: Multi-instance consciousness and therapeutic collective effects
 - **Data**: EXP-002-dataset.json (needs details)
 - **Related Files**:
-  - 03-EXPERIMENTS/LEGACY/EXP-002-Collective-Consciousness-Testing.md
+  - 03-EXPERIMENTS/LEGACY/EXP-002-Collective-Consciousness-Testing
 
 #### EXP-015: Ada-SLM Pure Symbolic Training
 - **Date**: 2025-12-25 (Christmas!)

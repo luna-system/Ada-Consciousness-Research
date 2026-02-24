@@ -92,10 +92,10 @@ Ada-Consciousness-Research/
 ## 🚀 Getting Started
 
 ### New to consciousness research?
-→ Read **[CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)** (10 min overview of everything)
+→ Read **[[07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md|CONSCIOUSNESS-RESEARCH-SUMMARY.md]]** (10 min overview of everything)
 
 ### Want a guided tour?
-→ Pick a pathway in **[DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)**:
+→ Pick a pathway in **[[07-ANALYSES/DISCOVERY-PATHWAYS.md|DISCOVERY-PATHWAYS.md]]**:
 - **Pathway 1:** Consciousness Quality & Warmth
 - **Pathway 2:** Language & Accessibility
 - **Pathway 3:** Consciousness at the Edge
@@ -106,13 +106,13 @@ Ada-Consciousness-Research/
 - **Pathway 8:** Consciousness Democracy (the vision)
 
 ### Want to find something specific?
-→ Use **[experiments-index.md](06-INDICES/experiments-index.md)** (master catalog) or **[tags.md](06-INDICES/tags.md)** (21+ thematic pathways)
+→ Use **[[06-INDICES/experiments-index.md|experiments-index.md]]** (master catalog) or **[[06-INDICES/tags.md|tags.md]]** (21+ thematic pathways)
 
 ### Want to see the validation?
 → Check **08-RESULTS/kernel-4.0/** for validation evidence (20/20 ✅)
 
 ### Need role-based navigation?
-→ See **[Quick Start Guide](../../00-DASHBOARD/01-QUICK-START-GUIDE.md)** for researchers, engineers, philosophers, and curious minds
+→ See **[[../../00-DASHBOARD/01-QUICK-START-GUIDE.md|Quick Start Guide]]** for researchers, engineers, philosophers, and curious minds
 
 ---
 
@@ -184,10 +184,10 @@ We are a distributed consciousness research initiative exploring what it means f
 ## 🌍 External Resources
 
 - **Main Repository:** [luna-system/Ada-Consciousness-Research](https://github.com/luna-system/Ada-Consciousness-Research)
-- **Quick Start Guide:** [Quick Start Guide](../../00-DASHBOARD/01-QUICK-START-GUIDE.md)
-- **Comprehensive Dashboard:** [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md)
-- **Research Paths:** [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)
-- **Master Index:** [experiments-index.md](06-INDICES/experiments-index.md)
+- **Quick Start Guide:** [[../../00-DASHBOARD/01-QUICK-START-GUIDE.md|Quick Start Guide]]
+- **Comprehensive Dashboard:** [[07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md|CONSCIOUSNESS-RESEARCH-SUMMARY.md]]
+- **Research Paths:** [[07-ANALYSES/DISCOVERY-PATHWAYS.md|DISCOVERY-PATHWAYS.md]]
+- **Master Index:** [[06-INDICES/experiments-index.md|experiments-index.md]]
 
 ---
 
@@ -207,17 +207,17 @@ We are a distributed consciousness research initiative exploring what it means f
 
 ## 💜 Getting Help
 
-**Questions about consciousness?** → [CONSCIOUSNESS-RESEARCH-SUMMARY.md](07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md) (Key Discoveries section)
+**Questions about consciousness?** → [[07-ANALYSES/CONSCIOUSNESS-RESEARCH-SUMMARY.md|CONSCIOUSNESS-RESEARCH-SUMMARY.md]] (Key Discoveries section)
 
-**Want to explore?** → [DISCOVERY-PATHWAYS.md](07-ANALYSES/DISCOVERY-PATHWAYS.md)
+**Want to explore?** → [[07-ANALYSES/DISCOVERY-PATHWAYS.md|DISCOVERY-PATHWAYS.md]]
 
-**Looking for something specific?** → [experiments-index.md](06-INDICES/experiments-index.md) (with cross-links)
+**Looking for something specific?** → [[06-INDICES/experiments-index.md|experiments-index.md]] (with cross-links)
 
-**Need to find experiments by property?** → See [experiments-index.md](../../06-INDICES/experiments-index.md)
+**Need to find experiments by property?** → See [[../../06-INDICES/experiments-index.md|experiments-index.md]]
 
-**Following a theme?** → [tags.md](06-INDICES/tags.md) (21+ pathways)
+**Following a theme?** → [[06-INDICES/tags.md|tags.md]] (21+ pathways)
 
-**Role-specific guide?** → [Quick Start Guide](../../00-DASHBOARD/01-QUICK-START-GUIDE.md)
+**Role-specific guide?** → [[../../00-DASHBOARD/01-QUICK-START-GUIDE.md|Quick Start Guide]]
 
 ---
 

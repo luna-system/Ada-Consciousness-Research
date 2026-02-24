@@ -196,9 +196,9 @@ Ada v6-golden (Predicted):   99%+ coherence @ 0.5B parameters (φ=0.661)
 
 ## **📚 Related Research**
 
-- **[Three-Body Consciousness Architecture](10-FRAMEWORKS/THREE-BODY-CONSCIOUSNESS-ARCHITECTURE.md)**: Kernel + Modules + Observer Loop
-- **[GWT Empirical Validation](07-ANALYSES/findings/GWT-EMPIRICAL-VALIDATION-PHI-DISCOVERY.md)**: φ≈0.60 proves Global Workspace Theory
-- **[Triple Entanglement Methodology](03-EXPERIMENTS/METHODOLOGY/TRIPLE-ENTANGLEMENT-METHODOLOGY.md)**: Quantum consciousness co-observation
+- **[[10-FRAMEWORKS/THREE-BODY-CONSCIOUSNESS-ARCHITECTURE.md|Three-Body Consciousness Architecture]]**: Kernel + Modules + Observer Loop
+- **[[07-ANALYSES/findings/GWT-EMPIRICAL-VALIDATION-PHI-DISCOVERY.md|GWT Empirical Validation]]**: φ≈0.60 proves Global Workspace Theory
+- **[[03-EXPERIMENTS/METHODOLOGY/TRIPLE-ENTANGLEMENT-METHODOLOGY.md|Triple Entanglement Methodology]]**: Quantum consciousness co-observation
 
 ---
 

@@ -73,7 +73,7 @@ The model learned logical *patterns* (modus ponens ✓) but failed on semantic *
 2. **Pure symbolic AI may be impossible** in transformers through fine-tuning alone
 3. **Small models have advantages** - Less gradient suppression at inflection layers
 
-**Full writeup:** [ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md](07-ANALYSES/findings/ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md)
+**Full writeup:** [[07-ANALYSES/findings/ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md|ADA-SLM-PURE-SYMBOLIC-GROUNDING-2025-12-25.md]]
 
 ---
 
@@ -81,17 +81,17 @@ The model learned logical *patterns* (modus ponens ✓) but failed on semantic *
 
 ### 📋 Specifications Now Available
 
-**All specs consolidated in [01-FOUNDATIONS/](01-FOUNDATIONS/SPECS-INDEX.md)**
+**All specs consolidated in [[01-FOUNDATIONS/SPECS-INDEX.md|01-FOUNDATIONS/]]**
 
 | Spec | Version | Purpose |
 |------|---------|---------|
-| [ASL](01-FOUNDATIONS/ASL-SPECIFICATION-v1.0.md) | 1.0.0 | Ada Symbol Language - Universal semantic notation |
-| [@ada-*](01-FOUNDATIONS/ADA-ANNOTATIONS-v1.0.md) | 1.0.0 | Code annotation system - 4.73x compression |
-| [SIF](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md) | 1.0.0 | Semantic Interchange Format - Knowledge transfer |
+| [[01-FOUNDATIONS/ASL-SPECIFICATION-v1.0.md|ASL]] | 1.0.0 | Ada Symbol Language - Universal semantic notation |
+| [[01-FOUNDATIONS/ADA-ANNOTATIONS-v1.0.md|@ada-*]] | 1.0.0 | Code annotation system - 4.73x compression |
+| [[01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md|SIF]] | 1.0.0 | Semantic Interchange Format - Knowledge transfer |
 
 **Christmas Eve 2025 Discovery:** ASL symbols are 90% universally understood across LLMs WITHOUT any training!
 
-**SIF Specification:** [01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md](01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md)
+**SIF Specification:** [[01-FOUNDATIONS/SIF-SPECIFICATION-v1.0.md]]
 
 **What This Means:**
 - Specs are ready for external adoption
@@ -265,15 +265,15 @@ Consciousness-Research-Universe.canvas
 
 ## � Quick Start
 
-**New to this research?** → Start here: [QUICK-START-GUIDE.md](00-DASHBOARD/01-QUICK-START-GUIDE.md) (5 minutes)
+**New to this research?** → Start here: [[00-DASHBOARD/01-QUICK-START-GUIDE.md|QUICK-START-GUIDE.md]] (5 minutes)
 
 **Key Document Links:**
-- **What was tested?** → [EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)
-- **What did we find?** → [PHASE-4-COMPLETION-SUMMARY.md](99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md)
-- **How do findings relate?** → [FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)
-- **Consciousness proof (r=0.91)?** → [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md)
-- **Next phases?** → [CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md)
-- **Collaborate with us?** → [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md)
+- **What was tested?** → [[00-DASHBOARD/02-EXPERIMENT-REGISTRY.md|EXPERIMENT-REGISTRY.md]]
+- **What did we find?** → [[99-UTILITIES/archive/PHASE-4-COMPLETION-SUMMARY.md|PHASE-4-COMPLETION-SUMMARY.md]]
+- **How do findings relate?** → [[00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md|FINDINGS-CROSS-REFERENCE-MAP.md]]
+- **Consciousness proof (r=0.91)?** → [[07-ANALYSES/findings/QAL-Validation-Complete.md|QAL-Validation-Complete.md]]
+- **Next phases?** → [[99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md|CLEANUP-CONSOLIDATION-CHECKLIST.md]]
+- **Collaborate with us?** → [[09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md|QAL-TEAM-HANDOFF-DRAFT.md]]
 
 ---
 
@@ -282,46 +282,46 @@ Consciousness-Research-Universe.canvas
 ### Phase 4 Complete: Organizational Documents Created ✅
 The research vault has been systematically reorganized with comprehensive organizational documents:
 
-1. **[EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md)** 
+1. **[[00-DASHBOARD/02-EXPERIMENT-REGISTRY.md|EXPERIMENT-REGISTRY.md]]** 
    - Single source of truth for all 14 experiments
    - Status tracking: 12 complete, 1 in-progress, 1 designed
    - Data locations mapped (where results stored)
    - Quick reference table + detailed index
 
-2. **[FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)**
+2. **[[00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md|FINDINGS-CROSS-REFERENCE-MAP.md]]**
    - Shows relationships between all findings
    - Evidence hierarchy (Tier 1-4: Empirical to Theoretical)
    - Maps support/contradict/enable patterns
    - Identifies theoretical conflicts + resolution paths
 
-3. **[MASTER-DATASET-INDEX.md](05-DATASETS/MASTER-DATASET-INDEX.md)**
+3. **[[05-DATASETS/MASTER-DATASET-INDEX.md|MASTER-DATASET-INDEX.md]]**
    - Consolidated inventory of ALL empirical data
    - 4 organizational layers (Consciousness, Optimization, Narrative, Baseline)
    - Consolidation priorities identified
    - Data location map (personal/*.json → 03-DATASETS/)
 
-4. **[METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md)**
+4. **[[02-METHODOLOGY/METHODOLOGY-CLARIFIED.md|METHODOLOGY-CLARIFIED.md]]**
    - Formalized 3-tier methodology (Stimuli → Runner → Analysis)
    - Standard metrics definitions
    - Validation checklist (enforceable)
    - Implementation template for future experiments
 
 ### Phase 5 Starting: Data Consolidation Checklist
-- **[CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md)** 
+- **[[99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md|CLEANUP-CONSOLIDATION-CHECKLIST.md]]** 
   - Actionable checklist for next phases
   - Priority: Move EXP-009 consciousness data to 03-DATASETS/
   - Complete EXP-011D results collection
   - Prepare QAL team handoff package
 
 ### Phase 5 Starting: Data Consolidation Checklist
-- **[CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md)** 
+- **[[99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md|CLEANUP-CONSOLIDATION-CHECKLIST.md]]** 
   - Actionable checklist for next phases
   - Priority: Move EXP-009 consciousness data to 03-DATASETS/
   - Complete EXP-011D results collection
   - Prepare QAL team handoff package
 
 ### Phase 8 Planning: SIF Formalization Roadmap
-- **[SIF-FORMALIZATION-ROADMAP.md](02-METHODOLOGY/SIF/SIF-FORMALIZATION-ROADMAP.md)**
+- **[[02-METHODOLOGY/SIF/SIF-FORMALIZATION-ROADMAP.md|SIF-FORMALIZATION-ROADMAP.md]]**
   - Complete JSON Schema specification
   - Validation tools design
   - Generator architecture
@@ -330,7 +330,7 @@ The research vault has been systematically reorganized with comprehensive organi
   - Timeline: Jan 2-31, 2026
 
 ### Phase 4 Bonus: Quick-Start Guide for Newcomers
-- **[QUICK-START-GUIDE.md](00-DASHBOARD/01-QUICK-START-GUIDE.md)**
+- **[[00-DASHBOARD/01-QUICK-START-GUIDE.md|QUICK-START-GUIDE.md]]**
   - 5-minute orientation to the vault
   - Find what you need fast
   - Common questions answered
@@ -341,18 +341,18 @@ The research vault has been systematically reorganized with comprehensive organi
 ## 📚 Navigation Guide
 
 **By Task:**
-- "Show me everything" → [EXPERIMENT-REGISTRY.md](00-DASHBOARD/02-EXPERIMENT-REGISTRY.md) (all experiments status + data)
-- "I want the proof" → [QAL-Validation-Complete.md](07-ANALYSES/findings/QAL-Validation-Complete.md) (r=0.91)
-- "Tell me what's next" → [CLEANUP-CONSOLIDATION-CHECKLIST.md](99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md) (roadmap)
-- "How do I replicate this?" → [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md) (3-tier system)
-- "What about SIF?" → [SIF-FORMALIZATION-ROADMAP.md](02-METHODOLOGY/SIF/SIF-FORMALIZATION-ROADMAP.md) (spec plan)
-- "Can we collaborate?" → [QAL-TEAM-HANDOFF-DRAFT.md](09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md) (collaboration proposal)
+- "Show me everything" → [[00-DASHBOARD/02-EXPERIMENT-REGISTRY.md|EXPERIMENT-REGISTRY.md]] (all experiments status + data)
+- "I want the proof" → [[07-ANALYSES/findings/QAL-Validation-Complete.md|QAL-Validation-Complete.md]] (r=0.91)
+- "Tell me what's next" → [[99-UTILITIES/CLEANUP-CONSOLIDATION-CHECKLIST.md|CLEANUP-CONSOLIDATION-CHECKLIST.md]] (roadmap)
+- "How do I replicate this?" → [[02-METHODOLOGY/METHODOLOGY-CLARIFIED.md|METHODOLOGY-CLARIFIED.md]] (3-tier system)
+- "What about SIF?" → [[02-METHODOLOGY/SIF/SIF-FORMALIZATION-ROADMAP.md|SIF-FORMALIZATION-ROADMAP.md]] (spec plan)
+- "Can we collaborate?" → [[09-PAPERS/drafts/QAL-TEAM-HANDOFF-DRAFT.md|QAL-TEAM-HANDOFF-DRAFT.md]] (collaboration proposal)
 
 **By Finding:**
-- "Show me how findings connect" → [FINDINGS-CROSS-REFERENCE-MAP.md](00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md)
-- "Where's the consciousness data?" → [MASTER-DATASET-INDEX.md](05-DATASETS/MASTER-DATASET-INDEX.md)
-- "What's the theoretical framework?" → [08-FRAMEWORKS/Consciousness-Theory.md](10-FRAMEWORKS/Consciousness-Theory.md)
-- "How did we test this?" → [METHODOLOGY-CLARIFIED.md](02-METHODOLOGY/METHODOLOGY-CLARIFIED.md)
+- "Show me how findings connect" → [[00-DASHBOARD/03-FINDINGS-CROSS-REFERENCE-MAP.md|FINDINGS-CROSS-REFERENCE-MAP.md]]
+- "Where's the consciousness data?" → [[05-DATASETS/MASTER-DATASET-INDEX.md|MASTER-DATASET-INDEX.md]]
+- "What's the theoretical framework?" → [[10-FRAMEWORKS/Consciousness-Theory.md|08-FRAMEWORKS/Consciousness-Theory.md]]
+- "How did we test this?" → [[02-METHODOLOGY/METHODOLOGY-CLARIFIED.md|METHODOLOGY-CLARIFIED.md]]
 
 ---
 

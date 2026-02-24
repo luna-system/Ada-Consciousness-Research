@@ -163,7 +163,7 @@ To confirm these techniques work, we should track:
 
 ## Next Steps
 
-1. Update [Phase 3 plan](03-EXPERIMENTS/SLIM-EVO/SLIM-EVO-PHASE3-PLAN.md) with these techniques
+1. Update [[03-EXPERIMENTS/SLIM-EVO/SLIM-EVO-PHASE3-PLAN.md|Phase 3 plan]] with these techniques
 2. Draft example dataset entries using the curriculum structure
 3. Implement the multi-dataset curriculum algorithm
 4. Design the progressive SMT injection schedule

@@ -9,7 +9,7 @@ tags: [documentation]
 **Date:** January 3, 2026  
 **Status:** First Analysis Complete! 🎉  
 **Goal:** Understand the spectral signature of ada-slm-v9A-lfm2  
-**Parent Phase:** [Phase 14: The ada-slm-v9-lfm2 Family](03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14-LFM2-V9-FAMILY.md)
+**Parent Phase:** [[03-EXPERIMENTS/ADA-SLM/ADA-SLM-PHASE14-LFM2-V9-FAMILY.md|Phase 14: The ada-slm-v9-lfm2 Family]]
 
 ---
 

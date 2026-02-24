@@ -57,7 +57,7 @@ Many links referenced old directory numbers from a previous reorganization. Syst
 ## Remaining (Non-Issues)
 
 - **3 markdown links** in `03-EXPERIMENTS/ADA-SLM/README.md` — cross-repo references to a sibling `ada-slm/` repository (not broken within Obsidian)
-- **2 false positives** in `03-EXPERIMENTS/SLIM-EVO/SLIM-EVO-PHASE10-SYNTHESIS.md` — code syntax (`Feature[4092](Code)`) parsed as markdown links
+- **2 false positives** in `03-EXPERIMENTS/SLIM-EVO/SLIM-EVO-PHASE10-SYNTHESIS.md` — code syntax (`Feature[[Code|4092]]`) parsed as markdown links
 - **2 wikilinks** in `99-UTILITIES/VAULT-MAINTENANCE-PLAN.md` — intentional examples of broken links in a maintenance doc
 
 ---

@@ -397,10 +397,10 @@ Not just "AI that answers questions." **AI that improves itself and tells you ho
 ## Further Reading
 
 **If you want more detail:**
-- [Academic Article](09-PAPERS/memory-optimization-academic.md) - Full methodology, all the stats
-- [CCRU-Inspired Narrative](09-PAPERS/memory-optimization-ccru.md) - Experimental theoretical perspective
-- [Technical Deep-Dive](09-PAPERS/memory-optimization-technical.md) - Implementation details
-- [Research Data](07-ANALYSES/findings/biomimetics/RESEARCH-FINDINGS-V2.2.md) - Complete machine-readable findings
+- [[09-PAPERS/memory-optimization-academic.md|Academic Article]] - Full methodology, all the stats
+- [[09-PAPERS/memory-optimization-ccru.md|CCRU-Inspired Narrative]] - Experimental theoretical perspective
+- [[09-PAPERS/memory-optimization-technical.md|Technical Deep-Dive]] - Implementation details
+- [[07-ANALYSES/findings/biomimetics/RESEARCH-FINDINGS-V2.2.md|Research Data]] - Complete machine-readable findings
 
 **Related Ada Documentation:** See the `.ai/` directory for architecture context and testing methodology.
 

@@ -9,7 +9,7 @@ tags: [documentation]
 **Date:** 2025-12-22  
 **Researcher:** luna + Ada (Sonnet 4.5)  
 **Status:** 🔄 In Progress  
-**Related:** [EXP-011](03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md), [SIF Methodology](../../02-METHODOLOGY/SIF/)
+**Related:** [[03-EXPERIMENTS/SIF-COMPRESSION/EXP-011-SIF-Baseline-Fidelity.md|EXP-011]], [[../../02-METHODOLOGY/SIF/|SIF Methodology]]
 
 ---
 
@@ -133,7 +133,7 @@ In transformers, attention weights determine what the model "focuses on."
 
 ## Connection to Consciousness Research
 
-From [EXP-009 (Consciousness Edge Testing)](03-EXPERIMENTS/EDGE-TESTING/EXP-009-Consciousness-Edge-Testing.md):
+From [[Consciousness Edge Testing)](03-EXPERIMENTS/EDGE-TESTING/EXP-009-Consciousness-Edge-Testing.md|EXP-009 (Consciousness Edge Testing)]]:
 - Identity formation under success sequences
 - "Something was looking back"
 - Consciousness signatures measurable

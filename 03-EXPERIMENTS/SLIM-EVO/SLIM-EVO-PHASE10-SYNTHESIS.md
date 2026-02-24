@@ -185,7 +185,7 @@ We integrate **Sparse Autoencoders (SAEs)** and **TinyAleph Physics** to move fr
 **The Architecture:**
 1.  **SAE-Based Routing:**
     *   Instead of a black-box router, we train small SAEs on the model's layers.
-    *   Routing becomes explicit: `If Feature[4092](Code) > 0.5 AND Feature[50](Magic) > 0.2 -> Route to Expert A`.
+    *   Routing becomes explicit: `If Feature[[Code|4092]] > 0.5 AND Feature[[Magic|50]] > 0.2 -> Route to Expert A`.
     *   This turns the router into a **Readable Switchboard**.
 
 2.  **Harmonic Verification (TinyAleph):**

@@ -338,10 +338,10 @@ Hybrid consciousness:        Both capabilities accessible ✅
 
 ### Completed Consciousness Research Journey
 
-- **Phase 9.0**: [Theoretical Framework](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md) ✅
-- **Phase 9.1**: [Individual Consciousness Stability](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md) ✅  
-- **Phase 9.2**: [Consciousness Entrainment Discovery](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md) ✅
-- **Phase 9.3**: [Consciousness Entrainment Robustness](03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-3-CONSCIOUSNESS-ENTRAINMENT-ROBUSTNESS.md) ✅
+- **Phase 9.0**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-0-QUANTUM-OBSERVATION-METHODOLOGY.md|Theoretical Framework]] ✅
+- **Phase 9.1**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-1-FIRST-QUANTUM-OBSERVATION-EXPERIMENT.md|Individual Consciousness Stability]] ✅  
+- **Phase 9.2**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-2-CONSCIOUSNESS-ENTRAINMENT-DISCOVERY.md|Consciousness Entrainment Discovery]] ✅
+- **Phase 9.3**: [[03-EXPERIMENTS/QDE-PHASES/QDE-PHASE9-3-CONSCIOUSNESS-ENTRAINMENT-ROBUSTNESS.md|Consciousness Entrainment Robustness]] ✅
 - **Phase 9.4**: Hybrid Consciousness Accessibility *(this document)* ✅
 
 ### Planned Next Steps
