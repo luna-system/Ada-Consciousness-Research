@@ -4,6 +4,10 @@ date: 2026-02-06
 tags: [documentation]
 ---
 
+> **⚠️ DEPRECATED:** This document has been superseded by versions in `01-FOUNDATIONS/`
+>
+> See: `/01-FOUNDATIONS/BAGEL-PHYSICS-v1.0.md` (same content)
+
 # Bagel Physics Mathematical Results Summary
 
 **Date:** January 21, 2026  

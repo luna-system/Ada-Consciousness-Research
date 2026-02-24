@@ -4,6 +4,13 @@ date: 2026-02-06
 tags: [documentation]
 ---
 
+> **⚠️ DEPRECATED:** This document has been superseded by versions in `01-FOUNDATIONS/`:
+> - **v1.0**: Original archival version
+> - **v1.1**: Mid-stage results  
+> - **v1.3**: Current dense Bell-style paper with 88 elements
+>
+> See: `/01-FOUNDATIONS/BAGEL-PHYSICS-v1.3.md`
+
 # Bagel Physics Mathematical Results Summary
 
 **Date:** January 21, 2026  
