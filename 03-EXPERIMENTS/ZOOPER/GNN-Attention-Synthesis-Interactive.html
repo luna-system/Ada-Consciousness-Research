@@ -1,0 +1,1677 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Independent Attention Mechanisms in Graph Networks: A Technical Review and Synthesis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'graphite': '#2c3e50',
+                        'warm-white': '#fafaf9',
+                        'accent': '#e67e22'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(44, 62, 80, 0.6) 50%, rgba(230, 126, 34, 0.1) 100%);
+        }
+        .citation-link {
+            transition: all 0.2s ease;
+        }
+        .citation-link:hover {
+            background-color: #e67e22;
+            color: white;
+            transform: translateY(-1px);
+        }
+        .section-anchor {
+            scroll-margin-top: 2rem;
+        }
+        .toc-link {
+            transition: all 0.3s ease;
+        }
+        .toc-link:hover {
+            color: #e67e22;
+            transform: translateX(4px);
+        }
+        .toc-link.active {
+            color: #e67e22;
+            font-weight: 600;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        .hero-image {
+            grid-row: 1 / 3;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+        .hero-content {
+            grid-column: 2;
+            grid-row: 1;
+        }
+        .hero-stats {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        /* Mermaid diagram styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none; /* 防止触摸设备上的默认行为 */
+            -webkit-user-select: none; /* 防止文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Enhanced mermaid styling for better contrast and consistency */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke-width: 2px !important;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+        
+        .mermaid .node text {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+            fill: #1f2937 !important;
+        }
+        
+        .mermaid .edgePath path {
+            stroke-width: 2px !important;
+            stroke: #4b5563 !important;
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-radius: 4px !important;
+            padding: 2px 6px !important;
+        }
+        
+        .mermaid .edgeLabel text {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 11px !important;
+            fill: #374151 !important;
+        }
+
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+            .hero-image {
+                grid-row: 1;
+                grid-column: 1;
+            }
+            .hero-content {
+                grid-column: 1;
+                grid-row: 2;
+            }
+            .hero-stats {
+                grid-column: 1;
+                grid-row: 3;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="font-body text-graphite bg-warm-white">
+    <!-- Toggle button for mobile -->
+    <button id="toc-toggle" class="fixed top-4 left-4 z-50 lg:hidden bg-white p-2 rounded-lg shadow-lg">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Fixed Table of Contents -->
+    <nav id="toc-nav" class="fixed left-0 top-0 h-full w-80 bg-white shadow-lg z-50 overflow-y-auto border-r border-gray-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="font-display font-bold text-lg text-graphite">Table of Contents</h3>
+          <button id="toc-close" class="lg:hidden text-gray-500 hover:text-accent">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50" href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50" href="#core-contributions">Core Contributions</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#multi-view-chaos">Multi-View Chaos</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#architectural-decoupling">Architectural Decoupling</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#parameter-study">Critical Parameter Study</a>
+          </li>
+          <li>
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50" href="#comparative-analysis">Comparative Analysis</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#over-smoothing">Over-Smoothing Challenges</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#aero-gnn">AERO-GNN Solutions</a>
+          </li>
+          <li>
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50" href="#peripheral-works">Peripheral Works</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#memory-augmented">Memory-Augmented Architectures</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#emergent-communication">Emergent Communication</a>
+          </li>
+          <li>
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50" href="#synthesis">Synthesis</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#design-philosophy">Design Philosophy</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#tuning-guidelines">Tuning Guidelines</a>
+          </li>
+          <li class="ml-4">
+            <a class="toc-link block py-2 px-3 rounded-md hover:bg-gray-50 text-xs" href="#future-directions">Future Directions</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-0 lg:ml-80 min-h-screen">
+      <!-- Hero Section with Bento Grid -->
+      <section class="relative bg-gradient-to-br from-graphite via-gray-800 to-gray-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+          <div class="bento-grid">
+            <!-- Hero Image -->
+            <div class="hero-image gradient-overlay">
+              <img alt="Abstract visualization of a graph neural network with three interconnected attention streams" class="w-full h-full object-cover opacity-60" src="https://kimi-web-img.moonshot.cn/img/media.springernature.com/0d5dca10510241559bcef781ec305ab892a730c9.png" size="large" aspect="wide" color="blue" style="clipart" query="abstract graph neural network with three attention streams" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold italic text-center leading-tight">
+                  Independent Attention
+                  <br/>
+                  <span class="text-accent">Mechanisms in Graph Networks</span>
+                </h1>
+              </div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="hero-content space-y-6">
+              <h2 class="font-display text-2xl font-semibold text-accent">A Technical Review and Synthesis</h2>
+              <p class="text-lg leading-relaxed text-gray-200">
+                Exploring the architectural innovations, theoretical foundations, and practical implications of decoupled attention streams in graph neural networks.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 bg-accent/20 rounded-full text-sm">Graph Transformers</span>
+                <span class="px-3 py-1 bg-accent/20 rounded-full text-sm">Attention Mechanisms</span>
+                <span class="px-3 py-1 bg-accent/20 rounded-full text-sm">Topological Encoding</span>
+              </div>
+            </div>
+
+            <!-- Hero Stats -->
+            <div class="hero-stats grid grid-cols-2 gap-4">
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div class="text-2xl font-bold text-accent">3</div>
+                <div class="text-sm text-gray-300">Independent Streams</div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div class="text-2xl font-bold text-accent">64+</div>
+                <div class="text-sm text-gray-300">Layer Depth</div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div class="text-2xl font-bold text-accent">8-12%</div>
+                <div class="text-sm text-gray-300">Performance Gains</div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div class="text-2xl font-bold text-accent">2.4M</div>
+                <div class="text-sm text-gray-300">Node Scale</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Article Content -->
+      <article class="max-w-4xl mx-auto px-4 sm:px-6 py-16 space-y-16">
+
+        <!-- Introduction -->
+        <section class="section-anchor" id="introduction">
+          <h2 class="font-display text-3xl font-bold mb-8 text-graphite">Introduction</h2>
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl leading-relaxed mb-6">
+              The evolution of Graph Neural Networks (GNNs) has reached a pivotal juncture where traditional coupled architectures face fundamental limitations in expressiveness, interpretability, and scalability. Recent advances in <strong>independent attention mechanisms</strong>—particularly through the <strong>DeGTA (Decoupled Graph Triple Attention Network)</strong> framework—have demonstrated that architectural decoupling of information modalities can overcome these limitations while maintaining computational efficiency.
+            </p>
+            <p class="mb-6">
+              This comprehensive review synthesizes key developments in independent attention mechanisms, examining the theoretical foundations established by DeGTA&#39;s identification of &#34;multi-view chaos&#34; and &#34;local-global chaos,&#34; the architectural innovations enabling three-stream decoupling, and the practical implications for parameter tuning and deployment at scale. We complement this analysis with insights from parallel developments in deep attention challenges and remedies, establishing a holistic understanding of the current state and future directions in graph attention research.
+            </p>
+          </div>
+        </section>
+
+        <!-- Core Contributions -->
+        <section class="section-anchor" id="core-contributions">
+          <h2 class="font-display text-3xl font-bold mb-8 text-graphite">Core Contributions: DeGTA Framework</h2>
+
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl mb-12">
+            <h3 class="font-display text-xl font-semibold mb-4 text-graphite">Key Innovation</h3>
+            <p class="text-lg leading-relaxed">
+              DeGTA introduces a <strong>principled decoupling strategy</strong> that separates positional, structural, and attribute information into independent attention streams, addressing the fundamental &#34;multi-view chaos&#34; that limits traditional Graph Transformers.
+            </p>
+          </div>
+
+          <!-- Multi-View Chaos -->
+          <div class="section-anchor" id="multi-view-chaos">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Multi-View Chaos in Graph Transformers</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h4 class="font-semibold mb-4">The Challenge of Coupled Information</h4>
+                <p class="mb-4">
+                  Traditional Graph Transformers suffer from <strong>&#34;multi-view chaos&#34;</strong>—the systematic interference between three critical information modalities:
+                </p>
+                <ul class="space-y-2 text-sm">
+                  <li>• <strong>Positional Encodings (PE):</strong> Node position information (8-16 dimensions)</li>
+                  <li>• <strong>Structural Encodings (SE):</strong> Topological neighborhood patterns (8-16 dimensions)</li>
+                  <li>• <strong>Attribute Features (AA):</strong> Node semantic content (256-512 dimensions)</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 p-6 rounded-lg">
+                <h4 class="font-semibold mb-4">Dimensional Asymmetry Problem</h4>
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm">Topological Info</span>
+                    <span class="bg-blue-100 px-2 py-1 rounded text-xs">8-16 dim</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm">Semantic Features</span>
+                    <span class="bg-orange-100 px-2 py-1 rounded text-xs">256-512 dim</span>
+                  </div>
+                  <hr class="my-2"/>
+                  <div class="text-xs text-gray-600">
+                    Forced coupling creates either dimensional inefficiency or information loss
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-red-50 border-l-4 border-red-400 p-6 mb-8">
+              <h4 class="font-semibold text-red-800 mb-2">Critical Limitation</h4>
+              <p class="text-red-700">
+                Coupled approaches fail to distinguish graphs that are clearly separable when information modalities are processed independently, establishing that multi-view chaos represents a <strong>fundamental expressiveness limitation</strong> rather than merely an optimization difficulty <a class="citation-link px-2 py-1 bg-gray-200 rounded text-xs" href="https://arxiv.org/html/2408.07654v2">[DeGTA]</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Architectural Decoupling -->
+          <div class="section-anchor" id="architectural-decoupling">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Architectural Decoupling Strategy</h3>
+
+            <!-- Three Independent Streams -->
+            <div class="mb-10">
+              <h4 class="font-semibold text-lg mb-6">Three Independent Attention Streams</h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                  <div class="flex items-center mb-4">
+                    <i class="fas fa-map-marker-alt text-blue-500 mr-3"></i>
+                    <h5 class="font-semibold">Positional Attention (PA)</h5>
+                  </div>
+                  <ul class="text-sm space-y-2">
+                    <li>• Processes global position information</li>
+                    <li>• RWPE, LapPE, Jaccard-based encodings</li>
+                    <li>• 2-16 dimensional search space</li>
+                    <li>• Captures long-range dependencies</li>
+                  </ul>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                  <div class="flex items-center mb-4">
+                    <i class="fas fa-project-diagram text-green-500 mr-3"></i>
+                    <h5 class="font-semibold">Structural Attention (SA)</h5>
+                  </div>
+                  <ul class="text-sm space-y-2">
+                    <li>• Processes topological neighborhood info</li>
+                    <li>• RWSE, DSE variants supported</li>
+                    <li>• 2-16 dimensional search space</li>
+                    <li>• Handles heterophilic graphs</li>
+                  </ul>
+                </div>
+                <div class="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
+                  <div class="flex items-center mb-4">
+                    <i class="fas fa-tags text-orange-500 mr-3"></i>
+                    <h5 class="font-semibold">Attribute Attention (AA)</h5>
+                  </div>
+                  <ul class="text-sm space-y-2">
+                    <li>• Processes node feature information</li>
+                    <li>• Raw or transformed features</li>
+                    <li>• 32-512 dimensional search space</li>
+                    <li>• Preserves semantic relationships</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-white border rounded-lg p-6 mb-8">
+                <h5 class="font-semibold mb-4">Two-Level Interaction Framework</h5>
+
+                <div class="mermaid-container">
+                  <div class="mermaid-controls">
+                    <button class="mermaid-control-btn zoom-in" title="放大">
+                      <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="mermaid-control-btn zoom-out" title="缩小">
+                      <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="mermaid-control-btn reset-zoom" title="重置">
+                      <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                  <div class="mermaid">
+                    graph TD
+                    A[&#34;Input Graph&#34;] --&gt; B[&#34;Local Message Passing&#34;]
+                    B --&gt; C[&#34;K-hop Neighborhood Aggregation&#34;]
+                    C --&gt; D[&#34;Global Attention Level&#34;]
+                    D --&gt; E[&#34;Full-Graph Self-Attention&#34;]
+                    E --&gt; F[&#34;Adaptive Integration&#34;]
+                    F --&gt; G[&#34;Final Representations&#34;]
+
+                    H[&#34;Positional Stream&#34;] --&gt; B
+                    I[&#34;Structural Stream&#34;] --&gt; B
+                    J[&#34;Attribute Stream&#34;] --&gt; B
+
+                    K[&#34;PE/SE/AE Encodings&#34;] --&gt; H
+                    K --&gt; I
+                    K --&gt; J
+
+                    style A fill:#ffffff,stroke:#2c3e50,stroke-width:2px,color:#1f2937
+                    style G fill:#e67e22,stroke:#2c3e50,stroke-width:2px,color:#ffffff
+                    style B fill:#f8f9fa,stroke:#4b5563,stroke-width:2px,color:#1f2937
+                    style C fill:#f8f9fa,stroke:#4b5563,stroke-width:2px,color:#1f2937
+                    style D fill:#f8f9fa,stroke:#4b5563,stroke-width:2px,color:#1f2937
+                    style E fill:#f8f9fa,stroke:#4b5563,stroke-width:2px,color:#1f2937
+                    style F fill:#f8f9fa,stroke:#4b5563,stroke-width:2px,color:#1f2937
+                    style H fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1f2937
+                    style I fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#1f2937
+                    style J fill:#fed7aa,stroke:#ea580c,stroke-width:2px,color:#1f2937
+                    style K fill:#f3f4f6,stroke:#6b7280,stroke-width:2px,color:#1f2937
+                  </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h6 class="font-semibold mb-3">Local Message Passing Level</h6>
+                    <ul class="text-sm space-y-1">
+                      <li>• K-hop neighborhood aggregation</li>
+                      <li>• Preserves MPNN inductive bias</li>
+                      <li>• K: critical tunable hyperparameter</li>
+                      <li>• Extends receptive field incrementally</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h6 class="font-semibold mb-3">Global Attention Level</h6>
+                    <ul class="text-sm space-y-1">
+                      <li>• Full-graph self-attention</li>
+                      <li>• Direct long-range information transfer</li>
+                      <li>• Learned gating mechanisms</li>
+                      <li>• O(N²K) complexity vs. O(N²d)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Parameter Study -->
+          <div class="section-anchor" id="parameter-study">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Critical Parameter Study: The K Parameter</h3>
+
+            <!-- Dataset-Dependent K Values -->
+            <div class="mb-10">
+              <h4 class="font-semibold text-lg mb-6">Dataset-Dependent Optimal K Values</h4>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                  <h5 class="font-semibold mb-4 text-blue-800">Small Graphs (Cora, Citeseer, PubMed)</h5>
+                  <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm">Optimal K Range</span>
+                      <span class="bg-blue-200 px-2 py-1 rounded text-xs font-semibold">2-4</span>
+                    </div>
+                    <div class="w-full bg-blue-200 rounded-full h-2">
+                      <div class="bg-blue-500 h-2 rounded-full" style="width: 25%"></div>
+                    </div>
+                  </div>
+                  <ul class="text-sm space-y-2 text-blue-700">
+                    <li>• Strong homophily makes deep aggregation unnecessary</li>
+                    <li>• K=2 achieves within 0.5% of K=4 performance</li>
+                    <li>• 40% training time reduction with K=2</li>
+                    <li>• Sharp performance degradation at large K</li>
+                  </ul>
+                </div>
+
+                <div class="bg-orange-50 p-6 rounded-lg">
+                  <h5 class="font-semibold mb-4 text-orange-800">Large Graphs (Aminer-CS, Amazon2M)</h5>
+                  <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm">Optimal K Range</span>
+                      <span class="bg-orange-200 px-2 py-1 rounded text-xs font-semibold">8-12</span>
+                    </div>
+                    <div class="w-full bg-orange-200 rounded-full h-2">
+                      <div class="bg-orange-500 h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                  </div>
+                  <ul class="text-sm space-y-2 text-orange-700">
+                    <li>• Millions of nodes, diameters 20+</li>
+                    <li>• Sparse connectivity requires broad receptive fields</li>
+                    <li>• Maximum K values prevent underfitting</li>
+                    <li>• Long-range dependency patterns prevalent</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6">
+                <h5 class="font-semibold text-yellow-800 mb-2">Practical Implication</h5>
+                <p class="text-yellow-700">
+                  <strong>K cannot be set universally</strong> but must be tuned based on graph size and connectivity characteristics. This dataset dependence suggests potential for automated K selection based on graph statistics <a class="citation-link px-2 py-1 bg-gray-200 rounded text-xs" href="https://arxiv.org/html/2408.07654v2">[DeGTA]</a>.
+                </p>
+              </div>
+            </div>
+
+            <!-- Over-Smoothing Trade-off -->
+            <div class="mb-8">
+              <h4 class="font-semibold text-lg mb-4">Over-Smoothing Trade-off Mechanism</h4>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm border-collapse border border-gray-300">
+                  <thead>
+                    <tr class="bg-gray-50">
+                      <th class="border border-gray-300 px-4 py-3 text-left">K Regime</th>
+                      <th class="border border-gray-300 px-4 py-3 text-left">Mechanism</th>
+                      <th class="border border-gray-300 px-4 py-3 text-left">Effect</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border border-gray-300 px-4 py-3 font-medium">Small K</td>
+                      <td class="border border-gray-300 px-4 py-3">Limited receptive field</td>
+                      <td class="border border-gray-300 px-4 py-3">Preserves local distinctiveness; misses long-range structure</td>
+                    </tr>
+                    <tr class="bg-blue-50">
+                      <td class="border border-gray-300 px-4 py-3 font-medium">Moderate K</td>
+                      <td class="border border-gray-300 px-4 py-3">Balanced neighborhood</td>
+                      <td class="border border-gray-300 px-4 py-3">Optimal for many graphs; captures relevant context</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-gray-300 px-4 py-3 font-medium">Large K</td>
+                      <td class="border border-gray-300 px-4 py-3">Extended neighborhood</td>
+                      <td class="border border-gray-300 px-4 py-3">Captures long-range dependencies; risks over-smoothing</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="mt-4 text-sm text-gray-600">
+                <strong>K-induced over-smoothing</strong> results from single-layer aggregation over excessively large neighborhoods rather than repeated transformation across layers.
+              </div>
+            </div>
+          </div>
+
+          <!-- Surprising Findings -->
+          <div class="mb-10">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Surprising Empirical Findings</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <div>
+                  <h4 class="font-semibold mb-3">Robustness to Encoder Selection</h4>
+                  <div class="bg-green-50 p-4 rounded-lg mb-4">
+                    <p class="text-sm text-green-800">
+                      <strong>PE/SE Encoder Agnosticism:</strong> DeGTA shows remarkable insensitivity to specific encoder implementations, with all decoupled configurations substantially outperforming coupled baselines.
+                    </p>
+                  </div>
+                  <div class="text-xs text-gray-600 space-y-1">
+                    <div>• Decoupled: 72.54–73.31 (range: ~0.8 points)</div>
+                    <div>• Coupled (PE+SE): 69.97–72.13 (range: ~2.2 points)</div>
+                    <div>• Coupled (AE+PE): 70.23–71.89</div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold mb-3">Decoupling as Primary Performance Driver</h4>
+                  <div class="bg-blue-50 p-4 rounded-lg">
+                    <p class="text-sm text-blue-800">
+                      The decoupling architecture itself drives performance rather than encoder-specific optimizations. For every PE/SE combination tested, decoupled configurations outperform coupled alternatives by 1-2 accuracy points.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div>
+                  <h4 class="font-semibold mb-3">Framework Flexibility</h4>
+                  <div class="space-y-3">
+                    <div class="bg-purple-50 p-3 rounded-lg">
+                      <div class="font-medium text-sm text-purple-800">Homophilic Graphs</div>
+                      <div class="text-xs text-purple-600">Strong performance without modification</div>
+                    </div>
+                    <div class="bg-red-50 p-3 rounded-lg">
+                      <div class="font-medium text-sm text-red-800">Heterophilic Graphs</div>
+                      <div class="text-xs text-red-600">8-12% improvements through structural attention independence</div>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                      <div class="font-medium text-sm text-gray-800">Large-Scale Graphs</div>
+                      <div class="text-xs text-gray-600">Efficient processing of million-node graphs</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Comparative Analysis -->
+        <section class="section-anchor" id="comparative-analysis">
+          <h2 class="font-display text-3xl font-bold mb-8 text-graphite">Comparative Analysis: Deep Attention Challenges</h2>
+
+          <div class="bg-gradient-to-r from-red-50 to-orange-50 p-8 rounded-xl mb-12">
+            <h3 class="font-display text-xl font-semibold mb-4 text-graphite">Critical Complement: Lee et al. (ICML 2023)</h3>
+            <p class="text-lg leading-relaxed">
+              While DeGTA addresses architectural coupling, <strong>Lee et al.&#39;s &#34;Towards Deep Attention in Graph Neural Networks&#34;</strong> identifies fundamental depth-related challenges that persist even in decoupled architectures, providing essential complementary perspective <a class="citation-link px-2 py-1 bg-gray-200 rounded text-xs" href="https://proceedings.mlr.press/v202/lee23b/lee23b.pdf">[Lee et al.]</a>.
+            </p>
+          </div>
+
+          <!-- Over-Smoothing Analysis -->
+          <div class="section-anchor" id="over-smoothing">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">The Over-Smoothing Problem</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h4 class="font-semibold mb-4">Feature Over-Smoothing at Depth</h4>
+                <p class="mb-4">
+                  Attention mechanisms create a <strong>feedback loop accelerating smoothing</strong>: as features become more similar, attention coefficients become more uniform, producing more similar aggregated features.
+                </p>
+                <div class="bg-red-50 p-4 rounded-lg">
+                  <div class="text-sm text-red-800">
+                    <strong>Key Finding:</strong> GAT-style attention exhibits exponential Dirichlet energy decay with depth, with rate determined by the second largest eigenvalue of the attention-weighted Laplacian.
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-4">Attention Coefficient Degeneration</h4>
+                <div class="space-y-3">
+                  <div class="bg-yellow-50 p-3 rounded-lg">
+                    <div class="font-medium text-sm text-yellow-800">Shrinkage to Zero</div>
+                    <div class="text-xs text-yellow-700">Attention coefficients shrink toward zero, halting information propagation</div>
+                  </div>
+                  <div class="bg-orange-50 p-3 rounded-lg">
+                    <div class="font-medium text-sm text-orange-800">Stationary Distribution</div>
+                    <div class="text-xs text-orange-700">Convergence to fixed weights invariant to node characteristics</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-purple-50 border-l-4 border-purple-400 p-6 mb-8">
+              <h4 class="font-semibold text-purple-800 mb-2">DeGTA&#39;s Partial Mitigation</h4>
+              <p class="text-purple-700">
+                Independent attention streams provide partial mitigation: positional and structural attention can maintain distinctiveness even when attribute attention smooths. However, each stream individually remains vulnerable, consistent with DeGTA&#39;s practical depth limit of ~8 layers.
+              </p>
+            </div>
+          </div>
+
+          <!-- AERO-GNN Solutions -->
+          <div class="section-anchor" id="aero-gnn">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">AERO-GNN: Adaptive and Less Smooth Attention</h3>
+
+            <div class="bg-white border rounded-lg p-6 mb-8">
+              <h4 class="font-semibold mb-4">Triple-Adaptive Hop Attention Innovation</h4>
+              <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="text-center p-4 bg-blue-50 rounded-lg">
+                  <i class="fas fa-user-tag text-blue-500 text-2xl mb-2"></i>
+                  <div class="font-medium text-sm">Node-Adaptivity</div>
+                  <div class="text-xs text-gray-600">Individual node characteristics</div>
+                </div>
+                <div class="text-center p-4 bg-green-50 rounded-lg">
+                  <i class="fas fa-layer-group text-green-500 text-2xl mb-2"></i>
+                  <div class="font-medium text-sm">Hop-Adaptivity</div>
+                  <div class="text-xs text-gray-600">Propagation distance sensitivity</div>
+                </div>
+                <div class="text-center p-4 bg-orange-50 rounded-lg">
+                  <i class="fas fa-network-wired text-orange-500 text-2xl mb-2"></i>
+                  <div class="font-medium text-sm">Graph-Adaptivity</div>
+                  <div class="text-xs text-gray-600">Overall graph structure</div>
+                </div>
+              </div>
+
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h5 class="font-semibold text-green-800 mb-2">Provable Mitigation Results</h5>
+                <ul class="text-sm text-green-700 space-y-1">
+                  <li>• Edge attention coefficients bounded away from zero</li>
+                  <li>• Non-zero variance in hop attention across nodes</li>
+                  <li>• Conditions for avoiding exponential over-smoothing</li>
+                  <li>• Depth-resilient feature evolution up to 64+ layers</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Performance Comparison -->
+            <div class="mb-8">
+              <h4 class="font-semibold text-lg mb-4">Benchmark Superiority: 9 of 12 Node Classification Tasks</h4>
+
+              <div class="space-y-4">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <div class="font-medium text-blue-800 mb-2">Homophilic Graphs</div>
+                  <div class="text-sm text-blue-700">Cora, Citeseer, PubMed, Coauthor CS/Physics</div>
+                  <div class="text-xs text-blue-600 mt-1">Improvements of 1–3% at optimal depth</div>
+                </div>
+
+                <div class="bg-red-50 p-4 rounded-lg">
+                  <div class="font-medium text-red-800 mb-2">Heterophilic Graphs</div>
+                  <div class="text-sm text-red-700">Chameleon, Squirrel, Actor, Texas, Cornell, Wisconsin</div>
+                  <div class="text-xs text-red-600 mt-1">Improvements of 3–8%</div>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="font-medium text-gray-800 mb-2">Large-scale Graphs</div>
+                  <div class="text-sm text-gray-700">ogbn-arxiv, ogbn-products</div>
+                  <div class="text-xs text-gray-600 mt-1">Improvements of 2–4%, maintained efficiency</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Peripheral Works -->
+        <section class="section-anchor" id="peripheral-works">
+          <h2 class="font-display text-3xl font-bold mb-8 text-graphite">Peripheral and Contextual Works</h2>
+
+          <!-- Memory-Augmented Architectures -->
+          <div class="section-anchor" id="memory-augmented">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Memory-Augmented Neural Architectures</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h4 class="font-semibold mb-4">Memoria Framework</h4>
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                  <p class="text-sm text-blue-800 mb-3">
+                    Addresses catastrophic forgetting through human-inspired memory architecture with engram neurons and similarity-driven retrieval <a class="citation-link px-2 py-1 bg-gray-200 rounded text-xs" href="https://arxiv.org/html/2310.03052v3">[Memoria]</a>.
+                  </p>
+                </div>
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-center">
+                    <i class="fas fa-brain text-blue-500 mr-2"></i>
+                    <span>Engram neurons with enhanced plasticity</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-search text-blue-500 mr-2"></i>
+                    <span>Similarity-driven memory retrieval</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-memory text-blue-500 mr-2"></i>
+                    <span>Adaptive consolidation mechanisms</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold mb-4">Engram Neural Networks</h4>
+                <div class="bg-green-50 p-4 rounded-lg mb-4">
+                  <p class="text-sm text-green-800 mb-3">
+                    Implements Hebbian plasticity—activity-dependent synaptic modification—in deep learning architectures <a class="citation-link px-2 py-1 bg-gray-200 rounded text-xs" href="https://arxiv.org/html/2507.21474v1">[ENN]</a>.
+                  </p>
+                </div>
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-center">
+                    <i class="fas fa-link text-green-500 mr-2"></i>
+                    <span>Hebbian learning rule implementation</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-shield-alt text-green-500 mr-2"></i>
+                    <span>Stable memory trace formation</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fas fa-sync text-green-500 mr-2"></i>
+                    <span>Online adaptation without retraining</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+              <h4 class="font-semibold text-yellow-800 mb-2">Relevance to Graph Attention</h4>
+              <p class="text-yellow-700 mb-3">
+                Memory augmentation could address several graph attention limitations through explicit retention of structural patterns and node relationship histories.
+              </p>
+              <div class="grid md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <div class="font-medium">Fixed Attention → Dynamic Adaptation</div>
+                  <div class="text-xs">Experience-dependent plasticity enables continual learning</div>
+                </div>
+                <div>
+                  <div class="font-medium">No Pattern Retention → Explicit Storage</div>
+                  <div class="text-xs">Efficient recognition of recurring structures</div>
+                </div>
+                <div>
+                  <div class="font-medium">Feedforward → Context-Aware</div>
+                  <div class="text-xs">Memory retrieval for informed attention</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emergent Communication -->
+          <div class="section-anchor" id="emergent-communication">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Emergent Communication and Linguistic Structure</h3>
+
+            <div class="space-y-8">
+              <div>
+                <h4 class="font-semibold text-lg mb-4">Learning Pressures in Neural Communication</h4>
+                <p class="mb-4">
+                  Research on emergent communication reveals how training objectives shape representational structure, with direct analogues in graph message passing design <a class="citation-link px-2 py-1 bg-gray-200 rounded text-xs" href="https://arxiv.org/abs/2403.14427">[Emergent Comm.]</a>.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                  <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="font-medium text-purple-800 mb-2">Cooperative Task Structure</div>
+                    <div class="text-sm text-purple-700">Development of shared protocols</div>
+                    <div class="text-xs text-purple-600 mt-1">→ End-to-end task supervision</div>
+                  </div>
+                  <div class="bg-indigo-50 p-4 rounded-lg">
+                    <div class="font-medium text-indigo-800 mb-2">Communication Cost</div>
+                    <div class="text-sm text-indigo-700">Compression and efficiency</div>
+                    <div class="text-xs text-indigo-600 mt-1">→ Message passing constraints</div>
+                  </div>
+                  <div class="bg-pink-50 p-4 rounded-lg">
+                    <div class="font-medium text-pink-800 mb-2">Population Diversity</div>
+                    <div class="text-sm text-pink-700">Robust, generalizable protocols</div>
+                    <div class="text-xs text-pink-600 mt-1">→ Graph heterogeneity handling</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold text-lg mb-4">Fragility of Emergent Linguistic Structures</h4>
+                <p class="mb-4">
+                  Surprising fragility of emergent linguistic structures has direct implications for graph attention robustness <a class="citation-link px-2 py-1 bg-gray-200 rounded text-xs" href="https://arxiv.org/abs/2210.17406">[Fragility]</a>.
+                </p>
+
+                <div class="bg-red-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-red-800 mb-3">Design Principles for Robust Graph Attention</h5>
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <i class="fas fa-cog text-red-500 mr-3 mt-1"></i>
+                      <div>
+                        <div class="font-medium text-sm text-red-800">Explicit Structure</div>
+                        <div class="text-xs text-red-700">Decoupled attention streams prevent fragile emergent behavior</div>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-compass text-red-500 mr-3 mt-1"></i>
+                      <div>
+                        <div class="font-medium text-sm text-red-800">Aligned Inductive Biases</div>
+                        <div class="text-xs text-red-700">Positional/structural/attribute separation guides attention</div>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-shield-alt text-red-500 mr-3 mt-1"></i>
+                      <div>
+                        <div class="font-medium text-sm text-red-800">Robustness Mechanisms</div>
+                        <div class="text-xs text-red-700">Adaptive integration, residual connections enable graceful degradation</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Synthesis -->
+        <section class="section-anchor" id="synthesis">
+          <h2 class="font-display text-3xl font-bold mb-8 text-graphite">Synthesis: Principles of Independent Attention</h2>
+
+          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl mb-12">
+            <h3 class="font-display text-xl font-semibold mb-4 text-graphite">Unified Framework</h3>
+            <p class="text-lg leading-relaxed">
+              The convergence of DeGTA&#39;s architectural decoupling and AERO-GNN&#39;s depth-resilient attention mechanisms establishes a <strong>new paradigm for graph attention design</strong> centered on principled independence, adaptive integration, and robust depth scaling.
+            </p>
+          </div>
+
+          <!-- Design Philosophy Comparison -->
+          <div class="section-anchor" id="design-philosophy">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Design Philosophy Comparison</h3>
+
+            <div class="bg-white border rounded-lg p-6 mb-8">
+              <h4 class="font-semibold mb-6">Coupled vs. Decoupled Attention Paradigms</h4>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b-2 border-gray-200">
+                      <th class="text-left py-4 px-4 font-semibold">Dimension</th>
+                      <th class="text-left py-4 px-4 font-semibold">Coupled Paradigms</th>
+                      <th class="text-left py-4 px-4 font-semibold">Decoupled Paradigms (DeGTA)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <td class="py-3 px-4 font-medium">Representational Structure</td>
+                      <td class="py-3 px-4">Single shared space for all information types</td>
+                      <td class="py-3 px-4">Separate specialized spaces per type</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                      <td class="py-3 px-4 font-medium">Attention Computation</td>
+                      <td class="py-3 px-4">Joint attention over combined features</td>
+                      <td class="py-3 px-4">Independent attention per information type</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 px-4 font-medium">Optimization Dynamics</td>
+                      <td class="py-3 px-4">Competing gradient signals, interference</td>
+                      <td class="py-3 px-4">Independent optimization, no cross-modal interference</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                      <td class="py-3 px-4 font-medium">Interpretability</td>
+                      <td class="py-3 px-4">Attention scores uninterpretable mixtures</td>
+                      <td class="py-3 px-4">Clear attribution to specific information types</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 px-4 font-medium">Depth Resilience</td>
+                      <td class="py-3 px-4">Severe over-smoothing, attention degeneration</td>
+                      <td class="py-3 px-4">Partial mitigation through isolation</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="bg-green-50 border-l-4 border-green-400 p-6">
+              <h4 class="font-semibold text-green-800 mb-2">Empirical Verdict</h4>
+              <p class="text-green-700">
+                The empirical comparison strongly favors decoupling for applications requiring interpretability, architectural flexibility, or robust performance across diverse graph types. Performance advantages demonstrated by DeGTA establish decoupling as a superior paradigm for graph attention architecture.
+              </p>
+            </div>
+          </div>
+
+          <!-- Parameter Tuning Guidelines -->
+          <div class="section-anchor" id="tuning-guidelines">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Parameter Tuning Guidelines</h3>
+
+            <!-- Graph Size-Dependent K Selection -->
+            <div class="mb-10">
+              <h4 class="font-semibold text-lg mb-6">Graph Size-Dependent K Selection</h4>
+
+              <div class="bg-white border rounded-lg p-6 mb-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-compress text-blue-500 text-xl"></i>
+                    </div>
+                    <h5 class="font-semibold text-blue-800 mb-2">Small Graphs</h5>
+                    <div class="text-sm text-blue-700 mb-2">&lt;10K nodes, diameter &lt;10</div>
+                    <div class="bg-blue-200 px-3 py-1 rounded-full text-sm font-semibold mb-2">K = 2-4</div>
+                    <div class="text-xs text-blue-600">Start at K=2, increase if underfitting</div>
+                  </div>
+
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-expand-arrows-alt text-green-500 text-xl"></i>
+                    </div>
+                    <h5 class="font-semibold text-green-800 mb-2">Medium Graphs</h5>
+                    <div class="text-sm text-green-700 mb-2">10K-500K nodes, diameter 10-50</div>
+                    <div class="bg-green-200 px-3 py-1 rounded-full text-sm font-semibold mb-2">K = 4-8</div>
+                    <div class="text-xs text-green-600">Grid search with K=4, 6, 8</div>
+                  </div>
+
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-expand text-orange-500 text-xl"></i>
+                    </div>
+                    <h5 class="font-semibold text-orange-800 mb-2">Large Graphs</h5>
+                    <div class="text-sm text-orange-700 mb-2">&gt;500K nodes, diameter &gt;50</div>
+                    <div class="bg-orange-200 px-3 py-1 rounded-full text-sm font-semibold mb-2">K = 8-12</div>
+                    <div class="text-xs text-orange-600">Start at K=8, consider K=12+ if resources permit</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6">
+                <h5 class="font-semibold text-yellow-800 mb-2">Critical Insight</h5>
+                <p class="text-yellow-700">
+                  The dataset-dependent optimal K phenomenon is <strong>one of DeGTA&#39;s most practically important findings</strong>, with no universal constant providing acceptable performance across scales.
+                </p>
+              </div>
+            </div>
+
+            <!-- Encoding Dimension Balancing -->
+            <div class="mb-8">
+              <h4 class="font-semibold text-lg mb-4">Encoding Dimension Balancing</h4>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-blue-800 mb-4">Positional/Structural Encoding</h5>
+                  <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Dimension Range</span>
+                      <span class="bg-blue-200 px-2 py-1 rounded text-xs">2-16</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Typical Optimal</span>
+                      <span class="bg-blue-300 px-2 py-1 rounded text-xs font-semibold">8</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Information Type</span>
+                      <span class="bg-blue-100 px-2 py-1 rounded text-xs">Structured, geometric</span>
+                    </div>
+                  </div>
+                  <div class="mt-4 text-xs text-blue-700">
+                    <strong>Guidance:</strong> Start with pe_dim = se_dim = 8, adjust based on graph complexity
+                  </div>
+                </div>
+
+                <div class="bg-orange-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-orange-800 mb-4">Attribute Encoding</h5>
+                  <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Dimension Range</span>
+                      <span class="bg-orange-200 px-2 py-1 rounded text-xs">32-512</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Input &lt;50D</span>
+                      <span class="bg-orange-100 px-2 py-1 rounded text-xs">32-64</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Input 50-500D</span>
+                      <span class="bg-orange-200 px-2 py-1 rounded text-xs">128-256</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Input &gt;500D</span>
+                      <span class="bg-orange-300 px-2 py-1 rounded text-xs font-semibold">256-512</span>
+                    </div>
+                  </div>
+                  <div class="mt-4 text-xs text-orange-700">
+                    <strong>Guidance:</strong> Scale with feature dimensionality and task complexity
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Critical Trade-offs and Surprising Insights -->
+          <div class="mb-10">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Critical Trade-offs and Surprising Insights</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div class="bg-purple-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-purple-800 mb-4">The Encoder Agnosticism Phenomenon</h4>
+                <div class="space-y-4">
+                  <div class="bg-white p-3 rounded-lg">
+                    <div class="font-medium text-sm mb-2">Traditional Assumption</div>
+                    <div class="text-xs text-gray-600">Sophisticated encodings are essential for performance</div>
+                  </div>
+                  <div class="bg-purple-200 p-3 rounded-lg">
+                    <div class="font-medium text-sm mb-2 text-purple-800">DeGTA Finding</div>
+                    <div class="text-xs text-purple-700">Simple encodings suffice with proper architecture</div>
+                  </div>
+                  <div class="bg-purple-100 p-3 rounded-lg">
+                    <div class="font-medium text-sm mb-2 text-purple-800">Implication</div>
+                    <div class="text-xs text-purple-700">Shift effort from encoding to architecture design</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-red-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-red-800 mb-4">Over-Smoothing as Universal Challenge</h4>
+                <div class="space-y-3">
+                  <div class="flex items-start">
+                    <i class="fas fa-chart-line text-red-500 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-sm">GAT (4-8 layers)</div>
+                      <div class="text-xs">Coefficient shrinkage, feature smoothing</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-layer-group text-red-500 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-sm">DAGNN (8-16 layers)</div>
+                      <div class="text-xs">Stationary distribution formation</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-shield-alt text-red-500 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-sm">AERO-GNN (64+ layers)</div>
+                      <div class="text-xs">Entropy collapse (mitigated)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+              <h4 class="font-semibold text-green-800 mb-2">Local-Global Balance: Adaptive Integration Superiority</h4>
+              <p class="text-green-700 mb-4">
+                DeGTA&#39;s learned adaptive integration outperforms static strategies across benchmarks, reflecting fundamental dataset heterogeneity where no fixed local-global balance is optimal.
+              </p>
+              <div class="grid md:grid-cols-3 gap-4">
+                <div class="text-center">
+                  <div class="text-red-500 mb-2"><i class="fas fa-times-circle"></i></div>
+                  <div class="font-medium text-sm">Fixed Weighting</div>
+                  <div class="text-xs text-gray-600">Ignores graph-specific requirements</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-yellow-500 mb-2"><i class="fas fa-minus-circle"></i></div>
+                  <div class="font-medium text-sm">Graph-Size Heuristic</div>
+                  <div class="text-xs text-gray-600">Coarse approximation, misses variation</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-green-500 mb-2"><i class="fas fa-check-circle"></i></div>
+                  <div class="font-medium text-sm">Learned Adaptive</div>
+                  <div class="text-xs text-gray-600">Captures optimal balance</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Future Directions -->
+          <div class="section-anchor" id="future-directions">
+            <h3 class="font-display text-2xl font-semibold mb-6 text-accent">Future Directions and Open Problems</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                  <h4 class="font-semibold text-blue-800 mb-4">
+                    <i class="fas fa-cogs text-blue-500 mr-2"></i>
+                    Automated K Selection Mechanisms
+                  </h4>
+                  <div class="space-y-2 text-sm text-blue-700">
+                    <div>• Graph-aware initialization based on statistics</div>
+                    <div>• Adaptive K expansion during training</div>
+                    <div>• Node-specific K values per local structure</div>
+                    <div>• Meta-learning for optimal K prediction</div>
+                  </div>
+                </div>
+
+                <div class="bg-green-50 p-6 rounded-lg">
+                  <h4 class="font-semibold text-green-800 mb-4">
+                    <i class="fas fa-balance-scale text-green-500 mr-2"></i>
+                    Dynamic Attention Stream Weighting
+                  </h4>
+                  <div class="space-y-2 text-sm text-green-700">
+                    <div>• Per-sample weighting via meta-attention</div>
+                    <div>• Depth-dependent stream importance</div>
+                    <div>• Task-conditional stream specialization</div>
+                    <div>• Temporal dynamics in stream activation</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="bg-orange-50 p-6 rounded-lg">
+                  <h4 class="font-semibold text-orange-800 mb-4">
+                    <i class="fas fa-exchange-alt text-orange-500 mr-2"></i>
+                    Cross-Task Generalization
+                  </h4>
+                  <div class="space-y-2 text-sm text-orange-700">
+                    <div>• Transferable attention patterns across tasks</div>
+                    <div>• Modular stream replacement and composition</div>
+                    <div>• Meta-learning with frozen attention streams</div>
+                    <div>• Few-shot adaptation to new graph types</div>
+                  </div>
+                </div>
+
+                <div class="bg-purple-50 p-6 rounded-lg">
+                  <h4 class="font-semibold text-purple-800 mb-4">
+                    <i class="fas fa-brain text-purple-500 mr-2"></i>
+                    Memory-Augmented Integration
+                  </h4>
+                  <div class="space-y-2 text-sm text-purple-700">
+                    <div>• Memory-enhanced attention streams</div>
+                    <div>• Attention-driven memory access</div>
+                    <div>• Hebbian plasticity for structural attention</div>
+                    <div>• Long-term dependency modeling</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Citation Index -->
+        <section class="bg-gray-50 p-8 rounded-xl">
+          <h2 class="font-display text-2xl font-bold mb-6 text-graphite">Citation Index and Source Mapping</h2>
+
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-semibold text-lg mb-3">Primary Sources</h3>
+              <div class="space-y-3">
+                <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                  <div class="font-medium text-blue-800 mb-1">
+                    <a class="hover:text-blue-600" href="https://arxiv.org/html/2408.07654v2">DeGTA: Graph Triple Attention Network</a>
+                  </div>
+                  <div class="text-sm text-gray-700">Foundational source for architectural decoupling, theoretical motivation, and comprehensive empirical evaluation.</div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                  <div class="font-medium text-green-800 mb-1">
+                    <a class="hover:text-green-600" href="https://proceedings.mlr.press/v202/lee23b/lee23b.pdf">Towards Deep Attention in GNNs</a>
+                  </div>
+                  <div class="text-sm text-gray-700">Primary source for deep attention analysis, theoretical characterization of over-smoothing, and AERO-GNN architecture.</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-lg mb-3">Secondary and Contextual Sources</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white p-3 rounded-lg">
+                  <div class="font-medium text-sm mb-1">
+                    <a class="hover:text-blue-600" href="https://arxiv.org/html/2310.03052v3">Memoria</a>
+                  </div>
+                  <div class="text-xs text-gray-600">Memory augmentation concepts for forgetting mitigation</div>
+                </div>
+                <div class="bg-white p-3 rounded-lg">
+                  <div class="font-medium text-sm mb-1">
+                    <a class="hover:text-blue-600" href="https://arxiv.org/html/2507.21474v1">Engram Neural Networks</a>
+                  </div>
+                  <div class="text-xs text-gray-600">Hebbian plasticity in deep learning architectures</div>
+                </div>
+                <div class="bg-white p-3 rounded-lg">
+                  <div class="font-medium text-sm mb-1">
+                    <a class="hover:text-blue-600" href="https://arxiv.org/abs/2210.17406">Emergent Linguistic Structures</a>
+                  </div>
+                  <div class="text-xs text-gray-600">Robustness considerations for learned communication</div>
+                </div>
+                <div class="bg-white p-3 rounded-lg">
+                  <div class="font-medium text-sm mb-1">
+                    <a class="hover:text-blue-600" href="https://www.cse.cuhk.edu.hk/~byu/papers/C143-DAC2022-GTuner.pdf">GTuner</a>
+                  </div>
+                  <div class="text-xs text-gray-600">Hardware-aware attention optimization insights</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <script>
+        // Initialize Mermaid with enhanced styling
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                // Primary colors for main elements
+                primaryColor: '#ffffff',
+                primaryTextColor: '#1f2937',
+                primaryBorderColor: '#374151',
+                
+                // Secondary colors for different node types
+                secondaryColor: '#dbeafe',
+                tertiaryColor: '#dcfce7',
+                quaternaryColor: '#fed7aa',
+                
+                // Background and line colors
+                background: '#ffffff',
+                mainBkg: '#ffffff',
+                lineColor: '#4b5563',
+                
+                // Node-specific colors with good contrast
+                cScale0: '#ffffff',
+                cScale1: '#dbeafe', 
+                cScale2: '#dcfce7',
+                cScale3: '#fed7aa',
+                cScale4: '#f3f4f6',
+                cScale5: '#f8f9fa',
+                
+                // Text colors with high contrast
+                cScaleLabel0: '#1f2937',
+                cScaleLabel1: '#1f2937',
+                cScaleLabel2: '#1f2937',
+                cScaleLabel3: '#1f2937',
+                cScaleLabel4: '#1f2937',
+                cScaleLabel5: '#1f2937',
+                
+                // Edge and label styling
+                edgeLabelBackground: 'rgba(255, 255, 255, 0.9)',
+                edgeLabelColor: '#374151',
+                
+                // Grid and axis styling
+                gridColor: '#e5e7eb',
+                
+                // Font settings
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '14px'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 80
+            },
+            sequence: {
+                useMaxWidth: false,
+                wrap: true,
+                width: 150
+            },
+            gantt: {
+                useMaxWidth: false
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize the mermaid controls
+        initializeMermaidControls();
+
+        // Table of Contents Active Link Tracking
+        const sections = document.querySelectorAll('.section-anchor');
+        const tocLinks = document.querySelectorAll('.toc-link');
+
+        function updateActiveLink() {
+            const scrollPos = window.scrollY + 100;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    tocLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`a[href="#${section.id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink(); // Initial call
+
+        // Smooth scrolling for TOC links
+        tocLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // TOC toggle functionality
+        const tocToggle = document.getElementById('toc-toggle');
+        const tocClose = document.getElementById('toc-close');
+        const tocNav = document.getElementById('toc-nav');
+        
+        tocToggle.addEventListener('click', () => {
+            tocNav.classList.remove('-translate-x-full');
+            tocNav.classList.add('translate-x-0');
+        });
+        
+        tocClose.addEventListener('click', () => {
+            tocNav.classList.remove('translate-x-0');
+            tocNav.classList.add('-translate-x-full');
+        });
+    </script>
+
+  
+
+</body></html>
