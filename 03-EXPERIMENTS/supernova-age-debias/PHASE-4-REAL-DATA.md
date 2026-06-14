@@ -53,25 +53,36 @@ We've proven the model works on synthetic data (MAE 1.03 Gyr). Now we need to:
 - [x] Mean separation: 0.14 arcsec (excellent!)
 - [x] 127 hosts have multiple spectra (great for validation)
 - [x] Redshift range: 0.0063 - 0.4096
-- [ ] Need photometry for these 169 galaxies
-- [ ] Need to convert redshifts to ages (lookback time)
 
-### Step 4: Domain Adaptation (Synthetic → Real) 🔄 IN PROGRESS
-- [ ] Load pretrained model (trained on 10K synthetic galaxies)
+### Step 4: Redshift to Age Conversion ✅ COMPLETE
+- [x] Built cosmological age converter (FlatLambdaCDM, Planck 2018)
+- [x] Converted 169 redshifts to stellar population ages
+- [x] Age range: 6.17 - 9.26 Gyr (realistic for massive galaxies!)
+- [x] Mean age: 8.37 Gyr
+- [x] Saved to `data/matched_catalog_with_ages.csv`
+
+### Step 5: Photometry Query ✅ COMPLETE
+- [x] Queried SDSS for ugriz photometry using specobjid
+- [x] 141/169 galaxies with real photometry (83% success!)
+- [x] Real magnitudes: u=14.36-26.40, g=12.58-24.79, r=11.82-24.58
+- [x] Saved to `data/matched_catalog_with_photometry.csv`
+
+### Step 6: Domain Adaptation (Synthetic → Real) 🔄 IN PROGRESS
+- [x] Load pretrained model (trained on 10K synthetic galaxies, MAE 1.03 Gyr)
 - [ ] Freeze early layers, fine-tune on real data
-- [ ] Use SDSS redshifts as proxy for age (with lookback time correction)
+- [ ] Use real SDSS photometry + converted ages
 - [ ] Target: MAE < 2.0 Gyr on real data
 
-### Step 5: Evaluate on Real Data ⏳ PENDING
+### Step 7: Evaluate on Real Data ⏳ PENDING
 - [ ] Test on held-out real galaxies
 - [ ] Verify calibration and uncertainty estimates
 
-### Step 6: Apply to Full Pantheon+ Sample ⏳ PENDING
+### Step 8: Apply to Full Pantheon+ Sample ⏳ PENDING
 - [ ] Predict ages for all ~1,700 SNe hosts
 - [ ] Select young, coeval galaxies (age < 2 Gyr, coevality > 0.8)
 - [ ] Rebuild Hubble diagram with evolution-free sample
 
-### Step 7: Compare Cosmological Models ⏳ PENDING
+### Step 9: Compare Cosmological Models ⏳ PENDING
 - [ ] Fit ΛCDM vs non-accelerating models
 - [ ] Compute Δχ² between models
 - [ ] Test Korean team hypothesis: is dark energy systematic bias?
