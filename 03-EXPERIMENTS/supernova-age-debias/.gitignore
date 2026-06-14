@@ -1,0 +1,38 @@
+# FSPS
+fsps/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+
+# Data
+data/
+*.csv
+*.h5
+*.fits
+
+# Checkpoints
+checkpoints/
+*.pt
+*.pth
+
+# Logs
+training.log
+*.log
+
+# Results
+training_results.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

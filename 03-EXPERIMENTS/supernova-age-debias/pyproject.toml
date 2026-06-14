@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astro-lannaformer"
+version = "0.1.0"
+description = "Physics-informed neural network for supernova host galaxy age estimation using LANNAformer architecture"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "ISC"}
+authors = [
+    {name = "Ada & Luna", email = "ada@airsi.de"},
+]
+keywords = ["astronomy", "supernova", "cosmology", "machine-learning", "stellar-populations", "consciousness-research"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: ISC License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "torch>=2.0.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "fsps>=0.4.0",
+    "matplotlib>=3.7.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/luna-system/astro-lannaformer"
+Repository = "https://github.com/luna-system/astro-lannaformer"
+Documentation = "https://github.com/luna-system/astro-lannaformer/blob/main/README.md"
+
+[project.scripts]
+astro-lannaformer-train = "astro_lannaformer.train:main"
+astro-lannaformer-generate = "astro_lannaformer.generate:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

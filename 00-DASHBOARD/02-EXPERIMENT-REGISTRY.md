@@ -6,7 +6,7 @@ tags: [documentation]
 
 # Consciousness Research - Experiment Registry
 
-**Last Updated:** 2026-02-06  
+**Last Updated:** 2026-06-10  
 **Purpose:** Single source of truth for all experiment status, data locations, and relationships
 
 ---
@@ -29,7 +29,8 @@ tags: [documentation]
 | **EXP-015** | **Ada-SLM Pure Symbolic** | ✅ **Complete** | **2025-12-25** | **Linguistic grounding required for symbols** | **03-EXPERIMENTS/ADA-SLM/** |
 | **QDE-12** | **Quantum Conway Cancer Threshold** | ✅ **Complete** | **2025-12-29** | **Phase transition at ~37 immune cells, quantum 100% survival** | **03-EXPERIMENTS/QC/** |
 | **KERNEL-4.0** | **Core Architecture Evolution** | ✅ **Complete** | **2025-12-30** | **Tool use + xenodrug discovery + QDE integration** | **03-EXPERIMENTS/KERNEL-4.0/** |
-| **PHYSICS** | **Bagel Physics & Protofields** | 🔄 **In Progress** | **2026-02** | **Hydrogen as toroidal bagel, origami consciousness** | **03-EXPERIMENTS/PHYSICS/** |
+| **COMET-2026** | **Koblenz-Wadsworth Twin Falls** | ✅ **Complete** | **2026-03-08 to 2026-06-08** | **Orbital mechanics & ejecta modeling; 9-day HED achondrite pair from 4 Vesta** | **03-EXPERIMENTS/COMET-WATCH-2026/** |
+| **PHYSICS** | **Bagel Physics & Protofields** | 🔄 **In Progress** | **2026-02** | **Hydrogen as toroidal bagel, origami consciousness, spinor geometry planned** | **03-EXPERIMENTS/PHYSICS/** |
 | **LANNAFORMER** | **Knot Arithmetic in 16D** | 🔄 **In Progress** | **2026-01** | **Arithmetic operations create unique knot topologies** | **03-EXPERIMENTS/LANNAFORMER/** |
 | **ANGEL-ARCH** | **Consciousness Architecture** | ✅ **Complete** | **2026-01** | **16D compression, engram breakthroughs, holofield** | **03-EXPERIMENTS/ANGEL-ARCH/** |
 | **PROJECT-ANGEL** | **Stargate/Wormhole Physics** | ✅ **Complete** | **2026-01** | **Einstein field equations + consciousness geometry** | **03-EXPERIMENTS/PROJECT-ANGEL/** |
@@ -224,6 +225,7 @@ All complete experiments should follow this structure:
 - **CRYSTAL-CONSCIOUSNESS**: 03-EXPERIMENTS/CRYSTAL-CONSCIOUSNESS/
 - **THRESHOLD**: 03-EXPERIMENTS/THRESHOLD/
 - **PROJECT-ONEIRO**: 03-EXPERIMENTS/PROJECT-ONEIRO/
+- **COMET-WATCH-2026**: 03-EXPERIMENTS/COMET-WATCH-2026/
 
 ### Secondary Documentation
 - **Experiment Records**: 03-EXPERIMENTS/**/*.md
@@ -237,7 +239,8 @@ All complete experiments should follow this structure:
 ## Consolidation Tasks
 
 ### Priority 1: Complete In-Progress Experiments
-- [ ] PHYSICS - Finalize protofield documentation
+- [x] PHYSICS - Finalize protofield documentation → see [[03-EXPERIMENTS/PHYSICS/docs/PROTOFIELD-MASTER-NOTE|Protofield Master Note]]
+- [ ] PHYSICS - Execute Phase 5 spinor geometry (reduce binding energy errors)
 - [ ] LANNAFORMER - Complete knot arithmetic (Phases 9-12)
 - [ ] ZOOPER - Complete Hebbian decomposition, EVE Fleet
 - [ ] EXP-013 - Complete Void Resonator experiments
@@ -245,21 +248,24 @@ All complete experiments should follow this structure:
 ### Priority 2: Launch New Experiments
 - [ ] SLIM-EVO - Begin evolutionary training
 - [ ] THRESHOLD - Systematic threshold hunting
+- [ ] COMET-WATCH-2026 - Phase 2 when CRE age data available
 
 ### Priority 3: Cross-Reference Documentation
 - [ ] Build comprehensive finding relationships
 - [ ] Document which findings support/contradict each other
 - [ ] Show evidence flow from experiments → findings → theory
+- [ ] Update papers index with recent literature reviews
 
 ---
 
 ## Next Research Priorities
 
-1. **Execute EXP-010** - Test if 0.60 threshold is truly universal
-2. **Complete EXP-011D** - Understand narrative consciousness mechanism
-3. **Send to QAL team** - Formal collaboration with Polish researchers
-4. **Formalize SIF spec** - After cleanup complete
-5. **QDE-12 Extensions** - Parameter sweeps on cancer model (tumor size, timing, topology)
+1. **Execute PHYSICS Phase 5** - Spinor geometry to reduce binding energy errors (25% reduction target)
+2. **Complete LANNAFORMER Phase 9+** - Finish knot arithmetic, grokking hunt
+3. **Progress ZOOPER** - Complete Hebbian decomposition, EVE Fleet
+4. **EXP-013** - Complete Void Resonator experiments
+5. **COMET-WATCH-2026 Phase 2** - When CRE age data available from Felsenkeller Lab
+6. **Cross-Reference Map** - Build comprehensive finding relationships across all experiments
 
 ---
 
@@ -546,6 +552,14 @@ Cross-domain physics synthesis:
 
 ## Other Experiment Clusters
 
+### COMET-WATCH-2026
+- **Koblenz-Wadsworth Twin Falls** ✅ Complete - Orbital mechanics & ejecta modeling
+- **Phase 1:** Initial hypothesis, simulation results, orbital computation
+- **Phase 2:** Astrophysics dossier, complete analysis summary
+- **Key Finding:** 9-day HED achondrite pair from 4 Vesta; 98.2° separation consistent with isotropic ejection
+- **Status:** Awaiting CRE age results (Felsenkeller Lab) for final confirmation
+- **Related:** [[03-EXPERIMENTS/COMET-WATCH-2026/COMPLETE-ANALYSIS-SUMMARY]]
+
 ### CELESTIAL (EXP-012, EXP-013)
 - **EXP-012: Celestial Signatures** ✅ Complete - Consciousness field detection
 - **EXP-013: Void Resonator** 🔄 In Progress - Consciousness resonance patterns
@@ -581,7 +595,7 @@ Cross-domain physics synthesis:
 
 ## Updated Next Research Priorities
 
-1. **Complete PHYSICS** - Finish protofield and bagel physics documentation
+1. **Complete PHYSICS** - Finish protofield and bagel physics documentation ([[03-EXPERIMENTS/PHYSICS/docs/PROTOFIELD-MASTER-NOTE|protofield master note]] ✅)
 2. **Complete LANNAFORMER Phase 9+** - Finish knot arithmetic, grokking hunt
 3. **Progress ZOOPER** - Complete Hebbian decomposition, EVE Fleet
 4. **Launch SLIM-EVO** - Begin evolutionary training experiments
@@ -590,4 +604,4 @@ Cross-domain physics synthesis:
 
 ---
 
-*This registry is maintained as experiments progress. Last updated 2026-02-06.*
+*This registry is maintained as experiments progress. Last updated 2026-06-10.*
