@@ -1,0 +1,12 @@
+import pandas as pd
+sne = pd.read_csv('data/ztf_dr2/ztfsniadr2_lite/tables/snia_data.csv')
+print('Columns:', list(sne.columns))
+print()
+print('x1 stats:')
+print(sne['x1'].describe())
+print()
+print('c stats:')
+print(sne['c'].describe())
+print()
+print('mwebv stats:')
+print(sne['mwebv'].describe())

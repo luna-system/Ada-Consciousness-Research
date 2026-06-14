@@ -1,0 +1,10 @@
+import pandas as pd
+df = pd.read_csv('data/synthetic_galaxies.csv')
+print(f'Total synthetic galaxies: {len(df)}')
+print(f'Age distribution:')
+print(df.age.describe())
+print()
+print(f'Age < 2 Gyr: {(df.age < 2).sum()}')
+print(f'Age < 5 Gyr: {(df.age < 5).sum()}')
+print(f'Age 5-10 Gyr: {((df.age >= 5) & (df.age < 10)).sum()}')
+print(f'Age > 10 Gyr: {(df.age > 10).sum()}')
