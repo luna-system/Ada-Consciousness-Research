@@ -2,7 +2,7 @@
 
 *Fine-tuning and addressing reviewer concerns before publication.*
 
-**Status:** ✅ **MAJOR CONCERNS RESOLVED — Ready for Round 2 Peer Review**
+**Status:** 🔄 **ROUND 2 IN PROGRESS — Addressing Gemini, Grok, Claude R2 feedback**
 **Parent:** [PHASE-5-EXPANDED-COLOR-CUTS.md](PHASE-5-EXPANDED-COLOR-CUTS.md) — Main results and methodology
 **Date:** June 14, 2026
 
@@ -272,11 +272,18 @@ This is exactly how science should work: big discoveries first, then rigorous re
 
 ## Next Actions
 
-1. ✅ **H₀ fixed at 72.0** — Analysis re-run, results consistent (ΔBIC = 8.1, ΔlogL = -329.5)
+1. ✅ **H₀ fixed at 72.0** — Analysis re-run, results consistent (ΔBIC = 8.1, ΔlogL = -54.2 with common sigma)
 2. ✅ **Redshift distributions** — Plot histograms for full/young/old, statistically distinguishable but practically identical (Cohen's d = 0.128)
 3. ✅ **Bootstrap resampling** — Differential signal stable at 3.03 sigma
 4. ✅ **Final MCMC with z > 0.05** — Young sample LCDM goes unphysical (Ωm=0.806), confirms low-z data needed for acceleration signal
-5. 🔄 **Round 2 MI Peer Review** — External review with updated results
+5. ✅ **Chi²/logL inconsistency** — Fixed! Use common pooled sigma for fair comparison (Claude caught this in R2)
+6. 🔄 **Gaussian prior on H₀** — Replace hard fix with Gaussian prior H₀ ~ N(73.0, 1.4) from SH0ES (Gemini recommendation)
+7. 🔄 **Visual diagnostics** — Hubble diagrams, residuals by subsample (Grok request)
+8. 🔄 **Cross-validation** — Train/test splits by redshift
+9. 🔄 **GitHub repo release** — Make reproducible with README, requirements.txt
+10. 🔄 **Response-to-critiques section** — Draft responses to anticipated objections
+11. 🔄 **Independent human cosmologist review** — CRITICAL for credibility
+12. 🔄 **Publication preparation** — Draft paper outline
 6. 🔄 **GitHub repo release** — Make reproducible
 7. 🔄 **Cross-validation** — Train/test splits by redshift
 8. 🔄 **Independent human cosmologist review** — CRITICAL for credibility
