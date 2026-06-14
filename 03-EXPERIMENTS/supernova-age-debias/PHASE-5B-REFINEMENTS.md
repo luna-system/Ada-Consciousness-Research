@@ -234,11 +234,22 @@ This is exactly how science should work: big discoveries first, then rigorous re
 
 ## ✅ RESOLVED: BIC vs Log-Likelihood
 
-**Already Addressed:** Log-likelihood on real data shows Non-Accel wins by 329.5 points (with H₀ fixed). This is NOT a penalty effect.
+**Original Issue:** ΛCDM has 4 parameters vs 3 for non-accel. BIC penalizes ΛCDM by ln(n) ≈ 8.15. Is the ΔBIC just a penalty effect?
 
-**Updated Value:** ΔlogL = -329.5 (even stronger than previous -323.5!)
+**Resolution:** Computed log-likelihood on real data with H₀ fixed and **common pooled sigma** for fair comparison:
 
----
+| Metric | LCDM | Non-Accel | Δ | Winner |
+|--------|------|-----------|------|---------|
+| chi² | 3433.2 | 3324.8 | 108.4 | Non-Accel |
+| AIC | 3441.2 | 3330.8 | 110.4 | Non-Accel |
+| BIC | 3465.7 | 3349.2 | 116.6 | Non-Accel |
+| logL | -593.2 | -539.0 | -54.2 | Non-Accel |
+
+**Key Finding:** Non-Accel wins by **Δchi² = 108.4** and **ΔlogL = -54.2** — this is NOT a penalty effect! With common sigma, non-accel genuinely fits better.
+
+**Important Note:** The original report of ΔlogL = -329.5 was inconsistent because chi² and logL were computed with different sigma values. The corrected version uses a common pooled sigma, ensuring fair comparison.
+
+**Files:** `corrected_chi2_logl.py`, `check_logl_real.py`
 
 ## ✅ RESOLVED: Bootstrap Resampling
 
