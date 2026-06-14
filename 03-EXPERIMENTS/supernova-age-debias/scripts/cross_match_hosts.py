@@ -22,106 +22,102 @@ logger = logging.getLogger(__name__)
 def cross_match_to_sdss(
     pantheon_file: str = "data/pantheon_hosts.csv",
     sdss_file: str = "data/sdss_firefly_ages.csv",
-    output_file: str = "data/matched_catalog.csv",
+    output_file: str = "data/matched_catalog_real.csv",
     tolerance_arcsec: float = 2.0,
 ) -> pd.DataFrame:
     """
-    Cross-match Pantheon+ hosts to SDSS spectroscopic ages.
+    Cross-match Pantheon+ hosts to REAL SDSS spectroscopic data.
     
     Args:
         pantheon_file: Path to Pantheon+ host catalog
-        sdss_file: Path to SDSS FIREFLY ages catalog
+        sdss_file: Path to REAL SDSS data from query
         output_file: Path to save matched catalog
         tolerance_arcsec: Matching tolerance in arcseconds
         
     Returns:
-        DataFrame with matched galaxies and spectroscopic ages
+        DataFrame with matched galaxies and real spectroscopic data
     """
-    logger.info("🌌 Cross-matching Pantheon+ hosts to SDSS...")
+    logger.info("🌌 Cross-matching Pantheon+ hosts to REAL SDSS...")
     
     # Load Pantheon+ hosts
     pantheon = pd.read_csv(pantheon_file)
     logger.info(f"   Loaded {len(pantheon)} Pantheon+ hosts")
     
-    # Check if SDSS file exists
+    # Load REAL SDSS data
     sdss_path = Path(sdss_file)
     if not sdss_path.exists():
         logger.warning(f"⚠️ SDSS file not found: {sdss_file}")
-        logger.info("   Creating mock SDSS data for demonstration...")
-        sdss = create_mock_sdss_data(pantheon)
-    else:
-        sdss = pd.read_csv(sdss_file)
-        logger.info(f"   Loaded {len(sdss)} SDSS galaxies")
+        return None
     
-    # Create SkyCoord objects
-    pantheon_coords = SkyCoord(
-        ra=pantheon['host_ra'].values * u.deg,
-        dec=pantheon['host_dec'].values * u.deg,
-    )
+    sdss = pd.read_csv(sdss_file)
+    logger.info(f"   Loaded {len(sdss)} REAL SDSS spectra")
     
-    sdss_coords = SkyCoord(
-        ra=sdss['ra'].values * u.deg,
-        dec=sdss['dec'].values * u.deg,
-    )
+    # For each unique Pantheon+ host, find the closest SDSS spectrum
+    # Group SDSS by matched host
+    host_groups = sdss.groupby('matched_host_snid')
     
-    # Cross-match
-    logger.info(f"   Matching with {tolerance_arcsec} arcsec tolerance...")
-    idx, d2d, _ = pantheon_coords.match_to_catalog_sky(sdss_coords)
+    matched_records = []
     
-    # Select matches within tolerance
-    matched = d2d < tolerance_arcsec * u.arcsec
-    n_matched = matched.sum()
-    
-    logger.info(f"   Found {n_matched} matches ({n_matched/len(pantheon)*100:.1f}%)")
-    
-    # Create matched catalog
-    matched_catalog = pd.DataFrame({
-        # Pantheon+ identifiers
-        'snid': pantheon.loc[matched, 'snid'].values,
-        'host_name': pantheon.loc[matched, 'host_name'].values,
+    for snid, host_group in host_groups:
+        # Find the Pantheon+ host info
+        host_info = pantheon[pantheon['snid'] == snid]
+        if len(host_info) == 0:
+            continue
         
-        # Coordinates
-        'host_ra': pantheon.loc[matched, 'host_ra'].values,
-        'host_dec': pantheon.loc[matched, 'host_dec'].values,
-        'separation_arcsec': d2d[matched].to(u.arcsec).value,
+        host = host_info.iloc[0]
         
-        # Redshifts
-        'zHD': pantheon.loc[matched, 'zHD'].values,
-        'zHDerr': pantheon.loc[matched, 'zHDerr'].values,
+        # Get the closest SDSS spectrum (first one in group is usually closest)
+        closest = host_group.iloc[0]
         
-        # Photometry (from Pantheon+ if available, else from SDSS)
-        'mag_u': sdss.loc[idx[matched], 'mag_u'].values if 'mag_u' in sdss.columns else np.nan,
-        'mag_g': sdss.loc[idx[matched], 'mag_g'].values if 'mag_g' in sdss.columns else np.nan,
-        'mag_r': sdss.loc[idx[matched], 'mag_r'].values if 'mag_r' in sdss.columns else np.nan,
-        'mag_i': sdss.loc[idx[matched], 'mag_i'].values if 'mag_i' in sdss.columns else np.nan,
-        'mag_z': sdss.loc[idx[matched], 'mag_z'].values if 'mag_z' in sdss.columns else np.nan,
+        # Check separation
+        separation = np.sqrt(
+            (closest['ra'] - host['host_ra'])**2 + 
+            (closest['dec'] - host['host_dec'])**2
+        ) * 3600  # Convert to arcseconds
         
-        # Spectroscopic ages (from SDSS/FIREFLY)
-        'spectroscopic_age': sdss.loc[idx[matched], 'age'].values if 'age' in sdss.columns else np.nan,
-        'spectroscopic_age_err': sdss.loc[idx[matched], 'age_err'].values if 'age_err' in sdss.columns else np.nan,
-        'spectroscopic_mass': sdss.loc[idx[matched], 'mass'].values if 'mass' in sdss.columns else np.nan,
-        'spectroscopic_metallicity': sdss.loc[idx[matched], 'metallicity'].values if 'metallicity' in sdss.columns else np.nan,
+        if separation > tolerance_arcsec:
+            continue
         
-        # Quality flags
-        'has_spectroscopy': True,
-    })
+        record = {
+            'snid': snid,
+            'host_name': host['host_name'],
+            'host_ra': host['host_ra'],
+            'host_dec': host['host_dec'],
+            'separation_arcsec': separation,
+            'zHD': host['zHD'],
+            'zHDerr': host['zHDerr'],
+            'sdss_ra': closest['ra'],
+            'sdss_dec': closest['dec'],
+            'sdss_z': closest['z'],
+            'sdss_objid': closest['objid'],
+            'sdss_specobjid': closest['specobjid'],
+            'sdss_plate': closest['plate'],
+            'sdss_mjd': closest['mjd'],
+            'sdss_fiberid': closest['fiberID'],
+            'n_spectra_nearby': len(host_group),
+        }
+        
+        matched_records.append(record)
     
-    # Remove matches with missing ages
-    valid_ages = matched_catalog['spectroscopic_age'].notna()
-    matched_catalog = matched_catalog[valid_ages]
+    if len(matched_records) == 0:
+        logger.warning("⚠️ No matches found!")
+        return None
     
-    logger.info(f"   {len(matched_catalog)} matches with valid spectroscopic ages")
+    matched_catalog = pd.DataFrame(matched_records)
+    
+    logger.info(f"   Found {len(matched_catalog)} unique host matches")
     
     # Save catalog
     matched_catalog.to_csv(output_file, index=False)
     logger.info(f"💾 Saved to {output_file}")
     
     # Print summary
-    logger.info(f"\n📊 Matched Catalog Summary:")
+    logger.info(f"\n📊 Real Matched Catalog Summary:")
     logger.info(f"   Total matches: {len(matched_catalog)}")
-    logger.info(f"   Age range: {matched_catalog['spectroscopic_age'].min():.2f} - {matched_catalog['spectroscopic_age'].max():.2f} Gyr")
-    logger.info(f"   Mean age: {matched_catalog['spectroscopic_age'].mean():.2f} Gyr")
     logger.info(f"   Redshift range: {matched_catalog['zHD'].min():.4f} - {matched_catalog['zHD'].max():.4f}")
+    logger.info(f"   Mean redshift: {matched_catalog['zHD'].mean():.4f}")
+    logger.info(f"   Mean separation: {matched_catalog['separation_arcsec'].mean():.2f} arcsec")
+    logger.info(f"   Hosts with multiple spectra: {(matched_catalog['n_spectra_nearby'] > 1).sum()}")
     
     return matched_catalog
 
